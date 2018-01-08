@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
 
     <name>cdb2-backend</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Backend module for CDB2</description>
 
     <parent>
         <groupId>eu.cehj</groupId>
@@ -67,7 +67,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.45</version>
         </dependency>
 
         <dependency>

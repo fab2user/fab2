@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 
 	<name>cdb2-parent</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Parent project for CDB2</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -17,12 +17,12 @@
 		<version>1.5.9.RELEASE</version>
 		<relativePath />
 	</parent>
-    
-    <modules>
-        <module>cdb2-persistence</module>
-        <module>cdb2-common</module>
-        <module>cdb2-backend</module>
-    </modules>
+
+	<modules>
+		<module>cdb2-persistence</module>
+		<module>cdb2-common</module>
+		<module>cdb2-backend</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,6 +30,8 @@
 		<java.version>1.8</java.version>
 		<maven.release.plugin.version>2.5.3</maven.release.plugin.version>
 		<skipTests>true</skipTests>
+		<mysql.version>5.1.45</mysql.version>
+		<querydsl.version>4.1.3</querydsl.version>
 	</properties>
 
 
@@ -96,6 +98,17 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+	</dependencies>
 
 </project>
