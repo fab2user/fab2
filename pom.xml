@@ -17,6 +17,12 @@
 		<version>1.5.9.RELEASE</version>
 		<relativePath />
 	</parent>
+    
+    <modules>
+        <module>cdb2-persistence</module>
+        <module>cdb2-common</module>
+        <module>cdb2-backend</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,9 +97,5 @@
 		</plugins>
 	</build>
 
-	<modules>
-		<module>cdb2-persistence</module>
-		<module>cdb2-common</module>
-		<module>cdb2-backend</module>
-	</modules>
+
 </project>
