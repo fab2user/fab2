@@ -1,0 +1,11 @@
+{
+  "global": {
+    "footer": "bottom page notifications",
+    "switch":{
+      "lang": "switch lang"
+    }
+  },
+    "area": {
+      "list": "List of geographical areas"
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "global" : {
+    "footer" : "mentions de bas de page",
+    "switch":{
+      "lang": "langue"
+    }
+  },
+    "area": {
+      "list": "Liste des zones geographiques"
+    }
+}

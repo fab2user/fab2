@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="app" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="cdb2" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<title>CDB2</title>
+<meta name="description" content=""></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<!-- <link th:href="@{/css/cdb2.css}" rel="stylesheet" /> -->
+</head>
+<body>
+	<div class="container">
+
+		<div ui-view="navbar" data-ng-cloak=""></div>
+		<toaster-container
+			toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
+		<!--    <div id="wrap">
+      <span us-spinner key="spin-1"></span> -->
+		<div id="main" class="container-fluid" ui-view="content"></div>
+		<div class="footer" data-ng-cloak="">
+			<p>
+				<i class="glyphicon glyphicon-copyright-mark"></i> <span
+					translate="global.footer">footer</span>
+			</p>
+		</div>
+		<!-- </div> -->
+		<div data-ng-view=""></div>
+		
+		<!-- IMPORTS -->
+		<!-- webjars -->
+
+
+		<script th:src="@{/webjars/angularjs/1.4.10/angular.js}"></script>
+		<script th:src="@{/webjars/angularjs/1.4.10/angular-animate.js}"></script>
+		<script th:src="@{/webjars/angularjs/1.4.10/angular-touch.js}"></script>
+		<script th:src="@{/webjars/angularjs/1.4.10/angular-cookies.js}"></script>
+		<script
+			th:src="@{/webjars/angular-ui-router/1.0.12/release/angular-ui-router.js}"></script>
+		<script	th:src="@{/webjars/angular-translate/2.13.1/angular-translate.js}"></script>
+		<script	th:src="@{/webjars/angular-translate-storage-cookie/2.5.2/angular-translate-storage-cookie.js}"></script>
+		<script	th:src="@{/webjars/angular-translate-loader-static-files/2.13.1/angular-translate-loader-static-files.js}"></script>
+
+		<script
+			th:src="@{/webjars/angular-toastr/2.1.1/dist/angular-toastr.js}"></script>
+		<script th:src="@{/webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.js}"></script>
+		
+		<!-- angular application -->
+		<script src="/js/index.module.js"></script>
+		<script src="/js/index.config.js"></script>
+		<script src="/js/index.route.js"></script>
+		<script src="/js/main/main.controller.js"></script>
+		<script src="/js/site/site.controller.js"></script>
+		<script src="/js/geo-area/geo-area.controller.js"></script>
+	</div>
+</body>
+</html>
