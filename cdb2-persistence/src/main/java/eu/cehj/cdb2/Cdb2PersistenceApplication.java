@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Cdb2PersistenceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Cdb2PersistenceApplication.class, args);
-	}
+    public static void main(final String[] args) {
+        SpringApplication.run(Cdb2PersistenceApplication.class, args);
+    }
+
 }

@@ -50,7 +50,7 @@ public class DBConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setPackagesToScan(new String[] { "eu.cehj.cdb2.db" });
+        em.setPackagesToScan(new String[] { "eu.cehj.cdb2.entity" });
         final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(this.additionalProperties());

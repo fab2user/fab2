@@ -1,6 +1,6 @@
 package eu.cehj.cdb2.common.dto;
 
-import eu.cehj.cdb2.db.Municipality;
+import eu.cehj.cdb2.entity.Municipality;
 
 public class MunicipalityDTO extends BaseDTO{
 

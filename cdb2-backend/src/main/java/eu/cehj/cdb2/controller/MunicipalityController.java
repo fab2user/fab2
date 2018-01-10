@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
-import eu.cehj.cdb2.db.Municipality;
+import eu.cehj.cdb2.entity.Municipality;
 import eu.cehj.cdb2.service.MunicipalityService;
 
 @RestController

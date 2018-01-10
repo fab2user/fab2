@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.querydsl.jpa.impl.JPAQuery;
 
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
-import eu.cehj.cdb2.db.Municipality;
-import eu.cehj.cdb2.db.QMunicipality;
+import eu.cehj.cdb2.entity.Municipality;
+import eu.cehj.cdb2.entity.QMunicipality;
 import eu.cehj.cdb2.service.MunicipalityService;
 
 @Service

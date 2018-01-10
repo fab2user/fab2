@@ -3,7 +3,7 @@ package eu.cehj.cdb2.service;
 import java.util.List;
 
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
-import eu.cehj.cdb2.db.Municipality;
+import eu.cehj.cdb2.entity.Municipality;
 
 public interface MunicipalityService extends BaseService<Municipality, Long> {
 

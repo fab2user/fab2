@@ -16,7 +16,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.cehj.cdb2.db.BaseEntity;
+import eu.cehj.cdb2.entity.BaseEntity;
 import eu.cehj.cdb2.service.BaseService;
 
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)

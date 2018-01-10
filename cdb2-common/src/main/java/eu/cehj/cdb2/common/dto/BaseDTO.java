@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.beans.BeanUtils;
 
-import eu.cehj.cdb2.db.BaseEntity;
+import eu.cehj.cdb2.entity.BaseEntity;
 
 public abstract class BaseDTO implements Serializable{
 

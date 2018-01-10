@@ -3,7 +3,7 @@ package eu.cehj.cdb2.service;
 import java.io.Serializable;
 import java.util.List;
 
-import eu.cehj.cdb2.db.BaseEntity;
+import eu.cehj.cdb2.entity.BaseEntity;
 
 public interface BaseService<T extends BaseEntity, ID extends Serializable> {
 
