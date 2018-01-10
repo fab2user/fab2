@@ -8,34 +8,36 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('site', {
+      .state('root', {
         abstract: true,
         views: {
-          'navbar@': {
-            templateUrl: '/js/site/site.html',
-            controller: 'SiteController as siteCtrl'
+          'navbar': {
+            templateUrl: '/js/root/navbar.html',
+            controller: 'NavBarController as navCtrl'
+          },
+          'footer': {
+            templateUrl: '/js/root/footer.html',
+            controller: 'FooterController as footerCtrl'
           }
         }
       })
-      .state('home', {
-        parent: 'site',
-        url: '/',
-        views: {
-          'content@': {
-            templateUrl: '/js/main/main.html',
-            controller: 'MainController',
-            controllerAs: 'main'
-          }
-        }
-      })
-      .state('area', {
-        parent: 'site',
+       .state('root.home', {
+         url: '/',
+         views: {
+           'content@': {
+             templateUrl: '/js/home/home.html',
+             controller: 'HomeController',
+             controllerAs: 'homeCtrl'
+           }
+         }
+       })
+      .state('root.area', {
         url: '/area',
         views: {
           'content@': {
             templateUrl: '/js/geo-area/area.html',
             controller: 'GeoAreaController',
-            controllerAs: 'area'
+            controllerAs: 'areaCtrl'
           }
         }
       });

@@ -24,11 +24,8 @@
 		<!--    <div id="wrap">
       <span us-spinner key="spin-1"></span> -->
 		<div id="main" class="container-fluid" ui-view="content"></div>
-		<div class="footer" data-ng-cloak="">
-			<p>
-				<i class="glyphicon glyphicon-copyright-mark"></i> <span
-					translate="global.footer">footer</span>
-			</p>
+		<div class="footer" data-ng-cloak="" ui-view="footer">
+
 		</div>
 		<!-- </div> -->
 		<div data-ng-view=""></div>
@@ -55,8 +52,9 @@
 		<script src="/js/index.module.js"></script>
 		<script src="/js/index.config.js"></script>
 		<script src="/js/index.route.js"></script>
-		<script src="/js/main/main.controller.js"></script>
-		<script src="/js/site/site.controller.js"></script>
+		<script src="/js/root/navbar.controller.js"></script>
+		<script src="/js/root/footer.controller.js"></script>
+		<script src="/js/home/home.controller.js"></script>
 		<script src="/js/geo-area/geo-area.controller.js"></script>
 	</div>
 </body>
