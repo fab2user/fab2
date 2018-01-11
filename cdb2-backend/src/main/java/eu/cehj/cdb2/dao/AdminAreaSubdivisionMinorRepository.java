@@ -4,10 +4,10 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import eu.cehj.cdb2.entity.Municipality;
+import eu.cehj.cdb2.entity.AdminAreaSubdivisionMinor;
 
 
 @RepositoryRestResource
-public interface MunicipalityRepository extends CrudRepository<Municipality, Long>, QueryDslPredicateExecutor<Municipality> {
+public interface AdminAreaSubdivisionMinorRepository extends CrudRepository<AdminAreaSubdivisionMinor, Long>, QueryDslPredicateExecutor<AdminAreaSubdivisionMinor> {
 
 }

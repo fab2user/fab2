@@ -13,13 +13,14 @@
 		<groupId>eu.cehj</groupId>
 		<artifactId>cdb2-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../cdb2-parent</relativePath> <!-- lookup parent from repository -->
+<!-- 		<relativePath>..</relativePath> lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+        <skipTests>false</skipTests>
 	</properties>
 
 	<dependencies>
@@ -36,13 +37,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-			<exclusions>
-				<!-- exclude default usage of Logback from Spring Boot Start POM -->
+			<!-- <exclusions>
+				exclude default usage of Logback from Spring Boot Start POM
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
-			</exclusions>
+			</exclusions> -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

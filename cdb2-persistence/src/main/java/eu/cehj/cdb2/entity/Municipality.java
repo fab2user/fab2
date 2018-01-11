@@ -2,6 +2,7 @@ package eu.cehj.cdb2.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,17 +24,18 @@ public class Municipality extends BaseAuditedEntity<Long> {
     @Column(name = "longitude")
     private String longitude;
 
-    @Column(name = "major_area")
     @ManyToOne
-    private AdminAreaSubdivision majorArea;
+    //    @JoinColumn(name = "admin_area_subdivision_major", referencedColumnName = "id")
+    @JoinColumn(name = "admin_area_subdivision_major")
+    private AdminAreaSubdivisionMajor adminAreaSubdivisionMajor;
 
-    @Column(name = "middle_area")
     @ManyToOne
-    private AdminAreaSubdivision middleArea;
+    @JoinColumn(name = "admin_area_subdivision_middle", referencedColumnName = "id")
+    private AdminAreaSubdivisionMiddle adminAreaSubdivisionMiddle;
 
-    @Column(name = "minor_area")
     @ManyToOne
-    private AdminAreaSubdivision minorArea;
+    @JoinColumn(name = "admin_area_subdivision_minor", referencedColumnName = "id")
+    private AdminAreaSubdivisionMinor adminAreaSubdivisionMinor;
 
     public Municipality() {
         super();
@@ -71,28 +73,29 @@ public class Municipality extends BaseAuditedEntity<Long> {
         this.longitude = longitude;
     }
 
-    public AdminAreaSubdivision getMajorArea() {
-        return this.majorArea;
+    public AdminAreaSubdivisionMajor getAdminAreaSubdivisionMajor() {
+        return this.adminAreaSubdivisionMajor;
     }
 
-    public void setMajorArea(final AdminAreaSubdivision majorArea) {
-        this.majorArea = majorArea;
+    public void setAdminAreaSubdivisionMajor(final AdminAreaSubdivisionMajor adminAreaSubdivisionMajor) {
+        this.adminAreaSubdivisionMajor = adminAreaSubdivisionMajor;
     }
 
-    public AdminAreaSubdivision getMiddleArea() {
-        return this.middleArea;
+    public AdminAreaSubdivisionMiddle getAdminAreaSubdivisionMiddle() {
+        return this.adminAreaSubdivisionMiddle;
     }
 
-    public void setMiddleArea(final AdminAreaSubdivision middleArea) {
-        this.middleArea = middleArea;
+    public void setAdminAreaSubdivisionMiddle(final AdminAreaSubdivisionMiddle adminAreaSubdivisionMiddle) {
+        this.adminAreaSubdivisionMiddle = adminAreaSubdivisionMiddle;
     }
 
-    public AdminAreaSubdivision getMinorArea() {
-        return this.minorArea;
+    public AdminAreaSubdivisionMinor getAdminAreaSubdivisionMinor() {
+        return this.adminAreaSubdivisionMinor;
     }
 
-    public void setMinorArea(final AdminAreaSubdivision minorArea) {
-        this.minorArea = minorArea;
+    public void setAdminAreaSubdivisionMinor(final AdminAreaSubdivisionMinor adminAreaSubdivisionMinor) {
+        this.adminAreaSubdivisionMinor = adminAreaSubdivisionMinor;
     }
+
 
 }

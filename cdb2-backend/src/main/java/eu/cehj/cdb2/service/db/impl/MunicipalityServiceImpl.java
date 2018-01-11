@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.jpa.impl.JPAQuery;
 
+import eu.cehj.cdb2.business.service.data.GeoDataStructure;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.Municipality;
 import eu.cehj.cdb2.entity.QMunicipality;
@@ -51,6 +52,12 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long>
     @Override
     public MunicipalityDTO getDTO(final Long id) throws Exception {
 
+        return null;
+    }
+
+    @Override
+    public Municipality populateEntity(final GeoDataStructure structure) {
+        // TODO Auto-generated method stub
         return null;
     }
 }

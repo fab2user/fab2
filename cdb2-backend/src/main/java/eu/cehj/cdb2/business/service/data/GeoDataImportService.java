@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.common.service.data;
+package eu.cehj.cdb2.business.service.data;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -11,20 +11,27 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 /**
  * Imports areas geo data into database, from http://www.geonames.org/.
  */
+@Service
 public class GeoDataImportService implements DataImportService {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    // @Autowired
+    //    private GeoDataPersistenceService geoDataPersistenceService;
+
     @Override
     public void importData(final String fileContent) {
         final List<GeoDataStructure> dataStructures  = this.processLines(fileContent);
-        dataStructures.stream().forEach(structure ->{
-            this.logger.debug(structure.toString());
-        });
+        final GeoDataPersistenceService geoDataPersistenceService = new GeoDataPersistenceService();
+        geoDataPersistenceService.persistData(dataStructures);
+        //        dataStructures.stream().forEach(structure ->{
+        //            this.logger.debug(structure.toString());
+        //        });
     }
 
     public List<GeoDataStructure> processLines(final String fileContent) {

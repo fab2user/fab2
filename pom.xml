@@ -19,8 +19,8 @@
 	</parent>
 
 	<modules>
-		<module>cdb2-persistence</module>
 		<module>cdb2-common</module>
+        <module>cdb2-persistence</module>
 		<module>cdb2-backend</module>
 		<module>cdb2-web</module>
 	</modules>
@@ -59,6 +59,7 @@
 	</distributionManagement>
 
 	<build>
+            <pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -98,6 +99,7 @@
 				</executions>
 			</plugin>
 		</plugins>
+        </pluginManagement>
 	</build>
 	<dependencies>
 		<dependency>
