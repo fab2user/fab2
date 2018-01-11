@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.service.impl;
+package eu.cehj.cdb2.service.db.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import eu.cehj.cdb2.entity.BaseEntity;
-import eu.cehj.cdb2.service.BaseService;
+import eu.cehj.cdb2.service.db.BaseService;
 
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
 public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializable> implements

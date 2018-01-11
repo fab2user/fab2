@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.Municipality;
-import eu.cehj.cdb2.service.MunicipalityService;
+import eu.cehj.cdb2.service.db.MunicipalityService;
 
 @RestController
 @RequestMapping("municipality")

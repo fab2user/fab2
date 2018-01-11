@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.service;
+package eu.cehj.cdb2.service.db;
 
 import java.io.Serializable;
 import java.util.List;

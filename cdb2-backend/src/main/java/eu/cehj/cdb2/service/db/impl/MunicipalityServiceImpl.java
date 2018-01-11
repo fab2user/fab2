@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.service.impl;
+package eu.cehj.cdb2.service.db.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import com.querydsl.jpa.impl.JPAQuery;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.Municipality;
 import eu.cehj.cdb2.entity.QMunicipality;
-import eu.cehj.cdb2.service.MunicipalityService;
+import eu.cehj.cdb2.service.db.MunicipalityService;
 
 @Service
 public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long> implements MunicipalityService {
