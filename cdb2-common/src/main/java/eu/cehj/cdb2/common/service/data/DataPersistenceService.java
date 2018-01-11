@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface DataPersistenceService<T> {
-    public void persistData(List<DataStructure<T>> dataStrucures);
+    public void persistData(List<T> dataStrucures);
 }

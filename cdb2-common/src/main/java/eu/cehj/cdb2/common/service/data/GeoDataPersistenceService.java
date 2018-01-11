@@ -5,7 +5,7 @@ import java.util.List;
 public class GeoDataPersistenceService<T> implements DataPersistenceService<T> {
 
     @Override
-    public void persistData(final List<DataStructure<T>> dataStrucures) {
+    public void persistData(final List<T> dataStrucures) {
 
     }
 
