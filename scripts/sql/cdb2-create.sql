@@ -1,0 +1,9 @@
+CREATE TABLE admin_area_subdivision_major (id BIGINT AUTO_INCREMENT NOT NULL, code VARCHAR(255), name VARCHAR(255), PRIMARY KEY (id));
+CREATE TABLE admin_area_subdivision_middle (id BIGINT AUTO_INCREMENT NOT NULL, code VARCHAR(255), name VARCHAR(255), admin_area_subdivision_major BIGINT, PRIMARY KEY (id));
+CREATE TABLE admin_area_subdivision_minor (id BIGINT AUTO_INCREMENT NOT NULL, code VARCHAR(255), name VARCHAR(255), admin_area_subdivision_middle BIGINT, PRIMARY KEY (id));
+CREATE TABLE municipality (id BIGINT AUTO_INCREMENT NOT NULL, created_by BIGINT, created_on DATETIME, deleted TINYINT(1) default 0, latitude VARCHAR(255), longitude VARCHAR(255), modified_by BIGINT, modified_on DATETIME, name VARCHAR(255), postal_code VARCHAR(255), admin_area_subdivision_major BIGINT, admin_area_subdivision_middle BIGINT, admin_area_subdivision_minor BIGINT, PRIMARY KEY (id));
+ALTER TABLE admin_area_subdivision_middle ADD CONSTRAINT FK_middle_area_major_area FOREIGN KEY (admin_area_subdivision_major) REFERENCES admin_area_subdivision_major (id);
+ALTER TABLE admin_area_subdivision_minor ADD CONSTRAINT FK_minor_area_middle_area FOREIGN KEY (admin_area_subdivision_middle) REFERENCES admin_area_subdivision_middle (id);
+ALTER TABLE municipality ADD CONSTRAINT FK_municipality_middle_area FOREIGN KEY (admin_area_subdivision_middle) REFERENCES admin_area_subdivision_middle (id);
+ALTER TABLE municipality ADD CONSTRAINT FK_municipality_major_area FOREIGN KEY (admin_area_subdivision_major) REFERENCES admin_area_subdivision_major (id);
+ALTER TABLE municipality ADD CONSTRAINT FK_municipality_minor_area FOREIGN KEY (admin_area_subdivision_minor) REFERENCES admin_area_subdivision_minor (id);
