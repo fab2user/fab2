@@ -13,7 +13,6 @@
 		<groupId>eu.cehj</groupId>
 		<artifactId>cdb2-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-<!-- 		<relativePath>..</relativePath> lookup parent from repository -->
 	</parent>
 
 	<properties>
