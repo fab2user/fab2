@@ -9,5 +9,5 @@ import eu.cehj.cdb2.entity.AdminAreaSubdivisionMinor;
 
 @RepositoryRestResource
 public interface AdminAreaSubdivisionMinorRepository extends CrudRepository<AdminAreaSubdivisionMinor, Long>, QueryDslPredicateExecutor<AdminAreaSubdivisionMinor> {
-
+    public AdminAreaSubdivisionMinor getByCode(String code);
 }

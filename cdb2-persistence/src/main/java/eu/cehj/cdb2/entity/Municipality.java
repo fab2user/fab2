@@ -12,10 +12,10 @@ public class Municipality extends BaseAuditedEntity<Long> {
 
     private static final long serialVersionUID = -1302962165492457412L;
 
-    @Column(name = "postal_code")
+    @Column(name = "postal_code", nullable=false)
     private String postalCode;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable=false)
     private String name;
 
     @Column(name = "latitude")

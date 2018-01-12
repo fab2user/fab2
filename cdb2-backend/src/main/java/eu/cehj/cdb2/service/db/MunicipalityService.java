@@ -4,9 +4,8 @@ import java.util.List;
 
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.Municipality;
-import eu.cehj.cdb2.service.db.BaseService;
 
-public interface MunicipalityService extends BaseService<Municipality, Long> {
+public interface MunicipalityService extends BaseService<Municipality, Long>, BaseGeoService<Municipality>, AdminAreaSubdivisionService {
 
     public MunicipalityDTO save(MunicipalityDTO municipalityDTO) throws Exception;
 

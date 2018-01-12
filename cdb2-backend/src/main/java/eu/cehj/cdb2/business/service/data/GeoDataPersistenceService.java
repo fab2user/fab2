@@ -29,11 +29,12 @@ public class GeoDataPersistenceService implements DataPersistenceService {
     @Override
     @Transactional
     public void persistData(final List<GeoDataStructure> dataStrucures) {
-        dataStrucures.stream().forEach(structure -> {
-            final GeoDataStructure geoStructure = structure;
-            this.adminAreaSubdivisionMajorService.updateAreaFromStructure(geoStructure);
+        dataStrucures.stream().forEach(geoStructure -> {
+            final RecordBuilderHelper helper = new RecordBuilderHelper();
+            this.adminAreaSubdivisionMajorService.updateAreaFromStructure(geoStructure, helper);
+            this.adminAreaSubdivisionMiddleService.updateAreaFromStructure(geoStructure, helper);
+            this.adminAreaSubdivisionMinorService.updateAreaFromStructure(geoStructure, helper);
+            this.municipalityService.updateAreaFromStructure(geoStructure, helper);
         });
-
     }
-
 }

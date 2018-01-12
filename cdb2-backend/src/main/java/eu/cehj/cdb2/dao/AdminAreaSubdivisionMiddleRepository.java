@@ -10,4 +10,5 @@ import eu.cehj.cdb2.entity.AdminAreaSubdivisionMiddle;
 @RepositoryRestResource
 public interface AdminAreaSubdivisionMiddleRepository extends CrudRepository<AdminAreaSubdivisionMiddle, Long>, QueryDslPredicateExecutor<AdminAreaSubdivisionMiddle> {
 
+    public AdminAreaSubdivisionMiddle getByCode(String code);
 }

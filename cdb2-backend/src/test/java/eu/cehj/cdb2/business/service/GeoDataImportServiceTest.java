@@ -28,7 +28,6 @@ public class GeoDataImportServiceTest {
     public void testImportData() {
 
         String fileContent;
-        //        final InputStream is = ClassLoader.class.getResourceAsStream("FR.txt");
         final InputStream is = this.getClass().getResourceAsStream("FR.txt");
         this.logger.debug(">>>>>>>>> IS/ " + is.toString());
         fileContent = new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.joining("\n"));

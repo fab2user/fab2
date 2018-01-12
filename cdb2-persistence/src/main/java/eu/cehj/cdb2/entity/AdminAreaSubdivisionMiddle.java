@@ -11,14 +11,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="admin_area_subdivision_middle")
-public class AdminAreaSubdivisionMiddle extends BaseEntity {
+public class AdminAreaSubdivisionMiddle  extends BaseAuditedEntity<Long> {
 
     private static final long serialVersionUID = -6751495992407562325L;
 
-    @Column(name = "code")
+    @Column(name = "code", nullable=false)
     private String code;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable=false)
     private String name;
 
     @ManyToOne

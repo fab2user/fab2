@@ -10,4 +10,5 @@ import eu.cehj.cdb2.entity.Municipality;
 @RepositoryRestResource
 public interface MunicipalityRepository extends CrudRepository<Municipality, Long>, QueryDslPredicateExecutor<Municipality> {
 
+    public Municipality getByPostalCode(String postalCode);
 }

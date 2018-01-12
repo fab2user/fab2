@@ -3,7 +3,6 @@ package eu.cehj.cdb2.service.db;
 import java.io.Serializable;
 import java.util.List;
 
-import eu.cehj.cdb2.business.service.data.GeoDataStructure;
 import eu.cehj.cdb2.entity.BaseEntity;
 
 public interface BaseService<T extends BaseEntity, ID extends Serializable> {
@@ -17,7 +16,5 @@ public interface BaseService<T extends BaseEntity, ID extends Serializable> {
     public void delete(ID id) throws Exception;
 
     public void delete(Iterable<T> entities) throws Exception;
-
-    public T populateEntity(GeoDataStructure structure);
 
 }
