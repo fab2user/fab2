@@ -1,14 +1,14 @@
 package eu.cehj.cdb2.web;
 
-//@SpringBootApplication
-//@EnableWebMvc
-//public class Cdb2WebApplication extends WebMvcAutoConfiguration{
-//	public static void main(String[] args) {
-//		SpringApplication.run(Cdb2WebApplication.class, args);
-//	}
-//}
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-public class Cdb2WebApplication{
-
+@SpringBootApplication
+@EnableWebMvc
+public class Cdb2WebApplication extends WebMvcAutoConfiguration{
+    public static void main(final String[] args) {
+        SpringApplication.run(Cdb2WebApplication.class, args);
+    }
 }
-

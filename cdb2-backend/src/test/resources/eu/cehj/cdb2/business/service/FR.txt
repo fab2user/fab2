@@ -1,2 +1,0 @@
-FR	32500	Goutz	Occitanie	76	Gers	32	Arrondissement de Condom	322	43.804	0.7339	5
-FR	75001	Paris	Île-de-France	11	Paris	75	Paris	751	48.8534	2.3488	5
