@@ -30,6 +30,11 @@
             <artifactId>cdb2-business</artifactId>
         </dependency>
         <dependency>
+            <version>0.0.1-SNAPSHOT</version>
+            <groupId>eu.cehj</groupId>
+            <artifactId>cdb2-persistence</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.web;
+package eu.cehj.cdb2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

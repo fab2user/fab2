@@ -29,9 +29,6 @@ public class GeoDataImportService implements DataImportService {
     public void importData(final String fileContent) {
         final List<GeoDataStructure> dataStructures  = this.processLines(fileContent);
         this.geoDataPersistenceService.persistData(dataStructures);
-        dataStructures.stream().forEach(structure ->{
-            this.logger.debug(structure.toString());
-        });
     }
 
     public List<GeoDataStructure> processLines(final String fileContent) {

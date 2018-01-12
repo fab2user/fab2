@@ -35,6 +35,7 @@ public class GeoDataPersistenceService implements DataPersistenceService {
             this.adminAreaSubdivisionMiddleService.updateAreaFromStructure(geoStructure, helper);
             this.adminAreaSubdivisionMinorService.updateAreaFromStructure(geoStructure, helper);
             this.municipalityService.updateAreaFromStructure(geoStructure, helper);
+
         });
     }
 }
