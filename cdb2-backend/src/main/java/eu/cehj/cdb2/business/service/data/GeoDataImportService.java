@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,17 +22,16 @@ public class GeoDataImportService implements DataImportService {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    // @Autowired
-    //    private GeoDataPersistenceService geoDataPersistenceService;
+    @Autowired
+    private GeoDataPersistenceService geoDataPersistenceService;
 
     @Override
     public void importData(final String fileContent) {
         final List<GeoDataStructure> dataStructures  = this.processLines(fileContent);
-        final GeoDataPersistenceService geoDataPersistenceService = new GeoDataPersistenceService();
-        geoDataPersistenceService.persistData(dataStructures);
-        //        dataStructures.stream().forEach(structure ->{
-        //            this.logger.debug(structure.toString());
-        //        });
+        this.geoDataPersistenceService.persistData(dataStructures);
+        dataStructures.stream().forEach(structure ->{
+            this.logger.debug(structure.toString());
+        });
     }
 
     public List<GeoDataStructure> processLines(final String fileContent) {
