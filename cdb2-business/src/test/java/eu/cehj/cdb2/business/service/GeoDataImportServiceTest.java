@@ -3,6 +3,7 @@ package eu.cehj.cdb2.business.service;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
@@ -29,14 +30,9 @@ public class GeoDataImportServiceTest {
 
         String fileContent;
         final InputStream is = this.getClass().getResourceAsStream("FR.txt");
-        this.logger.debug(">>>>>>>>> IS/ " + is.toString());
-        fileContent = new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.joining("\n"));
-        this.logger.debug(fileContent.toString());
+        fileContent = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
         this.service.importData(fileContent);
     }
 
-    //    @SpringBootApplication
-    //    static class TestConfiguration {
-    //    }
 
 }

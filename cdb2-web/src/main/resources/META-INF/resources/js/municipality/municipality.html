@@ -1,5 +1,28 @@
 <div class="row">
   <div class="col-lg-12">
+    <fieldset>
+      <legend>Recherche</legend>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="search.municipality.name">Municipality name</label>
+          <input type="text" ng-model="municipalityCtrl.searchParams.municipality_name" class="form-control" maxlength="100" name="search.municipality.name" autofocus="autofocus" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-primary" ng-click="municipalityCtrl.search()">search</button>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
     <table class="table table-striped">
       <tr>
         <td>ID</td>
@@ -9,13 +32,13 @@
         <td>Admin Area Subdivision 2</td>
         <td>Admin Area Subdivision 3</td>
       </tr>
-      <tr ng-repeat="row in municipalityCtrl.municipalities track by row.id">
-        <td>{{ row.id}}</td>
-        <td>{{ row.postalCode}}</td>
-        <td>{{ row.name}}</td>
-        <td>{{ row.adminAreaSubdivisionMajor}}</td>
-        <td>{{ row.adminAreaSubdivisionMiddle}}</td>
-        <td>{{ row.adminAreaSubdivisionMinor}}</td>
+      <tr ng-repeat="row in municipalityCtrl.municipalities | filter:nameFilter">
+        <td>{{ row.id }}</td>
+        <td>{{ row.postalCode }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.adminAreaSubdivisionMajor }}</td>
+        <td>{{ row.adminAreaSubdivisionMiddle }}</td>
+        <td>{{ row.adminAreaSubdivisionMinor }}</td>
       </tr>
     </table>
 

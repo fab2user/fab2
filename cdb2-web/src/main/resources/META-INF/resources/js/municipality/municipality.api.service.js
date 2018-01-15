@@ -11,6 +11,9 @@
     return $resource('http://localhost:8080/api/municipality/:id', {}, {
       getAll: {
         isArray: true
+      },
+      search: {
+        isArray: true
       }
     });
   }

@@ -1,2 +1,1734 @@
-FR	32500	Goutz	Occitanie	76	Gers	32	Arrondissement de Condom	322	43.804	0.7339	5
+FR	75000	Paris	Île-de-France	11	Paris	75	Paris	751	48.8534	2.3488	5
+FR	75001	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
 FR	75001	Paris	Île-de-France	11	Paris	75	Paris	751	48.8534	2.3488	5
+FR	75002	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75003	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75004	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75005	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75006	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75007	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75008	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75009	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75010	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75011	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75012	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75013	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75014	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75015	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75016	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75017	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75018	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75019	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75020	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75020	Paris	Île-de-France	11	Paris	75	Paris	751	48.8534	2.3488	5
+FR	75021 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75023 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75024 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75026 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75028 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75029 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75030 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75031 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75032 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75033 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75034 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75035 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75036 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75038 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75039 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75040 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75041 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75042 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75043 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75044 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75045 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75046 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75047 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75048 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75049 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75051 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75052 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75053 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75054 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75055 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75056 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75058 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75059 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75060 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75061 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75062 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75063 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75064 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75065 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75066 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75067 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75068 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75069 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75072 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75073 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75074 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75075 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75076 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75077 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75078 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75079 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75080 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75081 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75082 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75083 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75084 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75085 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75086 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75087 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75088 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75089 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75090 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75092 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75093 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75094 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75095 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75096 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75097 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75100 CEDEX 01	Paris 01	Île-de-France	11	Paris	75	Paris	751	48.8592	2.3417	5
+FR	75101 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75102 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75103 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75104 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75105 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75106 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75107 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75108 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75109 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75110 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75111 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75112 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75113 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75114 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75115 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75116	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75118 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75119 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75120 CEDEX 02	Paris 02	Île-de-France	11	Paris	75	Paris	751	48.8655	2.3426	5
+FR	75122 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75123 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75124 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75125 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75126 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75127 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75128 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75129 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75130 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75131 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75134 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75138 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75139 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75140 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75141 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75142 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75144 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75150 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75151 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75152 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75153 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75154 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75155 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75156 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75157 CEDEX 03	Paris 03	Île-de-France	11	Paris	75	Paris	751	48.8637	2.3615	5
+FR	75158 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75159 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75161 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75162 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75163 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75164 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75165 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75166 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75167 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75168 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75169 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75170 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75171 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75172 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75174 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75176 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75177 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75179 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75180 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75181 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75182 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75184 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75186 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75188 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75189 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75191 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75192 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75194 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75195 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75196 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75197 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75198 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75201 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75202 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75203 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75204 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75205 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75206 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75207 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75208 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75209 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75210 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75211 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75212 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75213 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75214 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75215 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75216 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75217 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75218 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75219 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75220 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75221 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75222 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75223 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75224 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75226 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75227 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75228 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75229 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75230 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75231 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75232 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75233 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75234 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75235 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75236 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75237 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75238 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75239 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75240 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75241 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75243 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75244 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75248 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75250 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75252 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75253 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75256 CEDEX 05	Paris 05	Île-de-France	11	Paris	75	Paris	751	48.8448	2.3471	5
+FR	75260 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75261 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75262 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75263 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75264 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75265 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75266 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75269 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75270 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75272 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75275 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75278 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75279 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75280 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75281 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75282 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75283 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75284 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75288 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75290 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75291 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75292 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75294 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75295 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75298 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75299 CEDEX 06	Paris 06	Île-de-France	11	Paris	75	Paris	751	48.8493	2.33	5
+FR	75302 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75303 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75304 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75305 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75306 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75307 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75308 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75309 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75310 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75311 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75312 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75313 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75314 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75315 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75317 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75318 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75319 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75320 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75321 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75322 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75323 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75324 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75325 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75326 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75327 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75328 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75329 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75330 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75333 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75335 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75337 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75338 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75339 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75340 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75341 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75342 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75343 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75344 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75345 CEDEX 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75348 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75349 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75350 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75352 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75353 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75355 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75356 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75357 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75358 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75359 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75360 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75361 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75362 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75363 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75364 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75365 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75366 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75367 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75370 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75371 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75372 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75373 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75374 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75375 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75376 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75378 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75379 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75380 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75381 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75382 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75383 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75384 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75385 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75386 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75387 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75388 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75389 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75390 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75391 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75392 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75394 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75395 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75396 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75397 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75398 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75399 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75400 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75401 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75402 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75403 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75405 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75406 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75407 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75408 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75410 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75411 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75412 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75413 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75415 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75416 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75417 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75418 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75419 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75420 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75421 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75422 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75423 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75424 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75425 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75426 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75427 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75428 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75429 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75430 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75431 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75432 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75434 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75435 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75436 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75437 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75438 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75439 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75440 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75441 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75442 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75443 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75444 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75445 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75446 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75447 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75449 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75450 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75451 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75452 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75453 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75454 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75455 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75456 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75457 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75458 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75459 CEDEX 09	Paris 09	Île-de-France	11	Paris	75	Paris	751	48.8718	2.3399	5
+FR	75460 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75462 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75463 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75464 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75465 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75466 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75467 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75468 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75470 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75471 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75472 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75473 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75474 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75475 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75476 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75477 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75478 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75479 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75480 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75481 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75482 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75483 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75484 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75485 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75486 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75487 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75488 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75490 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75491 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75492 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75493 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75495 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75496 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75497 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75498 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75499 CEDEX 10	Paris 10	Île-de-France	11	Paris	75	Paris	751	48.8709	2.3561	5
+FR	75502 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75503 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75504 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75505 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75506 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75507 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75508 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75509 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75510 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75511 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75512 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75521 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75522 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75523 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75524 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75525 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75526 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75527 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75528 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75533 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75534 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75535 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75536 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75537 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75538 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75540 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75541 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75542 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75543 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75544 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75545 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75546 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75547 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75548 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75550 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75551 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75552 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75553 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75554 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75555 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75556 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75557 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75558 CEDEX 11	Paris 11	Île-de-France	11	Paris	75	Paris	751	48.8574	2.3795	5
+FR	75560 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75561 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75562 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75563 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75564 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75565 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75566 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75567 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75568 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75569 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75570 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75571 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75572 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75573 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75574 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75575 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75576 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75577 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75578 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75579 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75580 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75581 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75582 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75583 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75584 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75585 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75586 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75587 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75588 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75589 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75591 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75592 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75593 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75594 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75595 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75596 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75597 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75598 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75599 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75600 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75601 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75602 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75603 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75604 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75605 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75606 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75607 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75608 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75609 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75610 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75611 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75612 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75613 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75614 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75616 CEDEX 12	Paris 12	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3876	5
+FR	75617 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75618 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75619 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75620 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75621 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75622 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75623 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75624 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75625 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75626 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75627 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75628 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75629 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75630 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75631 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75632 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75633 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75634 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75635 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75636 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75637 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75638 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75639 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75640 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75641 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75642 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75643 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75644 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75646 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75647 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75648 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75649 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75650 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75651 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75652 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75653 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75654 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75655 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75656 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75657 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75658 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75659 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75660 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75661 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75662 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75663 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75664 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75665 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75667 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75668 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75669 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75670 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75671 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75673 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75674 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75675 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75677 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75678 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75679 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75680 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75681 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75682 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75683 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75685 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75687 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75688 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75689 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75690 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75691 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75692 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75693 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75694 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75696 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75697 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75698 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75699 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75700 SP 07	Paris 07	Île-de-France	11	Paris	75	Paris	751	48.8565	2.321	5
+FR	75701 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75702 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75703 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75705 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75706 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75707 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75708 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75709 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75710 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75712 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75713 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75714 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75715 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75716 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75717 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75718 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75719 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75720 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75721 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75722 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75723 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75724 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75725 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75726 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75727 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75729 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75730 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75731 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75732 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75734 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75737 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75738 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75739 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75740 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75741 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75742 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75743 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75745 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75747 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75748 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75749 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75750 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75753 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75754 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75755 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75756 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75757 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75759 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75761 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75762 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75763 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75764 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75765 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75766 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75767 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75768 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75769 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75770 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75771 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75772 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75773 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75775 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75778 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75780 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75781 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75782 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75783 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75784 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75785 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75786 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75789 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75790 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75794 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75796 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75798 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75799 CEDEX 16	Paris 16	Île-de-France	11	Paris	75	Paris	751	48.8637	2.2769	5
+FR	75800 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75802 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75803 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75804 CEDEX 08	Paris 08	Île-de-France	11	Paris	75	Paris	751	48.8763	2.3183	5
+FR	75805 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75806 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75807 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75808 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75809 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75812 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75813 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75815 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75817 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75818 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75819 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75820 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75821 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75822 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75823 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75824 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75825 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75826 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75827 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75828 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75829 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75830 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75831 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75832 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75833 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75834 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75835 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75836 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75837 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75838 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75839 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75840 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75841 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75843 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75844 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75845 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75846 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75847 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75848 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75849 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75850 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75851 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75852 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75853 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75854 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75855 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75857 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75858 CEDEX 17	Paris 17	Île-de-France	11	Paris	75	Paris	751	48.8835	2.3219	5
+FR	75860 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75861 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75862 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75863 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75864 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75865 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75866 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75867 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75868 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75869 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75870 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75871 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75872 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75874 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75875 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75876 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75877 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75878 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75879 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75880 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75881 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75882 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75883 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75884 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75885 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75886 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75887 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75889 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75890 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75891 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75892 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75893 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75894 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75895 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75897 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75898 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75899 CEDEX 18	Paris 18	Île-de-France	11	Paris	75	Paris	751	48.8925	2.3444	5
+FR	75900 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75901 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75902 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75903 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75904 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75905 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75907 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75908 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75909 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75911 CEDEX 15	Paris 15	Île-de-France	11	Paris	75	Paris	751	48.8412	2.3003	5
+FR	75913 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75914 CEDEX 13	Paris 13	Île-de-France	11	Paris	75	Paris	751	48.8322	2.3561	5
+FR	75915 CEDEX 04	Paris 04	Île-de-France	11	Paris	75	Paris	751	48.8601	2.3507	5
+FR	75916 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75917 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75918 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75919 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75920 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75921 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75922 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75923 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75924 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75925 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75926 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75927 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75928 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75929 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75930 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75931 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75932 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75933 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75934 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75935 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75936 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75937 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75938 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75939 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75940 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75941 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75942 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75943 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75944 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75945 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75946 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75947 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75948 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75949 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75950 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75951 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75952 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75953 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75954 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75955 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75956 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75957 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75958 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75959 CEDEX 19	Paris 19	Île-de-France	11	Paris	75	Paris	751	48.8817	2.3822	5
+FR	75960 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75961 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75962 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75965 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75966 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75967 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75969 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75970 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75971 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75972 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75973 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75974 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75975 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75976 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75977 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75978 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75979 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75980 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75981 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75983 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75984 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75985 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75986 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75987 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75988 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75989 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75990 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75991 CEDEX 20	Paris 20	Île-de-France	11	Paris	75	Paris	751	48.8646	2.3984	5
+FR	75993 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75994 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75995 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75996 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75997 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	75998 CEDEX 14	Paris 14	Île-de-France	11	Paris	75	Paris	751	48.8331	2.3264	5
+FR	77000	La Rochette	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5088	2.6636	5
+FR	77000	Livry-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5177	2.6788	5
+FR	77000	Vaux-le-Pénil	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.528	2.6917	5
+FR	77000	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77001 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77002 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77003 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77004 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77005 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77006 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77007 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77008 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77009 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77010 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77011 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77012 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77013 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77014 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77015 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77016 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77017 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77018 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77019 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77020 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77021 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77023 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77024 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77025 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77026 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77027 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77028 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77039 CEDEX 9	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77040 CEDEX 9	Lognes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8354	2.63	5
+FR	77041 CEDEX 9	Lognes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8354	2.63	5
+FR	77042 CEDEX 9	Lognes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8354	2.63	5
+FR	77043 CEDEX 9	Lognes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8354	2.63	5
+FR	77050 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77051 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77052 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77090	Collégien	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8357	2.6736	5
+FR	77100	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77100	Mareuil-lès-Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9265	2.8613	5
+FR	77100	Nanteuil-lès-Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9294	2.8959	5
+FR	77101 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77102 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77103 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77104 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77105 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77106 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77107 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77108 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77109 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77110 CEDEX	Melun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5333	2.6667	5
+FR	77111	Solers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6592	2.7162	5
+FR	77111	Soignolles-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6535	2.6997	5
+FR	77112 CEDEX	Roissy-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7916	2.6475	5
+FR	77113 CEDEX	Roissy-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7916	2.6475	5
+FR	77114	Hermé	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4844	3.3463	5
+FR	77114	Gouaix	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4854	3.2934	5
+FR	77114	Noyen-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4529	3.3509	5
+FR	77114	Villiers-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4552	3.3761	5
+FR	77115	Blandy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5672	2.7818	5
+FR	77115	Sivry-Courtry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5283	2.7546	5
+FR	77118	Balloy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3974	3.1468	5
+FR	77118	Bazoches-lès-Bray	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3987	3.1883	5
+FR	77118	Gravon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4004	3.1189	5
+FR	77120	Aulnoy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.841	3.0967	5
+FR	77120	Chailly-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.7901	3.1245	5
+FR	77120	Marolles-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7767	3.1634	5
+FR	77120	Saints	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.7607	3.0464	5
+FR	77120	Beautheil	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.7631	3.0874	5
+FR	77120	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77120	Mauperthuis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.7682	3.0387	5
+FR	77120	Mouroux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8226	3.0388	5
+FR	77120	Amillis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7408	3.1289	5
+FR	77120	Giremoutiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8421	3.0293	5
+FR	77122	Monthyon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0075	2.8261	5
+FR	77123	Le Vaudoué	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.357	2.5184	5
+FR	77123	Tousson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3467	2.4592	5
+FR	77123	Noisy-sur-École	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.367	2.508	5
+FR	77124	Chauconin-Neufmontiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9667	2.85	5
+FR	77124	Penchard	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9865	2.861	5
+FR	77124	Villenoy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9411	2.8602	5
+FR	77124	Crégy-lès-Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9765	2.8748	5
+FR	77126	Châtenay-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4184	3.0947	5
+FR	77126	Égligny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4272	3.1198	5
+FR	77126	Courcelles-en-Bassée	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4106	3.0545	5
+FR	77127	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77130	Ville-Saint-Jacques	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.343	2.8987	5
+FR	77130	Barbey	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3666	3.0541	5
+FR	77130	Varennes-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.373	2.9257	5
+FR	77130	Forges	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4195	2.9603	5
+FR	77130	Cannes-Écluse	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.363	2.9875	5
+FR	77130	Misy-sur-Yonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3607	3.0898	5
+FR	77130	La Tombe	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3877	3.0871	5
+FR	77130	La Grande-Paroisse	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3868	2.9016	5
+FR	77130	Saint-Germain-Laval	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3997	2.9978	5
+FR	77130	Marolles-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3866	3.0356	5
+FR	77130	Dormelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3148	2.8992	5
+FR	77130	Montereau-Fault-Yonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3833	2.95	5
+FR	77131	Touquin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.735	3.0122	5
+FR	77131	Pézarches	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7371	2.9922	5
+FR	77133	Machault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4555	2.8314	5
+FR	77133	Féricy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4604	2.8008	5
+FR	77134	Les Ormes-sur-Voulzie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4636	3.2296	5
+FR	77135	Pontcarré	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7977	2.7051	5
+FR	77138	Luzancy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9725	3.1821	5
+FR	77139	Douy-la-Ramée	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0667	2.8833	5
+FR	77139	Étrépilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0349	2.9313	5
+FR	77139	Vincy-Manœuvre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0833	2.9667	5
+FR	77139	Puisieux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0667	2.9167	5
+FR	77139	Marcilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0365	2.878	5
+FR	77140	Montcourt-Fromonville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3067	2.7046	5
+FR	77140	Saint-Pierre-lès-Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2673	2.6797	5
+FR	77140	Nonville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2825	2.7931	5
+FR	77140	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77140	Darvault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2697	2.7308	5
+FR	77141	Vaudoy-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6888	3.08	5
+FR	77144	Montévrain	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8742	2.7511	5
+FR	77144	Chalifert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8899	2.7734	5
+FR	77145	May-en-Multien	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0723	3.0233	5
+FR	77148	Salins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4216	3.0213	5
+FR	77148	Laval-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4256	2.997	5
+FR	77150	Lésigny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7437	2.6152	5
+FR	77150	Férolles-Attilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7318	2.6309	5
+FR	77151	Montceaux-lès-Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6942	3.4394	5
+FR	77154	Coutençon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4713	2.9959	5
+FR	77154	Villeneuve-les-Bordes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4831	3.0492	5
+FR	77157	Everly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4667	3.25	5
+FR	77160	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77160	Chalautre-la-Petite	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5294	3.3122	5
+FR	77160	Rouilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5918	3.2777	5
+FR	77160	Cucharmoy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5829	3.1934	5
+FR	77160	Saint-Brice	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5676	3.3241	5
+FR	77160	Saint-Hilliers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6214	3.2577	5
+FR	77160	Mortery	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5996	3.2612	5
+FR	77160	Vulaines-lès-Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5601	3.2195	5
+FR	77160	Poigny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5402	3.2838	5
+FR	77160	La Chapelle-Saint-Sulpice	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5543	3.1786	5
+FR	77160	Chenoise	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6146	3.1946	5
+FR	77163	Tigeaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8257	2.9022	5
+FR	77163	Mortcerf	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7888	2.9169	5
+FR	77163	Dammartin-sur-Tigeaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8193	2.9191	5
+FR	77164	Ferrières-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8235	2.7066	5
+FR	77165	Iverny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.001	2.7893	5
+FR	77165	Cuisy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0198	2.7731	5
+FR	77165	Forfry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0572	2.8481	5
+FR	77165	Le Plessis-aux-Bois	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0033	2.7691	5
+FR	77165	Le Plessis-l'Évêque	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49	2.7833	5
+FR	77165	Saint-Soupplets	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0387	2.8072	5
+FR	77165	Gesvres-le-Chapitre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.044	2.8518	5
+FR	77166	Grisy-Suisnes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6854	2.6678	5
+FR	77166	Évry-Grégy-sur-Yerre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6667	2.6167	5
+FR	77167	Châtenoy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2341	2.6262	5
+FR	77167	Ormesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2444	2.6541	5
+FR	77167	Bagneaux-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2331	2.7067	5
+FR	77167	Faÿ-lès-Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2333	2.6667	5
+FR	77167	Poligny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2242	2.7445	5
+FR	77169	Chauffry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8113	3.1813	5
+FR	77169	Saint-Germain-sous-Doue	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8508	3.1444	5
+FR	77169	Saint-Siméon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7986	3.2032	5
+FR	77169	Boissy-le-Châtel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8207	3.1365	5
+FR	77170	Servon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7166	2.5874	5
+FR	77170	Coubert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6719	2.6973	5
+FR	77170	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77171	Melz-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4982	3.4177	5
+FR	77171	Léchelle	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5781	3.388	5
+FR	77171	Chalautre-la-Grande	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5417	3.4603	5
+FR	77171	Sourdun	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5369	3.352	5
+FR	77173	Chevry-Cossigny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7246	2.6611	5
+FR	77174	Villeneuve-Saint-Denis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8158	2.7935	5
+FR	77174	Villeneuve-le-Comte	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8141	2.8295	5
+FR	77176	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77176	Nandy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.583	2.5629	5
+FR	77177	Brou-sur-Chantereine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8833	2.6333	5
+FR	77178	Oissery	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0705	2.8182	5
+FR	77178	Saint-Pathus	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0714	2.7989	5
+FR	77181	Le Pin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9152	2.6284	5
+FR	77181	Courtry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9191	2.6043	5
+FR	77183	Croissy-Beaubourg	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8283	2.6696	5
+FR	77184	Émerainville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8128	2.6214	5
+FR	77185	Lognes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8354	2.63	5
+FR	77186	Noisiel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8487	2.6243	5
+FR	77187 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77190	Villiers-en-Bière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.494	2.5983	5
+FR	77190	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77191 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77192 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77193 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77194 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77195 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77196 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77197 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77198 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77199 CEDEX	Dammarie-les-Lys	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5167	2.65	5
+FR	77200	Torcy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.85	2.65	5
+FR	77201 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77202 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77203 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77204 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77205 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77206 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77207 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77208 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77209 CEDEX 1	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77210	Samoreau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4295	2.7559	5
+FR	77210	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77211 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77212 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77213 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77214 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77215 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77216 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77217 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77218 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77219 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77220	Tournan-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7415	2.772	5
+FR	77220	Presles-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7153	2.7411	5
+FR	77220	Favières	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7632	2.7747	5
+FR	77220	Gretz-Armainvilliers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7412	2.731	5
+FR	77220	Liverdy-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6999	2.7761	5
+FR	77221 CEDEX	Tournan-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7415	2.772	5
+FR	77222 CEDEX	Tournan-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7415	2.772	5
+FR	77223 CEDEX	Tournan-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7415	2.772	5
+FR	77224 CEDEX	Tournan-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7415	2.772	5
+FR	77225 CEDEX	Tournan-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7415	2.772	5
+FR	77229 CEDEX	Tournan-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7415	2.772	5
+FR	77230	Rouvres	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0624	2.7171	5
+FR	77230	Villeneuve-sous-Dammartin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.035	2.641	5
+FR	77230	Nantouillet	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0019	2.7036	5
+FR	77230	Dammartin-en-Goële	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0542	2.6778	5
+FR	77230	Marchémoret	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0505	2.7703	5
+FR	77230	Saint-Mard	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.037	2.6964	5
+FR	77230	Montgé-en-Goële	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0333	2.75	5
+FR	77230	Moussy-le-Neuf	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0643	2.6025	5
+FR	77230	Thieux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0077	2.6721	5
+FR	77230	Vinantes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0104	2.7349	5
+FR	77230	Longperrier	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0484	2.6657	5
+FR	77230	Moussy-le-Vieux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0471	2.6249	5
+FR	77230	Juilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0137	2.7056	5
+FR	77231 CEDEX	Dammartin-en-Goële	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0542	2.6778	5
+FR	77232 CEDEX	Dammartin-en-Goële	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0542	2.6778	5
+FR	77234 CEDEX	Dammartin-en-Goële	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0542	2.6778	5
+FR	77239 CEDEX	Dammartin-en-Goële	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0542	2.6778	5
+FR	77240	Seine-Port	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5574	2.5532	5
+FR	77240	Cesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.562	2.6082	5
+FR	77240	Vert-Saint-Denis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5682	2.6201	5
+FR	77241 CEDEX	Cesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.562	2.6082	5
+FR	77242 CEDEX	Cesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.562	2.6082	5
+FR	77243 CEDEX	Cesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.562	2.6082	5
+FR	77246 CEDEX	Cesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.562	2.6082	5
+FR	77247 CEDEX	Cesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.562	2.6082	5
+FR	77248 CEDEX	Cesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.562	2.6082	5
+FR	77249 CEDEX	Cesson	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.562	2.6082	5
+FR	77250	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77250	Veneux-les-Sablons	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3787	2.795	5
+FR	77250	Moret-Loing-et-Orvanne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3736	2.8142	5
+FR	77250	Villemer	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.301	2.8242	5
+FR	77250	Écuelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3564	2.8234	5
+FR	77250	Villecerf	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3278	2.8472	5
+FR	77250	Épisy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3345	2.7863	5
+FR	77250	Montarlot	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3497	2.849	5
+FR	77251 CEDEX	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77252 CEDEX	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77253 CEDEX	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77254 CEDEX	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77255 CEDEX	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77257 CEDEX	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77259 CEDEX	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77260	Sainte-Aulde	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9934	3.1724	5
+FR	77260	Reuil-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9603	3.1471	5
+FR	77260	Sept-Sorts	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9374	3.1023	5
+FR	77260	Sammeron	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9472	3.0833	5
+FR	77260	Ussy-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9566	3.0727	5
+FR	77260	Chamigny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9724	3.1517	5
+FR	77260	La Ferté-sous-Jouarre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9514	3.1272	5
+FR	77261 CEDEX	La Ferté-sous-Jouarre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9514	3.1272	5
+FR	77262 CEDEX	La Ferté-sous-Jouarre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9514	3.1272	5
+FR	77263 CEDEX	La Ferté-sous-Jouarre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9514	3.1272	5
+FR	77264 CEDEX	La Ferté-sous-Jouarre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9514	3.1272	5
+FR	77266 CEDEX	Brie-Comte-Robert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6925	2.6109	5
+FR	77270	Villeparisis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9421	2.6146	5
+FR	77271 CEDEX	Villeparisis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9421	2.6146	5
+FR	77272 CEDEX	Villeparisis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9421	2.6146	5
+FR	77280	Othis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0739	2.675	5
+FR	77281 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77282 CEDEX	Avon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4022	2.7202	5
+FR	77290	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77290	Compans	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9946	2.6645	5
+FR	77291 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77292 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77293 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77294 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77295 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77296 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77297 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77298 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77299 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77300	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77301 CEDEX	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77302 CEDEX	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77303 CEDEX	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77304 CEDEX	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77305 CEDEX	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77307 CEDEX	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77308 CEDEX	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77309 CEDEX	Fontainebleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4	2.7	5
+FR	77310	Pringy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5182	2.5633	5
+FR	77310	Saint-Fargeau-Ponthierry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5571	2.5284	5
+FR	77310	Boissise-le-Roi	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5248	2.5697	5
+FR	77311 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77312 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77313 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77314 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77315 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77316 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77318 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77319 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77320	Saint-Martin-des-Champs	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7785	3.3346	5
+FR	77320	Meilleray	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7884	3.4271	5
+FR	77320	Dagny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7174	3.1714	5
+FR	77320	Cerneux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6937	3.3447	5
+FR	77320	La Ferté-Gaucher	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7831	3.3068	5
+FR	77320	Jouy-sur-Morin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.795	3.2724	5
+FR	77320	Frétoy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7051	3.1972	5
+FR	77320	Saint-Mars-Vieux-Maisons	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7422	3.3207	5
+FR	77320	Lescherolles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7628	3.3474	5
+FR	77320	Saint-Martin-du-Boschet	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7359	3.4283	5
+FR	77320	Saint-Rémy-la-Vanne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7918	3.2327	5
+FR	77320	Montdauphin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8519	3.4286	5
+FR	77320	Montolivet	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8296	3.44	5
+FR	77320	La Chapelle-Moutils	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.775	3.3919	5
+FR	77320	Leudon-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7335	3.2734	5
+FR	77320	Chartronges	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7465	3.269	5
+FR	77320	Sancy-lès-Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6966	3.3925	5
+FR	77320	Choisy-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7587	3.217	5
+FR	77320	Chevru	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7368	3.1957	5
+FR	77320	Saint-Barthélemy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.817	3.3616	5
+FR	77320	Montenils	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.842	3.4773	5
+FR	77320	Beton-Bazoches	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7008	3.2448	5
+FR	77327 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77330	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77331 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77332 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77333 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77334 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77335 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77337 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77340	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77341 CEDEX	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77342 CEDEX	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77343 CEDEX	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77344 CEDEX	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77346 CEDEX	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77347 CEDEX	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77348 CEDEX	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77349 CEDEX	Pontault-Combault	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7981	2.6068	5
+FR	77350	Boissise-la-Bertrand	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5285	2.5894	5
+FR	77350	Boissettes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5195	2.6065	5
+FR	77350	Le Mée-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5316	2.6283	5
+FR	77351 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77352 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77353 CEDEX	Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9601	2.8788	5
+FR	77360	Vaires-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8765	2.6398	5
+FR	77370	Nangis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5554	3.0131	5
+FR	77370	Rampillon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5504	3.0662	5
+FR	77370	Clos-Fontaine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6077	3.0158	5
+FR	77370	Gastins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6293	3.0201	5
+FR	77370	Vanvillé	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5541	3.106	5
+FR	77370	Saint-Just-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6136	3.1169	5
+FR	77370	Châteaubleau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5891	3.1062	5
+FR	77370	Maison-Rouge	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5588	3.1507	5
+FR	77370	Fontenailles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5522	2.9523	5
+FR	77370	Vieux-Champagne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5803	3.1381	5
+FR	77370	Fontains	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5265	3.001	5
+FR	77370	La Chapelle-Rablais	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5112	2.9718	5
+FR	77370	La Croix-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5939	3.0767	5
+FR	77380	Combs-la-Ville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.665	2.5696	5
+FR	77381 CEDEX	Combs-la-Ville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.665	2.5696	5
+FR	77382 CEDEX	Combs-la-Ville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.665	2.5696	5
+FR	77384 CEDEX	Combs-la-Ville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.665	2.5696	5
+FR	77385 CEDEX	Combs-la-Ville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.665	2.5696	5
+FR	77388 CEDEX	Combs-la-Ville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.665	2.5696	5
+FR	77389 CEDEX	Combs-la-Ville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.665	2.5696	5
+FR	77390	Fouju	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5858	2.7779	5
+FR	77390	Yèbles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6364	2.7681	5
+FR	77390	Verneuil-l’Étang	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6445	2.8368	5
+FR	77390	Andrezel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6105	2.8138	5
+FR	77390	Chaumes-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6685	2.8401	5
+FR	77390	Guignes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6333	2.8	5
+FR	77390	Argentières	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6534	2.8676	5
+FR	77390	Courtomer	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6529	2.9044	5
+FR	77390	Ozouer-le-Voulgis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6601	2.7741	5
+FR	77390	Crisenoy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5955	2.7418	5
+FR	77390	Courquetaine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6779	2.7462	5
+FR	77390	Champdeuil	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6207	2.7286	5
+FR	77390	Beauvoir	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6445	2.8636	5
+FR	77400	Dampmart	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8885	2.7409	5
+FR	77400	Carnetin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.901	2.7059	5
+FR	77400	Saint-Thibault-des-Vignes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8711	2.6804	5
+FR	77400	Pomponne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8813	2.6823	5
+FR	77400	Thorigny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8869	2.7181	5
+FR	77400	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77400	Gouvernes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8601	2.6907	5
+FR	77401 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77402 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77403 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77404 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77405 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77406 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77407 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77409 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77410	Messy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9667	2.7	5
+FR	77410	Charmentray	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9453	2.7765	5
+FR	77410	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77410	Charny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.971	2.7612	5
+FR	77410	Villevaudé	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9175	2.6523	5
+FR	77410	Précy-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9308	2.7744	5
+FR	77410	Gressy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9649	2.6735	5
+FR	77410	Fresnes-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9396	2.7413	5
+FR	77410	Saint-Mesmes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9846	2.6948	5
+FR	77410	Villeroy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.983	2.7818	5
+FR	77410	Annet-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9267	2.7196	5
+FR	77411 CEDEX	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77412 CEDEX	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77413 CEDEX	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77414 CEDEX	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77415 CEDEX	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77416 CEDEX	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77417 CEDEX	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77419 CEDEX	Claye-Souilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9449	2.6857	5
+FR	77420	Champs-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.85	2.6	5
+FR	77421 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77422 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77423 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77424 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77425 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77426 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77427 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77429 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77430	Champagne-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3979	2.7978	5
+FR	77431 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77432 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77433 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77434 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77435 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77436 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77437 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77439 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77440	Isles-les-Meldeuses	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9995	3.0061	5
+FR	77440	Jaignes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9919	3.0552	5
+FR	77440	Cocherel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0214	3.103	5
+FR	77440	Vendrest	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0464	3.0939	5
+FR	77440	Congis-sur-Thérouanne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49	2.9833	5
+FR	77440	Trocy-en-Multien	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0421	2.962	5
+FR	77440	Ocquerre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0383	3.0571	5
+FR	77440	Armentières-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9777	3.0207	5
+FR	77440	Mary-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0159	3.0279	5
+FR	77440	Lizy-sur-Ourcq	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0245	3.0218	5
+FR	77440	Le Plessis-Placy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0579	2.9892	5
+FR	77440	Tancrou	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0027	3.0506	5
+FR	77440	Dhuisy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0389	3.1608	5
+FR	77441 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77442 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77443 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77444 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77445 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77446 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77447 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77448 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77450	Vignely	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.931	2.8084	5
+FR	77450	Condé-Sainte-Libiaire	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.897	2.839	5
+FR	77450	Montry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8841	2.8291	5
+FR	77450	Lesches	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9095	2.7824	5
+FR	77450	Esbly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9052	2.8124	5
+FR	77450	Trilbardou	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9425	2.8062	5
+FR	77450	Isles-lès-Villenoy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9125	2.8272	5
+FR	77450	Jablines	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.9177	2.7635	5
+FR	77451 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77452 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77453 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77454 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77455 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77458 CEDEX 2	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77460	Souppes-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.183	2.7352	5
+FR	77460	Chaintreaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1988	2.8203	5
+FR	77462 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77463 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77464 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77465 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77467 CEDEX	Lagny-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8667	2.7167	5
+FR	77468 CEDEX	Souppes-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.183	2.7352	5
+FR	77469 CEDEX	Souppes-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.183	2.7352	5
+FR	77470	Fublaines	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9382	2.9365	5
+FR	77470	Trilport	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9569	2.9508	5
+FR	77470	Poincy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9696	2.9364	5
+FR	77470	Villemareuil	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9212	2.9714	5
+FR	77470	Montceaux-lès-Meaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9416	2.9901	5
+FR	77470	Boutigny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9205	2.93	5
+FR	77470	Saint-Fiacre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9233	2.9556	5
+FR	77480	Mousseaux-lès-Bray	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4147	3.2283	5
+FR	77480	Fontaine-Fourches	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4141	3.3903	5
+FR	77480	Villuis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4107	3.3587	5
+FR	77480	Mouy-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4204	3.2426	5
+FR	77480	Baby	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3972	3.3411	5
+FR	77480	Bray-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4137	3.2385	5
+FR	77480	Jaulnes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4178	3.2735	5
+FR	77480	Saint-Sauveur-lès-Bray	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4397	3.2089	5
+FR	77480	Grisy-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4392	3.3187	5
+FR	77480	Passy-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4257	3.3472	5
+FR	77480	Villenauxe-la-Petite	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4081	3.3098	5
+FR	77480	Montigny-le-Guesdier	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3832	3.2544	5
+FR	77481 CEDEX	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77482 CEDEX	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77483 CEDEX	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77484 CEDEX	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77486 CEDEX	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77487 CEDEX	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77488 CEDEX	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77489 CEDEX	Provins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.55	3.3	5
+FR	77500	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77501 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77502 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77503 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77504 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77505 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77506 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77507 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77508 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77509 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77510	Rebais	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8472	3.2323	5
+FR	77510	Verdelot	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8754	3.3658	5
+FR	77510	La Trétoire	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8735	3.2517	5
+FR	77510	Sablonnières	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8757	3.297	5
+FR	77510	Bellot	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8567	3.3186	5
+FR	77510	Doue	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8664	3.1627	5
+FR	77510	Villeneuve-sur-Bellot	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.862	3.3414	5
+FR	77510	Saint-Léger	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.839	3.2554	5
+FR	77510	Hondevilliers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8999	3.3104	5
+FR	77510	Saint-Denis-lès-Rebais	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.8355	3.2102	5
+FR	77515	Hautefeuille	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7655	2.9681	5
+FR	77515	La Celle-sur-Morin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8115	2.9692	5
+FR	77515	Pommeuse	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8167	3.0167	5
+FR	77515	Faremoutiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.7996	2.9961	5
+FR	77515	Saint-Augustin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.7833	3.0302	5
+FR	77520	Vimpelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4397	3.1654	5
+FR	77520	Paroy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4789	3.1992	5
+FR	77520	Thénisy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4903	3.175	5
+FR	77520	Montigny-Lencoup	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4516	3.065	5
+FR	77520	Meigneux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5121	3.1045	5
+FR	77520	Donnemarie-Dontilly	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4772	3.1316	5
+FR	77520	Cessoy-en-Montois	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5046	3.1465	5
+FR	77520	Gurcy-le-Châtel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4702	3.0865	5
+FR	77520	Sigy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4784	3.1823	5
+FR	77520	Sognolles-en-Montois	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5123	3.1669	5
+FR	77520	Luisetaines	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4675	3.1806	5
+FR	77520	Mons-en-Montois	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.49	3.1477	5
+FR	77521 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77522 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77523 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77524 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77525 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77526 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77527 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77528 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77529 CEDEX	Coulommiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8145	3.085	5
+FR	77540	Voinsles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6913	3.0047	5
+FR	77540	Bernay-Vilbert	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6766	2.9371	5
+FR	77540	Le Plessis-Feu-Aussoux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7167	3.0333	5
+FR	77540	La Chapelle-Iger	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6538	2.9933	5
+FR	77540	Rozay-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6833	2.9582	5
+FR	77540	Courpalay	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6495	2.9612	5
+FR	77540	Lumigny-Nesles-Ormeaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7333	2.95	5
+FR	77541 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77542 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77543 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77544 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77545 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77546 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77547 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77548 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77549 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77550	Limoges-Fourches	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.628	2.6655	5
+FR	77550	Réau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6102	2.624	5
+FR	77550	Lissy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6265	2.6965	5
+FR	77550	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77551 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77552 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77553 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77554 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77555 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77556 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77557 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77558 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77559 CEDEX	Moissy-Cramayel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6261	2.6012	5
+FR	77560	Beauchery-Saint-Martin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6167	3.4	5
+FR	77560	Courchamp	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6364	3.2861	5
+FR	77560	Rupéreux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6351	3.3326	5
+FR	77560	Les Marêts	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6667	3.3167	5
+FR	77560	Villiers-Saint-Georges	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.65	3.4075	5
+FR	77560	Voulton	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6175	3.3342	5
+FR	77560	Courtacon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6968	3.2925	5
+FR	77560	Louan-Villegruis-Fontaine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6263	3.4768	5
+FR	77560	Augers-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6798	3.3563	5
+FR	77560	Champcenest	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6711	3.2821	5
+FR	77561 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77562 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77563 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77564 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77565 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77566 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77567 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77568 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77569 CEDEX	Lieusaint	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6348	2.5481	5
+FR	77570	Chenou	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1654	2.6592	5
+FR	77570	Mondreville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1415	2.6087	5
+FR	77570	Château-Landon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1472	2.6975	5
+FR	77570	Aufferville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2151	2.6097	5
+FR	77570	La Madeleine-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2	2.8667	5
+FR	77570	Maisoncelles-en-Gâtinais	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1877	2.6253	5
+FR	77570	Bougligny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1965	2.6583	5
+FR	77580	Crécy-la-Chapelle	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8592	2.9074	5
+FR	77580	Maisoncelles-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.866	2.9923	5
+FR	77580	Guérard	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8209	2.9597	5
+FR	77580	Voulangis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8525	2.8956	5
+FR	77580	Villiers-sur-Morin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.861	2.8777	5
+FR	77580	Bouleurs	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8818	2.9073	5
+FR	77580	Coulommes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8914	2.9289	5
+FR	77580	Sancy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8833	2.9667	5
+FR	77580	Vaucourtois	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8958	2.9519	5
+FR	77580	Coutevroult	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8622	2.8527	5
+FR	77580	Pierre-Levée	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8996	3.0384	5
+FR	77580	La Haute-Maison	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8816	3.002	5
+FR	77581 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77582 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77583 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77585 CEDEX	Savigny-le-Temple	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5741	2.5829	5
+FR	77590	Bois-le-Roi	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4735	2.7046	5
+FR	77590	Chartrettes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4881	2.7008	5
+FR	77590	Fontaine-le-Port	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4857	2.7653	5
+FR	77600	Jossigny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8376	2.7543	5
+FR	77600	Conches-sur-Gondoire	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8562	2.7178	5
+FR	77600	Guermantes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.853	2.705	5
+FR	77600	Bussy-Saint-Georges	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.841	2.7016	5
+FR	77600	Bussy-Saint-Martin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.849	2.6904	5
+FR	77600	Chanteloup-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8548	2.7393	5
+FR	77601 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77602 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77603 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77604 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77605 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77606 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77607 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77608 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77609 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77610	Neufmoutiers-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7688	2.8316	5
+FR	77610	Les Chapelles-Bourbon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.742	2.8404	5
+FR	77610	La Houssaye-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7538	2.8655	5
+FR	77610	Fontenay-Trésigny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7065	2.8705	5
+FR	77610	Marles-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.7278	2.88	5
+FR	77610	Crèvecœur-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.75	2.9	5
+FR	77610	Châtres	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.7102	2.8097	5
+FR	77611 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77612 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77614 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77615 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77616 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77617 CEDEX 3	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77620	Égreville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1761	2.8728	5
+FR	77620	Bransles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.153	2.8319	5
+FR	77630	Saint-Martin-en-Bière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4366	2.5668	5
+FR	77630	Barbizon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4435	2.6031	5
+FR	77630	Arbonne-la-Forêt	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.414	2.5668	5
+FR	77640	Jouarre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9266	3.1317	5
+FR	77640	Signy-Signets	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9277	3.0665	5
+FR	77641 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77645 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77646 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77649 CEDEX	Chelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8811	2.5929	5
+FR	77650	Soisy-Bouy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5118	3.295	5
+FR	77650	Longueville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.515	3.2468	5
+FR	77650	Chalmaison	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4823	3.2513	5
+FR	77650	Lizines	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5264	3.1778	5
+FR	77650	Sainte-Colombe	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5305	3.2552	5
+FR	77650	Jutigny	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.4983	3.2319	5
+FR	77650	Saint-Loup-de-Naud	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5333	3.2	5
+FR	77650	Savins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.5089	3.2022	5
+FR	77660	Changis-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9582	3.0219	5
+FR	77660	Saint-Jean-les-Deux-Jumeaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9514	3.0196	5
+FR	77670	Vernou-la-Celle-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3879	2.8472	5
+FR	77670	Saint-Mammès	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3846	2.8158	5
+FR	77680	Roissy-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.7916	2.6475	5
+FR	77690	La Genevraye	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3203	2.7455	5
+FR	77690	Montigny-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3357	2.7442	5
+FR	77700	Chessy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8833	2.7667	5
+FR	77700	Magny-le-Hongre	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8632	2.8155	5
+FR	77700	Bailly-Romainvilliers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8473	2.8235	5
+FR	77700	Serris	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8453	2.7861	5
+FR	77700	Coupvray	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.8929	2.7967	5
+FR	77701 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77702 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77703 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77704 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77705 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77706 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77708 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77709 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77710	Treuzy-Levelay	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2779	2.802	5
+FR	77710	Paley	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2425	2.8596	5
+FR	77710	Saint-Ange-le-Viel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2667	2.9	5
+FR	77710	Villemaréchal	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.267	2.8669	5
+FR	77710	Nanteau-sur-Lunain	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2567	2.8114	5
+FR	77710	Remauville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2126	2.824	5
+FR	77710	Lorrez-le-Bocage-Préaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2333	2.9	5
+FR	77710	Villebéon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2106	2.9403	5
+FR	77710	Chevry-en-Sereine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2539	2.9424	5
+FR	77710	Vaux-sur-Lunain	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2272	2.9369	5
+FR	77711 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77714 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77715 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77716 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77717 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77720	Saint-Méry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5774	2.8258	5
+FR	77720	Aubepierre-Ozouer-le-Repos	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6333	2.8833	5
+FR	77720	La Chapelle-Gauthier	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5495	2.8978	5
+FR	77720	Grandpuits-Bailly-Carrois	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5833	2.9667	5
+FR	77720	Mormant	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.609	2.8903	5
+FR	77720	Bréau	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5615	2.8786	5
+FR	77720	Bombon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5718	2.8608	5
+FR	77720	Quiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.6069	2.9695	5
+FR	77720	Champeaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5846	2.8066	5
+FR	77720	Saint-Ouen-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5584	2.9194	5
+FR	77721 CEDEX	Mormant	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.609	2.8903	5
+FR	77722 CEDEX	Mormant	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.609	2.8903	5
+FR	77723 CEDEX	Mormant	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.609	2.8903	5
+FR	77730	Méry-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9649	3.2001	5
+FR	77730	Saâcy-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9621	3.2108	5
+FR	77730	Citry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9682	3.2398	5
+FR	77730	Nanteuil-sur-Marne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9783	3.2202	5
+FR	77750	Boitron	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.898	3.2612	5
+FR	77750	Saint-Cyr-sur-Morin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.9066	3.1802	5
+FR	77750	Bassevelle	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9273	3.2876	5
+FR	77750	Bussières	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9228	3.2345	5
+FR	77750	Orly-sur-Morin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.9038	3.2307	5
+FR	77750	Saint-Ouen-sur-Morin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.902	3.2015	5
+FR	77760	Achères-la-Forêt	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3546	2.5704	5
+FR	77760	Guercheville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2592	2.5575	5
+FR	77760	Villiers-sous-Grez	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3187	2.6482	5
+FR	77760	Boissy-aux-Cailles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3194	2.4996	5
+FR	77760	Burcy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.238	2.5228	5
+FR	77760	Amponville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2781	2.5293	5
+FR	77760	Buthiers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2871	2.4316	5
+FR	77760	Nanteau-sur-Essonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3167	2.4167	5
+FR	77760	Fromont	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2548	2.5003	5
+FR	77760	Recloses	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3466	2.643	5
+FR	77760	La Chapelle-la-Reine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3181	2.5715	5
+FR	77760	Ury	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.344	2.603	5
+FR	77760	Boulancourt	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2581	2.4339	5
+FR	77760	Larchant	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2848	2.5944	5
+FR	77760	Rumont	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2637	2.4994	5
+FR	77760	Chevrainvilliers	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2451	2.6159	5
+FR	77771 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77772 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77776 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77777 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77778 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77779 CEDEX 4	Marne-la-Vallée	Île-de-France	11	Seine-et-Marne	77			48.8333	2.6333	5
+FR	77780	Bourron-Marlotte	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3405	2.7004	5
+FR	77791 CEDEX	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77792 CEDEX	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77793 CEDEX	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77794 CEDEX	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77795 CEDEX	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77796 CEDEX	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77798 CEDEX	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77799 CEDEX	Nemours	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2751	2.6908	5
+FR	77810	Thomery	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4072	2.7885	5
+FR	77811 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77813 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77814 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77815 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77816 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77817 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77818 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77819 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77820	Châtillon-la-Borde	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5426	2.8089	5
+FR	77820	Les Écrennes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5048	2.8584	5
+FR	77820	Le Châtelet-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5069	2.7916	5
+FR	77830	Valence-en-Brie	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4428	2.8902	5
+FR	77830	Échouboulains	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4638	2.9453	5
+FR	77830	Pamfou	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4611	2.8702	5
+FR	77831 CEDEX	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77832 CEDEX	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77833 CEDEX	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77834 CEDEX	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77835 CEDEX	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77837 CEDEX	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77838 CEDEX	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77839 CEDEX	Ozoir-la-Ferrière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Torcy	775	48.767	2.6687	5
+FR	77840	Germigny-sous-Coulombs	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0644	3.1591	5
+FR	77840	Crouy-sur-Ourcq	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0898	3.0753	5
+FR	77840	Coulombs-en-Valois	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0667	3.1333	5
+FR	77850	Héricy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4485	2.7644	5
+FR	77860	Saint-Germain-sur-Morin	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8826	2.8513	5
+FR	77860	Quincy-Voisins	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9011	2.8756	5
+FR	77860	Couilly-Pont-aux-Dames	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.8847	2.8568	5
+FR	77870	Vulaines-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4319	2.7648	5
+FR	77871 CEDEX	Montereau-Fault-Yonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3833	2.95	5
+FR	77872 CEDEX	Montereau-Fault-Yonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3833	2.95	5
+FR	77873 CEDEX	Montereau-Fault-Yonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3833	2.95	5
+FR	77875 CEDEX	Montereau-Fault-Yonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3833	2.95	5
+FR	77876 CEDEX	Montereau-Fault-Yonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3833	2.95	5
+FR	77879 CEDEX	Montereau-Fault-Yonne	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3833	2.95	5
+FR	77880	Grez-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3175	2.6885	5
+FR	77890	Garentreville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2361	2.5494	5
+FR	77890	Gironville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1862	2.5277	5
+FR	77890	Beaumont-du-Gâtinais	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1386	2.4791	5
+FR	77890	Obsonville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.217	2.5613	5
+FR	77890	Arville	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.1883	2.5497	5
+FR	77890	Ichy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2026	2.5471	5
+FR	77910	Chambry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9985	2.894	5
+FR	77910	Varreddes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.003	2.9279	5
+FR	77910	Germigny-l’Evêque	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9916	2.9443	5
+FR	77910	Barcy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0182	2.8804	5
+FR	77920	Samois-sur-Seine	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.4525	2.7504	5
+FR	77923 CEDEX	Mitry-Mory	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	48.9833	2.6167	5
+FR	77930	Perthes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4782	2.5551	5
+FR	77930	Cély	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4596	2.5324	5
+FR	77930	Fleury-en-Bière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4459	2.5487	5
+FR	77930	Chailly-en-Bière	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.467	2.6078	5
+FR	77930	Saint-Sauveur-sur-École	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4975	2.5471	5
+FR	77930	Saint-Germain-sur-École	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4742	2.5079	5
+FR	77931 CEDEX	Perthes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4782	2.5551	5
+FR	77932 CEDEX	Perthes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4782	2.5551	5
+FR	77933 CEDEX	Perthes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4782	2.5551	5
+FR	77939 CEDEX	Perthes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.4782	2.5551	5
+FR	77940	Blennes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2577	3.023	5
+FR	77940	Diant	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.283	2.9932	5
+FR	77940	Voulx	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.282	2.9675	5
+FR	77940	Thoury-Férottes	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.2942	2.9415	5
+FR	77940	Montmachoux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3185	2.9929	5
+FR	77940	Noisy-Rudignon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3355	2.9304	5
+FR	77940	Flagy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3123	2.9221	5
+FR	77940	Esmans	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.346	2.9762	5
+FR	77940	La Brosse-Montceaux	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.3451	3.0195	5
+FR	77950	Rubelles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5533	2.6759	5
+FR	77950	Maincy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5498	2.7002	5
+FR	77950	Voisenon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5717	2.6648	5
+FR	77950	Saint-Germain-Laxis	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5821	2.7104	5
+FR	77950	Moisenay	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5627	2.7353	5
+FR	77950	Montereau-sur-le-Jard	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5914	2.6684	5
+FR	77951 CEDEX	Maincy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5498	2.7002	5
+FR	77961 CEDEX	Moret-sur-Loing	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Fontainebleau	774	48.3724	2.8171	5
+FR	77970	Bezalles	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.679	3.244	5
+FR	77970	Bannost-Villegagnon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6783	3.1918	5
+FR	77970	Boisdon	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6851	3.2248	5
+FR	77970	Jouy-le-Châtel	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6665	3.1304	5
+FR	77970	Pécy	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Provins	773	48.6555	3.0822	5
+FR	77981 CEDEX	Saint-Fargeau-Ponthierry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5571	2.5284	5
+FR	77982 CEDEX	Saint-Fargeau-Ponthierry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5571	2.5284	5
+FR	77983 CEDEX	Saint-Fargeau-Ponthierry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5571	2.5284	5
+FR	77986 CEDEX	Saint-Fargeau-Ponthierry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5571	2.5284	5
+FR	77989 CEDEX	Saint-Fargeau-Ponthierry	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Melun	772	48.5571	2.5284	5
+FR	77990	Mauregard	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0342	2.5806	5
+FR	77990	Le Mesnil-Amelot	Île-de-France	11	Seine-et-Marne	77	Arrondissement de Meaux	771	49.0179	2.5942	5
+FR	78000	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78001 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78002 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78003 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78004 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78005 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78006 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78007 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78008 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78009 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78010 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78011 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78012 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78013 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78014 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78015 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78017 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78018 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78019 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78020 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5
+FR	78021 CEDEX	Versailles	Île-de-France	11	Yvelines	78	Arrondissement de Versailles	784	48.8	2.1333	5

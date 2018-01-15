@@ -2,6 +2,8 @@ package eu.cehj.cdb2.business.service.data;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,8 @@ public class GeoDataPersistenceService implements DataPersistenceService {
     @Autowired
     AdminAreaSubdivisionMiddleService  adminAreaSubdivisionMiddleService;
 
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     @Transactional
     public void persistData(final List<GeoDataStructure> dataStrucures) {
@@ -35,7 +39,7 @@ public class GeoDataPersistenceService implements DataPersistenceService {
             this.adminAreaSubdivisionMiddleService.updateAreaFromStructure(geoStructure, helper);
             this.adminAreaSubdivisionMinorService.updateAreaFromStructure(geoStructure, helper);
             this.municipalityService.updateAreaFromStructure(geoStructure, helper);
-
+            this.logger.debug("Area processed: " + geoStructure.getCityName() + " - " + geoStructure.getZipCode());
         });
     }
 }
