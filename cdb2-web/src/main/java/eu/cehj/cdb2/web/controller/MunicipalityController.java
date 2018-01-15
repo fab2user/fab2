@@ -20,7 +20,7 @@ import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.Municipality;
 
 @RestController
-@RequestMapping("municipality")
+@RequestMapping("api/municipality")
 public class MunicipalityController extends BaseController {
 
     @Autowired
@@ -36,15 +36,7 @@ public class MunicipalityController extends BaseController {
     @RequestMapping(method = { GET })
     @ResponseStatus(value = OK)
     public List<MunicipalityDTO> get() throws Exception {
-        final List<MunicipalityDTO> municipalities = new ArrayList<MunicipalityDTO>();
-
-        final Municipality m = new Municipality();
-        m.setId(2L);
-        m.setName("Arlon");
-        m.setPostalCode("6700");
-        final MunicipalityDTO municipality = new MunicipalityDTO(m);
-        municipalities.add(0,municipality);
-        return municipalities;
+        return municipalityService.getAllDTO();
     }
 
 

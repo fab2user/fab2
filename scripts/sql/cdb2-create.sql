@@ -1,3 +1,4 @@
+CREATE SCHEMA `cdb2-dev` DEFAULT CHARACTER SET utf8 ;
 CREATE TABLE admin_area_subdivision_major (id BIGINT AUTO_INCREMENT NOT NULL, code VARCHAR(255) NOT NULL, created_by BIGINT, created_on DATETIME, deleted TINYINT(1) default 0, modified_by BIGINT, modified_on DATETIME, name VARCHAR(255) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE admin_area_subdivision_middle (id BIGINT AUTO_INCREMENT NOT NULL, code VARCHAR(255) NOT NULL, created_by BIGINT, created_on DATETIME, deleted TINYINT(1) default 0, modified_by BIGINT, modified_on DATETIME, name VARCHAR(255) NOT NULL, admin_area_subdivision_major BIGINT, PRIMARY KEY (id));
 CREATE TABLE admin_area_subdivision_minor (id BIGINT AUTO_INCREMENT NOT NULL, code VARCHAR(255) NOT NULL, created_by BIGINT, created_on DATETIME, deleted TINYINT(1) default 0, modified_by BIGINT, modified_on DATETIME, name VARCHAR(255) NOT NULL, admin_area_subdivision_middle BIGINT, PRIMARY KEY (id));
