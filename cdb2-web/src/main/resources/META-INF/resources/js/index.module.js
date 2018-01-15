@@ -7,7 +7,8 @@
       'ui.bootstrap',
       'ngCookies',
       'ui.router',
-      'pascalprecht.translate'
+      'pascalprecht.translate',
+      'ngResource'
     ]);
 
 })();

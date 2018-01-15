@@ -9,8 +9,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.querydsl.jpa.impl.JPAQuery;
-
 import eu.cehj.cdb2.business.dao.MunicipalityRepository;
 import eu.cehj.cdb2.business.service.data.GeoDataStructure;
 import eu.cehj.cdb2.business.service.data.RecordBuilderHelper;
@@ -44,10 +42,17 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long>
 
         final QMunicipality municipality = QMunicipality.municipality;
 
-        final List<Municipality> municipalities = new JPAQuery<Municipality>(this.em).from(municipality).fetch();
+        final List<Municipality> municipalities = this.repository.findAllByOrderByPostalCode();
         final List<MunicipalityDTO> municipalityDTOs = new ArrayList<>(municipalities.size());
         municipalities.forEach(m -> {
-            municipalityDTOs.add(new MunicipalityDTO(m));
+            final MunicipalityDTO dto = new MunicipalityDTO();
+            dto.setId(m.getId());
+            dto.setName(m.getName());
+            dto.setPostalCode(m.getPostalCode());
+            dto.setAdminAreaSubdivisionMajor(m.getAdminAreaSubdivisionMajor().getName());
+            dto.setAdminAreaSubdivisionMiddle(m.getAdminAreaSubdivisionMiddle().getName());
+            dto.setAdminAreaSubdivisionMinor(m.getAdminAreaSubdivisionMinor().getName());
+            municipalityDTOs.add(dto);
         });
         return municipalityDTOs;
     }

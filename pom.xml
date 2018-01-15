@@ -104,6 +104,14 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+<!--         <resources> -->
+<!--             <resource> -->
+<!--                 <directory>cdb2-web/src/main/resources/META-INF/resources</directory> -->
+<!--                 <excludes> -->
+<!--                     <exclude>node_modules/**</exclude> -->
+<!--                 </excludes> -->
+<!--             </resource> -->
+<!--         </resources> -->
     </build>
     <dependencies>
         <dependency>

@@ -40,6 +40,16 @@
             controllerAs: 'areaCtrl'
           }
         }
+      })
+      .state('root.municipality', {
+        url: '/municipality',
+        views: {
+          'content@': {
+            templateUrl: '/js/municipality/municipality.html',
+            controller: 'MunicipalityController',
+            controllerAs: 'municipalityCtrl'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');

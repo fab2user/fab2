@@ -8,6 +8,9 @@ public class MunicipalityDTO extends BaseDTO{
 
     private String name;
     private String postalCode;
+    private String adminAreaSubdivisionMajor;
+    private String adminAreaSubdivisionMiddle;
+    private String adminAreaSubdivisionMinor;
 
     public MunicipalityDTO() {
         super();
@@ -31,6 +34,30 @@ public class MunicipalityDTO extends BaseDTO{
 
     public void setPostalCode(final String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getAdminAreaSubdivisionMajor() {
+        return this.adminAreaSubdivisionMajor;
+    }
+
+    public void setAdminAreaSubdivisionMajor(final String adminAreaSubdivisionMajor) {
+        this.adminAreaSubdivisionMajor = adminAreaSubdivisionMajor;
+    }
+
+    public String getAdminAreaSubdivisionMiddle() {
+        return this.adminAreaSubdivisionMiddle;
+    }
+
+    public void setAdminAreaSubdivisionMiddle(final String adminAreaSubdivisionMiddle) {
+        this.adminAreaSubdivisionMiddle = adminAreaSubdivisionMiddle;
+    }
+
+    public String getAdminAreaSubdivisionMinor() {
+        return this.adminAreaSubdivisionMinor;
+    }
+
+    public void setAdminAreaSubdivisionMinor(final String adminAreaSubdivisionMinor) {
+        this.adminAreaSubdivisionMinor = adminAreaSubdivisionMinor;
     }
 
 }
