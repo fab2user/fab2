@@ -19,6 +19,12 @@ public class Address extends BaseAuditedEntity<Long> {
     @JoinColumn(name = "municipality")
     private Municipality municipality;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
     public String getAddress() {
         return this.address;
     }
@@ -33,6 +39,22 @@ public class Address extends BaseAuditedEntity<Long> {
 
     public void setMunicipality(final Municipality municipality) {
         this.municipality = municipality;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(final String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
     }
 
 

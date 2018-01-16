@@ -9,6 +9,12 @@
   "area": {
     "list": "List of geographical areas"
   },
+  "navbar": {
+    "link": {
+      "bailiff": "Bailiffs",
+      "municipality": "ZIP codes"
+    }
+  },
   "municipality": {
     "import": {
       "button": "Import data",
@@ -29,5 +35,18 @@
       "area2": "Admin Area Subdivision 2",
       "area3": "Admin Area Subdivision 3"
     }
+  },
+  "bailiff": {
+    "search": {
+      "id": "ID",
+      "name": "Name",
+      "address": "Address",
+      "municipality": "Municipality",
+      "postalcode": "Postal code",
+      "result":{
+        "title": "Search results"
+      }
+    }
+
   }
 }

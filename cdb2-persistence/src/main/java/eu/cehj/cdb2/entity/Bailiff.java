@@ -19,12 +19,6 @@ public class Bailiff extends BaseAuditedEntity<Long> {
     @JoinColumn(name = "address")
     private Address address;
 
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "email")
-    private String email;
-
     public String getName() {
         return this.name;
     }
@@ -39,22 +33,6 @@ public class Bailiff extends BaseAuditedEntity<Long> {
 
     public void setAddress(final Address address) {
         this.address = address;
-    }
-
-    public String getPhone() {
-        return this.phone;
-    }
-
-    public void setPhone(final String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
     }
 
 }

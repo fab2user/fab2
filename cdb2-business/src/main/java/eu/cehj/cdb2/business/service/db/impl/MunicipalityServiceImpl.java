@@ -15,7 +15,6 @@ import eu.cehj.cdb2.business.service.data.RecordBuilderHelper;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.Municipality;
-import eu.cehj.cdb2.entity.QMunicipality;
 
 @Service
 public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long> implements MunicipalityService {
@@ -39,8 +38,6 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long>
 
     @Override
     public List<MunicipalityDTO> getAllDTO() throws Exception {
-
-        final QMunicipality municipality = QMunicipality.municipality;
 
         final List<Municipality> municipalities = this.repository.findAllByOrderByPostalCode();
         final List<MunicipalityDTO> municipalityDTOs = new ArrayList<>(municipalities.size());

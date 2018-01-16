@@ -54,6 +54,16 @@
             controllerAs: 'municipalityCtrl'
           }
         }
+      })
+      .state('root.bailiff', {
+        url: '/bailiff',
+        views: {
+          'content@': {
+            templateUrl: '/js/bailiff/bailiff.html',
+            controller: 'BailiffController',
+            controllerAs: 'bailiffCtrl'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');
