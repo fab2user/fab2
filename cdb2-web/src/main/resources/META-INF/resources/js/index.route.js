@@ -11,6 +11,10 @@
       .state('root', {
         abstract: true,
         views: {
+          'head': {
+            templateUrl: '/js/root/head.html',
+            controller: 'HeadController as headCtrl'
+          },
           'navbar': {
             templateUrl: '/js/root/navbar.html',
             controller: 'NavBarController as navCtrl'

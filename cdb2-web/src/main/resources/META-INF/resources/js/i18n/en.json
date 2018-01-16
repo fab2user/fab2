@@ -1,11 +1,33 @@
 {
   "global": {
     "footer": "bottom page notifications",
-    "switch":{
+    "switch": {
       "lang": "switch lang"
-    }
+    },
+    "search": "search"
   },
-    "area": {
-      "list": "List of geographical areas"
+  "area": {
+    "list": "List of geographical areas"
+  },
+  "municipality": {
+    "import": {
+      "button": "Import data",
+      "success": "Import was successfull",
+      "error": "Error during import..."
+      },
+    "search": {
+      "municipality": "municipality name",
+      "area1": "Area 1",
+      "area2": "Area 2",
+      "area3": "Area 3"
+    },
+    "list": {
+      "id": "ID",
+      "postal_code": "Postal Code",
+      "municipality": "Municipality",
+      "area1": "Admin Area Subdivision 1",
+      "area2": "Admin Area Subdivision 2",
+      "area3": "Admin Area Subdivision 3"
     }
+  }
 }

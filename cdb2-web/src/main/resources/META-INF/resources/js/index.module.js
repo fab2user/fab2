@@ -8,7 +8,8 @@
       'ngCookies',
       'ui.router',
       'pascalprecht.translate',
-      'ngResource'
+      'ngResource',
+      'toastr'
     ]);
 
 })();

@@ -1,17 +1,32 @@
 <div class="row">
   <div class="col-lg-12">
     <fieldset>
-      <legend>Recherche</legend>
+      <legend translate="global.search">Search</legend>
 
       <div class="row">
-        <div class="col-md-6">
-          <label for="search.municipality.name">Municipality name</label>
+        <div class="col-md-3">
+          <label for="search.municipality.name" translate="municipality.search.municipality">Municipality name</label>
           <input type="text" ng-model="municipalityCtrl.searchParams.municipality_name" class="form-control" maxlength="100" name="search.municipality.name" autofocus="autofocus" />
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <button class="btn btn-primary" ng-click="municipalityCtrl.search()">search</button>
+        <div class="col-md-3">
+          <label for="search.area1.name" translate="municipality.search.area1">Area 1</label>
+          <input type="text" ng-model="municipalityCtrl.searchParams.area1_name" class="form-control" maxlength="100" name="search.area1.name" autofocus="autofocus" />
+        </div>
+        <div class="col-md-3">
+          <label for="search.area2.name" translate="municipality.search.area2">Area 2</label>
+          <input type="text" ng-model="municipalityCtrl.searchParams.area2_name" class="form-control" maxlength="100" name="search.area2.name" autofocus="autofocus" />
+        </div>
+        <div class="col-md-3">
+          <label for="search.area3.name" translate="municipality.search.area3">Area 2</label>
+          <input type="text" ng-model="municipalityCtrl.searchParams.area3_name" class="form-control" maxlength="100" name="search.area3.name" autofocus="autofocus" />
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="btn btn-primary" ng-click="municipalityCtrl.search()" translate="global.search">search</button>
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-primary" ng-click="municipalityCtrl.importData()" translate="municipality.import.button">import</button>
+          </div>
         </div>
       </div>
     </fieldset>
@@ -25,12 +40,12 @@
   <div class="col-lg-12">
     <table class="table table-striped">
       <tr>
-        <td>ID</td>
-        <td>Postal Code</td>
-        <td>Municipality</td>
-        <td>Admin Area Subdivision 1</td>
-        <td>Admin Area Subdivision 2</td>
-        <td>Admin Area Subdivision 3</td>
+        <td translate="municipality.list.id">ID</td>
+        <td translate="municipality.list.postal_code">Postal Code</td>
+        <td translate="municipality.list.municipality">Municipality</td>
+        <td translate="municipality.list.area1">Admin Area Subdivision 1</td>
+        <td translate="municipality.list.area2">Admin Area Subdivision 2</td>
+        <td translate="municipality.list.area3">Admin Area Subdivision 3</td>
       </tr>
       <tr ng-repeat="row in municipalityCtrl.municipalities | filter:nameFilter">
         <td>{{ row.id }}</td>

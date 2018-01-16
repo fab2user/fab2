@@ -23,6 +23,7 @@
 			toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
 		<!--    <div id="wrap">
       <span us-spinner key="spin-1"></span> -->
+        <div id="head" ui-view="head"></div>
 		<div id="main" class="container-fluid" ui-view="content"></div>
 		<div class="footer" data-ng-cloak="" ui-view="footer">
 
@@ -45,8 +46,9 @@
 		<script	th:src="@{/webjars/angular-translate-storage-cookie/2.5.2/angular-translate-storage-cookie.js}"></script>
 		<script	th:src="@{/webjars/angular-translate-loader-static-files/2.13.1/angular-translate-loader-static-files.js}"></script>
 
-		<script
-			th:src="@{/webjars/angular-toastr/2.1.1/dist/angular-toastr.js}"></script>
+		<script th:src="@{/webjars/angular-toastr/1.5.0/angular-toastr.js}"></script>
+        <script th:src="@{/webjars/angular-toastr/1.5.0/angular-toastr.tpls.js}"></script>
+        <link th:href="@{/webjars/angular-toastr/1.5.0/angular-toastr.css}" rel="stylesheet" />
 		<script th:src="@{/webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.js}"></script>
 		
 		<!-- angular application -->
@@ -55,6 +57,7 @@
 		<script src="/js/index.route.js"></script>
 		<script src="/js/root/navbar.controller.js"></script>
 		<script src="/js/root/footer.controller.js"></script>
+        <script src="/js/root/head.controller.js"></script>
 		<script src="/js/home/home.controller.js"></script>
 		<script src="/js/geo-area/geo-area.controller.js"></script>
 		<script src="/js/municipality/municipality.controller.js"></script>
