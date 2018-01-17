@@ -1,8 +1,14 @@
 package eu.cehj.cdb2.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,6 +24,17 @@ public class Bailiff extends BaseAuditedEntity<Long> {
     @ManyToOne
     @JoinColumn(name = "address")
     private Address address;
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "rel_bailiff_lang",
+    joinColumns = @JoinColumn(name = "bailiff_id"),
+    inverseJoinColumns = @JoinColumn(name = "lang_id")
+            )
+    private final List<Language> languages = new ArrayList<>();
 
     public String getName() {
         return this.name;

@@ -1,9 +1,7 @@
-(function () {
+(function() {
   'use strict';
 
-  angular
-    .module('cdb2')
-    .factory('BailiffAPIService', BailiffAPIService);
+  angular.module('cdb2').factory('BailiffAPIService', BailiffAPIService);
 
   BailiffAPIService.$inject = ['$resource'];
 
@@ -13,6 +11,9 @@
         isArray: true
       },
       search: {
+        params: {
+          id: 'search'
+        },
         isArray: true
       }
     });

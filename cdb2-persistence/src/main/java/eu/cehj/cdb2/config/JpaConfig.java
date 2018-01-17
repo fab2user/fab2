@@ -11,7 +11,7 @@ import eu.cehj.cdb2.entity.AuditorAwareImpl;
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class JpaConfig {
     @Bean
-    public AuditorAware<Long> auditorAware() {
+    public AuditorAware<String> auditorAware() {
         return new AuditorAwareImpl();
     }
 }

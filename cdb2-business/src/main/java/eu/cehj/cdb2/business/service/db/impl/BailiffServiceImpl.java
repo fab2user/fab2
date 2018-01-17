@@ -8,12 +8,16 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.types.Predicate;
+
 import eu.cehj.cdb2.business.dao.BailiffRepository;
 import eu.cehj.cdb2.business.service.db.BailiffService;
+import eu.cehj.cdb2.business.service.search.model.BailiffSearch;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.Municipality;
+import eu.cehj.cdb2.entity.QBailiff;
 
 @Service
 public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implements BailiffService {
@@ -49,6 +53,18 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
         return null;
     }
 
+    @Override
+    public Iterable<BailiffDTO> searchDTO(final BailiffSearch searchParams)throws Exception{
+
+        final Predicate predicate = QBailiff.bailiff.name.like("HJGJH");
+        final Iterable<Bailiff> bailiffs = this.repository.findAll(predicate);
+        final List<BailiffDTO> dtos = new ArrayList<BailiffDTO>();
+        bailiffs.forEach(bailiff -> {
+            final BailiffDTO dto = this.populateDTOFromEntity(bailiff);
+            dtos.add(dto);
+        });
+        return dtos;
+    }
 
     public BailiffDTO populateDTOFromEntity(final Bailiff bailiff) {
         final BailiffDTO bailiffDTO = new BailiffDTO();

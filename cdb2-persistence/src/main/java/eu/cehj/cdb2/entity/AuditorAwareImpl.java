@@ -2,10 +2,10 @@ package eu.cehj.cdb2.entity;
 
 import org.springframework.data.domain.AuditorAware;
 
-public class AuditorAwareImpl implements AuditorAware<Long> {
+public class AuditorAwareImpl implements AuditorAware<String> {
     @Override
-    public Long getCurrentAuditor() {
+    public String getCurrentAuditor() {
         // TODO replace with user retrieved by Spring Security when implemented
-        return 1L;
+        return "Landry Soules";
     }
 }

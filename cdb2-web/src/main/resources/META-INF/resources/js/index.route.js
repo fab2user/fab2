@@ -64,6 +64,16 @@
             controllerAs: 'bailiffCtrl'
           }
         }
+      })
+      .state('root.reference', {
+        url: '/reference',
+        views: {
+          'content@': {
+            templateUrl: '/js/reference/reference.html',
+            controller: 'ReferenceController',
+            controllerAs: 'refCtrl'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');

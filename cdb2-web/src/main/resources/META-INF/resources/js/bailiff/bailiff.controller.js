@@ -13,7 +13,9 @@
     });
 
     vm.search = function() {
-      $log.debug('search clicked :', vm.searchParams);
+      BailiffAPIService.search(vm.searchParams).$promise.then(function(data) {
+        vm.bailiffs = data;
+      });
     }
   };
 })();

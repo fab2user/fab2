@@ -25,7 +25,6 @@ public class Municipality extends BaseAuditedEntity<Long> {
     private String longitude;
 
     @ManyToOne
-    //    @JoinColumn(name = "admin_area_subdivision_major", referencedColumnName = "id")
     @JoinColumn(name = "admin_area_subdivision_major")
     private AdminAreaSubdivisionMajor adminAreaSubdivisionMajor;
 

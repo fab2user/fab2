@@ -1,5 +1,10 @@
 {
   "global": {
+    "button": {
+      "add": "Add",
+      "remove": "Remove",
+      "edit": "Edit"
+    },
     "footer": "bottom page notifications",
     "switch": {
       "lang": "switch lang"
@@ -20,7 +25,7 @@
       "button": "Import data",
       "success": "Import was successfull",
       "error": "Error during import..."
-      },
+    },
     "search": {
       "municipality": "municipality name",
       "area1": "Area 1",
@@ -43,10 +48,25 @@
       "address": "Address",
       "municipality": "Municipality",
       "postalcode": "Postal code",
-      "result":{
+      "result": {
         "title": "Search results"
       }
     }
-
+  },
+  "reference": {
+    "competence": {
+      "title": "List of competences to be displayed",
+      "code": "code",
+      "description": "Description"
+    },
+    "instrument": {
+      "title": "List of instruments to be displayed",
+      "code": "code",
+      "description": "Description"
+    },
+    "language": {
+      "title": "List of languages to be displayed",
+      "code": "code"
+    }
   }
 }
