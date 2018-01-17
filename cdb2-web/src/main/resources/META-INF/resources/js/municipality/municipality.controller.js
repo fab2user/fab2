@@ -3,15 +3,16 @@
 
   angular.module('cdb2').controller('MunicipalityController', MunicipalityController);
 
-  MunicipalityController.$inject = ['$log', '$http', '$translate', 'MunicipalityAPIService', 'toastr'];
+  MunicipalityController.$inject = ['$log', '$http', '$translate', 'MunicipalityAPIService', 'toastr', 'NgTableParams'];
 
-  function MunicipalityController($log, $http, $translate, MunicipalityAPIService, toastr) {
+  function MunicipalityController($log, $http, $translate, MunicipalityAPIService, toastr, NgTableParams) {
     var vm = this;
     vm.searchParams = {};
     $log.debug('Entering municipality controller');
     MunicipalityAPIService.getAll().$promise.then(function(success) {
       $log.debug('Success: ', success);
       vm.municipalities = success;
+      vm.tableParams = new NgTableParams({}, {dataset: success});
     });
 
     vm.search = function() {
