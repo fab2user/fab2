@@ -6,13 +6,13 @@
           {{city.id}}</td>
         <td title="'municipality.list.municipality'|translate" filter="{ name: 'text'}" sortable="'name'">
           {{city.name}}</td>
-        <td title="'municipality.list.postalcode'|translate" filter="{ name: 'text'}" sortable="'name'">
+        <td title="'municipality.list.postalcode'|translate" filter="{ postalCode: 'text'}" sortable="'postalCode'">
           {{city.postalCode}}</td>
-        <td title="'municipality.list.area1'|translate" filter="{ name: 'text'}" sortable="'name'">
+        <td title="'municipality.list.area1'|translate" filter="{ adminAreaSubdivisionMajor: 'text'}" sortable="'adminAreaSubdivisionMajor'">
           {{city.adminAreaSubdivisionMajor}}</td>
-        <td title="'municipality.list.area2'|translate" filter="{ name: 'text'}" sortable="'name'">
+        <td title="'municipality.list.area2'|translate" filter="{ adminAreaSubdivisionMiddle: 'text'}" sortable="'adminAreaSubdivisionMiddle'">
           {{city.adminAreaSubdivisionMiddle}}</td>
-        <td title="'municipality.list.area3'|translate" filter="{ name: 'text'}" sortable="'name'">
+        <td title="'municipality.list.area3'|translate" filter="{ adminAreaSubdivisionMinor: 'text'}" sortable="'adminAreaSubdivisionMinor'">
           {{city.adminAreaSubdivisionMinor}}</td>
       </tr>
     </table>
