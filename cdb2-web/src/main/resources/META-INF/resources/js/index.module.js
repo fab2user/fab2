@@ -9,7 +9,8 @@
       'ui.router',
       'pascalprecht.translate',
       'ngResource',
-      'toastr'
+      'toastr',
+      'ngTable'
     ]);
 
 })();
