@@ -17,7 +17,7 @@
 
     vm.search = function() {
       $log.debug('search clicked :', vm.searchParams);
-    }
+    };
 
     vm.importData = function() {
       $http({method: 'GET', url: 'http://localhost:8080/api/municipality/import'})
@@ -27,6 +27,6 @@
         $log.error('error during import');
         toastr.error($translate.instant('municipality.import.error'));
       });
-    }
-  };
+    };
+  }
 })();

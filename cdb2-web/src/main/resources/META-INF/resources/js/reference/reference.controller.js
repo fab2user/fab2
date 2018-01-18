@@ -16,5 +16,5 @@
     ReferenceAPIService.getAllLanguage().$promise.then(function(data) {
       vm.languages = data;
     });
-  };
+  }
 })();

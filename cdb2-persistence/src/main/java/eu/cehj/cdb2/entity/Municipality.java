@@ -36,6 +36,10 @@ public class Municipality extends BaseAuditedEntity<Long> {
     @JoinColumn(name = "admin_area_subdivision_minor", referencedColumnName = "id")
     private AdminAreaSubdivisionMinor adminAreaSubdivisionMinor;
 
+    @ManyToOne
+    @JoinColumn(name = "geo_area", referencedColumnName = "id")
+    private GeoArea geoArea;
+
     public Municipality() {
         super();
     }
@@ -94,6 +98,14 @@ public class Municipality extends BaseAuditedEntity<Long> {
 
     public void setAdminAreaSubdivisionMinor(final AdminAreaSubdivisionMinor adminAreaSubdivisionMinor) {
         this.adminAreaSubdivisionMinor = adminAreaSubdivisionMinor;
+    }
+
+    public GeoArea getGeoArea() {
+        return this.geoArea;
+    }
+
+    public void setGeoArea(final GeoArea geoArea) {
+        this.geoArea = geoArea;
     }
 
 

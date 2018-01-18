@@ -18,7 +18,8 @@
     "link": {
       "bailiff": "Bailiffs",
       "municipality": "ZIP codes",
-      "reference": "Reference codes"
+      "reference": "Reference codes",
+      "area": "Geo Area"
     }
   },
   "municipality": {
