@@ -12,7 +12,18 @@
     "search": "search"
   },
   "area": {
-    "list": "List of geographical areas"
+    "list": {
+      "title": "List of geographical areas",
+      "id": "ID",
+      "name": "Name",
+      "zipcodes": "Postal codes"
+    },
+
+    "detail": {
+      "id": "ID",
+      "postalcode": "Postal code",
+      "municipality": "Municipality"
+    }
   },
   "navbar": {
     "link": {

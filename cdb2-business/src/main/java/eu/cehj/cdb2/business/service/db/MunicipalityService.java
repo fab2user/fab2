@@ -16,4 +16,6 @@ public interface MunicipalityService extends BaseService<Municipality, Long>, Ba
 
     public MunicipalityDTO getDTO(Long id) throws Exception;
 
+    MunicipalityDTO populateDTOFromEntity(Municipality municipality);
+
 }

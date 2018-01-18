@@ -84,4 +84,22 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long>
         return area;
     }
 
+    @Override
+    public MunicipalityDTO populateDTOFromEntity(final Municipality municipality) {
+        final MunicipalityDTO dto = new MunicipalityDTO();
+        dto.setId(municipality.getId());
+        dto.setName(municipality.getName());
+        dto.setPostalCode(municipality.getPostalCode());
+        if (municipality.getAdminAreaSubdivisionMajor() != null) {
+            dto.setAdminAreaSubdivisionMajor(municipality.getAdminAreaSubdivisionMajor().getName());
+        }
+        if (municipality.getAdminAreaSubdivisionMiddle() != null) {
+            dto.setAdminAreaSubdivisionMiddle(municipality.getAdminAreaSubdivisionMiddle().getName());
+        }
+        if (municipality.getAdminAreaSubdivisionMinor() != null) {
+            dto.setAdminAreaSubdivisionMinor(municipality.getAdminAreaSubdivisionMinor().getName());
+        }
+        return dto;
+    }
+
 }

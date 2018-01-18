@@ -1,0 +1,8 @@
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.top-10 {
+  margin-top: 10em;
+}

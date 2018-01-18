@@ -10,7 +10,9 @@
       'pascalprecht.translate',
       'ngResource',
       'toastr',
-      'ngTable'
+      'ngTable',
+      'ngLodash',
+      'ui.bootstrap'
     ]);
 
 })();
