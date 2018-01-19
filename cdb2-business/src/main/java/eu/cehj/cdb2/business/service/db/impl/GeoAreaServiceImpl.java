@@ -40,7 +40,7 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
         dto.setId(area.getId());
         dto.setName(area.getName());
         final List<MunicipalityDTO> municipalityDTOs = area.getMunicipalities().stream().map(municipality -> {
-            dto.setZipCodes(dto.getZipCodes() + ", " + municipality.getPostalCode());
+            dto.addZipCode(municipality.getPostalCode());
             return this.municipalityService.populateDTOFromEntity(municipality);
         }).collect(Collectors.toList());
         dto.setMunicipalities(municipalityDTOs);

@@ -18,11 +18,23 @@
       "name": "Name",
       "zipcodes": "Postal codes"
     },
-
     "detail": {
       "id": "ID",
       "postalcode": "Postal code",
       "municipality": "Municipality"
+    },
+    "edit": {
+      "title": "Juridical Geographical Area:",
+      "table": {
+        "id": "Id",
+        "name": "name",
+        "zipcode": "postal code",
+        "area":{
+          "1": "subdivision 1",
+          "2": "subdivision 2",
+          "3": "subdivision 3"
+        }
+      }
     }
   },
   "navbar": {

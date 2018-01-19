@@ -22,7 +22,7 @@
       var modalInstance = $uibModal.open({
         templateUrl: '/js/geo-area/area-edit.html',
         controller: 'GeoAreaDetailController as areaDetailCtrl',
-        size: 'lg',
+        windowClass: 'modal-hg',
         backdrop: 'static',
         resolve: {
           area: selectedArea

@@ -6,3 +6,7 @@
 .top-10 {
   margin-top: 10em;
 }
+
+.modal-hg .modal-dialog {
+  width: 96%;
+}
