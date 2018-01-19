@@ -14,6 +14,7 @@ import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.common.dto.GeoAreaDTO;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.GeoArea;
+import eu.cehj.cdb2.entity.Municipality;
 
 @Service
 public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implements GeoAreaService {
@@ -45,6 +46,48 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
         }).collect(Collectors.toList());
         dto.setMunicipalities(municipalityDTOs);
         return dto;
+    }
+
+    public GeoArea populateEntity(final GeoAreaDTO dto) {
+        //        GeoArea area = null;
+        //        if((dto.getId()!= null) && ((area = this.repository.findOne(dto.getId()))==null)) {
+        //
+        //        }else {
+        //            area = new GeoArea();
+        //        }
+        final GeoArea area = this.repository.getOne(dto.getId());
+
+        dto.getMunicipalities().stream().forEach(city ->{
+            try {
+                final Municipality municipality =  this.municipalityService.get(city.getId());
+                if(municipality != null) {
+                    municipality.setGeoArea(area);
+                    this.municipalityService.save(municipality);
+                }
+            } catch (final Exception e) {
+                this.logger.error(e.getMessage(),e);
+            }
+        });
+
+        //        area.setMunicipalities( dto.getMunicipalities().stream().map(city->
+        //        {
+        //            try {
+        //                return this.municipalityService.get(city.getId());
+        //            } catch (final Exception e) {
+        //                this.logger.error(e.getMessage(),e);
+        //            }
+        //            return null;
+        //        }
+        //                ).collect(Collectors.toList()));
+        return area;
+    }
+
+    @Override
+    public GeoAreaDTO saveDTO(final GeoAreaDTO dto) throws Exception {
+        final GeoArea area = this.populateEntity(dto);
+        return dto;
+        //        this.repository.save(area);
+        //        return this.populateDTOFromEntity(area);
     }
 
 }

@@ -3,7 +3,9 @@
     "button": {
       "add": "Add",
       "remove": "Remove",
-      "edit": "Edit"
+      "edit": "Edit",
+      "save": "Save",
+      "cancel": "Cancel"
     },
     "footer": "bottom page notifications",
     "switch": {
