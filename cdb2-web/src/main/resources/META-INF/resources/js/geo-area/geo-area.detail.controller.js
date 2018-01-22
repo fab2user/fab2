@@ -44,8 +44,11 @@
     vm.addSelected = function(){
       var cities = [];
       vm.selectedForAddition.forEach(function(id){
-          cities.push(lodash.find(vm.municipalities, {'id': id}));
+          var city = lodash.find(vm.municipalities, {'id': id});
+          cities.push(city);
+          vm.area.zipCodes += ', ' + city.postalCode;
       });
+
       addCitiesToDisplay(cities);
       vm.tableParamsEdit.reload();
       vm.selectedForAddition = [];

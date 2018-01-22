@@ -48,14 +48,8 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
         return dto;
     }
 
-    public GeoArea populateEntity(final GeoAreaDTO dto) {
-        //        GeoArea area = null;
-        //        if((dto.getId()!= null) && ((area = this.repository.findOne(dto.getId()))==null)) {
-        //
-        //        }else {
-        //            area = new GeoArea();
-        //        }
-        final GeoArea area = this.repository.getOne(dto.getId());
+    public GeoAreaDTO populateEntity(final GeoAreaDTO dto) {
+        final GeoArea area = this.repository.findOne(dto.getId());
 
         dto.getMunicipalities().stream().forEach(city ->{
             try {
@@ -69,25 +63,12 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
             }
         });
 
-        //        area.setMunicipalities( dto.getMunicipalities().stream().map(city->
-        //        {
-        //            try {
-        //                return this.municipalityService.get(city.getId());
-        //            } catch (final Exception e) {
-        //                this.logger.error(e.getMessage(),e);
-        //            }
-        //            return null;
-        //        }
-        //                ).collect(Collectors.toList()));
-        return area;
+        return dto;
     }
 
     @Override
     public GeoAreaDTO saveDTO(final GeoAreaDTO dto) throws Exception {
-        final GeoArea area = this.populateEntity(dto);
-        return dto;
-        //        this.repository.save(area);
-        //        return this.populateDTOFromEntity(area);
+        return this.populateEntity(dto);
     }
 
 }
