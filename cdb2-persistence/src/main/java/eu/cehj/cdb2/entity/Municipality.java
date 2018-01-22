@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "municipality")
-public class Municipality extends BaseAuditedEntity<Long> {
+public class Municipality extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = -1302962165492457412L;
 

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="admin_area_subdivision_middle")
-public class AdminAreaSubdivisionMiddle  extends BaseAuditedEntity<Long> {
+public class AdminAreaSubdivisionMiddle  extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = -6751495992407562325L;
 

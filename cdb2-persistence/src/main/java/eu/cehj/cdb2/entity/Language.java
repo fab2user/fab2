@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "language")
-public class Language extends BaseAuditedEntity<Long>{
+public class Language extends BaseAuditedEntity<String>{
 
     private static final long serialVersionUID = -1903127286011981312L;
 

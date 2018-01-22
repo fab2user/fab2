@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "instrument")
-public class Instrument extends BaseAuditedEntity<Long>{
+public class Instrument extends BaseAuditedEntity<String>{
 
     private static final long serialVersionUID = -8486637090683919492L;
 

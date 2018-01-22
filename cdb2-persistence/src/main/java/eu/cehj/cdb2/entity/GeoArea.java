@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "geo_area")
-public class GeoArea extends BaseAuditedEntity<Long> {
+public class GeoArea extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = -7834873765738494098L;
 

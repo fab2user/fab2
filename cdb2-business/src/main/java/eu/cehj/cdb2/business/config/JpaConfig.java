@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.config;
+package eu.cehj.cdb2.business.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

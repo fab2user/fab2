@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "address")
-public class Address extends BaseAuditedEntity<Long> {
+public class Address extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = 6631408359535998948L;
 
