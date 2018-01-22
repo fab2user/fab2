@@ -11,7 +11,7 @@ CREATE TABLE instrument (id bigint not null auto_increment, created_by VARCHAR(2
 CREATE TABLE language (id bigint not null auto_increment, created_by VARCHAR(255), created_on datetime, deleted bit, modified_by VARCHAR(255), modified_on datetime, code varchar(255) not null, language varchar(255) not null, primary key (id));
 CREATE TABLE municipality (id bigint not null auto_increment, created_by VARCHAR(255), created_on datetime, deleted bit, modified_by VARCHAR(255), modified_on datetime, latitude varchar(255), longitude varchar(255), name varchar(255) not null, postal_code varchar(255) not null, admin_area_subdivision_major bigint, admin_area_subdivision_middle bigint, admin_area_subdivision_minor bigint, geo_area bigint, primary key (id));
 CREATE TABLE rel_bailiff_lang (bailiff_id bigint not null, lang_id bigint not null);
-CREATE TABLE geo_area (id bigint not null auto_increment, created_by bigint, created_on datetime, deleted bit, modified_by bigint, modified_on datetime, name varchar(255) not null, primary key (id));
+CREATE TABLE geo_area (id bigint not null auto_increment, created_by VARCHAR(255), created_on datetime, deleted bit, modified_by VARCHAR(255), modified_on datetime, name varchar(255) not null, primary key (id));
 
 ALTER TABLE admin_area_subdivision_middle ADD CONSTRAINT dminareasubdivisionmiddleadminareasubdivisionmajor FOREIGN KEY (admin_area_subdivision_major) REFERENCES admin_area_subdivision_major (id);
 ALTER TABLE admin_area_subdivision_minor ADD CONSTRAINT dminareasubdivisionminoradminareasubdivisionmiddle FOREIGN KEY (admin_area_subdivision_middle) REFERENCES admin_area_subdivision_middle (id);

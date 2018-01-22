@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-lg-5">
             <table ng-table="areaDetailCtrl.tableParamsEdit" class="table" show-filter="true">
-              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city.id)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city.id) > -1}">
+              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}"  class="pointable">
                 <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
                   {{city.id}}</td>
                 <td title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
@@ -23,21 +23,21 @@
             <div>
               <span class="glyphicon glyphicon-menu-left" ng-click="areaDetailCtrl.addSelected()"></span>
             </div>
-            <div>
+            <div ng-click="areaDetailCtrl.addFiltered()">
               <span class="glyphicon glyphicon-menu-left"></span>
               <span class="glyphicon glyphicon-menu-left"></span>
             </div>
-            <div>
+            <div ng-click="areaDetailCtrl.removeSelected()">
               <span class="glyphicon glyphicon-menu-right"></span>
             </div>
-            <div>
+            <div ng-click="areaDetailCtrl.removeFiltered()">
               <span class="glyphicon glyphicon-menu-right"></span>
               <span class="glyphicon glyphicon-menu-right"></span>
             </div>
           </div>
           <div class="col-lg-6">
             <table ng-table="areaDetailCtrl.tableParams" class="table" show-filter="true">
-              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city.id)" ng-class="{'bg-success': areaDetailCtrl.selectedForAddition.indexOf(city.id) > -1}">
+              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city)" ng-class="{'bg-success': areaDetailCtrl.selectedForAddition.indexOf(city) > -1}"  class="pointable">
                 <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
                   {{city.id}}</td>
                 <td title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">

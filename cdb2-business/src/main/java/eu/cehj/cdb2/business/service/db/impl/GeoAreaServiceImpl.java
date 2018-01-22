@@ -1,5 +1,6 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,7 +51,18 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
 
     public GeoAreaDTO populateEntity(final GeoAreaDTO dto) {
         final GeoArea area = this.repository.findOne(dto.getId());
+        // We first remove all municipalities related to area, in order to only bind the ones transmitted by dto
+        area.getMunicipalities().stream().forEach(city -> {
+            city.setGeoArea(null);
+            try {
+                this.municipalityService.save(city);
+            } catch (final Exception e) {
+                this.logger.error(e.getMessage(), e);
+            }
+        });
 
+        area.setMunicipalities(new ArrayList<Municipality>());
+        this.repository.save(area);
         dto.getMunicipalities().stream().forEach(city ->{
             try {
                 final Municipality municipality =  this.municipalityService.get(city.getId());

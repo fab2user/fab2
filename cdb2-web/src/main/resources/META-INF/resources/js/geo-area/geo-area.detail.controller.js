@@ -29,38 +29,73 @@
       }
     };
 
-    vm.toggleAddition = function(cityId){
-      var position = vm.selectedForAddition.indexOf(cityId);
+    vm.toggleAddition = function(city){
+      var position = vm.selectedForAddition.indexOf(city);
       if(position < 0){
-        vm.selectedForAddition.push(cityId);
+        vm.selectedForAddition.push(city);
       }else{
         vm.selectedForAddition.splice(position, 1);
       }
     };
 
-    // search cities in vm.municipalities for every id
     // Add  cities found to citiesToDisplay
     // empty selectedForAddition
+    // FIXME: Make sure we can't add a city already present in the area
     vm.addSelected = function(){
-      var cities = [];
-      vm.selectedForAddition.forEach(function(id){
-          var city = lodash.find(vm.municipalities, {'id': id});
-          cities.push(city);
-          vm.area.zipCodes += ', ' + city.postalCode;
-      });
-
-      addCitiesToDisplay(cities);
+      addCitiesToDisplay(vm.selectedForAddition);
       vm.tableParamsEdit.reload();
       vm.selectedForAddition = [];
+    };
 
+    vm.removeSelected = function(){
+      removeCitiesToDisplay(vm.selectedForRemoval);
+      vm.tableParamsEdit.reload();
+      vm.selectedForRemoval = [];
     };
 
     function addCitiesToDisplay(cities){
       cities.forEach(function(city){
         if(!lodash.find(vm.citiesToDisplay, {'id': city.id})){
           vm.citiesToDisplay.push(city);
+          vm.area.zipCodes += ', ' + city.postalCode;
         }
       });
+    }
+
+    function removeCitiesToDisplay(cities){
+      var zipsToRemove = lodash.map(cities, 'postalCode');
+      lodash.remove(vm.citiesToDisplay, function(cityToDisplay){
+        return zipsToRemove.indexOf(cityToDisplay.postalCode) > -1;
+      });
+
+      vm.area.zipCodes = filterZipList(vm.area.zipCodes, zipsToRemove);
+
+    }
+
+    vm.addFiltered = function(){
+      // TODO: Add confirm
+      $log.info('Filtered cities: ', vm.tableParams);
+      vm.tableParams.data.forEach(function(city){
+        vm.toggleAddition(city);
+      });
+      vm.addSelected();
+    };
+
+    vm.removeFiltered = function(){
+      vm.tableParamsEdit.data.forEach(function(city){
+        vm.toggleRemoval(city);
+      });
+      vm.removeSelected();
+    };
+
+    function filterZipList(zipList, zips){
+      var cleanZips = lodash.map(zipList.split(','), function(zip){
+        return zip.trim();
+      });
+      zips.forEach(function(zip){
+        cleanZips = lodash.without(cleanZips, zip);
+      });
+      return cleanZips.join(', ');
     }
 
     vm.save = function () {

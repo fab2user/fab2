@@ -10,3 +10,7 @@
 .modal-hg .modal-dialog {
   width: 96%;
 }
+
+tr.pointable:hover{
+  cursor: pointer;
+}
