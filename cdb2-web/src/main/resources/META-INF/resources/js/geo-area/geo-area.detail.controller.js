@@ -10,7 +10,7 @@
   function GeoAreaDetailController($log,$translate,$uibModalInstance, toastr, area, MunicipalityAPIService, GeoAreaAPIService, NgTableParams, lodash) {
     var vm = this;
     vm.area = area;
-    vm.citiesToDisplay = area.municipalities.slice();
+    vm.citiesToDisplay = area.municipalities.slice() || [];
     vm.tableParamsEdit = new NgTableParams({}, {dataset: vm.citiesToDisplay});
     vm.selectedForRemoval = [];
     vm.selectedForAddition = [];
@@ -105,7 +105,7 @@
        .$promise
        .then(function () {
          $uibModalInstance.close();
-         toastr.success($translate.instant("global.message.savesuccess"));
+         toastr.success($translate.instant("global.toastr.save.success"));
        })
        .catch(function (err) {
          $log.error(err);

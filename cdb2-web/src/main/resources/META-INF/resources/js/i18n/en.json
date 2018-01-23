@@ -11,7 +11,12 @@
     "switch": {
       "lang": "switch lang"
     },
-    "search": "search"
+    "search": "search",
+    "toastr":{
+      "delete.success": "Record successfully deleted.",
+      "save.success": "Record successfully saved."
+    }
+
   },
   "area": {
     "list": {
@@ -23,10 +28,12 @@
     "detail": {
       "id": "ID",
       "postalcode": "Postal code",
-      "municipality": "Municipality"
+      "municipality": "Municipality",
+      "list": "List of geographical areas"
     },
     "edit": {
       "title": "Juridical Geographical Area:",
+      "name": "Name",
       "table": {
         "id": "Id",
         "name": "name",

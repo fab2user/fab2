@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +31,7 @@ BaseService<T, ID> {
     protected Class<T> entityClass;
 
     @Autowired
-    protected CrudRepository<T, ID> repository;
+    protected JpaRepository<T, ID> repository;
 
     @SuppressWarnings("unchecked")
     public BaseServiceImpl() {
@@ -63,7 +63,7 @@ BaseService<T, ID> {
 
     @Override
     public List<T> getAll() throws Exception {
-        List<T> entities = (List<T>) this.repository.findAll();
+        List<T> entities = this.repository.findAll();
         if (entities == null) {
             entities = new ArrayList<T>();
         }
@@ -74,15 +74,34 @@ BaseService<T, ID> {
     public void delete(final ID id) throws Exception {
         final T entity = this.repository.findOne(id);
         if (entity != null) {
+            entity.setDeleted(true);
+            this.repository.save(entity);
+        } else {
+            throw new EntityNotFoundException("No object found with the id #" + id);
+        }
+    }
+
+    @Override
+    public void physicalDelete(final ID id) throws Exception {
+        final T entity = this.repository.findOne(id);
+        if (entity != null) {
             this.repository.delete(entity);
         } else {
             throw new EntityNotFoundException("No object found with the id #" + id);
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void delete(final Iterable<T> entities) throws Exception {
+        for (final T entity : entities) {
+            entity.setDeleted(true);
+            this.save(entity);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public void physicalDelete(final Iterable<T> entities) throws Exception {
         for (final T entity : entities) {
             this.delete((ID) entity.getId());
         }

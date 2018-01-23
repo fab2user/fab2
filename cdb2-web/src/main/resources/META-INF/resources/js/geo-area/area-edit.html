@@ -6,9 +6,21 @@
       </div>
       <div class="panel-body">
         <div class="row">
+          <div class="col-lg-6">
+            <div>
+              <form>
+                <div class="form-group">
+                  <label for="name" translate="area.edit.name">NAme</label>
+                  <input type="text" class="form-control" id="name" placeholder="{{'area.edit.name'|translate}}" ng-model="areaDetailCtrl.area.name">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-lg-5">
             <table ng-table="areaDetailCtrl.tableParamsEdit" class="table" show-filter="true">
-              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}"  class="pointable">
+              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}" class="pointable">
                 <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
                   {{city.id}}</td>
                 <td title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
@@ -37,19 +49,19 @@
           </div>
           <div class="col-lg-6">
             <table ng-table="areaDetailCtrl.tableParams" class="table" show-filter="true">
-              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city)" ng-class="{'bg-success': areaDetailCtrl.selectedForAddition.indexOf(city) > -1}"  class="pointable">
+              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city)" ng-class="{'bg-success': areaDetailCtrl.selectedForAddition.indexOf(city) > -1}" class="pointable">
                 <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
                   {{city.id}}</td>
                 <td title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
                   {{city.name}}</td>
                 <td title="'area.edit.table.zipcode'|translate" filter="{ postalCode: 'text'}">
                   {{city.postalCode}}</td>
-                  <td title="'area.edit.table.area.1'|translate" filter="{ adminAreaSubdivisionMajor: 'text'}">
-                    {{city.adminAreaSubdivisionMajor}}</td>
-                  <td title="'area.edit.table.area.2'|translate" filter="{ adminAreaSubdivisionMiddle: 'text'}">
-                    {{city.adminAreaSubdivisionMiddle}}</td>
-                  <td title="'area.edit.table.area.3'|translate" filter="{ adminAreaSubdivisionMinor: 'text'}">
-                    {{city.adminAreaSubdivisionMinor}}</td>
+                <td title="'area.edit.table.area.1'|translate" filter="{ adminAreaSubdivisionMajor: 'text'}">
+                  {{city.adminAreaSubdivisionMajor}}</td>
+                <td title="'area.edit.table.area.2'|translate" filter="{ adminAreaSubdivisionMiddle: 'text'}">
+                  {{city.adminAreaSubdivisionMiddle}}</td>
+                <td title="'area.edit.table.area.3'|translate" filter="{ adminAreaSubdivisionMinor: 'text'}">
+                  {{city.adminAreaSubdivisionMinor}}</td>
               </tr>
             </table>
           </div>

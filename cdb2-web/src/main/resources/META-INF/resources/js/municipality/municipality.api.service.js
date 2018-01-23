@@ -10,7 +10,8 @@
   function MunicipalityAPIService($resource) {
     return $resource('http://localhost:8080/api/municipality/:id', {}, {
       getAll: {
-        isArray: true
+        isArray: true,
+        cache: true //TODO: Check if localforage would be of any value here
       },
       search: {
         isArray: true

@@ -17,4 +17,8 @@ public interface BaseService<T extends BaseEntity, ID extends Serializable> {
 
     public void delete(Iterable<T> entities) throws Exception;
 
+    public void physicalDelete(ID id) throws Exception;
+
+    public void physicalDelete(Iterable<T> entities) throws Exception;
+
 }

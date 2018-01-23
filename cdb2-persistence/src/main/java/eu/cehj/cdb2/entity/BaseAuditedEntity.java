@@ -20,9 +20,6 @@ public abstract class BaseAuditedEntity<U> extends BaseEntity {
 
     private static final long serialVersionUID = 4900704445331839780L;
 
-    @Column(name = "deleted")
-    private Boolean deleted;
-
     @Column(name = "created_by")
     @CreatedBy
     private U createdBy;
@@ -40,14 +37,6 @@ public abstract class BaseAuditedEntity<U> extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date modifiedOn;
-
-    public Boolean getDeleted() {
-        return this.deleted;
-    }
-
-    public void setDeleted(final Boolean deleted) {
-        this.deleted = deleted;
-    }
 
     public U getCreatedBy() {
         return this.createdBy;

@@ -1,5 +1,6 @@
 package eu.cehj.cdb2.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -7,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "geo_area")
+@Where(clause="deleted=0 or deleted is null")
 public class GeoArea extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = -7834873765738494098L;
@@ -17,7 +21,7 @@ public class GeoArea extends BaseAuditedEntity<String> {
     private String name;
 
     @OneToMany(mappedBy="geoArea")
-    private List<Municipality> municipalities;
+    private List<Municipality> municipalities = new ArrayList<>();
 
     public String getName() {
         return this.name;

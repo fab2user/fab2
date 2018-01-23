@@ -18,6 +18,9 @@ public abstract class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     public BaseEntity() {
         super();
     }
@@ -43,6 +46,14 @@ public abstract class BaseEntity implements Serializable {
     @Override
     public String toString() {
         return "BaseEntity [id=" + this.id + "]";
+    }
+
+    public Boolean getDeleted() {
+        return this.deleted;
+    }
+
+    public void setDeleted(final Boolean deleted) {
+        this.deleted = deleted;
     }
 
 }
