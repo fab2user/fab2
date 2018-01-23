@@ -85,6 +85,9 @@
       "result": {
         "title": "Search results"
       }
+    },
+    "list": {
+      "title":"List of Bailiffs"
     }
   },
   "reference": {

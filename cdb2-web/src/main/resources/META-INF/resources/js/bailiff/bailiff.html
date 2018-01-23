@@ -1,57 +1,82 @@
 <div class="row">
   <div class="col-lg-12">
-    <fieldset>
-      <legend translate="global.search">Search</legend>
-
-      <div class="row">
-        <div class="col-md-3">
-          <label for="search.bailiff" translate="bailiff.search.name">Bailiff name</label>
-          <input type="text" ng-model="bailiffCtrl.searchParams.bailiff" class="form-control" maxlength="100" name="search.bailiff" autofocus="autofocus" />
-        </div>
-        <div class="col-md-3">
-          <label for="search.address" translate="bailiff.search.address">Address</label>
-          <input type="text" ng-model="bailiffCtrl.searchParams.address" class="form-control" maxlength="100" name="search.address" autofocus="autofocus" />
-        </div>
-        <div class="col-md-3">
-          <label for="search.postalcode" translate="bailiff.search.postalcode">Postal Code</label>
-          <input type="text" ng-model="bailiffCtrl.searchParams.postalcode" class="form-control" maxlength="100" name="search.postalcode" autofocus="autofocus" />
-        </div>
-        <div class="col-md-3">
-          <label for="search.municipality" translate="bailiff.search.municipality">Municipality</label>
-          <input type="text" ng-model="bailiffCtrl.searchParams.municipality" class="form-control" maxlength="100" name="search.municipality" autofocus="autofocus" />
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <button class="btn btn-primary" ng-click="bailiffCtrl.search()" translate="global.search">search</button>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><span translate="bailiff.list.title"></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row vertical-align">
+          <div class="col-lg-10">
+            <table ng-table="bailiffCtrl.tableParams" class="table" show-filter="true">
+              <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'bg-info': bailiff.id === areaCtrl.selectedBailiff.id}" class="pointable">
+                <td title="'bailiff.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
+                  {{area.id}}</td>
+                <td title="'bailiff.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">
+                  {{area.name}}</td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-lg-2  btn-group-vertical">
+            <div class="row">
+              <div class="col-lg-12">
+                <button class="btn btn-primary btn-block" ng-click="areaCtrl.new()"><span class="glyphicon glyphicon-plus-sign"></span> <span translate="global.button.add">Add</span></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 top-1">
+                <button class="btn btn-danger btn-block" ng-click="areaCtrl.remove()"><span class="glyphicon glyphicon-remove-sign"></span> <span translate="global.button.remove">Remove</span></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </fieldset>
+    </div>
   </div>
 </div>
-<div class="row">
+<!-- <div class="row" ng-show="areaCtrl.selectedArea">
   <div class="col-lg-12">
-    <div translate="bailiff.search.result.title">Search results</div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><span translate="area.detail.list"></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="bg-primary">{{ areaCtrl.selectedArea.name }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <table class="table table-bordered">
+              <tr>
+                <th translate="area.detail.id">
+                  ID
+                </th>
+                <th translate="area.detail.postalcode">
+                  zip
+                </th>
+                <th translate="area.detail.municipality">
+                  city
+                </th>
+              </tr>
+              <tr ng-repeat="city in areaCtrl.selectedArea.municipalities track by city.id">
+                <td>
+                  {{ city.id }}
+                </td>
+                <td>
+                  {{ city.postalCode }}
+                </td>
+                <td>
+                  {{ city.name }}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-lg-12">
+            <button class="btn btn-default" translate="global.button.edit" ng-click="areaCtrl.edit()">edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-lg-12">
-    <table class="table table-striped">
-      <tr>
-        <td translate="bailiff.search.id">ID</td>
-        <td translate="bailiff.search.name">Name</td>
-        <td translate="bailiff.search.address">Address</td>
-        <td translate="bailiff.search.municipality">Municipality</td>
-        <td translate="bailiff.search.postalcode">Postal code</td>
-      </tr>
-      <tr ng-repeat="bailiff in bailiffCtrl.bailiffs">
-        <td>{{ bailiff.id }}</td>
-        <td>{{ bailiff.name }}</td>
-        <td>{{ bailiff.address }}</td>
-        <td>{{ bailiff.municipality }}</td>
-        <td>{{ bailiff.postalCode }}</td>
-      </tr>
-    </table>
-
-  </div>
-</div>
+</div> -->

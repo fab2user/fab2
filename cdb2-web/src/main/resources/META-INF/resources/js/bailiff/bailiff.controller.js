@@ -7,7 +7,7 @@
 
   function BailiffController($log, $http, $translate, BailiffAPIService, toastr) {
     var vm = this;
-    vm.searchParams = {};
+    
     BailiffAPIService.getAll().$promise.then(function(data) {
       vm.bailiffs = data;
     });
@@ -16,6 +16,6 @@
       BailiffAPIService.search(vm.searchParams).$promise.then(function(data) {
         vm.bailiffs = data;
       });
-    }
-  };
+    };
+  }
 })();

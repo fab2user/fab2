@@ -15,7 +15,7 @@
             templateUrl: '/js/root/head.html',
             controller: 'HeadController as headCtrl'
           },
-          'navbar': {
+          'navbar@': {
             templateUrl: '/js/root/navbar.html',
             controller: 'NavBarController as navCtrl'
           },

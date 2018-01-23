@@ -43,4 +43,12 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <loadData tableName="admin_area_subdivision_minor" file="db/data/area_minor.csv"></loadData>
         <loadData tableName="municipality" file="db/data/municipality.csv"></loadData>
     </changeSet>
+    <changeSet id="cdb-03" author="landry">
+        <addColumn tableName="bailiff">
+            <column name="email" type="varchar(100)" afterColumn="name"></column>
+            <column name="phone" type="varchar(50)" afterColumn="email"></column>
+        </addColumn>
+        <dropColumn tableName="address" columnName="email"/>
+        <dropColumn tableName="address" columnName="phone"></dropColumn>
+    </changeSet>
    </databaseChangeLog>

@@ -38,7 +38,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
 
     @Override
     public List<BailiffDTO> getAllDTO() throws Exception {
-        final List<Bailiff> bailiffs = (List<Bailiff>) this.repository.findAll();
+        final List<Bailiff> bailiffs = this.repository.findAll();
         final List<BailiffDTO> dtos = new ArrayList<BailiffDTO>(bailiffs.size());
         bailiffs.forEach(bailiff -> {
             final BailiffDTO bailiffDTO = this.populateDTOFromEntity(bailiff);
@@ -70,12 +70,12 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
         final BailiffDTO bailiffDTO = new BailiffDTO();
         bailiffDTO.setName(bailiff.getName());
         bailiffDTO.setId(bailiff.getId());
+        bailiffDTO.setEmail(bailiff.getEmail());
+        bailiffDTO.setPhone(bailiff.getPhone());
         final Address address = bailiff.getAddress();
         if(address != null) {
             bailiffDTO.setAddressId(address.getId());
             bailiffDTO.setAddress(address.getAddress());
-            bailiffDTO.setEmail(address.getEmail());
-            bailiffDTO.setPhone(address.getPhone());
             final Municipality municipality = address.getMunicipality();
             if(municipality != null) {
                 bailiffDTO.setMunicipality(municipality.getName());
