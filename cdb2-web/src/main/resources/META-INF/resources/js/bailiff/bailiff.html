@@ -8,11 +8,15 @@
         <div class="row vertical-align">
           <div class="col-lg-10">
             <table ng-table="bailiffCtrl.tableParams" class="table" show-filter="true">
-              <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'bg-info': bailiff.id === areaCtrl.selectedBailiff.id}" class="pointable">
-                <td title="'bailiff.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
-                  {{area.id}}</td>
-                <td title="'bailiff.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">
-                  {{area.name}}</td>
+              <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'bg-info': bailiff.id === bailiffCtrl.selectedBailiff.id}" class="pointable">
+                <td data-title="'bailiff.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
+                  {{bailiff.id}}</td>
+                <td data-title="'bailiff.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">
+                  {{bailiff.name}}</td>
+                <td data-title="'bailiff.list.address'|translate" filter="{ address: 'text'}" sortable="'address'">
+                  {{bailiff.address}}</td>
+                <td data-title="'bailiff.list.municipality'|translate" filter="{ municipality: 'text'}" sortable="'municipality'">
+                  {{bailiff.city}}</td>
               </tr>
             </table>
           </div>
@@ -20,6 +24,11 @@
             <div class="row">
               <div class="col-lg-12">
                 <button class="btn btn-primary btn-block" ng-click="bailiffCtrl.new()"><span class="glyphicon glyphicon-plus-sign"></span> <span translate="global.button.add">Add</span></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 top-1">
+                <button class="btn btn-primary btn-block" ng-click="bailiffCtrl.edit()"><span class="glyphicon glyphicon-pencil"></span> <span translate="global.button.edit">Edit</span></button>
               </div>
             </div>
             <div class="row">

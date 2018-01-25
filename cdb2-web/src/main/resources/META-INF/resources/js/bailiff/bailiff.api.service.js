@@ -6,13 +6,14 @@
   BailiffAPIService.$inject = ['$resource'];
 
   function BailiffAPIService($resource) {
-    return $resource('http://localhost:8080/api/bailiff/:id', {}, {
+    return $resource('http://localhost:8080/api/bailiff/:id/:collectionAction', {}, {
       getAll: {
         isArray: true
       },
-      search: {
+      getCompetences: {
         params: {
-          id: 'search'
+          id: 'id',
+          collectionAction: 'collectionAction'
         },
         isArray: true
       }

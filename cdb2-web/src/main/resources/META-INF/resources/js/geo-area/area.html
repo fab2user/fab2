@@ -9,11 +9,11 @@
           <div class="col-lg-10">
             <table ng-table="areaCtrl.tableParams" class="table" show-filter="true">
               <tr ng-repeat="area in $data track by area.id" ng-click="areaCtrl.selectedArea = area" ng-class="{'bg-info': area.id === areaCtrl.selectedArea.id}" class="pointable">
-                <td title="'area.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
+                <td data-title="'area.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
                   {{area.id}}</td>
-                <td title="'area.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">
+                <td data-title="'area.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">
                   {{area.name}}</td>
-                <td title="'area.list.zipcodes'|translate" filter="{ zipCodes: 'text'}">
+                <td data-title="'area.list.zipcodes'|translate" filter="{ zipCodes: 'text'}">
                   {{area.zipCodes}}</td>
               </tr>
             </table>

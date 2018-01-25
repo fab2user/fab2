@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,6 +24,9 @@ public class GeoArea extends BaseAuditedEntity<String> {
     @OneToMany(mappedBy="geoArea")
     private List<Municipality> municipalities = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "geoAreas")
+    private final List<Bailiff> bailiffs = new ArrayList<>();
+
     public String getName() {
         return this.name;
     }
@@ -37,5 +41,9 @@ public class GeoArea extends BaseAuditedEntity<String> {
 
     public void setMunicipalities(final List<Municipality> municipalities) {
         this.municipalities = municipalities;
+    }
+
+    public List<Bailiff> getBailiffs() {
+        return this.bailiffs;
     }
 }

@@ -9,7 +9,7 @@ public class BailiffDTO extends BaseDTO{
     private String name;
     private String address;
     private String postalCode;
-    private String municipality;
+    private String city;
     private String phone;
     private String email;
     private Long addressId;
@@ -47,14 +47,6 @@ public class BailiffDTO extends BaseDTO{
         this.postalCode = postalCode;
     }
 
-    public String getMunicipality() {
-        return this.municipality;
-    }
-
-    public void setMunicipality(final String municipality) {
-        this.municipality = municipality;
-    }
-
     public String getPhone() {
         return this.phone;
     }
@@ -85,6 +77,14 @@ public class BailiffDTO extends BaseDTO{
 
     public void setMunicipalityId(final Long municipalityId) {
         this.municipalityId = municipalityId;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(final String city) {
+        this.city = city;
     }
 
 }

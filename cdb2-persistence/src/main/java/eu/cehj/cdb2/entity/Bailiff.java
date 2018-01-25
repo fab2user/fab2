@@ -3,7 +3,6 @@ package eu.cehj.cdb2.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -26,15 +25,23 @@ public class Bailiff extends BaseAuditedEntity<String> {
     private Address address;
 
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany
     @JoinTable(name = "rel_bailiff_lang",
     joinColumns = @JoinColumn(name = "bailiff_id"),
-    inverseJoinColumns = @JoinColumn(name = "lang_id")
-            )
+    inverseJoinColumns = @JoinColumn(name = "lang_id"))
     private final List<Language> languages = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "rel_bailiff_competence_area",
+    joinColumns = @JoinColumn(name="bailiff_id"),
+    inverseJoinColumns = @JoinColumn(name = "area_id"))
+    private final List<GeoArea> geoAreas = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "rel_bailiff_competence_area",
+    joinColumns = @JoinColumn(name="bailiff_id"),
+    inverseJoinColumns = @JoinColumn(name = "competence_id"))
+    private final List<Competence> competences = new ArrayList<>();
 
 
     @Column(name = "phone")
@@ -77,6 +84,14 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     public List<Language> getLanguages() {
         return this.languages;
+    }
+
+    public List<GeoArea> getGeoAreas() {
+        return this.geoAreas;
+    }
+
+    public List<Competence> getCompetences() {
+        return this.competences;
     }
 
 }

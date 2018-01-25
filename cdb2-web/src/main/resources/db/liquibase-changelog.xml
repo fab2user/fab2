@@ -51,4 +51,22 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <dropColumn tableName="address" columnName="email"/>
         <dropColumn tableName="address" columnName="phone"></dropColumn>
     </changeSet>
+    <changeSet id="cdb-04" author="landry">
+    <createTable tableName="rel_bailiff_competence_area">
+        <column name="bailiff_id" type="bigint">
+            <constraints nullable="false" foreignKeyName="FK_bca_bailiff" referencedTableName="bailiff" referencedColumnNames="id"/>
+        </column>
+        <column name="area_id" type="bigint">
+            <constraints nullable="false" foreignKeyName="FK_bca_area" referencedTableName="geo_area" referencedColumnNames="id"/>
+        </column>
+        <column name="competence_id" type="bigint">
+            <constraints nullable="false" foreignKeyName="FK_bca_competence" referencedTableName="competence" referencedColumnNames="id"/>
+        </column>
+    </createTable>
+    </changeSet>
+    <changeSet id="cdb-05" author="landry">
+        <comment>Import competence and instrument data</comment>
+        <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
+        <loadData tableName="competence" file="db/data/competence.csv"></loadData>
+    </changeSet>
    </databaseChangeLog>

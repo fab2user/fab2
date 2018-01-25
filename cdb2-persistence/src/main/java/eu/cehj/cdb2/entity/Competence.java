@@ -1,8 +1,12 @@
 package eu.cehj.cdb2.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,6 +25,9 @@ public class Competence extends BaseAuditedEntity<String>{
     @ManyToOne
     @JoinColumn(name="instrument", referencedColumnName = "id")
     private Instrument instrument;
+
+    @ManyToMany(mappedBy = "competences")
+    private final List<Bailiff> bailiffs = new ArrayList<>();
 
     public String getCode() {
         return this.code;
@@ -44,5 +51,9 @@ public class Competence extends BaseAuditedEntity<String>{
 
     public void setInstrument(final Instrument instrument) {
         this.instrument = instrument;
+    }
+
+    public List<Bailiff> getBailiffs() {
+        return this.bailiffs;
     }
 }

@@ -14,16 +14,19 @@ import eu.cehj.cdb2.business.service.db.InstrumentService;
 import eu.cehj.cdb2.common.dto.InstrumentDTO;
 
 @RestController
-@RequestMapping("api/instrument")
+@RequestMapping(value ="api/instrument")
 public class InstrumentController extends BaseController {
 
     @Autowired
     InstrumentService instrumentService;
+
 
     @RequestMapping(method = { GET })
     @ResponseStatus(value = OK)
     public List<InstrumentDTO> get() throws Exception {
         return this.instrumentService.getAllDTO();
     }
+
+
 
 }

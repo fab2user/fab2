@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
+import eu.cehj.cdb2.business.dao.AddressRepository;
 import eu.cehj.cdb2.business.dao.BailiffRepository;
+import eu.cehj.cdb2.business.dao.MunicipalityRepository;
+import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.search.model.BailiffSearch;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
@@ -28,12 +31,17 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
     @Autowired
     private BailiffRepository repository;
 
-    @Override
-    public BailiffDTO save(final BailiffDTO bailiffDTO) throws Exception {
-        final Bailiff entity = bailiffDTO.getId() == null ? new Bailiff() : this.get(bailiffDTO.getId());
+    @Autowired
+    AddressRepository addressRepository;
+    @Autowired
+    MunicipalityRepository municipalityRepository;
 
-        //TODO
-        return new BailiffDTO();
+    @Override
+    public BailiffDTO save(final BailiffDTO dto) throws Exception {
+        final Bailiff entity = dto.getId() == null ? new Bailiff() : this.get(dto.getId());
+        final Bailiff bailiff = this.populateEntityFromDTO(entity, dto);
+        this.repository.save(bailiff);
+        return this.populateDTOFromEntity(bailiff);
     }
 
     @Override
@@ -54,7 +62,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
     }
 
     @Override
-    public Iterable<BailiffDTO> searchDTO(final BailiffSearch searchParams)throws Exception{
+    public Iterable<BailiffDTO> searchDTO(final BailiffSearch searchParams) throws Exception {
 
         final Predicate predicate = QBailiff.bailiff.name.like("HJGJH");
         final Iterable<Bailiff> bailiffs = this.repository.findAll(predicate);
@@ -73,17 +81,47 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
         bailiffDTO.setEmail(bailiff.getEmail());
         bailiffDTO.setPhone(bailiff.getPhone());
         final Address address = bailiff.getAddress();
-        if(address != null) {
+        if (address != null) {
             bailiffDTO.setAddressId(address.getId());
             bailiffDTO.setAddress(address.getAddress());
             final Municipality municipality = address.getMunicipality();
-            if(municipality != null) {
-                bailiffDTO.setMunicipality(municipality.getName());
+            if (municipality != null) {
+                bailiffDTO.setCity(municipality.getName());
                 bailiffDTO.setPostalCode(municipality.getPostalCode());
+                bailiffDTO.setMunicipalityId(municipality.getId());
             }
         }
         return bailiffDTO;
     }
 
+    public Bailiff populateEntityFromDTO(final Bailiff entity, final BailiffDTO dto) throws Exception {
+        if (dto.getMunicipalityId() == null) {
+            throw new CDBException("Municipality can not be null");
+        }
+        final Municipality municipality = this.municipalityRepository.getOne(dto.getMunicipalityId());
+        if (municipality == null) {
+            throw new CDBException("Municipality with id '" + dto.getMunicipalityId() + "' can not be found");
+        }
+
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setPhone(dto.getPhone());
+        entity.setEmail(dto.getEmail());
+        Address address = null;
+        if (dto.getAddressId() != null) {
+            address = this.addressRepository.getOne(dto.getAddressId());
+            if (address == null) {
+                throw new CDBException("Address with id '" + dto.getAddressId() + "' can not be found");
+            }
+        } else {
+            address = new Address();
+            address.setAddress(dto.getAddress());
+        }
+        address.setMunicipality(municipality);
+        this.addressRepository.save(address);
+        entity.setAddress(address);
+
+        return entity;
+    }
 
 }

@@ -7,6 +7,10 @@
       "save": "Save",
       "cancel": "Cancel"
     },
+    "form": {
+      "required": "This field is mandatory",
+      "email": "This field must be a valid email address"
+    },
     "footer": "bottom page notifications",
     "switch": {
       "lang": "switch lang"
@@ -86,8 +90,20 @@
         "title": "Search results"
       }
     },
+    "edit": {
+      "title": "Bailiff Office: ",
+      "name": "Name",
+      "address": "Address",
+      "municipality": "Municipality/Postal Code",
+      "phone": "Phone",
+      "email": "Email"
+    },
     "list": {
-      "title":"List of Bailiffs"
+      "title":"List of Bailiffs",
+      "id": "id",
+      "name": "name",
+      "address": "address",
+      "municipality": "municipality"
     }
   },
   "reference": {
