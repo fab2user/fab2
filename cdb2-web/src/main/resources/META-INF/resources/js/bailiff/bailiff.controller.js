@@ -3,19 +3,44 @@
 
   angular.module('cdb2').controller('BailiffController', BailiffController);
 
-  BailiffController.$inject = ['$log', '$http', '$translate', 'BailiffAPIService', 'toastr'];
+  BailiffController.$inject = ['$log', '$http', '$translate', '$uibModal','BailiffAPIService', 'toastr', 'MunicipalityAPIService'];
 
-  function BailiffController($log, $http, $translate, BailiffAPIService, toastr) {
+  function BailiffController($log, $http, $translate, $uibModal,BailiffAPIService, toastr, MunicipalityAPIService) {
     var vm = this;
-    
-    BailiffAPIService.getAll().$promise.then(function(data) {
-      vm.bailiffs = data;
-    });
 
-    vm.search = function() {
-      BailiffAPIService.search(vm.searchParams).$promise.then(function(data) {
+    fetchBailiffs();
+
+    vm.new = function(){
+          loadModal({});
+    };
+
+    function loadModal(bailiff) {
+      var modalInstance = $uibModal.open({
+        templateUrl: '/js/bailiff/bailiff.edit.html',
+        controller: 'BailiffEditController as bailiffEditCtrl',
+        windowClass: 'modal-hg',
+        backdrop: 'static',
+        resolve: {
+          bailiff: bailiff,
+          cities: function(){
+            return MunicipalityAPIService
+             .getAll();
+          }
+        }
+      });
+
+      modalInstance.result.then(
+        function () {
+          fetchBailiffs();
+          // vm.tableParams.reload();
+        });
+    }
+
+    function fetchBailiffs(){
+      BailiffAPIService.getAll().$promise.then(function(data) {
         vm.bailiffs = data;
       });
-    };
+    }
+
   }
 })();

@@ -18,3 +18,22 @@
 tr.pointable:hover{
   cursor: pointer;
 }
+
+.close-button {
+  font-size: 2em;
+  margin-top: 0.3em;
+  margin-right: 0.3em;
+  color: rgb(210, 28, 28);
+}
+/* Form's action button */
+.action-button {
+  width: 7em;
+  margin-left: 0.2em;
+}
+
+/* Change color of field's borders when error on form submitting */
+.ng-submitted .ng-invalid {
+  border-color: #a94442;
+  border-width: 2px;
+  box-shadow: none;
+}

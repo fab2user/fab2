@@ -4,6 +4,7 @@
   angular
     .module('cdb2', [
       'ngAnimate',
+      'ngMessages',
       'ui.bootstrap',
       'ngCookies',
       'ui.router',
@@ -12,7 +13,8 @@
       'toastr',
       'ngTable',
       'ngLodash',
-      'ui.bootstrap'
+      'ui.bootstrap',
+      'angucomplete-alt'
     ]);
 
 })();
