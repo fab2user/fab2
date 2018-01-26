@@ -21,7 +21,7 @@ public class LanguageServiceImpl extends BaseServiceImpl<Language, Long> impleme
     @Override
     public List<LanguageDTO> getAllDTO() throws Exception {
 
-        final List<Language> languages = (List<Language>) this.repository.findAll();
+        final List<Language> languages = this.repository.findAll();
         final List<LanguageDTO> dtos = new ArrayList<LanguageDTO>(languages.size());
         languages.forEach( language -> {
             final LanguageDTO dto = this.populateDTOFromEntity(language);
@@ -36,6 +36,21 @@ public class LanguageServiceImpl extends BaseServiceImpl<Language, Long> impleme
         dto.setCode(language.getCode());
         dto.setLanguage(language.getLanguage());
         return dto;
+    }
+
+    public Language populateEntityFromDTO(final LanguageDTO dto) throws Exception {
+        final Language entity = dto.getId() == null ? new Language() : this.get(dto.getId());
+        entity.setId(dto.getId());
+        entity.setCode(dto.getCode());
+        entity.setLanguage(dto.getLanguage());
+        return entity;
+    }
+
+    @Override
+    public LanguageDTO save(final LanguageDTO dto) throws Exception {
+        final Language entity = this.populateEntityFromDTO( dto);
+        this.repository.save(entity);
+        return this.populateDTOFromEntity(entity);
     }
 
 }

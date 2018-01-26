@@ -49,15 +49,15 @@
           <tr>
             <th translate="reference.language.code">Code</th>
           </tr>
-          <tr ng-repeat="lang in refCtrl.languages">
+          <tr ng-repeat="lang in refCtrl.languages" class="pointable" ng-click="refCtrl.selectLang(lang)" ng-class="{'info': lang.id === refCtrl.selectedLang.id}">
             <td>{{ lang.code }}</td>
           </tr>
         </table>
       </div>
       <div class="panel-footer">
-        <button type="button" class="btn btn-default" translate="global.button.add">Add</button>
-        <button type="button" class="btn btn-default" translate="global.button.remove">Remove</button>
-        <button type="button" class="btn btn-default" translate="global.button.edit">Edit</button>
+        <button type="button" class="btn btn-default" translate="global.button.add" ng-click="refCtrl.new()">Add</button>
+        <button type="button" class="btn btn-default" translate="global.button.remove" ng-click="refCtrl.deleteLang()" ng-disabled="refCtrl.selectedLang === null">Remove</button>
+        <button type="button" class="btn btn-default" translate="global.button.edit" ng-click="refCtrl.edit()" ng-disabled="refCtrl.selectedLang === null">Edit</button>
       </div>
     </div>
   </div>

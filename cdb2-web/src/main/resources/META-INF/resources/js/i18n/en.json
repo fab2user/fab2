@@ -3,6 +3,7 @@
     "button": {
       "add": "Add",
       "remove": "Remove",
+      "delete": "Remove",
       "edit": "Edit",
       "save": "Save",
       "cancel": "Cancel"
@@ -129,7 +130,12 @@
     },
     "language": {
       "title": "List of languages to be displayed",
-      "code": "code"
+      "code": "code",
+      "edit":{
+        "title": "Edit language",
+        "code":"Code",
+        "language":"Language"
+      }
     }
   }
 }

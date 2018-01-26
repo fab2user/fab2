@@ -4,7 +4,6 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,11 +39,12 @@ public class CompetenceController extends BaseController {
         final Bailiff bailiff = this.bailiffService.get(bailiffId);
         // JPA throws automatically an exception if it can't find an entity with this id
         final List<Competence> competences = bailiff.getCompetences();
-        return competences
-                .stream()
-                .map(competence ->
-                new CompetenceDTO(competence)
-                        ).collect(Collectors.toList());
+        //        return competences
+        //                .stream()
+        //                .map(competence ->
+        //                new CompetenceDTO(competence)
+        //                        ).collect(Collectors.toList());
+        return null;
     }
 
 }

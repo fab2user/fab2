@@ -12,4 +12,6 @@ public interface LanguageService extends BaseService<Language, Long>{
 
     public List<LanguageDTO> getAllDTO() throws Exception;
 
+    public LanguageDTO save(LanguageDTO dto) throws Exception;
+
 }

@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "language")
+@Where(clause="deleted=0 or deleted is null")
 public class Language extends BaseAuditedEntity<String>{
 
     private static final long serialVersionUID = -1903127286011981312L;
