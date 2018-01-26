@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
-import eu.cehj.cdb2.business.service.db.CompetenceService;
-import eu.cehj.cdb2.common.dto.CompetenceDTO;
+import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaDTO;
 import eu.cehj.cdb2.common.dto.InsCompAreaDTO;
 import eu.cehj.cdb2.entity.Bailiff;
 
 @RestController
-public class CompetenceController extends BaseController {
+public class BailiffCompetenceAreaController extends BaseController {
 
     @Autowired
-    CompetenceService competenceService;
+    BailiffCompetenceAreaService bcaService;
 
     @Autowired
     BailiffService bailiffService;
 
     @RequestMapping(value="api/competence", method = { GET })
     @ResponseStatus(value = OK)
-    public List<CompetenceDTO> get() throws Exception {
-        return this.competenceService.getAllDTO();
+    public List<BailiffCompetenceAreaDTO> get() throws Exception {
+        return this.bcaService.getAllDTO();
     }
 
     @RequestMapping(value ="api/bailiff/{bailiffId}/competences", method = { GET })

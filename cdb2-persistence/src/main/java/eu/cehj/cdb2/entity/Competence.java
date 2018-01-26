@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +26,9 @@ public class Competence extends BaseAuditedEntity<String>{
     @JoinColumn(name="instrument", referencedColumnName = "id")
     private Instrument instrument;
 
-    @ManyToMany(mappedBy = "competences")
-    private final List<Bailiff> bailiffs = new ArrayList<>();
+    @OneToMany(mappedBy="competence")
+    private final List<BailiffCompetenceArea> bailiffCompetenceAreas = new ArrayList<>();
+
 
     public String getCode() {
         return this.code;
@@ -53,7 +54,8 @@ public class Competence extends BaseAuditedEntity<String>{
         this.instrument = instrument;
     }
 
-    public List<Bailiff> getBailiffs() {
-        return this.bailiffs;
+    public List<BailiffCompetenceArea> getBailiffCompetenceAreas() {
+        return this.bailiffCompetenceAreas;
     }
+
 }

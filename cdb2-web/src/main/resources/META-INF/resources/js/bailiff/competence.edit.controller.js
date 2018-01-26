@@ -87,7 +87,7 @@
     }
 
     vm.addFiltered = function(){
-      // TODO: Add confirm
+      // TODO Add confirm
       $log.info('Filtered areas: ', vm.tableParams);
       vm.tableParams.data.forEach(function(area){
         vm.toggleAddition(area);

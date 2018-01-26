@@ -69,4 +69,7 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
         <loadData tableName="competence" file="db/data/competence.csv"></loadData>
     </changeSet>
+    <changeSet id="cbd-06" author="landry">
+        <renameTable newTableName="bailiff_competence_area" oldTableName="rel_bailiff_competence_area"/>
+    </changeSet>
    </databaseChangeLog>

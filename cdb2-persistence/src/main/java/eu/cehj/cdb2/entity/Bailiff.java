@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,18 +32,8 @@ public class Bailiff extends BaseAuditedEntity<String> {
     inverseJoinColumns = @JoinColumn(name = "lang_id"))
     private final List<Language> languages = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "rel_bailiff_competence_area",
-    joinColumns = @JoinColumn(name="bailiff_id"),
-    inverseJoinColumns = @JoinColumn(name = "area_id"))
-    private final List<GeoArea> geoAreas = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(name = "rel_bailiff_competence_area",
-    joinColumns = @JoinColumn(name="bailiff_id"),
-    inverseJoinColumns = @JoinColumn(name = "competence_id"))
-    private final List<Competence> competences = new ArrayList<>();
-
+    @OneToMany(mappedBy="bailiff")
+    private final List<BailiffCompetenceArea> bailiffCompetenceAreas = new ArrayList<>();
 
     @Column(name = "phone")
     private String phone;
@@ -86,12 +77,8 @@ public class Bailiff extends BaseAuditedEntity<String> {
         return this.languages;
     }
 
-    public List<GeoArea> getGeoAreas() {
-        return this.geoAreas;
-    }
-
-    public List<Competence> getCompetences() {
-        return this.competences;
+    public List<BailiffCompetenceArea> getBailiffCompetenceAreas() {
+        return this.bailiffCompetenceAreas;
     }
 
 }

@@ -73,17 +73,13 @@
     <div class="modal-footer">
       <div class="row">
         <div class="col-md-12">
-          <a class="btn btn-danger pull-left action-button" ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()">
-        <span class="glyphicon glyphicon-trash"></span>
-        <span translate="global.button.delete"></span>
-      </a>
 
-          <a class="btn btn-primary pull-right action-button" ng-click="bailiffEditCtrl.modalInstance.dismiss()">
+          <a class="btn btn-primary pull-right action-button" ng-click="competenceEditCtrl.modalInstance.dismiss()">
         <span class="glyphicon glyphicon-remove-sign"></span>
         <span translate="global.button.cancel"></span>
       </a>
 
-          <button class="btn btn-primary pull-right action-button" ng-click="bailiffEditCtrl.save(competenceEditCtrl.areaForm.$valid)" ng-disabled="bailiffEditCtrl.submitted">
+          <button class="btn btn-primary pull-right action-button" ng-if="competenceEditCtrl.areasToDisplay.length > 0" ng-click="competenceEditCtrl.save(competenceEditCtrl.areaForm.$valid)" ng-disabled="competenceEditCtrl.submitted">
         <span class="glyphicon glyphicon-floppy-disk"></span>
         <span translate="global.button.save"></span>
       </button>
