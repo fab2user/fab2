@@ -96,7 +96,10 @@
       "address": "Address",
       "municipality": "Municipality/Postal Code",
       "phone": "Phone",
-      "email": "Email"
+      "email": "Email",
+      "competence": "Competence",
+      "instrument":"Instrument",
+      "areas":"Geo Areas"
     },
     "list": {
       "title":"List of Bailiffs",
@@ -104,6 +107,13 @@
       "name": "name",
       "address": "address",
       "municipality": "municipality"
+    },
+    "competence": {
+      "edit": {
+        "title": "Edit competence",
+        "instrument": "Instrument",
+        "competence":"Competence"
+      }
     }
   },
   "reference": {

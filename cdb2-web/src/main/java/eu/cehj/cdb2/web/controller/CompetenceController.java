@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.db.CompetenceService;
 import eu.cehj.cdb2.common.dto.CompetenceDTO;
+import eu.cehj.cdb2.common.dto.InsCompAreaDTO;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.Competence;
 
@@ -35,7 +36,7 @@ public class CompetenceController extends BaseController {
 
     @RequestMapping(value ="api/bailiff/{bailiffId}/competences", method = { GET })
     @ResponseStatus(value = OK)
-    public List<CompetenceDTO> get(@PathVariable final Long bailiffId) throws Exception {
+    public List<InsCompAreaDTO> get(@PathVariable final Long bailiffId) throws Exception {
         final Bailiff bailiff = this.bailiffService.get(bailiffId);
         // JPA throws automatically an exception if it can't find an entity with this id
         final List<Competence> competences = bailiff.getCompetences();

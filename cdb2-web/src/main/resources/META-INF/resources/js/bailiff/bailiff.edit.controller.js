@@ -7,6 +7,7 @@
     '$log',
     '$translate',
     '$uibModalInstance',
+    '$uibModal',
     'toastr',
     'BailiffAPIService',
     'bailiff',
@@ -14,7 +15,7 @@
     'competences'
   ];
 
-  function BailiffEditController($log, $translate, $uibModalInstance, toastr, BailiffAPIService, bailiff, cities, competences) {
+  function BailiffEditController($log, $translate, $uibModalInstance, $uibModal, toastr, BailiffAPIService, bailiff, cities, competences) {
     var vm = this;
     vm.modalInstance = $uibModalInstance;
     vm.bailiff = bailiff;
@@ -53,5 +54,18 @@
       bailiff.municipality = vm.bailiff.municipality.originalObject.name;
       return bailiff;
     }
+
+    vm.addCompetence = function(){
+      var modalInstance = $uibModal.open({
+        templateUrl: '/js/bailiff/competence.edit.html',
+        controller: 'CompetenceEditController as competenceEditCtrl',
+        windowClass: 'modal-hg',
+        backdrop: 'static',
+        resolve: {
+          competence: {areas:[]}
+        }
+      });
+    };
+
   }
 })();

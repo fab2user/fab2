@@ -67,8 +67,22 @@
           <div class="alert alert-danger" role="alert" ng-if="bailiffEditCtrl.errorsFromServer">
             <strong>{{bailiffEditCtrl.errorsFromServer}}</strong>
           </div>
-
-
+        </div>
+        <div class="col-md-6">
+          <table ng-table="bailiffEditCtrl.tableParams" class="table" show-filter="true">
+            <tr ng-repeat="competence in $data track by competence.id" ng-click="bailiffEDitCtrl.selectedCompetence = competence" ng-class="{'bg-info': competence.id === bailiffEditCtrl.selectedCompetence.id}" class="pointable">
+              <td data-title="'bailiff.edit.competence'|translate" filter="{ id: 'number'}" sortable="'id'">
+                {{competence.id}}</td>
+              <td data-title="'bailiff.edit.instrument'|translate" filter="{ name: 'text'}" sortable="'name'">
+                {{competence.name}}</td>
+              <td data-title="'bailiff.edit.areas'|translate" filter="{ address: 'text'}" sortable="'address'">
+                {{competence.address}}</td>
+            </tr>
+          </table>
+          <a class="btn btn-primary pull-right action-button" ng-click="bailiffEditCtrl.addCompetence()">
+        <span class="glyphicon glyphicon-plus-sign"></span>
+        <span translate="global.button.add"></span>
+      </a>
         </div>
       </div>
     </div>
