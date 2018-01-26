@@ -8,7 +8,8 @@
   GeoAreaAPIService.$inject = ['$resource'];
 
   function GeoAreaAPIService($resource) {
-    return $resource('http://localhost:8080/api/geo-area/:id', {id: '@id'}, {
+    // return $resource('http://localhost:8080/api/geo-area/:id', {id: '@id'}, {
+    return $resource('http://localhost:8080/api/geo-area/:id', {}, {
       getAll: {
         isArray: true
       },

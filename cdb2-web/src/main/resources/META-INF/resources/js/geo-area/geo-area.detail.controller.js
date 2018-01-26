@@ -101,7 +101,7 @@
     vm.save = function () {
       vm.area.municipalities = vm.citiesToDisplay;
      GeoAreaAPIService
-       .save(vm.area)
+       .save({},vm.area)
        .$promise
        .then(function () {
          $uibModalInstance.close();
