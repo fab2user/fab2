@@ -110,4 +110,10 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
         .setNull(municipality.geoArea)
         .execute();
     }
+
+    @Override
+    public GeoAreaDTO getDTO(final Long id)throws Exception{
+        final GeoArea entity = this.get(id);
+        return this.populateDTOFromEntity(entity);
+    }
 }

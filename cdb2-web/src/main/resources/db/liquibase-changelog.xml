@@ -72,4 +72,32 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
     <changeSet id="cbd-06" author="landry">
         <renameTable newTableName="bailiff_competence_area" oldTableName="rel_bailiff_competence_area"/>
     </changeSet>
+    <changeSet id="cbd-07" author="landry">
+        <comment>Update bailiff/competence/area management</comment>
+        <dropForeignKeyConstraint baseTableName="bailiff_competence_area" constraintName="FK_bca_area"/>
+        <dropColumn tableName="bailiff_competence_area" columnName="area_id"/>
+        <addColumn tableName="bailiff_competence_area">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </addColumn>
+        <createTable tableName="rel_bailiff_comp_area_area">
+            <column name="area_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="FK_bcaa_area" referencedTableName="geo_area" referencedColumnNames="id"/>
+            </column>
+            <column name="bailiff_comp_area_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="FK_bcaa_bca" referencedTableName="bailiff_competence_area" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="cbd-08" author="landry">
+        <comment>Add audit columns to bailiff_competence_area table</comment>
+        <addColumn tableName="bailiff_competence_area">
+            <column name="deleted" type="bit" defaultValueBoolean="false"/>
+            <column name="created_by" type="varchar(255)"></column>
+            <column name="created_on" type="datetime"></column>
+            <column name="modified_by" type="varchar(255)"></column>
+            <column name="modified_on" type="datetime"></column>
+        </addColumn>
+    </changeSet>
    </databaseChangeLog>

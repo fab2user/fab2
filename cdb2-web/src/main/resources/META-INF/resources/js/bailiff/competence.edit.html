@@ -11,7 +11,7 @@
       <div class="form-group">
         <label for="instrument" translate="bailiff.competence.edit.instrument" class="col-md-2">instrument</label>
         <div class="col-md-10">
-          <select name="instrument" class="form-control" id="instrument" ng-model="competenceEditCtrl.instrument" ng-options="instrument.id as instrument.description for instrument in competenceEditCtrl.instruments" required>
+          <select name="instrument" class="form-control" id="instrument" ng-model="competenceEditCtrl.instrument" ng-options="instrument as instrument.description for instrument in competenceEditCtrl.instruments" ng-change="competenceEditCtrl.loadCompetences()" required>
             <option value=""></option>
           </select>
           <div ng-if="competenceEditCtrl.areaForm.$submitted" ng-messages="competenceEditCtrl.competenceForm.instrument.$error">
@@ -79,7 +79,7 @@
         <span translate="global.button.cancel"></span>
       </a>
 
-          <button class="btn btn-primary pull-right action-button" ng-if="competenceEditCtrl.areasToDisplay.length > 0" ng-click="competenceEditCtrl.save(competenceEditCtrl.areaForm.$valid)" ng-disabled="competenceEditCtrl.submitted">
+          <button class="btn btn-primary pull-right action-button" ng-if="competenceEditCtrl.areasToDisplay.length > 0" ng-click="competenceEditCtrl.save(competenceEditCtrl.competenceForm.$valid)" ng-disabled="competenceEditCtrl.submitted">
         <span class="glyphicon glyphicon-floppy-disk"></span>
         <span translate="global.button.save"></span>
       </button>

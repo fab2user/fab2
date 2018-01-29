@@ -16,4 +16,6 @@ public interface BailiffCompetenceAreaService extends BaseService<BailiffCompete
 
     public BailiffCompetenceAreaDTO getDTO(Long id) throws Exception;
 
+    public List<BailiffCompetenceAreaDTO> getAllDTO(Long bailiffId) throws Exception;
+
 }

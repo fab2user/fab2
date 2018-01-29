@@ -1,5 +1,7 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,12 +11,19 @@ import org.springframework.stereotype.Service;
 
 import eu.cehj.cdb2.business.dao.BailiffCompetenceAreaRepository;
 import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
+import eu.cehj.cdb2.business.service.db.BailiffService;
+import eu.cehj.cdb2.business.service.db.CompetenceService;
+import eu.cehj.cdb2.business.service.db.GeoAreaService;
+import eu.cehj.cdb2.business.service.db.InstrumentService;
 import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaDTO;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
-import eu.cehj.cdb2.entity.Address;
+import eu.cehj.cdb2.common.dto.CompetenceDTO;
+import eu.cehj.cdb2.common.dto.GeoAreaDTO;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.BailiffCompetenceArea;
-import eu.cehj.cdb2.entity.Municipality;
+import eu.cehj.cdb2.entity.Competence;
+import eu.cehj.cdb2.entity.GeoArea;
+import eu.cehj.cdb2.entity.Instrument;
 
 @Service
 public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCompetenceArea, Long> implements BailiffCompetenceAreaService {
@@ -25,34 +34,65 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
     @Autowired
     private BailiffCompetenceAreaRepository repository;
 
+    @Autowired
+    private BailiffService bailiffService;
 
-    public BailiffDTO populateDTOFromEntity(final Bailiff bailiff) {
-        final BailiffDTO bailiffDTO = new BailiffDTO();
-        bailiffDTO.setName(bailiff.getName());
-        bailiffDTO.setId(bailiff.getId());
-        bailiffDTO.setEmail(bailiff.getEmail());
-        bailiffDTO.setPhone(bailiff.getPhone());
-        final Address address = bailiff.getAddress();
-        if (address != null) {
-            bailiffDTO.setAddressId(address.getId());
-            bailiffDTO.setAddress(address.getAddress());
-            final Municipality municipality = address.getMunicipality();
-            if (municipality != null) {
-                bailiffDTO.setCity(municipality.getName());
-                bailiffDTO.setPostalCode(municipality.getPostalCode());
-                bailiffDTO.setMunicipalityId(municipality.getId());
-            }
-        }
-        return bailiffDTO;
-    }
+    @Autowired
+    private InstrumentService instrumentService;
 
+    @Autowired
+    private CompetenceService competenceService;
+
+    @Autowired
+    private GeoAreaService areaService;
 
     @Override
     public BailiffCompetenceAreaDTO save(final BailiffCompetenceAreaDTO dto) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        final BailiffCompetenceArea entity = this.populateEntityFromDTO(dto);
+        this.save(entity);
+        dto.setId(entity.getId());
+        return dto;
     }
 
+    public BailiffCompetenceArea populateEntityFromDTO(final BailiffCompetenceAreaDTO dto) throws Exception{
+        BailiffCompetenceArea entity = new BailiffCompetenceArea();
+        if(dto.getId()!=null) {
+            entity = this.get(dto.getId());
+        }
+        final BailiffDTO bailiffDTO = dto.getBailiff();
+        final Bailiff bailiff =  this.bailiffService.get(bailiffDTO.getId());
+
+        final Competence competence = this.competenceService.get(dto.getCompetence().getId());
+        final Instrument instrument = competence.getInstrument();
+        final List<GeoArea> existingAreas = entity.getAreas();
+        existingAreas.removeAll(existingAreas);
+        final List<GeoAreaDTO> areas =  dto.getAreas();
+        final Iterator<GeoAreaDTO> it = areas.iterator();
+        while(it.hasNext()) {
+            final GeoAreaDTO areaDTO = it.next();
+            entity.getAreas().add(this.areaService.get(areaDTO.getId()));
+        }
+        entity.setBailiff(bailiff);
+        entity.setCompetence(competence);
+        return entity;
+    }
+
+    public BailiffCompetenceAreaDTO populateDTOFromEntity(final BailiffCompetenceArea entity)throws Exception{
+        final BailiffCompetenceAreaDTO dto = new BailiffCompetenceAreaDTO();
+        dto.setId(entity.getId());
+        final BailiffDTO bailiffDTO = this.bailiffService.getDTO(entity.getBailiff().getId());
+        dto.setBailiff(bailiffDTO);
+        final CompetenceDTO competenceDTO = this.competenceService.getDTO(entity.getCompetence().getId());
+        dto.setCompetence(competenceDTO);
+        final List<GeoAreaDTO>areas = new ArrayList<GeoAreaDTO>();
+        final Iterator<GeoArea> it = entity.getAreas().iterator();
+        while(it.hasNext()) {
+            final GeoAreaDTO geoAreaDTO = this.areaService.getDTO(it.next().getId());
+            areas.add(geoAreaDTO);
+        }
+        dto.setAreas(areas);
+        return dto;
+    }
 
     @Override
     public List<BailiffCompetenceAreaDTO> getAllDTO() throws Exception {
@@ -60,10 +100,21 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
         return null;
     }
 
+    @Override
+    public List<BailiffCompetenceAreaDTO> getAllDTO(final Long bailiffId) throws Exception {
+        final List<BailiffCompetenceAreaDTO> dtos = new ArrayList<>();
+        final List<BailiffCompetenceArea> entities = this.repository.findByBailiffId(bailiffId);
+        final Iterator<BailiffCompetenceArea> it = entities.iterator();
+        while(it.hasNext()) {
+            dtos.add(this.populateDTOFromEntity(it.next()));
+        }
+
+        return dtos;
+    }
+
 
     @Override
     public BailiffCompetenceAreaDTO getDTO(final Long id) throws Exception {
-        // TODO Auto-generated method stub
         return null;
     }
 

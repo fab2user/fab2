@@ -71,8 +71,8 @@
         <div class="col-md-6">
           <table ng-table="bailiffEditCtrl.tableParams" class="table" show-filter="true">
             <tr ng-repeat="competence in $data track by competence.id" ng-click="bailiffEDitCtrl.selectedCompetence = competence" ng-class="{'bg-info': competence.id === bailiffEditCtrl.selectedCompetence.id}" class="pointable">
-              <td data-title="'bailiff.edit.competence'|translate" filter="{ id: 'number'}" sortable="'id'">
-                {{competence.id}}</td>
+              <td data-title="'bailiff.edit.competence'|translate" filter="{ 'competence.code': 'text'}" sortable="'competence.code'">
+                {{competence.competence.code}}</td>
               <td data-title="'bailiff.edit.instrument'|translate" filter="{ name: 'text'}" sortable="'name'">
                 {{competence.name}}</td>
               <td data-title="'bailiff.edit.areas'|translate" filter="{ address: 'text'}" sortable="'address'">

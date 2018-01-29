@@ -1,5 +1,7 @@
 package eu.cehj.cdb2.common.dto;
 
+import java.util.List;
+
 import eu.cehj.cdb2.entity.Instrument;
 
 public class InstrumentDTO extends BaseDTO{
@@ -8,6 +10,7 @@ public class InstrumentDTO extends BaseDTO{
 
     private String code;
     private String description;
+    private List<CompetenceDTO> competences;
 
     public InstrumentDTO() {
         super();
@@ -31,6 +34,14 @@ public class InstrumentDTO extends BaseDTO{
 
     public void setDescription(final String description) {
         this.description = description;
+    }
+
+    public List<CompetenceDTO> getCompetences() {
+        return this.competences;
+    }
+
+    public void setCompetences(final List<CompetenceDTO> competences) {
+        this.competences = competences;
     }
 
 }

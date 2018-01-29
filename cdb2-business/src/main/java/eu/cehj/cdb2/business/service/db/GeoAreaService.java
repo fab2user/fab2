@@ -14,4 +14,6 @@ public interface GeoAreaService extends BaseService<GeoArea, Long>{
 
     public GeoAreaDTO saveDTO(GeoAreaDTO dto) throws Exception;
 
+    public GeoAreaDTO getDTO(Long id) throws Exception;
+
 }

@@ -2,11 +2,13 @@ package eu.cehj.cdb2.web.controller;
 
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaDTO;
-import eu.cehj.cdb2.common.dto.InsCompAreaDTO;
-import eu.cehj.cdb2.entity.Bailiff;
 
 @RestController
 public class BailiffCompetenceAreaController extends BaseController {
@@ -34,8 +34,8 @@ public class BailiffCompetenceAreaController extends BaseController {
 
     @RequestMapping(value ="api/bailiff/{bailiffId}/competences", method = { GET })
     @ResponseStatus(value = OK)
-    public List<InsCompAreaDTO> get(@PathVariable final Long bailiffId) throws Exception {
-        final Bailiff bailiff = this.bailiffService.get(bailiffId);
+    public List<BailiffCompetenceAreaDTO> get(@PathVariable final Long bailiffId) throws Exception {
+
         // JPA throws automatically an exception if it can't find an entity with this id
         //        final List<Competence> competences = bailiff.getCompetences();
         //        return competences
@@ -43,7 +43,14 @@ public class BailiffCompetenceAreaController extends BaseController {
         //                .map(competence ->
         //                new CompetenceDTO(competence)
         //                        ).collect(Collectors.toList());
-        return null;
+        return this.bcaService.getAllDTO(bailiffId);
+    }
+
+    @RequestMapping(value="api/bailiffcomparea", method = { POST })
+    @ResponseStatus(value = OK)
+    public BailiffCompetenceAreaDTO save(@RequestBody final BailiffCompetenceAreaDTO dto) throws Exception {
+
+        return this.bcaService.save(dto);
     }
 
 }

@@ -9,13 +9,15 @@
     '$uibModalInstance',
     '$uibModal',
     'toastr',
+    'NgTableParams',
     'BailiffAPIService',
+    'BailiffCompAreaAPIService',
     'bailiff',
     'cities',
     'competences'
   ];
 
-  function BailiffEditController($log, $translate, $uibModalInstance, $uibModal, toastr, BailiffAPIService, bailiff, cities, competences) {
+  function BailiffEditController($log, $translate, $uibModalInstance, $uibModal, toastr, NgTableParams, BailiffAPIService, BailiffCompAreaAPIService, bailiff, cities, competences) {
     var vm = this;
     vm.modalInstance = $uibModalInstance;
     vm.bailiff = bailiff;
@@ -27,6 +29,8 @@
     };
     vm.cities = cities;
     vm.errorsFromServer = null;
+
+    loadBailiffCompArea();
 
     vm.save = function(isValid) {
       vm.errorsFromServer = null;
@@ -55,6 +59,14 @@
       return bailiff;
     }
 
+    function loadBailiffCompArea(){
+      BailiffCompAreaAPIService.getAllForBailiff({bailiffId: vm.bailiff.id})
+      .$promise
+      .then(function(success){
+        vm.tableParams = new NgTableParams({}, {dataset: success});
+      });
+    }
+
     vm.addCompetence = function(){
       var modalInstance = $uibModal.open({
         templateUrl: '/js/bailiff/competence.edit.html',
@@ -62,6 +74,7 @@
         windowClass: 'modal-hg',
         backdrop: 'static',
         resolve: {
+          bailiff: vm.bailiff,
           competence: {areas:[]}
         }
       });

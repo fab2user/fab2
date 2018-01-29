@@ -12,4 +12,8 @@ public interface CompetenceService extends BaseService<Competence, Long>{
 
     public List<CompetenceDTO> getAllDTO() throws Exception;
 
+    public CompetenceDTO getDTO(Long id) throws Exception;
+
+    public List<CompetenceDTO> getAllDTOForInstrument(Long instrumentId) throws Exception;
+
 }

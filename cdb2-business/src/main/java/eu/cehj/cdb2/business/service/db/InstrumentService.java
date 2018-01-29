@@ -12,4 +12,6 @@ public interface InstrumentService extends BaseService<Instrument, Long>{
 
     public List<InstrumentDTO> getAllDTO() throws Exception;
 
+    public InstrumentDTO populateDTOFromEntity(Instrument instrument) throws Exception;
+
 }
