@@ -26,7 +26,7 @@ public class BailiffCompetenceAreaController extends BaseController {
     @Autowired
     BailiffService bailiffService;
 
-    @RequestMapping(value="api/competence", method = { GET })
+    @RequestMapping(value="api/bailiffcomparea", method = { GET })
     @ResponseStatus(value = OK)
     public List<BailiffCompetenceAreaDTO> get() throws Exception {
         return this.bcaService.getAllDTO();

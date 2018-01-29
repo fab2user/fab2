@@ -17,7 +17,6 @@
       $log.warn('currently used lang: ' + $translate.use());
       $log.warn("switchLang called with: '" + langKey + "'");
       $translate.use(langKey);
-      $translate.refresh();
     };
 
   }

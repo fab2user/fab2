@@ -23,7 +23,7 @@
         <li class="dropdown" uib-dropdown>
            <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span translate="global.switch.lang"></span> <span class="caret"></span></a>
              <ul class="dropdown-menu" uib-dropdown-menu>
-               <li ng-repeat="lang in navCtrl.langKeys" ><a href="#" ng-click="navCtrl.switchLang(lang)">{{ lang }}</a></li>
+               <li ng-repeat="lang in navCtrl.langKeys" ><a ng-click="navCtrl.switchLang(lang)">{{ lang }}</a></li>
 
              </ul>
          </li>
