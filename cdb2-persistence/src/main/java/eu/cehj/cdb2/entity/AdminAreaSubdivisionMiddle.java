@@ -9,8 +9,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name="admin_area_subdivision_middle")
+@Where(clause="deleted=0 or deleted is null")
 public class AdminAreaSubdivisionMiddle  extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = -6751495992407562325L;

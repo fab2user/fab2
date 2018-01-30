@@ -42,7 +42,7 @@ public class InstrumentServiceImpl extends BaseServiceImpl<Instrument, Long> imp
         dto.setId(instrument.getId());
         dto.setCode(instrument.getCode());
         dto.setDescription(instrument.getDescription());
-        dto.setCompetences(this.competenceService.getAllDTOForInstrument(instrument.getId()));
+        //        dto.setCompetences(this.competenceService.getAllDTOForInstrument(instrument.getId()));
         return dto;
     }
 

@@ -18,7 +18,7 @@ import eu.cehj.cdb2.business.service.db.InstrumentService;
 import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaDTO;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.dto.CompetenceDTO;
-import eu.cehj.cdb2.common.dto.GeoAreaDTO;
+import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.BailiffCompetenceArea;
 import eu.cehj.cdb2.entity.Competence;
@@ -66,10 +66,10 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
         final Instrument instrument = competence.getInstrument();
         final List<GeoArea> existingAreas = entity.getAreas();
         existingAreas.removeAll(existingAreas);
-        final List<GeoAreaDTO> areas =  dto.getAreas();
-        final Iterator<GeoAreaDTO> it = areas.iterator();
+        final List<GeoAreaSimpleDTO> areas =  dto.getAreas();
+        final Iterator<GeoAreaSimpleDTO> it = areas.iterator();
         while(it.hasNext()) {
-            final GeoAreaDTO areaDTO = it.next();
+            final GeoAreaSimpleDTO areaDTO = it.next();
             entity.getAreas().add(this.areaService.get(areaDTO.getId()));
         }
         entity.setBailiff(bailiff);
@@ -84,11 +84,11 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
         dto.setBailiff(bailiffDTO);
         final CompetenceDTO competenceDTO = this.competenceService.getDTO(entity.getCompetence().getId());
         dto.setCompetence(competenceDTO);
-        final List<GeoAreaDTO>areas = new ArrayList<GeoAreaDTO>();
+        final List<GeoAreaSimpleDTO>areas = new ArrayList<GeoAreaSimpleDTO>();
         final Iterator<GeoArea> it = entity.getAreas().iterator();
         while(it.hasNext()) {
-            final GeoAreaDTO geoAreaDTO = this.areaService.getDTO(it.next().getId());
-            areas.add(geoAreaDTO);
+            final GeoAreaSimpleDTO areaDTO = this.areaService.getSimpleDTO(it.next().getId());
+            areas.add(areaDTO);
         }
         dto.setAreas(areas);
         return dto;
@@ -111,7 +111,6 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
 
         return dtos;
     }
-
 
     @Override
     public BailiffCompetenceAreaDTO getDTO(final Long id) throws Exception {

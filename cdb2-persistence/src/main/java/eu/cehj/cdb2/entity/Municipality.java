@@ -6,8 +6,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "municipality")
+@Where(clause="deleted=0 or deleted is null")
 public class Municipality extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = -1302962165492457412L;

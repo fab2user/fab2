@@ -10,8 +10,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "bailiff_competence_area")
+@Where(clause="deleted=0 or deleted is null")
 public class BailiffCompetenceArea extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = -188291819445691380L;

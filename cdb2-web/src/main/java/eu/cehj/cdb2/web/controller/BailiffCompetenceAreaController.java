@@ -1,12 +1,15 @@
 package eu.cehj.cdb2.web.controller;
 
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +54,12 @@ public class BailiffCompetenceAreaController extends BaseController {
     public BailiffCompetenceAreaDTO save(@RequestBody final BailiffCompetenceAreaDTO dto) throws Exception {
 
         return this.bcaService.save(dto);
+    }
+
+    @RequestMapping( method = DELETE, value = "api/bailiffcomparea/{id}" )
+    @ResponseStatus(value = NO_CONTENT)
+    public void delete(final Model model, @PathVariable(value = "id") final Long id) throws Exception {
+        this.bcaService.delete(id);
     }
 
 }

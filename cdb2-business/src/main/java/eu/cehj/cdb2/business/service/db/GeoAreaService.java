@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import eu.cehj.cdb2.common.dto.GeoAreaDTO;
+import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
 import eu.cehj.cdb2.entity.GeoArea;
 
 @Service
@@ -15,5 +16,7 @@ public interface GeoAreaService extends BaseService<GeoArea, Long>{
     public GeoAreaDTO saveDTO(GeoAreaDTO dto) throws Exception;
 
     public GeoAreaDTO getDTO(Long id) throws Exception;
+
+    public GeoAreaSimpleDTO getSimpleDTO(Long id) throws Exception;
 
 }

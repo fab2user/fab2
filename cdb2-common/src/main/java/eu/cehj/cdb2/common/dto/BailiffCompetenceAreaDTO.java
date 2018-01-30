@@ -7,7 +7,7 @@ public class BailiffCompetenceAreaDTO extends BaseDTO{
     private static final long serialVersionUID = -2685453922078212828L;
 
     private BailiffDTO  bailiff;
-    private List<GeoAreaDTO> areas;
+    private List<GeoAreaSimpleDTO> areas;
     private CompetenceDTO competence;
 
     public BailiffCompetenceAreaDTO() {
@@ -22,20 +22,20 @@ public class BailiffCompetenceAreaDTO extends BaseDTO{
         this.bailiff = bailiff;
     }
 
-    public List<GeoAreaDTO> getAreas() {
-        return this.areas;
-    }
-
-    public void setAreas(final List<GeoAreaDTO> areas) {
-        this.areas = areas;
-    }
-
     public CompetenceDTO getCompetence() {
         return this.competence;
     }
 
     public void setCompetence(final CompetenceDTO competence) {
         this.competence = competence;
+    }
+
+    public List<GeoAreaSimpleDTO> getAreas() {
+        return this.areas;
+    }
+
+    public void setAreas(final List<GeoAreaSimpleDTO> areas) {
+        this.areas = areas;
     }
 
 

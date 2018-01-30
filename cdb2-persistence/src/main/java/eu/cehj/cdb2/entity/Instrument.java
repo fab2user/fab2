@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "instrument")
+@Where(clause="deleted=0 or deleted is null")
 public class Instrument extends BaseAuditedEntity<String>{
 
     private static final long serialVersionUID = -8486637090683919492L;

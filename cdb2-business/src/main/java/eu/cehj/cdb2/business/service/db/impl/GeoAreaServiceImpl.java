@@ -18,6 +18,7 @@ import eu.cehj.cdb2.business.dao.GeoAreaRepository;
 import eu.cehj.cdb2.business.service.db.GeoAreaService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.common.dto.GeoAreaDTO;
+import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.GeoArea;
 import eu.cehj.cdb2.entity.Municipality;
@@ -115,5 +116,18 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
     public GeoAreaDTO getDTO(final Long id)throws Exception{
         final GeoArea entity = this.get(id);
         return this.populateDTOFromEntity(entity);
+    }
+
+    @Override
+    public GeoAreaSimpleDTO getSimpleDTO(final Long id) throws Exception {
+        final GeoArea entity = this.get(id);
+        return this.populateSimpleDTOFromEntity(entity);
+    }
+
+    public GeoAreaSimpleDTO populateSimpleDTOFromEntity(final GeoArea entity) {
+        final GeoAreaSimpleDTO dto = new GeoAreaSimpleDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        return dto;
     }
 }

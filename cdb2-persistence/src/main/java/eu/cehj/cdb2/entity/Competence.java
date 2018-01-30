@@ -10,8 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "competence")
+@Where(clause="deleted=0 or deleted is null")
 public class Competence extends BaseAuditedEntity<String>{
 
     private static final long serialVersionUID = 1L;

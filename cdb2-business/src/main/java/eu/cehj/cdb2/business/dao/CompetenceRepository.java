@@ -12,5 +12,5 @@ import eu.cehj.cdb2.entity.Competence;
 @RepositoryRestResource
 public interface CompetenceRepository extends JpaRepository<Competence, Long>, QueryDslPredicateExecutor<Competence> {
 
-    public List<Competence> findByInstrumentId(Long instrumentId)throws Exception;
+    public List<Competence> findAllByInstrumentId(Long instrumentId)throws Exception;
 }

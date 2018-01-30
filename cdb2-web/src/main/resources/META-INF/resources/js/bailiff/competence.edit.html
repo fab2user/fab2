@@ -10,8 +10,9 @@
 
       <div class="form-group">
         <label for="instrument" translate="bailiff.competence.edit.instrument" class="col-md-2">instrument</label>
-        <div class="col-md-10">
-          <select name="instrument" class="form-control" id="instrument" ng-model="competenceEditCtrl.instrument" ng-options="instrument as instrument.description for instrument in competenceEditCtrl.instruments" ng-change="competenceEditCtrl.loadCompetences()" required>
+        <div class="col-md-4">
+          <select name="instrument" class="form-control" id="instrument" ng-model="competenceEditCtrl.instrument" ng-options="instrument as instrument.description for instrument in competenceEditCtrl.instruments track by instrument.id" ng-change="competenceEditCtrl.reloadCompetences()"
+            ng-disabled="competenceEditCtrl.bailiffCompArea.id" required>
             <option value=""></option>
           </select>
           <div ng-if="competenceEditCtrl.areaForm.$submitted" ng-messages="competenceEditCtrl.competenceForm.instrument.$error">
@@ -22,8 +23,9 @@
 
       <div class="form-group">
         <label for="competence" translate="bailiff.competence.edit.competence" class="col-md-2">competence</label>
-        <div class="col-md-10">
-          <select name="competence" class="form-control" id="competence" ng-model="competenceEditCtrl.competence" ng-options="competence.id as competence.description for competence in competenceEditCtrl.competences" required>
+        <div class="col-md-4">
+          <select name="competence" class="form-control" id="competence" ng-model="competenceEditCtrl.competence" ng-options="competence as competence.description for competence in competenceEditCtrl.competences track by competence.id" ng-disabled="competenceEditCtrl.bailiffCompArea.id"
+            required>
             <option value=""></option>
           </select>
           <div ng-if="competenceEditCtrl.competenceForm.$submitted" ng-messages="competenceEditCtrl.competenceForm.competence.$error">
@@ -42,20 +44,32 @@
             </tr>
           </table>
         </div>
-        <div class="col-md-2">
-          <div>
-            <span class="glyphicon glyphicon-menu-left" ng-click="competenceEditCtrl.addSelected()"></span>
+        <div class="col-md-1 center-block">
+          <div class="row top-2">
+            <div class="col-md-12">
+              <button class="btn btn-success glyphicon glyphicon-menu-left" ng-click="competenceEditCtrl.addSelected()"></button>
+            </div>
           </div>
-          <div ng-click="competenceEditCtrl.addFiltered()">
+          <div class="row top-1">
+            <div class="col-md-12" ng-click="competenceEditCtrl.addFiltered()">
+              <button class="btn btn-success">
             <span class="glyphicon glyphicon-menu-left"></span>
             <span class="glyphicon glyphicon-menu-left"></span>
+          </button>
+            </div>
           </div>
-          <div ng-click="competenceEditCtrl.removeSelected()">
-            <span class="glyphicon glyphicon-menu-right"></span>
+          <div class="row top-1">
+            <div class="col-md-12" ng-click="competenceEditCtrl.removeSelected()">
+              <button class="btn btn-danger glyphicon glyphicon-menu-right"></button>
+            </div>
           </div>
-          <div ng-click="competenceEditCtrl.removeFiltered()">
+          <div class="row top-1">
+            <div class="col-md-12" ng-click="competenceEditCtrl.removeFiltered()">
+              <button class="btn btn-danger">
             <span class="glyphicon glyphicon-menu-right"></span>
             <span class="glyphicon glyphicon-menu-right"></span>
+          </button>
+            </div>
           </div>
         </div>
         <div class="col-md-5">

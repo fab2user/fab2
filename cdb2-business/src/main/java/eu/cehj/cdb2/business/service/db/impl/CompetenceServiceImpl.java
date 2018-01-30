@@ -52,7 +52,7 @@ public class CompetenceServiceImpl extends BaseServiceImpl<Competence, Long> imp
     @Override
     public List<CompetenceDTO> getAllDTOForInstrument(final Long instrumentId) throws Exception {
         //FIXME
-        final List<Competence> entities = this.repository.findByInstrumentId(instrumentId);
+        final List<Competence> entities = this.repository.findAllByInstrumentId(instrumentId);
         final List<CompetenceDTO> dtos = new ArrayList<CompetenceDTO>(entities.size());
         final Iterator<Competence> it = entities.iterator();
         while(it.hasNext()) {

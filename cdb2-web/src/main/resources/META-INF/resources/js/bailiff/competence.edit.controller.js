@@ -16,29 +16,43 @@
     'GeoAreaAPIService',
     'BailiffCompAreaAPIService',
     'bailiff',
-    'competence'
+    'bailiffCompArea'
   ];
 
-  function CompetenceEditController($log, $translate, $uibModalInstance, $uibModal, lodash, NgTableParams, toastr, InstrumentAPIService, CompetenceAPIService, GeoAreaAPIService, BailiffCompAreaAPIService, bailiff, competence) {
+  function CompetenceEditController($log, $translate, $uibModalInstance, $uibModal, lodash, NgTableParams, toastr, InstrumentAPIService, CompetenceAPIService, GeoAreaAPIService, BailiffCompAreaAPIService, bailiff, bailiffCompArea) {
     var vm = this;
     vm.modalInstance = $uibModalInstance;
     vm.bailiff = bailiff;
-    vm.competence = competence;
-    vm.areasToDisplay = competence.areas.slice() || [];
+    vm.bailiffCompArea = bailiffCompArea;
+    vm.areasToDisplay = bailiffCompArea.areas.slice() || [];
     vm.tableParamsEdit = new NgTableParams({}, {dataset: vm.areasToDisplay});
     vm.selectedForRemoval = [];
     vm.selectedForAddition = [];
 
+    if (vm.bailiffCompArea.competence) {
+      vm.instrument = vm.bailiffCompArea.competence.instrument;
+
+    }
     InstrumentAPIService.getAll().$promise.then(function(data) {
       vm.instruments = data;
     });
 
-    // CompetenceAPIService.getAll().$promise.then(function(data) {
-    //   vm.competences = data;
-    // });
+    CompetenceAPIService.getAll().$promise.then(function(data) {
+      vm.allCompetences = data;
+      loadCompetences();
+      vm.competence = vm.bailiffCompArea.competence;
+    });
 
-    vm.loadCompetences = function(){
-      vm.competences = vm.instrument.competences;
+    function loadCompetences() {
+      $log.info('loadCompetences called');
+
+      vm.competences = lodash.filter(vm.allCompetences, function(competence) {
+        return competence.instrument.id === vm.instrument.id;
+      });
+    }
+
+    vm.reloadCompetences = function() {
+      loadCompetences();
     };
 
     GeoAreaAPIService.getAll().$promise.then(function(success) {
@@ -114,36 +128,31 @@
       }
       if (valid) {
         var dto = buildDTO();
-        BailiffCompAreaAPIService.save(dto);
-        BailiffCompAreaAPIService
-          .save({},dto)
-          .$promise
-          .then(function () {
-            $uibModalInstance.close();
-            toastr.success($translate.instant("global.toastr.save.success"));
-          })
-          .catch(function (err) {
-            $log.error(err);
-            vm.errorsFromServer = $translate.instant(err.data.message);
-          })
-          .finally(function () {
-            vm.submitted = false;
-          });
+        BailiffCompAreaAPIService.save({}, dto).$promise.then(function() {
+          $uibModalInstance.close();
+          toastr.success($translate.instant("global.toastr.save.success"));
+        }).catch(function(err) {
+          $log.error(err);
+          vm.errorsFromServer = $translate.instant(err.data.message);
+        }). finally(function() {
+          vm.submitted = false;
+        });
       }
     };
 
     function buildDTO() {
       var areas = [];
-      vm.areasToDisplay.forEach(function(area){
+      vm.areasToDisplay.forEach(function(area) {
         areas.push({id: area.id});
       });
       return {
+        id: vm.bailiffCompArea.id,
         bailiff: vm.bailiff,
         instrument: {
-          id : vm.instrument
+          id: vm.instrument.id
         },
         competence: {
-          id: vm.competence
+          id: vm.competence.id
         },
         areas: areas
       };
