@@ -7,6 +7,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
@@ -114,14 +117,14 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
     }
 
     @Override
-    public List<BailiffDTO> findAll(final Predicate predicate) throws Exception {
-        final Iterable<Bailiff> entities = this.repository.findAll(predicate);
+    public Page<BailiffDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+        final Page<Bailiff> entities = this.repository.findAll(predicate, pageable);
         final List<BailiffDTO> dtos = new ArrayList<>();
         final Iterator<Bailiff> it = entities.iterator();
         while (it.hasNext()) {
             dtos.add(this.populateDTOFromEntity(it.next()));
         }
-        return dtos;
+        return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 
 }

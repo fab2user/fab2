@@ -1,76 +1,106 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><span translate="area.edit.title"></span> <span>{{ areaDetailCtrl.area.name }}</span></h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div>
-              <form>
-                <div class="form-group">
-                  <label for="name" translate="area.edit.name">NAme</label>
-                  <input type="text" class="form-control" id="name" placeholder="{{'area.edit.name'|translate}}" ng-model="areaDetailCtrl.area.name">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5">
-            <table ng-table="areaDetailCtrl.tableParamsEdit" class="table" show-filter="true">
-              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}" class="pointable">
-                <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
-                  {{city.id}}</td>
-                <td title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
-                  {{city.name}}</td>
-                <td title="'area.edit.table.zipcode'|translate" filter="{ postalCode: 'text'}">
-                  {{city.postalCode}}</td>
-
-              </tr>
-            </table>
-          </div>
-          <div class="col-md-1">
-            <div>
-              <span class="glyphicon glyphicon-menu-left" ng-click="areaDetailCtrl.addSelected()"></span>
-            </div>
-            <div ng-click="areaDetailCtrl.addFiltered()">
-              <span class="glyphicon glyphicon-menu-left"></span>
-              <span class="glyphicon glyphicon-menu-left"></span>
-            </div>
-            <div ng-click="areaDetailCtrl.removeSelected()">
-              <span class="glyphicon glyphicon-menu-right"></span>
-            </div>
-            <div ng-click="areaDetailCtrl.removeFiltered()">
-              <span class="glyphicon glyphicon-menu-right"></span>
-              <span class="glyphicon glyphicon-menu-right"></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <table ng-table="areaDetailCtrl.tableParams" class="table" show-filter="true">
-              <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city)" ng-class="{'bg-success': areaDetailCtrl.selectedForAddition.indexOf(city) > -1}" class="pointable">
-                <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
-                  {{city.id}}</td>
-                <td title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
-                  {{city.name}}</td>
-                <td title="'area.edit.table.zipcode'|translate" filter="{ postalCode: 'text'}">
-                  {{city.postalCode}}</td>
-                <td title="'area.edit.table.area.1'|translate" filter="{ adminAreaSubdivisionMajor: 'text'}">
-                  {{city.adminAreaSubdivisionMajor}}</td>
-                <td title="'area.edit.table.area.2'|translate" filter="{ adminAreaSubdivisionMiddle: 'text'}">
-                  {{city.adminAreaSubdivisionMiddle}}</td>
-                <td title="'area.edit.table.area.3'|translate" filter="{ adminAreaSubdivisionMinor: 'text'}">
-                  {{city.adminAreaSubdivisionMinor}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="panel-footer">
-        <button class="btn btn-default" ng-click="areaDetailCtrl.save()" translate="global.button.save"></button>
-        <button class="btn btn-default" ng-click="areaDetailCtrl.cancel()" translate="global.button.cancel"></button>
-      </div>
+<div class="modal-content">
+  <form name="areaDetailCtrl.areaForm" novalidate>
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="areaDetailCtrl.modalInstance.dismiss()">&times;</button>
+      <h4 class="modal-title">
+        <span translate="area.edit.title">title</span>
+        <span>{{ areaDetailCtrl.area.name }}</span>
+      </h4>
     </div>
-  </div>
+
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+
+            <div class="form-group">
+              <label for="name" translate="area.edit.name">NAme</label>
+              <input type="text" name="areaname" class="form-control" id="name" placeholder="{{'area.edit.name'|translate}}" ng-model="areaDetailCtrl.area.name"
+                required>
+              <div ng-if="areaDetailCtrl.areaForm.$submitted" ng-messages="areaDetailCtrl.areaForm.areaname.$error">
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="alert alert-danger" role="alert" ng-if="areaDetailCtrl.errorsFromServer">
+            <strong>{{areaDetailCtrl.errorsFromServer}}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <table ng-table="areaDetailCtrl.tableParamsEdit" class="table" show-filter="true">
+            <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}"
+              class="pointable">
+              <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
+                {{city.id}}</td>
+              <td title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
+                {{city.name}}</td>
+              <td title="'area.edit.table.zipcode'|translate" filter="{ postalCode: 'text'}">
+                {{city.postalCode}}</td>
+
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-1 center-block">
+          <div class="row top-3">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-success btn-block glyphicon glyphicon-menu-left" ng-click="areaDetailCtrl.addSelected()"></button>
+            </div>
+          </div>
+          <div class="row top-1">
+            <div class="col-md-12" ng-click="areaDetailCtrl.addFiltered()">
+              <button type="button" class="btn btn-success btn-block">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                <span class="glyphicon glyphicon-menu-left"></span>
+              </button>
+            </div>
+          </div>
+          <div class="row top-1">
+            <div class="col-md-12" ng-click="areaDetailCtrl.removeSelected()">
+              <button type="button" class="btn btn-danger btn-block glyphicon glyphicon-menu-right"></button>
+            </div>
+          </div>
+          <div class="row top-1">
+            <div class="col-md-12" ng-click="areaDetailCtrl.removeFiltered()">
+              <button type="button" class="btn btn-danger btn-block">
+                <span class="glyphicon glyphicon-menu-right"></span>
+                <span class="glyphicon glyphicon-menu-right"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <table ng-table="areaDetailCtrl.tableParams" class="table" show-filter="true">
+            <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city)" ng-class="{'bg-success': areaDetailCtrl.selectedForAddition.indexOf(city) > -1}"
+              class="pointable">
+              <td data-title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
+                {{city.id}}</td>
+              <td data-title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
+                {{city.name}}</td>
+              <td data-title="'area.edit.table.zipcode'|translate" filter="{ postalCode: 'text'}">
+                {{city.postalCode}}</td>
+              <td data-title="'area.edit.table.area.1'|translate" filter="{ adminAreaSubdivisionMajor: 'text'}">
+                {{city.adminAreaSubdivisionMajor}}</td>
+              <td data-title="'area.edit.table.area.2'|translate" filter="{ adminAreaSubdivisionMiddle: 'text'}">
+                {{city.adminAreaSubdivisionMiddle}}</td>
+              <td data-title="'area.edit.table.area.3'|translate" filter="{ adminAreaSubdivisionMinor: 'text'}">
+                {{city.adminAreaSubdivisionMinor}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button  class="btn btn-primary" translate="global.button.save" ng-click="areaDetailCtrl.save(areaDetailCtrl.areaForm.$valid)"
+        ng-disabled="areaDetailCtrl.submitted"></button>
+      <button type="button" class="btn btn-danger" ng-click="areaDetailCtrl.cancel()" translate="global.button.cancel"></button>
+    </div>
+  </form>
 </div>

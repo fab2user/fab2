@@ -2,6 +2,8 @@ package eu.cehj.cdb2.business.service.db;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
@@ -18,6 +20,6 @@ public interface BailiffService extends BaseService<Bailiff, Long> {
 
     public BailiffDTO getDTO(Long id) throws Exception;
 
-    public List<BailiffDTO> findAll(Predicate predicate) throws Exception;
+    public Page<BailiffDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
 
 }

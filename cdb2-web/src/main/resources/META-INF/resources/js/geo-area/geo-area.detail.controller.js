@@ -98,7 +98,13 @@
       return cleanZips.join(', ');
     }
 
-    vm.save = function () {
+    vm.save = function (valid) {
+      if (vm.citiesToDisplay.length < 1) {
+        toastr.error('Error', 'At least one geo area must be selected !');
+        return;
+      }
+      if(valid){
+        vm.submitted=true;
       vm.area.municipalities = vm.citiesToDisplay;
      GeoAreaAPIService
        .save({},vm.area)
@@ -109,11 +115,12 @@
        })
        .catch(function (err) {
          $log.error(err);
-         // vm.errorsFromServer = $translate.instant(err.data.message);
+         vm.errorsFromServer = $translate.instant(err.data.message);
        })
        .finally(function () {
-         // vm.submitted = false;
+         vm.submitted = false;
        });
+      }
    };
 
     vm.cancel = function(){

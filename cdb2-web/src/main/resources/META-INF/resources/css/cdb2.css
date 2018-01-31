@@ -11,6 +11,10 @@
   margin-top: 1.5em;
 }
 
+.top-3 {
+  margin-top: 2em;
+}
+
 .top-10 {
   margin-top: 10em;
 }
@@ -40,4 +44,15 @@ tr.pointable:hover{
   border-color: #a94442;
   border-width: 2px;
   box-shadow: none;
+}
+
+@media only screen and (min-width : 768px) {
+  .is-table-row {
+      display: table;
+  }
+  .is-table-row [class*="col-"] {
+      float: none;
+      display: table-cell;
+      vertical-align: top;
+  }
 }

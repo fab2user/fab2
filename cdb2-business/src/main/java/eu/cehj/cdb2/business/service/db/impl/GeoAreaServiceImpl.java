@@ -10,8 +10,12 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAUpdateClause;
 
 import eu.cehj.cdb2.business.dao.GeoAreaRepository;
@@ -129,5 +133,16 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         return dto;
+    }
+
+    @Override
+    public Page<GeoAreaDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+        final Page<GeoArea> entities = this.repository.findAll(predicate, pageable);
+        final List<GeoAreaDTO> dtos = new ArrayList<>();
+        final Iterator<GeoArea> it = entities.iterator();
+        while(it.hasNext()) {
+            dtos.add(this.populateDTOFromEntity(it.next()));
+        }
+        return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 }

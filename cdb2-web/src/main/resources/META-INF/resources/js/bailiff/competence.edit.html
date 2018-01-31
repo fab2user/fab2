@@ -3,7 +3,10 @@
 
     <div class="modal-header">
       <button type="button" class="close" ng-click="competenceEditCtrl.modalInstance.dismiss()">&times;</button>
-      <h4 class="modal-title"><span translate="bailiff.competence.edit.title">title</span> <span>{{ bailiffEditCtrl.bailiff.name }}</span></h4>
+      <h4 class="modal-title">
+        <span translate="bailiff.competence.edit.title">title</span>
+        <span>{{ bailiffEditCtrl.bailiff.name }}</span>
+      </h4>
     </div>
 
     <div class="modal-body">
@@ -11,11 +14,11 @@
       <div class="form-group">
         <label for="instrument" translate="bailiff.competence.edit.instrument" class="col-md-2">instrument</label>
         <div class="col-md-4">
-          <select name="instrument" class="form-control" id="instrument" ng-model="competenceEditCtrl.instrument" ng-options="instrument as instrument.description for instrument in competenceEditCtrl.instruments track by instrument.id" ng-change="competenceEditCtrl.reloadCompetences()"
-            ng-disabled="competenceEditCtrl.bailiffCompArea.id" required>
+          <select name="instrument" class="form-control" id="instrument" ng-model="competenceEditCtrl.instrument" ng-options="instrument as instrument.description for instrument in competenceEditCtrl.instruments track by instrument.id"
+            ng-change="competenceEditCtrl.reloadCompetences()" ng-disabled="competenceEditCtrl.bailiffCompArea.id" required>
             <option value=""></option>
           </select>
-          <div ng-if="competenceEditCtrl.areaForm.$submitted" ng-messages="competenceEditCtrl.competenceForm.instrument.$error">
+          <div ng-if="competenceEditCtrl.competenceForm.$submitted" ng-messages="competenceEditCtrl.competenceForm.instrument.$error">
             <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
           </div>
         </div>
@@ -24,8 +27,8 @@
       <div class="form-group">
         <label for="competence" translate="bailiff.competence.edit.competence" class="col-md-2">competence</label>
         <div class="col-md-4">
-          <select name="competence" class="form-control" id="competence" ng-model="competenceEditCtrl.competence" ng-options="competence as competence.description for competence in competenceEditCtrl.competences track by competence.id" ng-disabled="competenceEditCtrl.bailiffCompArea.id"
-            required>
+          <select name="competence" class="form-control" id="competence" ng-model="competenceEditCtrl.competence" ng-options="competence as competence.description for competence in competenceEditCtrl.competences track by competence.id"
+            ng-disabled="competenceEditCtrl.bailiffCompArea.id" required>
             <option value=""></option>
           </select>
           <div ng-if="competenceEditCtrl.competenceForm.$submitted" ng-messages="competenceEditCtrl.competenceForm.competence.$error">
@@ -38,7 +41,8 @@
       <div class="row">
         <div class="col-md-5">
           <table ng-table="competenceEditCtrl.tableParamsEdit" class="table" show-filter="true">
-            <tr ng-repeat="area in $data track by area.id" ng-click="competenceEditCtrl.toggleRemoval(area)" ng-class="{'bg-danger': competenceEditCtrl.selectedForRemoval.indexOf(area) > -1}" class="pointable">
+            <tr ng-repeat="area in $data track by area.id" ng-click="competenceEditCtrl.toggleRemoval(area)" ng-class="{'bg-danger': competenceEditCtrl.selectedForRemoval.indexOf(area) > -1}"
+              class="pointable">
               <td data-title="'bailiff.competence.edit.area'|translate" filter="{ name: 'text'}" sortable="'name'">
                 {{area.name}}</td>
             </tr>
@@ -47,34 +51,35 @@
         <div class="col-md-1 center-block">
           <div class="row top-2">
             <div class="col-md-12">
-              <button class="btn btn-success glyphicon glyphicon-menu-left" ng-click="competenceEditCtrl.addSelected()"></button>
+              <button type="button" class="btn btn-success btn-block glyphicon glyphicon-menu-left" ng-click="competenceEditCtrl.addSelected()"></button>
             </div>
           </div>
           <div class="row top-1">
             <div class="col-md-12" ng-click="competenceEditCtrl.addFiltered()">
-              <button class="btn btn-success">
-            <span class="glyphicon glyphicon-menu-left"></span>
-            <span class="glyphicon glyphicon-menu-left"></span>
-          </button>
+              <button type="button" class="btn btn-success btn-block">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                <span class="glyphicon glyphicon-menu-left"></span>
+              </button>
             </div>
           </div>
           <div class="row top-1">
             <div class="col-md-12" ng-click="competenceEditCtrl.removeSelected()">
-              <button class="btn btn-danger glyphicon glyphicon-menu-right"></button>
+              <button type="button" class="btn btn-danger btn-block glyphicon glyphicon-menu-right"></button>
             </div>
           </div>
           <div class="row top-1">
             <div class="col-md-12" ng-click="competenceEditCtrl.removeFiltered()">
-              <button class="btn btn-danger">
-            <span class="glyphicon glyphicon-menu-right"></span>
-            <span class="glyphicon glyphicon-menu-right"></span>
-          </button>
+              <button type="button" class="btn btn-danger btn-block">
+                <span class="glyphicon glyphicon-menu-right"></span>
+                <span class="glyphicon glyphicon-menu-right"></span>
+              </button>
             </div>
           </div>
         </div>
         <div class="col-md-5">
           <table ng-table="competenceEditCtrl.tableParams" class="table" show-filter="true">
-            <tr ng-repeat="area in $data track by area.id" ng-click="competenceEditCtrl.toggleAddition(area)" ng-class="{'bg-success': competenceEditCtrl.selectedForAddition.indexOf(area) > -1}" class="pointable">
+            <tr ng-repeat="area in $data track by area.id" ng-click="competenceEditCtrl.toggleAddition(area)" ng-class="{'bg-success': competenceEditCtrl.selectedForAddition.indexOf(area) > -1}"
+              class="pointable">
               <td title="'bailiff.competence.edit.area'|translate" filter="{ name: 'text'}" sortable="'name'">
                 {{area.name}}</td>
             </tr>
@@ -89,14 +94,15 @@
         <div class="col-md-12">
 
           <a class="btn btn-primary pull-right action-button" ng-click="competenceEditCtrl.modalInstance.dismiss()">
-        <span class="glyphicon glyphicon-remove-sign"></span>
-        <span translate="global.button.cancel"></span>
-      </a>
+            <span class="glyphicon glyphicon-remove-sign"></span>
+            <span translate="global.button.cancel"></span>
+          </a>
 
-          <button class="btn btn-primary pull-right action-button" ng-if="competenceEditCtrl.areasToDisplay.length > 0" ng-click="competenceEditCtrl.save(competenceEditCtrl.competenceForm.$valid)" ng-disabled="competenceEditCtrl.submitted">
-        <span class="glyphicon glyphicon-floppy-disk"></span>
-        <span translate="global.button.save"></span>
-      </button>
+          <button class="btn btn-primary pull-right action-button" ng-if="competenceEditCtrl.areasToDisplay.length > 0" ng-click="competenceEditCtrl.save(competenceEditCtrl.competenceForm.$valid)"
+            ng-disabled="competenceEditCtrl.submitted">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            <span translate="global.button.save"></span>
+          </button>
         </div>
       </div>
     </div>
