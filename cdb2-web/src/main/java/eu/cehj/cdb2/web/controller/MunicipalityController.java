@@ -14,14 +14,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.querydsl.core.types.Predicate;
 
 import eu.cehj.cdb2.business.service.data.DataImportService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
+import eu.cehj.cdb2.entity.Municipality;
 
 @RestController
 @RequestMapping("api/municipality")
@@ -52,6 +59,13 @@ public class MunicipalityController extends BaseController {
         final InputStream is = this.getClass().getResourceAsStream("FR.txt");
         final String fileContent = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
         this.dataImportService.importData(fileContent);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="search")
+    @ResponseStatus(value = OK)
+    public Page<MunicipalityDTO> search(
+            @QuerydslPredicate(root = Municipality.class) final Predicate predicate, final Pageable pageable) throws Exception {
+        return this.municipalityService.findAll(predicate, pageable);
     }
 
 }

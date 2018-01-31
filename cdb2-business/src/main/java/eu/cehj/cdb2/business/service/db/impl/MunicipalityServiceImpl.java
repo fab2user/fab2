@@ -1,13 +1,19 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.querydsl.core.types.Predicate;
 
 import eu.cehj.cdb2.business.dao.MunicipalityRepository;
 import eu.cehj.cdb2.business.service.data.GeoDataStructure;
@@ -58,6 +64,17 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long>
     public MunicipalityDTO getDTO(final Long id) throws Exception {
 
         return null;
+    }
+
+    @Override
+    public Page<MunicipalityDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+        final Page<Municipality> entities = this.repository.findAll(predicate, pageable);
+        final List<MunicipalityDTO> dtos = new ArrayList<>();
+        final Iterator<Municipality> it = entities.iterator();
+        while (it.hasNext()) {
+            dtos.add(this.populateDTOFromEntity(it.next()));
+        }
+        return new PageImpl<>(dtos, pageable,entities.getTotalElements());
     }
 
     @Override

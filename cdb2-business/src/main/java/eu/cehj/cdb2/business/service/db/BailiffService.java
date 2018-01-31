@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import eu.cehj.cdb2.business.service.search.model.BailiffSearch;
+import com.querydsl.core.types.Predicate;
+
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.entity.Bailiff;
 
@@ -17,6 +18,6 @@ public interface BailiffService extends BaseService<Bailiff, Long> {
 
     public BailiffDTO getDTO(Long id) throws Exception;
 
-    public Iterable<BailiffDTO> searchDTO(final BailiffSearch searchParams)throws Exception;
+    public List<BailiffDTO> findAll(Predicate predicate) throws Exception;
 
 }

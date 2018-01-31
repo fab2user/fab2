@@ -9,16 +9,18 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.querydsl.core.types.Predicate;
+
 import eu.cehj.cdb2.business.service.db.BailiffService;
-import eu.cehj.cdb2.business.service.search.model.BailiffSearch;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
+import eu.cehj.cdb2.entity.Bailiff;
 
 @RestController
 @RequestMapping("api/bailiff")
@@ -40,10 +42,11 @@ public class BailiffController extends BaseController {
         return this.bailiffService.getAllDTO();
     }
 
-    @RequestMapping(method = { GET }, value = "search")
+    @RequestMapping(method = RequestMethod.GET, value="search")
     @ResponseStatus(value = OK)
-    public Iterable<BailiffDTO> search(final Model model, @ModelAttribute final BailiffSearch bailiffSearch) throws Exception {
-        return this.bailiffService.searchDTO(bailiffSearch);
+    public List<BailiffDTO> search(
+            @QuerydslPredicate(root = Bailiff.class) final Predicate predicate) throws Exception {
+        return this.bailiffService.findAll(predicate);
     }
 
 }
