@@ -18,6 +18,8 @@ public interface MunicipalityRepository extends JpaRepository<Municipality, Long
 
     public Municipality getByPostalCode(String postalCode);
 
+    public Municipality getByPostalCodeAndName(String postalCode, String name);
+
     public List<Municipality> findAllByOrderByPostalCode();
 
     @Override

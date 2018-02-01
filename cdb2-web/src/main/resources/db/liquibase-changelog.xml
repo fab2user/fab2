@@ -100,4 +100,11 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             <column name="modified_on" type="datetime"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="cdb-09" author="landry">
+        <comment>Add index on municipality/postalcode-name in order to optimize database creation/update from file, since multiple cities can share same postal code...</comment>
+        <createIndex tableName="municipality" indexName="idx_municipality_postalcode_name">
+            <column name="postal_code"/>
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
    </databaseChangeLog>

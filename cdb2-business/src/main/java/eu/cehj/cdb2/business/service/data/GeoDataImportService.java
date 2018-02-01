@@ -1,11 +1,6 @@
 package eu.cehj.cdb2.business.service.data;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,24 +21,19 @@ public class GeoDataImportService implements DataImportService {
     private GeoDataPersistenceService geoDataPersistenceService;
 
     @Override
-    public void importData(final String fileContent) {
-        final List<GeoDataStructure> dataStructures  = this.processLines(fileContent);
+    public void importData(final BufferedReader reader) {
+        final List<GeoDataStructure> dataStructures  = this.processLines(reader);
         this.geoDataPersistenceService.persistData(dataStructures);
     }
 
-    public List<GeoDataStructure> processLines(final String fileContent) {
+    public List<GeoDataStructure> processLines(final BufferedReader reader) {
         final List<GeoDataStructure> dataStructures = new ArrayList<>();
-        try {
-            final InputStream is = new ByteArrayInputStream(fileContent.getBytes(StandardCharsets.UTF_8.name()));
-            new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8.name())).lines().forEach(line -> {
-                final GeoDataStructure dataStructure = this.processLine(line);
-                if(dataStructure != null) {
-                    dataStructures.add(dataStructure);
-                }
-            });
-        } catch (final IOException e) {
-            this.logger.error(e.getMessage(), e);
-        }
+        reader.lines().forEach(line -> {
+            final GeoDataStructure dataStructure = this.processLine(line);
+            if(dataStructure != null) {
+                dataStructures.add(dataStructure);
+            }
+        });
         return dataStructures;
     }
 

@@ -58,7 +58,7 @@ public class MunicipalityController extends BaseController {
     public void importData() throws Exception {
         final InputStream is = this.getClass().getResourceAsStream("FR.txt");
         final String fileContent = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
-        this.dataImportService.importData(fileContent);
+        //  this.dataImportService.importData(fileContent);
     }
 
     @RequestMapping(method = RequestMethod.GET, value="search")

@@ -74,23 +74,22 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long>
         while (it.hasNext()) {
             dtos.add(this.populateDTOFromEntity(it.next()));
         }
-        return new PageImpl<>(dtos, pageable,entities.getTotalElements());
+        return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 
     @Override
     public void updateAreaFromStructure(final GeoDataStructure structure, final RecordBuilderHelper helper) {
-        Municipality area = this.repository.getByPostalCode(structure.getZipCode());
-        if (area == null) {
-            area = this.populateEntity(structure, helper);
-            this.repository.save(area);
-        }
+        final Municipality area = this.populateEntity(structure, helper);
+        this.repository.save(area);
         helper.setMunicipality(area);
-
     }
 
     @Override
     public Municipality populateEntity(final GeoDataStructure structure, final RecordBuilderHelper helper) {
-        final Municipality area = new Municipality();
+        Municipality area = this.repository.getByPostalCodeAndName(structure.getZipCode(), structure.getCityName());
+        if (area == null) {
+            area = new Municipality();
+        }
         area.setPostalCode(structure.getZipCode());
         area.setName(structure.getCityName());
         area.setLatitude(structure.getxPos());

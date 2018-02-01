@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,11 +27,10 @@ public class GeoDataImportServiceTest {
     @Test
     public void testImportData() {
 
-        String fileContent;
-        final InputStream is = this.getClass().getResourceAsStream("FR.txt");
-        fileContent = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
-        this.service.importData(fileContent);
+        try (final InputStream is = this.getClass().getResourceAsStream("FR.txt"); BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));) {
+            this.service.importData(reader);
+        } catch (final Throwable e) {
+            this.logger.error(e.getMessage(), e);
+        }
     }
-
-
 }

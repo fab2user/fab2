@@ -39,7 +39,7 @@ public class GeoDataPersistenceService implements DataPersistenceService {
             this.adminAreaSubdivisionMiddleService.updateAreaFromStructure(geoStructure, helper);
             this.adminAreaSubdivisionMinorService.updateAreaFromStructure(geoStructure, helper);
             this.municipalityService.updateAreaFromStructure(geoStructure, helper);
-            this.logger.debug("Area processed: " + geoStructure.getCityName() + " - " + geoStructure.getZipCode());
+            this.logger.debug("Area processed: " + geoStructure.toString());
         });
     }
 }
