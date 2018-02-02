@@ -59,8 +59,12 @@
         <link th:href="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap-csp.css}" rel="stylesheet" />
         <script th:src="@{/webjars/angucomplete-alt/2.5.0/angucomplete-alt.js}"></script>
         <link th:href="@{/webjars/angucomplete-alt/2.5.0/angucomplete-alt.css}" rel="stylesheet" />
+        <!--
         <script th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
         <script th:src="@{/webjars/matchHeight/0.7.2/jquery.matchHeight.js}"></script>
+        -->
+        <script th:src="@{/webjars/localforage/1.4.1/dist/localforage.js}"></script>
+        
         
 		<!-- angular application -->
 		<script src="/js/index.module.js"></script>
@@ -87,7 +91,8 @@
         <script src="/js/reference/language.api.service.js"></script>
         <script src="/js/reference/reference.api.service.js"></script>
         <script src="/js/common/login.controller.js"></script>
-        <script src="/js/common/login.api.service.js"></script>
+        <script src="/js/common/auth.service.js"></script>
+        <script src="/js/libs/angular-localForage.js"></script>
 	</div>
 </body>
 </html>

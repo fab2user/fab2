@@ -3,9 +3,9 @@
 
   angular.module('cdb2').config(config);
 
-  config.$inject = ['$logProvider', '$translateProvider', '$httpProvider', 'toastrConfig'];
+  config.$inject = ['$logProvider', '$translateProvider', '$httpProvider', '$localForageProvider', 'toastrConfig'];
 
-  function config($logProvider, $translateProvider, $httpProvider, toastrConfig) {
+  function config($logProvider, $translateProvider, $httpProvider, $localForageProvider, toastrConfig) {
     // Enable log
     $logProvider.debugEnabled(true);
     
@@ -24,6 +24,12 @@
     toastrConfig.progressBar = true;
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
+    $localForageProvider.config({
+      name        : 'cdb', // name of the database and prefix for your data, it is "lf" by default
+      storeName   : 'general', // name of the table
+      description : 'CDB2 storage'
+  });
      
   }
 

@@ -14,7 +14,8 @@
       'ngTable',
       'ngLodash',
       'ui.bootstrap',
-      'angucomplete-alt'
+      'angucomplete-alt',
+      'LocalForageModule'
     ]);
 
 })();
