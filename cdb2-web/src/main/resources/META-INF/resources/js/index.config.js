@@ -3,11 +3,12 @@
 
   angular.module('cdb2').config(config);
 
-  config.$inject = ['$logProvider', '$translateProvider', 'toastrConfig'];
+  config.$inject = ['$logProvider', '$translateProvider', '$httpProvider', 'toastrConfig'];
 
-  function config($logProvider, $translateProvider, toastrConfig) {
+  function config($logProvider, $translateProvider, $httpProvider, toastrConfig) {
     // Enable log
     $logProvider.debugEnabled(true);
+    
     // Initialize angular-translate
     $translateProvider.useStaticFilesLoader({prefix: 'js/i18n/', suffix: '.json'});
     $translateProvider.preferredLanguage('en');
@@ -21,6 +22,9 @@
     toastrConfig.preventDuplicates = false;
     toastrConfig.preventOpenDuplicates = true;
     toastrConfig.progressBar = true;
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+     
   }
 
 })();

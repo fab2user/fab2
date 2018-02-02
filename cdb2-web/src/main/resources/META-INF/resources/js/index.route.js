@@ -74,6 +74,16 @@
             controllerAs: 'refCtrl'
           }
         }
+      }) 
+      .state('root.login', {
+        url: '/login',
+        views: {
+          'content@': {
+            templateUrl: '/js/common/login.html',
+            controller: 'LoginController',
+            controllerAs: 'loginCtrl'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');
