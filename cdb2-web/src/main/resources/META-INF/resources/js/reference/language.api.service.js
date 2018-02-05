@@ -3,10 +3,10 @@
 
   angular.module('cdb2').factory('LanguageAPIService', LanguageAPIService);
 
-  LanguageAPIService.$inject = ['$resource'];
+  LanguageAPIService.$inject = ['$resource', 'SERVER'];
 
-  function LanguageAPIService($resource) {
-    return $resource('http://localhost:8080/api/language/:id', {}, {
+  function LanguageAPIService($resource, SERVER) {
+    return $resource(SERVER.API + '/language/:id', {}, {
       getAll: {
         isArray: true
       }

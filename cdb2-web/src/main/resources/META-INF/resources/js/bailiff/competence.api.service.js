@@ -3,10 +3,10 @@
 
   angular.module('cdb2').factory('CompetenceAPIService', CompetenceAPIService);
 
-  CompetenceAPIService.$inject = ['$resource'];
+  CompetenceAPIService.$inject = ['$resource', 'SERVER'];
 
-  function CompetenceAPIService($resource) {
-    return $resource('http://localhost:8080/api/competence/:id', {}, {
+  function CompetenceAPIService($resource, SERVER) {
+    return $resource(SERVER.API + '/competence/:id', {}, {
       getAll: {
         isArray: true
       }

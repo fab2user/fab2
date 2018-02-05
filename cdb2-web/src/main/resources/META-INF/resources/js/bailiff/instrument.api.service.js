@@ -3,10 +3,10 @@
 
   angular.module('cdb2').factory('InstrumentAPIService', InstrumentAPIService);
 
-  InstrumentAPIService.$inject = ['$resource'];
+  InstrumentAPIService.$inject = ['$resource', 'SERVER0'];
 
-  function InstrumentAPIService($resource) {
-    return $resource('http://localhost:8080/api/instrument/:id', {}, {
+  function InstrumentAPIService($resource, SERVER) {
+    return $resource(SERVER.API + '/instrument/:id', {}, {
       getAll: {
         isArray: true
       }

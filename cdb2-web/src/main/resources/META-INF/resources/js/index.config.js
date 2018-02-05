@@ -24,6 +24,7 @@
     toastrConfig.progressBar = true;
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    $httpProvider.interceptors.push('apiErrorInterceptor');
 
     $localForageProvider.config({
       name        : 'cdb', // name of the database and prefix for your data, it is "lf" by default

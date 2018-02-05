@@ -3,10 +3,10 @@
 
   angular.module('cdb2').factory('BailiffAPIService', BailiffAPIService);
 
-  BailiffAPIService.$inject = ['$resource'];
+  BailiffAPIService.$inject = ['$resource', 'SERVER'];
 
-  function BailiffAPIService($resource) {
-    return $resource('http://localhost:8080/api/bailiff/:id/:collectionAction', {}, {
+  function BailiffAPIService($resource, SERVER) {
+    return $resource(SERVER.API + '/bailiff/:id/:collectionAction', {}, {
       getAll: {
         isArray: true
       },

@@ -3,15 +3,24 @@
 
   angular.module('cdb2').controller('NavBarController', NavBarController);
 
-  NavBarController.$inject = ['$scope', '$translate', '$log'];
+  NavBarController.$inject = ['$scope', '$translate', '$log','$localForage', 'AuthService', 'STORE', 'EVENT'];
 
-  function NavBarController($scope, $translate, $log) {
+  function NavBarController($scope, $translate, $log, $localForage, AuthService, STORE, EVENT) {
     var vm = this;
     vm.langKeys = ['en', 'fr'];
     vm.isCollapsed = true;
+
+     $localForage.getItem(STORE.AUTHENTICATED).then(function(val){
+       vm.authenticated = val;
+     });
+
     vm.status = {
       isopen: false
     };
+
+    $scope.$on(EVENT.LOGGED_IN, function(){
+      vm.authenticated = true;
+    });
 
     vm.switchLang = function(langKey) {
       $log.warn('currently used lang: ' + $translate.use());
@@ -19,6 +28,9 @@
       $translate.use(langKey);
     };
 
+    vm.logout = function(){
+      AuthService.logout();
+    };
   }
 
 })();

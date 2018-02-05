@@ -3,19 +3,19 @@
 
   angular.module('cdb2').factory('ReferenceAPIService', ReferenceAPIService);
 
-  ReferenceAPIService.$inject = ['$resource'];
+  ReferenceAPIService.$inject = ['$resource', 'SERVER'];
 
-  function ReferenceAPIService($resource) {
-    return $resource('http://localhost:8080/api/competence/:id', {}, {
+  function ReferenceAPIService($resource, SERVER) {
+    return $resource(SERVER.API + '/competence/:id', {}, {
       getAllCompetence: {
         isArray: true
       },
       getAllInstrument: {
-        url:'http://localhost:8080/api/instrument',
+        url: SERVER.API + '/instrument',
         isArray: true
       },
       getAllLanguage: {
-        url:'http://localhost:8080/api/language',
+        url: SERVER.API + '/language',
         isArray: true
       }
     });

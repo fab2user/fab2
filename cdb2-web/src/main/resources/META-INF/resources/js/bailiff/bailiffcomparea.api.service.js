@@ -3,16 +3,16 @@
 
   angular.module('cdb2').factory('BailiffCompAreaAPIService', BailiffCompAreaAPIService);
 
-  BailiffCompAreaAPIService.$inject = ['$resource'];
+  BailiffCompAreaAPIService.$inject = ['$resource', 'SERVER'];
 
-  function BailiffCompAreaAPIService($resource) {
-    return $resource('http://localhost:8080/api/bailiffcomparea/:id', {}, {
+  function BailiffCompAreaAPIService($resource, SERVER) {
+    return $resource(SERVER.API + '/bailiffcomparea/:id', {}, {
       getAll: {
         isArray: true
       },
       getAllForBailiff: {
         isArray :true,
-        url: 'http://localhost:8080/api/bailiff/:bailiffId/competences'
+        url: SERVER.API + '/bailiff/:bailiffId/competences'
       }
     });
   }

@@ -15,6 +15,10 @@
   margin-top: 2em;
 }
 
+.top-5{
+  margin-top: 5em;
+}
+
 .top-10 {
   margin-top: 10em;
 }
@@ -23,7 +27,7 @@
   width: 96%;
 }
 
-tr.pointable:hover{
+.pointable:hover{
   cursor: pointer;
 }
 
@@ -55,4 +59,19 @@ tr.pointable:hover{
       display: table-cell;
       vertical-align: top;
   }
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
+.switch-control {
+  font-size: 18px;
+}
+
+div.user-id{
+  text-align: right;
 }
