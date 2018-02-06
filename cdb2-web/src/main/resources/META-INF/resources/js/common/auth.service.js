@@ -6,11 +6,11 @@
     .factory('AuthService', AuthService);
 
   AuthService.$inject = ['$rootScope', '$http', '$log', '$localForage', '$state', '$q', 'SERVER', 'STORE', 'EVENT'];
-  // FIXME: redirect to login everytime API return 401 (unauthorized)
+  // APIErrorInterceptor redirects to login page everytime we get forbidden status from the API
   function AuthService($rootScope, $http, $log, $localForage, $state, $q, SERVER, STORE, EVENT) {
     var AuthService = {};
 
-    AuthService.login = function (username, password) {
+    AuthService.login = function (username, password, previousState) {
 
       var headers = {
         Authorization: 'Basic ' + btoa(username + ":" + password)
@@ -22,11 +22,18 @@
         if (data.name) {
           $log.info('User ' + data.name + ' successfully authenticated !');
           $localForage.setItem(STORE.AUTHENTICATED, true).then(function () {
-              $localForage.setItem(STORE.USER, data.name);
-              $rootScope.$broadcast(EVENT.LOGGED_IN);
+              $localForage.setItem(STORE.USER, data.name).then(function(){
+                $rootScope.$broadcast(EVENT.LOGGED_IN);
+              });
             })
             .then(function () {
-              $state.go('root.bailiff', {}, {
+              // Redirect user to where he came from unless he comes from root.login. In this case, redirect him arbitrarily to root.bailiff
+              var stateToGo = {name: 'root.bailiff', params: {}};
+              if(previousState.name !== 'root.login'){
+                stateToGo.name = previousState.name;
+                stateToGo.params = previousState.params;
+              }
+              $state.go(stateToGo.name, stateToGo.params, {
                 reload: true
               });
             });

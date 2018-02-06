@@ -25,16 +25,16 @@
           }
         }
       })
-       .state('root.home', {
-         url: '/',
-         views: {
-           'content@': {
-             templateUrl: '/js/home/home.html',
-             controller: 'HomeController',
-             controllerAs: 'homeCtrl'
-           }
-         }
-       })
+      .state('root.home', {
+        url: '/',
+        views: {
+          'content@': {
+            templateUrl: '/js/home/home.html',
+            controller: 'HomeController',
+            controllerAs: 'homeCtrl'
+          }
+        }
+      })
       .state('root.area', {
         url: '/area',
         views: {
@@ -74,7 +74,7 @@
             controllerAs: 'refCtrl'
           }
         }
-      }) 
+      })
       .state('root.login', {
         url: '/login',
         views: {
@@ -83,6 +83,15 @@
             controller: 'LoginController',
             controllerAs: 'loginCtrl'
           }
+        },
+        resolve: { // Redirects user to where he came from before login state 
+          PreviousState: ['$state', function ($state) {
+            var currentStateData = {
+              name: $state.current.name,
+              params: $state.params
+            };
+            return currentStateData;
+          }]
         }
       });
 

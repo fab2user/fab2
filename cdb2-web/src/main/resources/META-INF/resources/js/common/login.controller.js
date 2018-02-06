@@ -5,17 +5,14 @@
     .module('cdb2')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['AuthService'];
+  LoginController.$inject = ['AuthService', 'PreviousState'];
 
-  function LoginController(AuthService) {
+  function LoginController(AuthService, PreviousState) {
     var vm = this;
     vm.credentials = {};
 
     vm.login = function () {
-
-      AuthService.login(vm.credentials.username, vm.credentials.password);
-      //FIXME: service should return a promise and then update a var with username, which will be used to set username on right top of screen
-
+      AuthService.login(vm.credentials.username, vm.credentials.password, PreviousState);
     };
 
     vm.logout = function(){
