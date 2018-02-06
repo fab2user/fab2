@@ -19,7 +19,7 @@
               <input type="text" name="areaname" class="form-control" id="name" placeholder="{{'area.edit.name'|translate}}" ng-model="areaDetailCtrl.area.name"
                 required>
               <div ng-if="areaDetailCtrl.areaForm.$submitted" ng-messages="areaDetailCtrl.areaForm.areaname.$error">
-                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+                <div ng-message="empty" class="text-danger">{{"global.form.file.empty"|translate}}</div>
               </div>
             </div>
 
@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row row-eq-height">
         <div class="col-md-4">
           <table ng-table="areaDetailCtrl.tableParamsEdit" class="table" show-filter="true">
             <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}"

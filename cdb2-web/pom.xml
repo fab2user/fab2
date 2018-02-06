@@ -160,5 +160,10 @@
             <artifactId>localforage</artifactId>
             <version>1.4.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>ng-file-upload</artifactId>
+            <version>12.2.13</version>
+        </dependency>
     </dependencies>
 </project>

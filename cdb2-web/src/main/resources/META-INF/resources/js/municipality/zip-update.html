@@ -1,0 +1,17 @@
+<div>
+    <form name="zipCtrl.form" class="info-title" novalidate ng-submit="zipCtrl.upload()">
+        <p class="bg-info info-title" translate="municipality.import.title"></p>
+        <span ng-if="zipCtrl.file">{{ 'municipality.import.file' | translate }}:</span>
+        <span>{{ zipCtrl.file.name }}</span>
+        <div class="btn btn-default" ngf-select ng-model="zipCtrl.file" name="file" ngf-pattern="'.txt'" ngf-accept="'text/*'" ngf-min-size="100"
+            ngf-max-size="30MB" ngf-validate="{size: {min: 10, max: '30MB'}">Select</div>
+        <button class="btn btn-primary" type="submit" translate="municipality.import.button" ng-disabled="zipCtrl.submitted">submit</button>
+    </form>
+</div>
+<div ng-messages="zipCtrl.form.file.$error">
+    <div ng-message="empty" class="text-danger">{{"municipality.error.file.required"|translate}}</div>
+    <div ng-message="maxSize" class="text-danger">{{"municipality.error.file.max.size"|translate}}</div>
+</div>
+<div class="alert alert-danger" role="alert" ng-if="zipCtrl.errorsFromServer">
+    <strong>{{ zipCtrl.errorsFromServer }}</strong>
+</div>

@@ -61,9 +61,17 @@
   },
   "municipality": {
     "import": {
+      "title": "Update postal codes database",
+      "file": "file selected",
       "button": "Import data",
+      "transmitted": "Update file successfully sent",
       "success": "Import was successfull",
-      "error": "Error during import..."
+      "error": {
+        "file": {
+          "required": "Please select a file",
+          "max.size": "File size is over maximum limit"
+        }
+      }
     },
     "search": {
       "municipality": "municipality name",

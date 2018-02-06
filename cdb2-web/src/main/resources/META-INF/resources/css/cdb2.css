@@ -75,3 +75,13 @@
 div.user-id{
   text-align: right;
 }
+
+.info-title{
+  text-align: center;
+  font-weight: bolder;
+  padding: 0.5em 0 0.5em 0
+}
+
+form.info-title{
+  text-align: right;
+}

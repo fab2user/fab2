@@ -15,6 +15,11 @@
       },
       search: {
         isArray: true
+      },
+      updateDB: {
+        url: SERVER.API + '/municipality/update',
+        method: 'POST',
+        isArray: true
       }
     });
   }

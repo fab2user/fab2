@@ -15,7 +15,8 @@
       'ngLodash',
       'ui.bootstrap',
       'angucomplete-alt',
-      'LocalForageModule'
+      'LocalForageModule',
+      'ngFileUpload'
     ]);
 
 })();

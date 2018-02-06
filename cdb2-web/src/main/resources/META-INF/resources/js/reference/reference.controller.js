@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('cdb2').controller('ReferenceController', ReferenceController);
@@ -11,14 +11,14 @@
 
     fetchLangs();
 
-    ReferenceAPIService.getAllCompetence().$promise.then(function(data) {
+    ReferenceAPIService.getAllCompetence().$promise.then(function (data) {
       vm.competences = data;
     });
-    ReferenceAPIService.getAllInstrument().$promise.then(function(data) {
+    ReferenceAPIService.getAllInstrument().$promise.then(function (data) {
       vm.instruments = data;
     });
 
-    vm.selectLang = function(lang) {
+    vm.selectLang = function (lang) {
       if (vm.selectedLang === lang) {
         vm.selectedLang = null;
       } else {
@@ -26,11 +26,11 @@
       }
     };
 
-    vm.new = function() {
+    vm.new = function () {
       loadModal({});
     };
 
-    vm.edit = function() {
+    vm.edit = function () {
       loadModal(vm.selectedLang);
     };
 
@@ -45,19 +45,21 @@
         }
       });
 
-      modalInstance.result.then(function() {
+      modalInstance.result.then(function () {
         fetchLangs();
       });
     }
 
     function fetchLangs() {
-      ReferenceAPIService.getAllLanguage().$promise.then(function(data) {
+      ReferenceAPIService.getAllLanguage().$promise.then(function (data) {
         vm.languages = data;
       });
     }
 
-    vm.deleteLang = function() {
-      LanguageAPIService.delete({id: vm.selectedLang.id}).$promise.then(function() {
+    vm.deleteLang = function () {
+      LanguageAPIService.delete({
+        id: vm.selectedLang.id
+      }).$promise.then(function () {
         toastr.success($translate.instant('global.toastr.delete.success'));
         fetchLangs();
       });
