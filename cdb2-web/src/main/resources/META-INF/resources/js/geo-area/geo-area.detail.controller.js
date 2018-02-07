@@ -5,15 +5,21 @@
     .module('cdb2')
     .controller('GeoAreaDetailController', GeoAreaDetailController);
 
-  GeoAreaDetailController.$inject = ['$log','$translate','$uibModalInstance','toastr', 'area', 'MunicipalityAPIService', 'GeoAreaAPIService', 'NgTableParams', 'lodash'];
+  GeoAreaDetailController.$inject = ['$log','$translate','$uibModalInstance','toastr', 'area', 'MunicipalityAPIService', 'GeoAreaAPIService', 'NgTableParams', 'ngTableEventsChannel', 'lodash'];
 
-  function GeoAreaDetailController($log,$translate,$uibModalInstance, toastr, area, MunicipalityAPIService, GeoAreaAPIService, NgTableParams, lodash) {
+  function GeoAreaDetailController($log,$translate,$uibModalInstance, toastr, area, MunicipalityAPIService, GeoAreaAPIService, NgTableParams, ngTableEventsChannel, lodash) {
     var vm = this;
     vm.area = area;
     vm.citiesToDisplay = area.municipalities.slice() || [];
     vm.tableParamsEdit = new NgTableParams({}, {dataset: vm.citiesToDisplay});
     vm.selectedForRemoval = [];
     vm.selectedForAddition = [];
+
+    $log.debug('eventChannel', ngTableEventsChannel);
+  //   ngTableEventsChannel.onAfterDataFiltered(function(p, results) {
+  //     $log.debug('all filtered: ', results);
+  // }
+  // , this.tableParams); 
 
     MunicipalityAPIService.getAll().$promise.then(function(success) {
       vm.municipalities = success;
@@ -74,8 +80,8 @@
 
     vm.addFiltered = function(){
       // TODO: Add confirm
-      $log.info('Filtered cities: ', vm.tableParams);
-      vm.tableParams.data.forEach(function(city){
+      $log.info('Filtered cities: ', vm.tableParams.filteredData);
+      vm.tableParams.filteredData.forEach(function(city){
         vm.toggleAddition(city);
       });
       vm.addSelected();

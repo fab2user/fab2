@@ -1,7 +1,7 @@
 <div class="modal-content">
   <form name="areaDetailCtrl.areaForm" novalidate>
     <div class="modal-header">
-      <button type="button" class="close" ng-click="areaDetailCtrl.modalInstance.dismiss()">&times;</button>
+      <button type="button" class="close" ng-click="areaDetailCtrl.cancel()">&times;</button>
       <h4 class="modal-title">
         <span translate="area.edit.title">title</span>
         <span>{{ areaDetailCtrl.area.name }}</span>
@@ -33,6 +33,8 @@
       </div>
       <div class="row row-eq-height">
         <div class="col-md-4">
+          <span>{{ 'area.edit.cities.total'|translate }}: {{ areaDetailCtrl.tableParamsEdit.total() }}</span>
+          <span>{{ 'area.edit.cities.selected.removal'|translate }}: {{ areaDetailCtrl.selectedForRemoval.length }}</span>
           <table ng-table="areaDetailCtrl.tableParamsEdit" class="table" show-filter="true">
             <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}"
               class="pointable">
@@ -75,6 +77,8 @@
           </div>
         </div>
         <div class="col-md-7">
+          <span>{{ 'area.edit.cities.filtered'|translate }}: {{ areaDetailCtrl.tableParams.total() }}</span>
+          <span>{{ 'area.edit.cities.selected.addition'|translate }}: {{ areaDetailCtrl.selectedForAddition.length }}</span>
           <table ng-table="areaDetailCtrl.tableParams" class="table" show-filter="true">
             <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city)" ng-class="{'bg-success': areaDetailCtrl.selectedForAddition.indexOf(city) > -1}"
               class="pointable">
@@ -98,7 +102,7 @@
     </div>
 
     <div class="modal-footer">
-      <button  class="btn btn-primary" translate="global.button.save" ng-click="areaDetailCtrl.save(areaDetailCtrl.areaForm.$valid)"
+      <button class="btn btn-primary" translate="global.button.save" ng-click="areaDetailCtrl.save(areaDetailCtrl.areaForm.$valid)"
         ng-disabled="areaDetailCtrl.submitted"></button>
       <button type="button" class="btn btn-danger" ng-click="areaDetailCtrl.cancel()" translate="global.button.cancel"></button>
     </div>
