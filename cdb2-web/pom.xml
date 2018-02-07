@@ -85,6 +85,11 @@
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
+            <artifactId>angular-translate-loader-url</artifactId>
+            <version>2.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
             <artifactId>angular-translate-storage-cookie</artifactId>
             <version>2.5.2</version>
         </dependency>
@@ -164,6 +169,11 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>ng-file-upload</artifactId>
             <version>12.2.13</version>
+        </dependency>
+        <dependency>
+            <groupId>pl.jalokim.propertiestojson</groupId>
+            <artifactId>java-properties-to-json</artifactId>
+            <version>2.0</version>
         </dependency>
     </dependencies>
 </project>

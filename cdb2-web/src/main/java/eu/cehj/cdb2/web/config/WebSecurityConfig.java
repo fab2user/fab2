@@ -43,7 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/images/**",
                 "/js/**",
                 "/webjars/**",
-                "/public/**"
+                "/public/**",
+                "/localisation"
                 ).permitAll()
         .antMatchers("/api/**", "/user", "/logout").authenticated().and()
         .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)

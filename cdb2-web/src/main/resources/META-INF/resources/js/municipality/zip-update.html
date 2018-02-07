@@ -4,7 +4,7 @@
         <span ng-if="zipCtrl.file">{{ 'municipality.import.file' | translate }}:</span>
         <span>{{ zipCtrl.file.name }}</span>
         <div class="btn btn-default" ngf-select ng-model="zipCtrl.file" name="file" ngf-pattern="'.txt'" ngf-accept="'text/*'" ngf-min-size="100"
-            ngf-max-size="30MB" ngf-validate="{size: {min: 10, max: '30MB'}">Select</div>
+            ngf-max-size="30MB" ngf-validate="{size: {min: 10, max: '30MB'}" translate="global.form.select.file">Select</div>
         <button class="btn btn-primary" type="submit" translate="municipality.import.button" ng-disabled="zipCtrl.submitted">submit</button>
     </form>
 </div>

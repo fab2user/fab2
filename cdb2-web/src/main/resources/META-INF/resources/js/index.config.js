@@ -3,14 +3,14 @@
 
   angular.module('cdb2').config(config);
 
-  config.$inject = ['$logProvider', '$translateProvider', '$httpProvider', '$localForageProvider', 'toastrConfig'];
+  config.$inject = ['$logProvider', '$translateProvider', '$httpProvider', '$localForageProvider', 'toastrConfig', 'SERVER'];
 
-  function config($logProvider, $translateProvider, $httpProvider, $localForageProvider, toastrConfig) {
+  function config($logProvider, $translateProvider, $httpProvider, $localForageProvider, toastrConfig, SERVER) {
     // Enable log
     $logProvider.debugEnabled(true);
     
     // Initialize angular-translate
-    $translateProvider.useStaticFilesLoader({prefix: 'js/i18n/', suffix: '.json'});
+    $translateProvider.useUrlLoader(SERVER.ROOT + '/localisation');
     $translateProvider.preferredLanguage('en');
     $translateProvider.useCookieStorage();
     $translateProvider.useSanitizeValueStrategy('escaped');

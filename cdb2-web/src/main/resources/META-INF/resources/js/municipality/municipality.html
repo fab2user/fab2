@@ -2,17 +2,17 @@
   <div class="col-lg-12">
     <table ng-table="municipalityCtrl.tableParams" class="table" show-filter="true">
       <tr ng-repeat="city in $data track by city.id">
-        <td title="'municipality.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
+        <td data-title="'municipality.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
           {{city.id}}</td>
-        <td title="'municipality.list.municipality'|translate" filter="{ name: 'text'}" sortable="'name'">
+        <td data-title="'municipality.list.municipality'|translate" filter="{ name: 'text'}" sortable="'name'">
           {{city.name}}</td>
-        <td title="'municipality.list.postalcode'|translate" filter="{ postalCode: 'text'}" sortable="'postalCode'">
+        <td data-title="'municipality.list.postalcode'|translate" filter="{ postalCode: 'text'}" sortable="'postalCode'">
           {{city.postalCode}}</td>
-        <td title="'municipality.list.area1'|translate" filter="{ adminAreaSubdivisionMajor: 'text'}" sortable="'adminAreaSubdivisionMajor'">
+        <td data-title="'municipality.list.area1'|translate" filter="{ adminAreaSubdivisionMajor: 'text'}" sortable="'adminAreaSubdivisionMajor'">
           {{city.adminAreaSubdivisionMajor}}</td>
-        <td title="'municipality.list.area2'|translate" filter="{ adminAreaSubdivisionMiddle: 'text'}" sortable="'adminAreaSubdivisionMiddle'">
+        <td data-title="'municipality.list.area2'|translate" filter="{ adminAreaSubdivisionMiddle: 'text'}" sortable="'adminAreaSubdivisionMiddle'">
           {{city.adminAreaSubdivisionMiddle}}</td>
-        <td title="'municipality.list.area3'|translate" filter="{ adminAreaSubdivisionMinor: 'text'}" sortable="'adminAreaSubdivisionMinor'">
+        <td data-title="'municipality.list.area3'|translate" filter="{ adminAreaSubdivisionMinor: 'text'}" sortable="'adminAreaSubdivisionMinor'">
           {{city.adminAreaSubdivisionMinor}}</td>
       </tr>
     </table>
