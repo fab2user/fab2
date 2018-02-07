@@ -16,7 +16,8 @@
       'ui.bootstrap',
       'angucomplete-alt',
       'LocalForageModule',
-      'ngFileUpload'
+      'ngFileUpload',
+      'ngLoadingSpinner'
     ]);
 
 })();
