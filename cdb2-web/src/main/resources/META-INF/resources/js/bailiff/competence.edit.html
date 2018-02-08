@@ -43,7 +43,7 @@
           <table ng-table="competenceEditCtrl.tableParamsEdit" class="table" show-filter="true">
             <tr ng-repeat="area in $data track by area.id" ng-click="competenceEditCtrl.toggleRemoval(area)" ng-class="{'bg-danger': competenceEditCtrl.selectedForRemoval.indexOf(area) > -1}"
               class="pointable">
-              <td data-title="'bailiff.competence.edit.area'|translate" filter="{ name: 'text'}" sortable="'name'">
+              <td data-title="'bailiff.competence.edit.own.area'|translate" filter="{ name: 'text'}" sortable="'name'">
                 {{area.name}}</td>
             </tr>
           </table>
@@ -93,7 +93,7 @@
       <div class="row">
         <div class="col-md-12">
 
-          <a class="btn btn-primary pull-right action-button" ng-click="competenceEditCtrl.modalInstance.dismiss()">
+          <a class="btn btn-danger pull-right action-button" ng-click="competenceEditCtrl.modalInstance.dismiss()">
             <span class="glyphicon glyphicon-remove-sign"></span>
             <span translate="global.button.cancel"></span>
           </a>

@@ -19,6 +19,16 @@
                   {{bailiff.city}}</td>
               </tr>
             </table>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div>
+                        <label class="checkbox-inline">
+                          <input type="checkbox" name="deleted" ng-model="bailiffCtrl.deleted" ng-click="bailiffCtrl.fetchBailiffs()">
+                          Deleted
+                        </label>
+                      </div>
+                </div>
+            </div>
           </div>
           <div class="col-lg-2  btn-group-vertical">
             <div class="row">
@@ -33,7 +43,7 @@
             </div>
             <div class="row">
               <div class="col-lg-12 top-1">
-                <button class="btn btn-danger btn-block" ng-click="bailiffCtrl.remove()" ng-disabled="!bailiffCtrl.selectedBailiff.id"><span class="glyphicon glyphicon-remove-sign"></span> <span translate="global.button.remove">Remove</span></button>
+                <button class="btn btn-danger btn-block" ng-click="bailiffCtrl.delete()" ng-disabled="!bailiffCtrl.selectedBailiff.id"><span class="glyphicon glyphicon-remove-sign"></span> <span translate="global.button.remove">Remove</span></button>
               </div>
             </div>
           </div>

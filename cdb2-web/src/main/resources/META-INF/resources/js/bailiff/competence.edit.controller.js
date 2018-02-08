@@ -21,7 +21,7 @@
 
   function CompetenceEditController($log, $translate, $uibModalInstance, $uibModal, lodash, NgTableParams, toastr, InstrumentAPIService, CompetenceAPIService, GeoAreaAPIService, BailiffCompAreaAPIService, bailiff, bailiffCompArea) {
     var vm = this;
-    vm.modalInstance = $uibModalInstance
+    vm.modalInstance = $uibModalInstance;
     vm.bailiff = bailiff;
     vm.bailiffCompArea = bailiffCompArea;
     vm.areasToDisplay = bailiffCompArea.areas.slice() || [];

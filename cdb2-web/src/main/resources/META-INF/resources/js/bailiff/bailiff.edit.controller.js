@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('cdb2').controller('BailiffEditController', BailiffEditController);
@@ -31,22 +31,22 @@
     vm.cities = cities;
     vm.errorsFromServer = null;
 
-    //FIXME: Either pass bailiffCompAreas in the resolver, or fetch them in loadBailiffCompArea
-    loadBailiffCompArea();
+    if (vm.bailiff.id) {
+      loadBailiffCompArea();
+    }
 
-    vm.save = function(isValid) {
+    vm.save = function (isValid) {
       vm.errorsFromServer = null;
       if (isValid) {
         vm.submitted = true;
         var serializedBailiff = serializeBailiff();
 
-        BailiffAPIService.save({}, serializedBailiff).$promise.then(function() {
-          $uibModalInstance.close('save');
+        BailiffAPIService.save({}, serializedBailiff).$promise.then(function () {
           toastr.success($translate.instant('global.toastr.save.success'));
-        }).catch(function(err) {
+        }).catch(function (err) {
           $log.error(err);
           vm.errorsFromServer = $translate.instant(err.data.message);
-        }). finally(function() {
+        }).finally(function () {
           vm.submitted = false;
         });
       }
@@ -62,39 +62,47 @@
     }
 
     function loadBailiffCompArea() {
-      BailiffCompAreaAPIService.getAllForBailiff({bailiffId: vm.bailiff.id}).$promise.then(function(success) {
+      BailiffCompAreaAPIService.getAllForBailiff({
+        bailiffId: vm.bailiff.id
+      }).$promise.then(function (success) {
         //Build area names list, to be displayed in smart table
         var model = success;
         model = buildAreasList(model);
-        vm.tableParams = new NgTableParams({}, {dataset: model});
+        vm.tableParams = new NgTableParams({}, {
+          dataset: model
+        });
       });
     }
 
-    vm.addCompetence = function() {
-      newEdit({areas: []});
+    vm.addCompetence = function () {
+      newEdit({
+        areas: []
+      });
     };
 
-    vm.editCompetence = function() {
+    vm.editCompetence = function () {
       newEdit(vm.selectedCompetence);
     };
 
-    vm.removeCompetence = function() {
+    vm.removeCompetence = function () {
       vm.errorsFromServer = null;
       vm.submitted = true;
 
-      BailiffCompAreaAPIService.delete({id: vm.selectedCompetence.id}).$promise.then(function() {
+      BailiffCompAreaAPIService.delete({
+        id: vm.selectedCompetence.id
+      }).$promise.then(function () {
         $uibModalInstance.close('delete');
         toastr.success($translate.instant('global.toastr.delete.success'));
-      }).catch(function(err) {
+      }).catch(function (err) {
         $log.error(err);
         vm.errorsFromServer = $translate.instant(err.data.message);
-      }). finally(function() {
+      }).finally(function () {
         vm.submitted = false;
       });
     };
 
     function buildAreasList(model) {
-      return lodash.map(model, function(record) {
+      return lodash.map(model, function (record) {
         var areaNames = lodash.map(record.areas, 'name');
         record.areaNames = areaNames.join(', ');
         return record;
@@ -113,7 +121,7 @@
         }
       });
 
-      modalInstance.result.then(function() {
+      modalInstance.result.then(function () {
         loadBailiffCompArea();
       });
     }

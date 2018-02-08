@@ -5,7 +5,6 @@
 
   BailiffController.$inject = [
     '$log',
-    '$http',
     '$translate',
     '$uibModal',
     'NgTableParams',
@@ -14,11 +13,19 @@
     'MunicipalityAPIService'
   ];
 
-  function BailiffController($log, $http, $translate, $uibModal, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService) {
+  function BailiffController($log, $translate, $uibModal, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService) {
     var vm = this;
+    vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
     vm.selectedBailiff = {};
 
-    fetchBailiffs();
+    vm.fetchBailiffs = function() {
+      BailiffAPIService.getAll({deleted: vm.deleted}).$promise.then(function(data) {
+        vm.tableParams = new NgTableParams({}, {dataset: data});
+      });
+    };
+
+
+    vm.fetchBailiffs();
     vm.title = $translate.instant('bailiff.list.municipality');
 
     vm.new = function() {
@@ -27,6 +34,13 @@
 
     vm.edit = function() {
       loadModal(vm.selectedBailiff);
+    };
+
+    vm.delete = function(){
+      BailiffAPIService.delete({id: vm.selectedBailiff.id}).then(function(){
+        toastr.success($translate.instant('global.toastr.delete.success'));
+        vm.fetchBailiffs();
+      });
     };
 
     function loadModal(bailiff) {
@@ -41,20 +55,16 @@
             return MunicipalityAPIService.getAll();
           },
           competences: function() {
-            return BailiffAPIService.getCompetences({id: vm.selectedBailiff.id, collectionAction: 'competences'});
+            //Only when edition, not when creation
+            if(bailiff.id){
+              return BailiffAPIService.getCompetences({id: bailiff.id, collectionAction: 'competences'});
+            }
           }
         }
       });
 
       modalInstance.result.then(function() {
-        fetchBailiffs();
-        // vm.tableParams.reload();
-      });
-    }
-
-    function fetchBailiffs() {
-      BailiffAPIService.getAll().$promise.then(function(data) {
-        vm.tableParams = new NgTableParams({}, {dataset: data});
+        vm.fetchBailiffs();
       });
     }
 

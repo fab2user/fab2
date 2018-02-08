@@ -1,6 +1,9 @@
 package eu.cehj.cdb2.business.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
@@ -21,4 +24,11 @@ public interface BailiffRepository extends JpaRepository<Bailiff, Long>, QueryDs
         // Allow use of alias city instead of ugly address.municipality.name
         bindings.bind(QBailiff.bailiff.address.municipality.name).as("city").first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
     }
+
+    @Query("SELECT b FROM Bailiff b WHERE b.deleted = true or b.deleted = false or b.deleted is null")
+    public List<Bailiff> getAllBailiffsEvenDeleted()throws Exception;
+
+    @Override
+    @Query("SELECT b FROM Bailiff b where b.deleted = false or b.deleted is null")
+    public List<Bailiff> findAll();
 }

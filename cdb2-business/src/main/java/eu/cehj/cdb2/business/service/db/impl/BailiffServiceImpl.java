@@ -127,4 +127,15 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
         return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 
+    @Override
+    public List<BailiffDTO> getAllEvenDeletedDTO() throws Exception {
+        final List<Bailiff> entities = this.repository.getAllBailiffsEvenDeleted();
+        final List<BailiffDTO> dtos = new ArrayList<BailiffDTO>(entities.size());
+        entities.forEach(entity -> {
+            final BailiffDTO dto = this.populateDTOFromEntity(entity);
+            dtos.add(dto);
+        });
+        return dtos;
+    }
+
 }

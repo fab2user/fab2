@@ -22,4 +22,6 @@ public interface BailiffService extends BaseService<Bailiff, Long> {
 
     public Page<BailiffDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
 
+    public List<BailiffDTO> getAllEvenDeletedDTO() throws Exception;
+
 }
