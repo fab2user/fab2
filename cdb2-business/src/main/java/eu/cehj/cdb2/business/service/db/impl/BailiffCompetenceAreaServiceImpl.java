@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.types.Predicate;
+
 import eu.cehj.cdb2.business.dao.BailiffCompetenceAreaRepository;
 import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
@@ -24,6 +26,7 @@ import eu.cehj.cdb2.entity.BailiffCompetenceArea;
 import eu.cehj.cdb2.entity.Competence;
 import eu.cehj.cdb2.entity.GeoArea;
 import eu.cehj.cdb2.entity.Instrument;
+import eu.cehj.cdb2.entity.QBailiffCompetenceArea;
 
 @Service
 public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCompetenceArea, Long> implements BailiffCompetenceAreaService {
@@ -115,6 +118,16 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
     @Override
     public BailiffCompetenceAreaDTO getDTO(final Long id) throws Exception {
         return null;
+    }
+
+    @Override
+    public Iterable<BailiffCompetenceArea> findAllForGeoArea(final GeoArea geoArea)throws Exception{
+        final QBailiffCompetenceArea bailiffCompetenceArea = QBailiffCompetenceArea.bailiffCompetenceArea;
+        final Predicate query =
+                bailiffCompetenceArea.areas.contains(geoArea)
+                .and(bailiffCompetenceArea.bailiff.deleted.isFalse()
+                        .or(bailiffCompetenceArea.bailiff.deleted.isNull()));
+        return this.repository.findAll(query);
     }
 
 }

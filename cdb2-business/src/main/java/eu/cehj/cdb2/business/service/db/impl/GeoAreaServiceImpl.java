@@ -19,11 +19,14 @@ import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAUpdateClause;
 
 import eu.cehj.cdb2.business.dao.GeoAreaRepository;
+import eu.cehj.cdb2.business.exception.CDBException;
+import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
 import eu.cehj.cdb2.business.service.db.GeoAreaService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.common.dto.GeoAreaDTO;
 import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
+import eu.cehj.cdb2.entity.BailiffCompetenceArea;
 import eu.cehj.cdb2.entity.GeoArea;
 import eu.cehj.cdb2.entity.Municipality;
 import eu.cehj.cdb2.entity.QMunicipality;
@@ -38,6 +41,9 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
 
     @Autowired
     private MunicipalityService municipalityService;
+
+    @Autowired
+    private BailiffCompetenceAreaService bailiffCompetenceAreaService;
 
     @Override
     public List<GeoAreaDTO> getAllDTO() throws Exception {
@@ -62,9 +68,9 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
 
     public GeoAreaDTO populateEntity(final GeoAreaDTO dto) {
         GeoArea area = null;
-        if(dto.getId()!= null) {
+        if (dto.getId() != null) {
             area = this.repository.findOne(dto.getId());
-        }else {
+        } else {
             area = new GeoArea();
             this.populateAreaFromDTO(area, dto);
         }
@@ -80,16 +86,16 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
 
         area.setMunicipalities(new ArrayList<Municipality>());
         this.repository.save(area);
-        final Iterator<MunicipalityDTO>it = dto.getMunicipalities().iterator();
-        while(it.hasNext()) {
+        final Iterator<MunicipalityDTO> it = dto.getMunicipalities().iterator();
+        while (it.hasNext()) {
             try {
-                final Municipality municipality =  this.municipalityService.get(it.next().getId());
-                if(municipality != null) {
+                final Municipality municipality = this.municipalityService.get(it.next().getId());
+                if (municipality != null) {
                     municipality.setGeoArea(area);
                     this.municipalityService.save(municipality);
                 }
             } catch (final Exception e) {
-                this.logger.error(e.getMessage(),e);
+                this.logger.error(e.getMessage(), e);
             }
         }
 
@@ -108,6 +114,13 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
     @Override
     @Transactional
     public void delete(final Long id) throws Exception {
+
+        //We first have to check that this area isn't bound to a bailiff
+        final Iterable<BailiffCompetenceArea> bcas = this.bailiffCompetenceAreaService.findAllForGeoArea(this.get(id));
+        if(bcas.iterator().hasNext()) {
+            final BailiffCompetenceArea bca = bcas.iterator().next();
+            throw new CDBException("Deletion impossible: geo area is bound to bailiff with ID " + bca.getBailiff().getId());
+        }
         super.delete(id);
         final QMunicipality municipality = QMunicipality.municipality;
         new JPAUpdateClause(this.em, municipality)
@@ -117,7 +130,7 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
     }
 
     @Override
-    public GeoAreaDTO getDTO(final Long id)throws Exception{
+    public GeoAreaDTO getDTO(final Long id) throws Exception {
         final GeoArea entity = this.get(id);
         return this.populateDTOFromEntity(entity);
     }
@@ -140,7 +153,7 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
         final Page<GeoArea> entities = this.repository.findAll(predicate, pageable);
         final List<GeoAreaDTO> dtos = new ArrayList<>();
         final Iterator<GeoArea> it = entities.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             dtos.add(this.populateDTOFromEntity(it.next()));
         }
         return new PageImpl<>(dtos, pageable, entities.getTotalElements());
