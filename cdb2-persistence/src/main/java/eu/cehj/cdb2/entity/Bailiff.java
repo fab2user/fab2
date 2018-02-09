@@ -32,6 +32,12 @@ public class Bailiff extends BaseAuditedEntity<String> {
     inverseJoinColumns = @JoinColumn(name = "lang_id"))
     private final List<Language> languages = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "rel_bailiff_lang_detail",
+    joinColumns = @JoinColumn(name = "bailiff_id"),
+    inverseJoinColumns = @JoinColumn(name = "lang_id"))
+    private final List<Language> langOfDetails = new ArrayList<>();
+
     @OneToMany(mappedBy="bailiff")
     private final List<BailiffCompetenceArea> bailiffCompetenceAreas = new ArrayList<>();
 
@@ -79,6 +85,10 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     public List<BailiffCompetenceArea> getBailiffCompetenceAreas() {
         return this.bailiffCompetenceAreas;
+    }
+
+    public List<Language> getLangOfDetails() {
+        return this.langOfDetails;
     }
 
 }

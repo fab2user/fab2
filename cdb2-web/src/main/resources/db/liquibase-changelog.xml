@@ -107,4 +107,15 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             <column name="name"/>
         </createIndex>
     </changeSet>
+    <changeSet id="cdb-10" author="landry">
+        <comment>Manage lang of details for bailiff</comment>
+        <createTable tableName="rel_bailiff_lang_detail">
+            <column name="bailiff_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="FK_lang_detail_bailiff" referencedTableName="bailiff" referencedColumnNames="id"/>
+            </column>
+            <column name="lang_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="FK_lang_detail_lang" referencedTableName="language" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
    </databaseChangeLog>

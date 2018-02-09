@@ -1,5 +1,8 @@
 package eu.cehj.cdb2.common.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import eu.cehj.cdb2.entity.Address;
 
 public class BailiffDTO extends BaseDTO{
@@ -14,6 +17,8 @@ public class BailiffDTO extends BaseDTO{
     private String email;
     private Long addressId;
     private Long municipalityId;
+    private List<Long> languages = new ArrayList<>();
+    private Long langOfDetails;
 
     public BailiffDTO() {
         super();
@@ -85,6 +90,22 @@ public class BailiffDTO extends BaseDTO{
 
     public void setCity(final String city) {
         this.city = city;
+    }
+
+    public List<Long> getLanguages() {
+        return this.languages;
+    }
+
+    public void setLanguages(final List<Long> languages) {
+        this.languages = languages;
+    }
+
+    public Long getLangOfDetails() {
+        return this.langOfDetails;
+    }
+
+    public void setLangOfDetails(final Long langOfDetails) {
+        this.langOfDetails = langOfDetails;
     }
 
 }

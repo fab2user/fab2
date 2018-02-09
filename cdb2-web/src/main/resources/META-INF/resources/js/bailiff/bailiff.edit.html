@@ -11,9 +11,19 @@
     <div class="row">
       <div class="col-md-6">
         <form class="form form-horizontal" role="form" name="bailiffEditCtrl.bailiffForm" novalidate>
+
           <div class="form-group">
-            <label for="name" translate="bailiff.edit.name" class="col-md-2">bailiff name</label>
-            <div class="col-md-10">
+            <label for="language-detail" translate="bailiff.edit.language.detail" class="col-md-3">language of details</label>
+            <div class="col-md-9">
+              <select name="languageDetail" class="form-control" id="languageDetail" ng-model="bailiffEditCtrl.bailiff.langOfDetails" ng-options="langDetail.id*1 as langDetail.language for langDetail in bailiffEditCtrl.languages">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name" translate="bailiff.edit.name" class="col-md-3">bailiff name</label>
+            <div class="col-md-9">
               <input type="text" name="name" class="form-control" id="name" ng-model="bailiffEditCtrl.bailiff.name" required autofocus="autofocus">
               <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.name.$error">
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
@@ -22,8 +32,8 @@
           </div>
 
           <div class="form-group">
-            <label for="address" translate="bailiff.edit.address" class="col-md-2">address</label>
-            <div class="col-md-10">
+            <label for="address" translate="bailiff.edit.address" class="col-md-3">address</label>
+            <div class="col-md-9">
               <input type="text" name="address" class="form-control" id="address" ng-model="bailiffEditCtrl.bailiff.address" required autofocus="autofocus">
               <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.address.$error">
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
@@ -32,22 +42,11 @@
           </div>
 
           <div class="form-group">
-            <label for="municipality" translate="bailiff.edit.municipality" class="col-md-2">city</label>
-            <div class="col-md-10">
-              <div angucomplete-alt 
-                   id="municipality"
-                   maxlength="50" 
-                   pause="500" 
-                   field-required="true" 
-                   selected-object="bailiffEditCtrl.bailiff.municipality"
-                   local-data="bailiffEditCtrl.cities" 
-                   search-fields="name,postalCode" 
-                   title-field="postalCode,name" 
-                   minlength="2"
-                   input-class="form-control form-control-small" 
-                   match-class="highlight" 
-                   input-name="municipality" 
-                   initial-value="bailiffEditCtrl.bailiff.initialCity">
+            <label for="municipality" translate="bailiff.edit.municipality" class="col-md-3">city</label>
+            <div class="col-md-9">
+              <div angucomplete-alt id="municipality" maxlength="50" pause="500" field-required="true" selected-object="bailiffEditCtrl.bailiff.municipality"
+                local-data="bailiffEditCtrl.cities" search-fields="name,postalCode" title-field="postalCode,name" minlength="2"
+                input-class="form-control form-control-small" match-class="highlight" input-name="municipality" initial-value="bailiffEditCtrl.bailiff.initialCity">
 
                 <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.municipality.$error">
                   <div ng-message="autocomplete-required" class="text-danger">{{"global.form.required"|translate}}</div>
@@ -57,8 +56,8 @@
           </div>
 
           <div class="form-group">
-            <label for="phone" translate="bailiff.edit.phone" class="col-md-2">phone</label>
-            <div class="col-md-10">
+            <label for="phone" translate="bailiff.edit.phone" class="col-md-3">phone</label>
+            <div class="col-md-9">
               <input type="text" name="phone" class="form-control" id="phone" ng-model="bailiffEditCtrl.bailiff.phone" required autofocus="autofocus">
               <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.phone.$error">
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
@@ -67,13 +66,20 @@
           </div>
 
           <div class="form-group">
-            <label for="email" translate="bailiff.edit.email" class="col-md-2">email</label>
-            <div class="col-md-10">
+            <label for="email" translate="bailiff.edit.email" class="col-md-3">email</label>
+            <div class="col-md-9">
               <input type="email" name="email" class="form-control" id="email" ng-model="bailiffEditCtrl.bailiff.email" required autofocus="autofocus">
               <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.email.$error">
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
                 <div ng-message="email" class="text-danger">{{"global.form.email"|translate}}</div>
               </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="language-ac" translate="bailiff.edit.language.accepted" class="col-md-3">language accepted</label>
+            <div ng-repeat="lang in bailiffEditCtrl.languages" class="col-md-9">
+              <input type="checkbox" checklist-model="bailiffEditCtrl.bailiff.languages" checklist-value="lang.id"> {{ lang.language }}
             </div>
           </div>
 
@@ -83,7 +89,9 @@
           <div class="row top-1">
             <div class="col-md-12">
               <button class="btn btn-primary pull-right" ng-click="bailiffEditCtrl.save(bailiffEditCtrl.bailiffForm.$valid)">
-                  <span class="glyphicon glyphicon-floppy-disk"></span> <span translate="global.button.save"></span> </button>
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+                <span translate="global.button.save"></span>
+              </button>
             </div>
           </div>
         </form>

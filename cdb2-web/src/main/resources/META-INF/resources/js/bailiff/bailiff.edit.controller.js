@@ -13,16 +13,36 @@
     'NgTableParams',
     'BailiffAPIService',
     'BailiffCompAreaAPIService',
+    'LangAPIService',
     'bailiff',
     'cities',
     'competences'
   ];
 
-  function BailiffEditController($log, $translate, $uibModalInstance, $uibModal, lodash, toastr, NgTableParams, BailiffAPIService, BailiffCompAreaAPIService, bailiff, cities, competences) {
+  function BailiffEditController($log, $translate, $uibModalInstance, $uibModal, lodash, toastr, NgTableParams, BailiffAPIService, BailiffCompAreaAPIService, LangAPIService, bailiff, cities, competences) {
     var vm = this;
     vm.modalInstance = $uibModalInstance;
     vm.bailiff = bailiff;
     vm.competences = competences;
+
+    LangAPIService.getAll().$promise.then(function(data){
+      vm.languages = data;
+    });
+    
+    vm.getLanguages = function(){
+      return vm.bailiff.languages;
+    };
+
+    vm.check = function(value, checked) {
+      var idx = vm.bailiff.languages.indexOf(value);
+      if (idx >= 0 && !checked) {
+        vm.bailiff.languages.splice(idx, 1);
+      }
+      if (idx < 0 && checked) {
+        vm.bailiff.languages.push(value);
+      }
+    };
+    
     // Only purpose of initialCity is to display correct municipality in angucomplete when editing existing bailiff
     vm.bailiff.initialCity = {
       postalCode: vm.bailiff.postalCode,

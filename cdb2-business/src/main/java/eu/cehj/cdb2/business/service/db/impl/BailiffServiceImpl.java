@@ -16,12 +16,14 @@ import com.querydsl.core.types.Predicate;
 
 import eu.cehj.cdb2.business.dao.AddressRepository;
 import eu.cehj.cdb2.business.dao.BailiffRepository;
+import eu.cehj.cdb2.business.dao.LanguageRepository;
 import eu.cehj.cdb2.business.dao.MunicipalityRepository;
 import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
+import eu.cehj.cdb2.entity.Language;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
@@ -35,8 +37,12 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
 
     @Autowired
     AddressRepository addressRepository;
+
     @Autowired
     MunicipalityRepository municipalityRepository;
+
+    @Autowired
+    LanguageRepository languageRepository;
 
     @Override
     public BailiffDTO save(final BailiffDTO dto) throws Exception {
@@ -72,6 +78,11 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
         bailiffDTO.setId(bailiff.getId());
         bailiffDTO.setEmail(bailiff.getEmail());
         bailiffDTO.setPhone(bailiff.getPhone());
+        bailiff.getLanguages().forEach(lang -> bailiffDTO.getLanguages().add(lang.getId()));
+        if(bailiff.getLangOfDetails().size() > 0) {
+            bailiffDTO.setLangOfDetails( bailiff.getLangOfDetails().get(0).getId());
+        }
+
         final Address address = bailiff.getAddress();
         if (address != null) {
             bailiffDTO.setAddressId(address.getId());
@@ -99,6 +110,17 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
         entity.setName(dto.getName());
         entity.setPhone(dto.getPhone());
         entity.setEmail(dto.getEmail());
+        entity.getLanguages().clear();
+        dto.getLanguages().forEach(lang -> {
+            final Language language = this.languageRepository.getOne(lang);
+            entity.getLanguages().add(language);
+        });
+        final Long idLangOfDetails = dto.getLangOfDetails();
+        entity.getLangOfDetails().clear();
+        if(idLangOfDetails != null) {
+            final Language lang = this.languageRepository.getOne(idLangOfDetails);
+            entity.getLangOfDetails().add(lang);
+        }
         Address address = null;
         if (dto.getAddressId() != null) {
             address = this.addressRepository.getOne(dto.getAddressId());

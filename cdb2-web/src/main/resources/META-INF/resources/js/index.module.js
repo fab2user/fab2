@@ -17,7 +17,8 @@
       'angucomplete-alt',
       'LocalForageModule',
       'ngFileUpload',
-      'ngLoadingSpinner'
+      'ngLoadingSpinner',
+      'checklist-model'
     ]);
 
 })();
