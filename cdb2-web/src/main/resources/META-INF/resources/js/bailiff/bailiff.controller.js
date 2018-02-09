@@ -7,13 +7,15 @@
     '$log',
     '$translate',
     '$uibModal',
+    '$http',
     'NgTableParams',
     'BailiffAPIService',
     'toastr',
-    'MunicipalityAPIService'
+    'MunicipalityAPIService',
+    'SERVER'
   ];
 
-  function BailiffController($log, $translate, $uibModal, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService) {
+  function BailiffController($log, $translate, $uibModal, $http, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService, SERVER) {
     var vm = this;
     vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
     vm.selectedBailiff = {};
@@ -40,6 +42,26 @@
       BailiffAPIService.delete({id: vm.selectedBailiff.id}).then(function(){
         toastr.success($translate.instant('global.toastr.delete.success'));
         vm.fetchBailiffs();
+      });
+    };
+
+    vm.sendImportFile = function(){
+      $log.info('Upload called', vm.importFile);
+      var formData = new FormData();
+      formData.append('file', vm.importFile);
+      formData.append('filetype', 'text');
+      $http.post(SERVER.API + '/bailiff/import', formData, {
+        transformRequest: angular.identity,
+        headers: {
+          'Content-Type': undefined
+        }
+      }).then(function () {
+        $log.debug('Update successfully submitted');
+        toastr.success($translate.instant('bailiff.import.transmitted'));
+        vm.file = null;
+      })
+      .finally(function () {
+        vm.submitted = false;
       });
     };
 

@@ -14,15 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.querydsl.core.types.Predicate;
 
+import eu.cehj.cdb2.business.service.data.BailiffImportService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.entity.Bailiff;
@@ -34,6 +37,9 @@ public class BailiffController extends BaseController {
 
     @Autowired
     BailiffService bailiffService;
+
+    @Autowired
+    BailiffImportService bailiffImportService;
 
     @RequestMapping(
             method = {
@@ -67,6 +73,14 @@ public class BailiffController extends BaseController {
     @ResponseStatus(value = NO_CONTENT)
     public void delete(@PathVariable() final Long id) throws Exception {
         this.bailiffService.delete(id);
+    }
+
+    @RequestMapping(method = { POST }, value="import")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void importData(@RequestParam("file") final MultipartFile file) throws Exception{
+        //        try (InputStream is = file.getInputStream()) {
+        //        this.bailiffImportService.importFile(file);
+        //        }
     }
 
 }
