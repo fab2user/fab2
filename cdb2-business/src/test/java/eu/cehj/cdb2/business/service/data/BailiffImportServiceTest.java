@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
@@ -20,16 +19,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class BailiffImportServiceTest {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private BailiffImportService service;
 
     @Test
-    @Transactional
     public void testImportFile() {
 
         try (final InputStream is = this.getClass().getResourceAsStream("AT.xlsx");) {
-            this.service.importFile(is);
+            this.service.importFile(is, "AT");
+        } catch (final Throwable e) {
+            this.logger.error(e.getMessage(), e);
+        }
+    }
+
+    @Test
+    public void testExportFile() {
+        try {
+            this.service.export("AT");
         } catch (final Throwable e) {
             this.logger.error(e.getMessage(), e);
         }

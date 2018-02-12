@@ -47,6 +47,12 @@ public class Bailiff extends BaseAuditedEntity<String> {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "fax")
+    private String fax;
+
+    @Column(name = "web_site")
+    private String webSite;
+
     public String getName() {
         return this.name;
     }
@@ -89,6 +95,22 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     public List<Language> getLangOfDetails() {
         return this.langOfDetails;
+    }
+
+    public String getFax() {
+        return this.fax;
+    }
+
+    public void setFax(final String fax) {
+        this.fax = fax;
+    }
+
+    public String getWebSite() {
+        return this.webSite;
+    }
+
+    public void setWebSite(final String webSite) {
+        this.webSite = webSite;
     }
 
 }

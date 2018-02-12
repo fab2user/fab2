@@ -118,4 +118,11 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="cdb-11" author="landry">
+        <comment>Add missing data to bailiff</comment>
+        <addColumn tableName="bailiff">
+            <column name="fax" type="varchar(30)"></column>
+            <column name="webSite" type="varchar(30)"></column>
+        </addColumn>
+    </changeSet>
    </databaseChangeLog>
