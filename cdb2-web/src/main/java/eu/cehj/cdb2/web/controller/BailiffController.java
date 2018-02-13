@@ -8,6 +8,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
+import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +79,9 @@ public class BailiffController extends BaseController {
     @RequestMapping(method = { POST }, value="import")
     @ResponseStatus(value = HttpStatus.OK)
     public void importData(@RequestParam("file") final MultipartFile file) throws Exception{
-        //        try (InputStream is = file.getInputStream()) {
-        //        this.bailiffImportService.importFile(file);
-        //        }
+        try (InputStream is = file.getInputStream()) {
+            this.bailiffImportService.importFile(is, "AT");
+        }
     }
 
 }

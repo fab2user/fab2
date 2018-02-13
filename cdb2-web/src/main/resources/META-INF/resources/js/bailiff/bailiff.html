@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-md-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">
@@ -8,7 +8,7 @@
       </div>
       <div class="panel-body">
         <div class="row vertical-align">
-          <div class="col-lg-10">
+          <div class="col-md-10">
             <table ng-table="bailiffCtrl.tableParams" class="table" show-filter="true">
               <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'bg-info': bailiff.id === bailiffCtrl.selectedBailiff.id}"
                 class="pointable">
@@ -22,19 +22,10 @@
                   {{bailiff.city}}</td>
               </tr>
             </table>
-            <div class="row">
-              <div class="col-lg-10">
-                <div>
-                  <label class="checkbox-inline">
-                    <input type="checkbox" name="deleted" ng-model="bailiffCtrl.deleted" ng-click="bailiffCtrl.fetchBailiffs()"> Deleted
-                  </label>
-                </div>
-              </div>
-            </div>
           </div>
-          <div class="col-lg-2">
+          <div class="col-md-2">
             <div class="row">
-              <div class="col-lg-12">
+              <div class="col-md-12">
                 <button class="btn btn-primary btn-block" ng-click="bailiffCtrl.new()">
                   <span class="glyphicon glyphicon-plus-sign"></span>
                   <span translate="global.button.add">Add</span>
@@ -42,7 +33,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-lg-12 top-1">
+              <div class="col-md-12 top-1">
                 <button class="btn btn-primary btn-block" ng-click="bailiffCtrl.edit()" ng-disabled="!bailiffCtrl.selectedBailiff.id">
                   <span class="glyphicon glyphicon-pencil"></span>
                   <span translate="global.button.edit">Edit</span>
@@ -50,7 +41,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-lg-12 top-1">
+              <div class="col-md-12 top-1">
                 <button class="btn btn-danger btn-block" ng-click="bailiffCtrl.delete()" ng-disabled="!bailiffCtrl.selectedBailiff.id">
                   <span class="glyphicon glyphicon-remove-sign"></span>
                   <span translate="global.button.remove">Remove</span>
@@ -58,11 +49,11 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-lg-12 top-1">
+              <div class="col-md-12 top-1">
                 <div class="btn-group btn-group-justified" role="group">
                   <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-primary" ngf-select ng-model="bailiffCtrl.importFile" name="importFile" ngf-pattern="'.xlsx'" ngf-accept="'application/vnd.ms-excel'"
-                      ngf-min-size="100">
+                    <button type="button" class="btn btn-primary" ngf-select ng-model="bailiffCtrl.importFile" name="importFile" ngf-pattern="'.xlsx'"
+                      ngf-accept="'application/vnd.ms-excel'" ngf-min-size="100">
                       <span class="glyphicon glyphicon-arrow-down"></span>
                       <span translate="bailiff.button.import">import</span>
                     </button>
@@ -78,15 +69,31 @@
             </div>
           </div>
         </div>
-        <div class="row" ng-if="bailiffCtrl.importFile">
-            <div class="col-md-4 col-md-offset-8">
-              <div class="row">
-                <div class="col-md-6">{{ bailiffCtrl.importFile.name }}</div>
-                <div class="col-md-3"><button class="btn btn-primary" ng-click="bailiffCtrl.sendImportFile()"><span class="glyphicon glyphicon-send"></span><span translate="global.button.send"></span></button></div>
-                <div class="col-md-3"><button class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span><span translate="global.button.cancel"></span></button></div>
+        <div class="row">
+          <div class="col-md-1">
+            <div>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="deleted" ng-model="bailiffCtrl.deleted" ng-click="bailiffCtrl.fetchBailiffs()"> Deleted
+              </label>
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-5" ng-if="bailiffCtrl.importFile">
+            <div class="row">
+              <div class="col-md-8">
+                <strong translate="global.text.upload.file.selected"></strong>: {{ bailiffCtrl.importFile.name }}</div>
+              <div class="col-md-2">
+                <button class="btn btn-primary" ng-click="bailiffCtrl.sendImportFile()">
+                  <span class="glyphicon glyphicon-send"></span> {{ 'global.button.send'|translate }}</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-danger" ng-click="bailiffCtrl.cancelUpload()">
+                  <span class="glyphicon glyphicon-remove-circle"></span>
+                  <span translate="global.button.cancel"></span>
+                </button>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>

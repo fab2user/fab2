@@ -45,6 +45,10 @@
       });
     };
 
+    vm.cancelUpload = function(){
+      vm.importFile = null;
+    };
+
     vm.sendImportFile = function(){
       $log.info('Upload called', vm.importFile);
       var formData = new FormData();

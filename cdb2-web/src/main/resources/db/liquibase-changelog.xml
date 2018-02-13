@@ -122,7 +122,7 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <comment>Add missing data to bailiff</comment>
         <addColumn tableName="bailiff">
             <column name="fax" type="varchar(30)"></column>
-            <column name="webSite" type="varchar(30)"></column>
+            <column name="web_site" type="varchar(30)"></column>
         </addColumn>
     </changeSet>
    </databaseChangeLog>
