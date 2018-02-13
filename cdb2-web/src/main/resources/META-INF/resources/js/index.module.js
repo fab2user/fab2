@@ -18,7 +18,8 @@
       'LocalForageModule',
       'ngFileUpload',
       'ngLoadingSpinner',
-      'checklist-model'
+      'checklist-model',
+      'ngFileSaver'
     ]);
 
 })();

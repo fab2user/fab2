@@ -8,6 +8,8 @@
     '$translate',
     '$uibModal',
     '$http',
+    'FileSaver',
+    'Blob',
     'NgTableParams',
     'BailiffAPIService',
     'toastr',
@@ -15,7 +17,7 @@
     'SERVER'
   ];
 
-  function BailiffController($log, $translate, $uibModal, $http, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService, SERVER) {
+  function BailiffController($log, $translate, $uibModal, $http, FileSaver, Blob, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService, SERVER) {
     var vm = this;
     vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
     vm.selectedBailiff = {};
@@ -49,6 +51,13 @@
       vm.importFile = null;
     };
 
+    vm.export = function(){
+      $http.get(SERVER.API + '/bailiff/export', {responseType: 'arraybuffer'}).then(function(success){
+        var blob = new Blob([success.data]);
+            FileSaver.saveAs(blob, 'export_bailiffs.xls');
+      });
+    };
+
     vm.sendImportFile = function(){
       $log.info('Upload called', vm.importFile);
       var formData = new FormData();
@@ -62,7 +71,8 @@
       }).then(function () {
         $log.debug('Update successfully submitted');
         toastr.success($translate.instant('bailiff.import.transmitted'));
-        vm.file = null;
+        vm.importFile = null;
+        vm.fetchBailiffs();
       })
       .finally(function () {
         vm.submitted = false;

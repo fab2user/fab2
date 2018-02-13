@@ -47,11 +47,11 @@ public class BailiffImportService {
     }
 
     @Transactional
-    public void export(final String countryCode) throws Exception {
+    public String export(final String countryCode) throws Exception {
         try (final Workbook workbook = new XSSFWorkbook()) {
             final Sheet sheet = workbook.createSheet("Bailiffs");
             final BailiffImportModel importModel = this.getImportModel(countryCode);
-            final Row header = this.writeHeaders(sheet, importModel);
+            this.writeHeaders(sheet, importModel);
             final List<Bailiff> bailiffs = this.bailiffService.getAll();
             int index = 1;
             for (final Bailiff bailiff : bailiffs) {
@@ -71,10 +71,11 @@ public class BailiffImportService {
 
             final File currDir = new File(".");
             final String path = currDir.getAbsolutePath();
-            final String fileLocation = path.substring(0, path.length() - 1) + "temp.xlsx";
+            final String fileLocation = path.substring(0, path.length() - 1) + "bailiffs.xlsx";
 
             final FileOutputStream outputStream = new FileOutputStream(fileLocation);
             workbook.write(outputStream);
+            return fileLocation;
         }
     }
 

@@ -9,13 +9,20 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,6 +89,21 @@ public class BailiffController extends BaseController {
         try (InputStream is = file.getInputStream()) {
             this.bailiffImportService.importFile(is, "AT");
         }
+    }
+
+    @RequestMapping(method = { GET }, value="export")
+    public ResponseEntity<Resource> exportData() throws Exception{
+        final String exportFilePath = this.bailiffImportService.export("AT");
+        final Path path = Paths.get(exportFilePath);
+        final ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+        //        final HttpHeaders headers = new HttpHeaders();
+        //        headers.add("filename", "pop");
+        this.logger.debug("headers : " + resource.getFilename());
+        return ResponseEntity.ok()
+                .contentLength(resource.contentLength())
+                .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                //                .headers(headers)
+                .body(resource);
     }
 
 }
