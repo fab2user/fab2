@@ -23,7 +23,7 @@ import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
-public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long> implements MunicipalityService {
+public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, MunicipalityDTO, Long> implements MunicipalityService {
 
     @Autowired
     private EntityManager em;
@@ -116,6 +116,12 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Long>
             dto.setAdminAreaSubdivisionMinor(municipality.getAdminAreaSubdivisionMinor().getName());
         }
         return dto;
+    }
+
+    @Override
+    public Municipality populateEntityFromDTO(final MunicipalityDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

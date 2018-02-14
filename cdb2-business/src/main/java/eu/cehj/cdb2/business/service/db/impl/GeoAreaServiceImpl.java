@@ -32,7 +32,7 @@ import eu.cehj.cdb2.entity.Municipality;
 import eu.cehj.cdb2.entity.QMunicipality;
 
 @Service
-public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implements GeoAreaService {
+public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Long> implements GeoAreaService {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -54,6 +54,7 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
         return areas.stream().map(area -> this.populateDTOFromEntity(area)).collect(Collectors.toList());
     }
 
+    @Override
     public GeoAreaDTO populateDTOFromEntity(final GeoArea area) {
         final GeoAreaDTO dto = new GeoAreaDTO();
         dto.setId(area.getId());
@@ -157,5 +158,17 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, Long> implement
             dtos.add(this.populateDTOFromEntity(it.next()));
         }
         return new PageImpl<>(dtos, pageable, entities.getTotalElements());
+    }
+
+    @Override
+    public GeoAreaDTO save(final GeoAreaDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public GeoArea populateEntityFromDTO(final GeoAreaDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

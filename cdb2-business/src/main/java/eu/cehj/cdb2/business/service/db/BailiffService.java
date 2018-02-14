@@ -12,13 +12,7 @@ import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.entity.Bailiff;
 
 @Service
-public interface BailiffService extends BaseService<Bailiff, Long> {
-
-    public BailiffDTO save(BailiffDTO bailiffDTO) throws Exception;
-
-    public List<BailiffDTO> getAllDTO() throws Exception;
-
-    public BailiffDTO getDTO(Long id) throws Exception;
+public interface BailiffService extends BaseService<Bailiff, BailiffDTO, Long> {
 
     public Page<BailiffDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
 

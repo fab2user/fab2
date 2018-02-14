@@ -9,13 +9,7 @@ import eu.cehj.cdb2.entity.BailiffCompetenceArea;
 import eu.cehj.cdb2.entity.GeoArea;
 
 @Service
-public interface BailiffCompetenceAreaService extends BaseService<BailiffCompetenceArea, Long> {
-
-    public BailiffCompetenceAreaDTO save(BailiffCompetenceAreaDTO dto) throws Exception;
-
-    public List<BailiffCompetenceAreaDTO> getAllDTO() throws Exception;
-
-    public BailiffCompetenceAreaDTO getDTO(Long id) throws Exception;
+public interface BailiffCompetenceAreaService extends BaseService<BailiffCompetenceArea, BailiffCompetenceAreaDTO, Long> {
 
     public List<BailiffCompetenceAreaDTO> getAllDTO(Long bailiffId) throws Exception;
 

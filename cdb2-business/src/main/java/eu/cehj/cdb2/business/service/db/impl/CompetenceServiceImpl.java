@@ -14,7 +14,7 @@ import eu.cehj.cdb2.common.dto.CompetenceDTO;
 import eu.cehj.cdb2.entity.Competence;
 
 @Service
-public class CompetenceServiceImpl extends BaseServiceImpl<Competence, Long> implements CompetenceService {
+public class CompetenceServiceImpl extends BaseServiceImpl<Competence, CompetenceDTO, Long> implements CompetenceService {
 
     @Autowired
     private CompetenceRepository repository;
@@ -34,6 +34,7 @@ public class CompetenceServiceImpl extends BaseServiceImpl<Competence, Long> imp
         return dtos;
     }
 
+    @Override
     public CompetenceDTO populateDTOFromEntity(final Competence competence) throws Exception {
         final CompetenceDTO dto = new CompetenceDTO();
         dto.setId(competence.getId());
@@ -59,6 +60,18 @@ public class CompetenceServiceImpl extends BaseServiceImpl<Competence, Long> imp
             dtos.add(this.populateDTOFromEntity(it.next()));
         }
         return dtos;
+    }
+
+    @Override
+    public CompetenceDTO save(final CompetenceDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Competence populateEntityFromDTO(final CompetenceDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

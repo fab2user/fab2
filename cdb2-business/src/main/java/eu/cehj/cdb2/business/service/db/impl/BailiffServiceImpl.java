@@ -27,7 +27,7 @@ import eu.cehj.cdb2.entity.Language;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
-public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implements BailiffService {
+public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Long> implements BailiffService {
 
     @Autowired
     private EntityManager em;
@@ -46,8 +46,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
 
     @Override
     public BailiffDTO save(final BailiffDTO dto) throws Exception {
-        final Bailiff entity = dto.getId() == null ? new Bailiff() : this.get(dto.getId());
-        final Bailiff bailiff = this.populateEntityFromDTO(entity, dto);
+        final Bailiff bailiff = this.populateEntityFromDTO(dto);
         this.repository.save(bailiff);
         return this.populateDTOFromEntity(bailiff);
     }
@@ -72,6 +71,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
         return new BailiffDTO();
     }
 
+    @Override
     public BailiffDTO populateDTOFromEntity(final Bailiff bailiff) {
         final BailiffDTO bailiffDTO = new BailiffDTO();
         bailiffDTO.setName(bailiff.getName());
@@ -97,7 +97,9 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, Long> implement
         return bailiffDTO;
     }
 
-    public Bailiff populateEntityFromDTO(final Bailiff entity, final BailiffDTO dto) throws Exception {
+    @Override
+    public Bailiff populateEntityFromDTO(final BailiffDTO dto) throws Exception {
+        final Bailiff entity = dto.getId() == null ? new Bailiff() : this.get(dto.getId());
         if (dto.getMunicipalityId() == null) {
             throw new CDBException("Municipality can not be null");
         }

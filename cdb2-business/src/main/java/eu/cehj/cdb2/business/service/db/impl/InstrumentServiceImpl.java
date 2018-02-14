@@ -14,7 +14,7 @@ import eu.cehj.cdb2.common.dto.InstrumentDTO;
 import eu.cehj.cdb2.entity.Instrument;
 
 @Service
-public class InstrumentServiceImpl extends BaseServiceImpl<Instrument, Long> implements InstrumentService {
+public class InstrumentServiceImpl extends BaseServiceImpl<Instrument, InstrumentDTO, Long> implements InstrumentService {
 
     @Autowired
     private InstrumentRepository repository;
@@ -44,6 +44,24 @@ public class InstrumentServiceImpl extends BaseServiceImpl<Instrument, Long> imp
         dto.setDescription(instrument.getDescription());
         //        dto.setCompetences(this.competenceService.getAllDTOForInstrument(instrument.getId()));
         return dto;
+    }
+
+    @Override
+    public InstrumentDTO save(final InstrumentDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public InstrumentDTO getDTO(final Long id) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Instrument populateEntityFromDTO(final InstrumentDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

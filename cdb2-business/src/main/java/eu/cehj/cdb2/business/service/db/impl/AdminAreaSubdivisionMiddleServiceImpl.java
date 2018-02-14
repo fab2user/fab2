@@ -1,5 +1,8 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +12,11 @@ import eu.cehj.cdb2.business.dao.AdminAreaSubdivisionMiddleRepository;
 import eu.cehj.cdb2.business.service.data.GeoDataStructure;
 import eu.cehj.cdb2.business.service.data.RecordBuilderHelper;
 import eu.cehj.cdb2.business.service.db.AdminAreaSubdivisionMiddleService;
+import eu.cehj.cdb2.common.dto.AdminAreaSubdivisionMiddleDTO;
 import eu.cehj.cdb2.entity.AdminAreaSubdivisionMiddle;
 
 @Service
-public class AdminAreaSubdivisionMiddleServiceImpl extends BaseServiceImpl<AdminAreaSubdivisionMiddle, Long> implements AdminAreaSubdivisionMiddleService {
+public class AdminAreaSubdivisionMiddleServiceImpl extends BaseServiceImpl<AdminAreaSubdivisionMiddle, AdminAreaSubdivisionMiddleDTO, Long> implements AdminAreaSubdivisionMiddleService {
 
     @Autowired
     private EntityManager em;
@@ -37,6 +41,36 @@ public class AdminAreaSubdivisionMiddleServiceImpl extends BaseServiceImpl<Admin
         area.setName(structure.getMiddleAreaName());
         area.setAdminAreaSubdivisionMajor(helper.getMajorArea());
         return area;
+    }
+
+    @Override
+    public List<AdminAreaSubdivisionMiddleDTO> getAllDTO() throws Exception {
+        // TODO Auto-generated method stub
+        return new ArrayList<>();
+    }
+
+    @Override
+    public AdminAreaSubdivisionMiddleDTO save(final AdminAreaSubdivisionMiddleDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public AdminAreaSubdivisionMiddleDTO getDTO(final Long id) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public AdminAreaSubdivisionMiddle populateEntityFromDTO(final AdminAreaSubdivisionMiddleDTO dto) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public AdminAreaSubdivisionMiddleDTO populateDTOFromEntity(final AdminAreaSubdivisionMiddle entity) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

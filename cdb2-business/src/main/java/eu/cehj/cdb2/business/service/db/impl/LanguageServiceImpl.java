@@ -12,7 +12,7 @@ import eu.cehj.cdb2.common.dto.LanguageDTO;
 import eu.cehj.cdb2.entity.Language;
 
 @Service
-public class LanguageServiceImpl extends BaseServiceImpl<Language, Long> implements LanguageService {
+public class LanguageServiceImpl extends BaseServiceImpl<Language, LanguageDTO, Long> implements LanguageService {
 
     @Autowired
     private LanguageRepository repository;
@@ -51,6 +51,12 @@ public class LanguageServiceImpl extends BaseServiceImpl<Language, Long> impleme
         final Language entity = this.populateEntityFromDTO( dto);
         this.repository.save(entity);
         return this.populateDTOFromEntity(entity);
+    }
+
+    @Override
+    public LanguageDTO getDTO(final Long id) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

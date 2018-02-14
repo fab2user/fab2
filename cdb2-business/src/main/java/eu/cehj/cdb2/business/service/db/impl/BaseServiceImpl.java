@@ -17,11 +17,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import eu.cehj.cdb2.business.service.db.BaseService;
+import eu.cehj.cdb2.common.dto.BaseDTO;
 import eu.cehj.cdb2.entity.BaseEntity;
 
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
-public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializable> implements
-BaseService<T, ID> {
+public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, ID extends Serializable> implements
+BaseService<T, U, ID> {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -106,5 +107,16 @@ BaseService<T, ID> {
             this.delete((ID) entity.getId());
         }
     }
+
+    @Override
+    public U save(final U dto) throws Exception {
+        final T entity = this.populateEntityFromDTO( dto);
+        this.repository.save(entity);
+        return this.populateDTOFromEntity(entity);
+    }
+
+    public abstract T populateEntityFromDTO(final U dto) throws Exception;
+
+    public abstract U populateDTOFromEntity(final T entity) throws Exception;
 
 }

@@ -29,7 +29,7 @@ import eu.cehj.cdb2.entity.Instrument;
 import eu.cehj.cdb2.entity.QBailiffCompetenceArea;
 
 @Service
-public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCompetenceArea, Long> implements BailiffCompetenceAreaService {
+public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCompetenceArea, BailiffCompetenceAreaDTO, Long> implements BailiffCompetenceAreaService {
 
     @Autowired
     private EntityManager em;
