@@ -19,7 +19,8 @@
       'ngFileUpload',
       'ngLoadingSpinner',
       'checklist-model',
-      'ngFileSaver'
+      'ngFileSaver',
+      'angular-confirm'
     ]);
 
 })();

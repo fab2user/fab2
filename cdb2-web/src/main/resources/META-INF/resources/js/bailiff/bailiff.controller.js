@@ -41,7 +41,7 @@
     };
 
     vm.delete = function(){
-      BailiffAPIService.delete({id: vm.selectedBailiff.id}).then(function(){
+      BailiffAPIService.delete({id: vm.selectedBailiff.id}).$promise.then(function(){
         toastr.success($translate.instant('global.toastr.delete.success'));
         vm.fetchBailiffs();
       });

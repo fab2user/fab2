@@ -42,7 +42,7 @@
             </div>
             <div class="row">
               <div class="col-md-12 top-1">
-                <button class="btn btn-danger btn-block" ng-click="bailiffCtrl.delete()" ng-disabled="!bailiffCtrl.selectedBailiff.id">
+                <button class="btn btn-danger btn-block" ng-click="bailiffCtrl.delete()" confirm="Are you sure ?" ng-disabled="!bailiffCtrl.selectedBailiff.id">
                   <span class="glyphicon glyphicon-remove-sign"></span>
                   <span translate="global.button.remove">Remove</span>
                 </button>
