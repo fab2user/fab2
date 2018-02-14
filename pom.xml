@@ -22,6 +22,7 @@
         <module>cdb2-common</module>
         <module>cdb2-persistence</module>
         <module>cdb2-business</module>
+        <module>cdb2-hub</module>
     </modules>
 
     <properties>
@@ -123,4 +124,18 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
+        </profile>
+    </profiles>
 </project>

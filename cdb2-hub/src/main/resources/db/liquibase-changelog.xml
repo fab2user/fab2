@@ -1,0 +1,43 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+<changeSet id="hub-1" author="landry">
+    <createTable tableName="country">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="deleted" type="bit" defaultValueBoolean="false"/>
+        <column name="created_by" type="varchar(255)"></column>
+        <column name="created_on" type="datetime"></column>
+        <column name="modified_by" type="varchar(255)"></column>
+        <column name="modified_on" type="datetime"></column>
+        <column name="active" type="bit" defaultValueBoolean="true"/>
+        <column name="name" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="url" type="varchar(255)" />
+    </createTable>
+    
+    <createTable tableName="sync">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="deleted" type="bit" defaultValueBoolean="false"/>
+        <column name="created_by" type="varchar(255)"></column>
+        <column name="created_on" type="datetime"></column>
+        <column name="modified_by" type="varchar(255)"></column>
+        <column name="modified_on" type="datetime"></column>
+        <column name="exec_date" type="datetime">
+            <constraints nullable="false"/>
+        </column>
+        <column name="status" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="country" type="bigint">
+            <constraints nullable="false" foreignKeyName="FK_sync_country" referencedTableName="country" referencedColumnNames="id"/>
+        </column>        
+    </createTable>
+</changeSet>
+</databaseChangeLog>

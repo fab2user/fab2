@@ -1,0 +1,92 @@
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.top-1 {
+  margin-top: 1em;
+}
+
+.top-2 {
+  margin-top: 1.5em;
+}
+
+.top-3 {
+  margin-top: 2em;
+}
+
+.top-5{
+  margin-top: 5em;
+}
+
+.top-10 {
+  margin-top: 10em;
+}
+
+.modal-hg .modal-dialog {
+  width: 96%;
+}
+
+.pointable:hover{
+  cursor: pointer;
+}
+
+.close-button {
+  font-size: 2em;
+  margin-top: 0.3em;
+  margin-right: 0.3em;
+  color: rgb(210, 28, 28);
+}
+/* Form's action button */
+.action-button {
+  width: 7em;
+  margin-left: 0.2em;
+}
+
+/* Change color of field's borders when error on form submitting */
+.ng-submitted .ng-invalid {
+  border-color: #a94442;
+  border-width: 2px;
+  box-shadow: none;
+}
+
+@media only screen and (min-width : 768px) {
+  .is-table-row {
+      display: table;
+  }
+  .is-table-row [class*="col-"] {
+      float: none;
+      display: table-cell;
+      vertical-align: top;
+  }
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
+.switch-control {
+  font-size: 18px;
+}
+
+div.user-id{
+  text-align: right;
+}
+
+.info-title{
+  text-align: center;
+  font-weight: bolder;
+  padding: 0.5em 0 0.5em 0
+}
+
+form.info-title{
+  text-align: right;
+}
+
+ul.nav.navbar-nav li a{
+  cursor: pointer;
+}
+      
