@@ -45,12 +45,6 @@ public class CompetenceServiceImpl extends BaseServiceImpl<Competence, Competenc
     }
 
     @Override
-    public CompetenceDTO getDTO(final Long id)throws Exception{
-        final Competence entity = this.get(id);
-        return this.populateDTOFromEntity(entity);
-    }
-
-    @Override
     public List<CompetenceDTO> getAllDTOForInstrument(final Long instrumentId) throws Exception {
         //FIXME
         final List<Competence> entities = this.repository.findAllByInstrumentId(instrumentId);
@@ -60,12 +54,6 @@ public class CompetenceServiceImpl extends BaseServiceImpl<Competence, Competenc
             dtos.add(this.populateDTOFromEntity(it.next()));
         }
         return dtos;
-    }
-
-    @Override
-    public CompetenceDTO save(final CompetenceDTO dto) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override

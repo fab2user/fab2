@@ -131,12 +131,6 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
     }
 
     @Override
-    public GeoAreaDTO getDTO(final Long id) throws Exception {
-        final GeoArea entity = this.get(id);
-        return this.populateDTOFromEntity(entity);
-    }
-
-    @Override
     public GeoAreaSimpleDTO getSimpleDTO(final Long id) throws Exception {
         final GeoArea entity = this.get(id);
         return this.populateSimpleDTOFromEntity(entity);
@@ -161,14 +155,9 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
     }
 
     @Override
-    public GeoAreaDTO save(final GeoAreaDTO dto) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public GeoArea populateEntityFromDTO(final GeoAreaDTO dto) throws Exception {
         // TODO Auto-generated method stub
         return null;
     }
+
 }

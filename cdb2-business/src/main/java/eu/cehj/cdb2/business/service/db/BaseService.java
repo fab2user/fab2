@@ -26,6 +26,6 @@ public interface BaseService<T extends BaseEntity, U extends BaseDTO,  ID extend
 
     public U save(U dto) throws Exception;
 
-    public U getDTO(Long id) throws Exception;
+    public U getDTO(ID id) throws Exception;
 
 }

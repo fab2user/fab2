@@ -1,8 +1,5 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,24 +39,6 @@ public class AdminAreaSubdivisionMinorServiceImpl extends BaseServiceImpl<AdminA
         area.setName(structure.getMinorAreaName());
         area.setAdminAreaSubdivisionMiddle(helper.getMiddleArea());
         return area;
-    }
-
-    @Override
-    public List<AdminAreaSubdivisionMinorDTO> getAllDTO() throws Exception {
-        // TODO Auto-generated method stub
-        return new ArrayList<>();
-    }
-
-    @Override
-    public AdminAreaSubdivisionMinorDTO save(final AdminAreaSubdivisionMinorDTO dto) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public AdminAreaSubdivisionMinorDTO getDTO(final Long id) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override

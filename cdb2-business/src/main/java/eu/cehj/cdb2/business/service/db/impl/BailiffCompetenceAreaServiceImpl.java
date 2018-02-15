@@ -57,6 +57,7 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
         return dto;
     }
 
+    @Override
     public BailiffCompetenceArea populateEntityFromDTO(final BailiffCompetenceAreaDTO dto) throws Exception{
         BailiffCompetenceArea entity = new BailiffCompetenceArea();
         if(dto.getId()!=null) {
@@ -80,6 +81,7 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
         return entity;
     }
 
+    @Override
     public BailiffCompetenceAreaDTO populateDTOFromEntity(final BailiffCompetenceArea entity)throws Exception{
         final BailiffCompetenceAreaDTO dto = new BailiffCompetenceAreaDTO();
         dto.setId(entity.getId());
@@ -98,12 +100,6 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
     }
 
     @Override
-    public List<BailiffCompetenceAreaDTO> getAllDTO() throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public List<BailiffCompetenceAreaDTO> getAllDTO(final Long bailiffId) throws Exception {
         final List<BailiffCompetenceAreaDTO> dtos = new ArrayList<>();
         final List<BailiffCompetenceArea> entities = this.repository.findByBailiffId(bailiffId);
@@ -113,11 +109,6 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
         }
 
         return dtos;
-    }
-
-    @Override
-    public BailiffCompetenceAreaDTO getDTO(final Long id) throws Exception {
-        return null;
     }
 
     @Override

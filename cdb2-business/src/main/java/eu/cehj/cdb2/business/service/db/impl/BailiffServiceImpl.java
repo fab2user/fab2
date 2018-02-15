@@ -63,15 +63,6 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public BailiffDTO getDTO(final Long id) throws Exception {
-        final Bailiff entity = this.get(id);
-        if (entity != null) {
-            return this.populateDTOFromEntity(entity);
-        }
-        return new BailiffDTO();
-    }
-
-    @Override
     public BailiffDTO populateDTOFromEntity(final Bailiff bailiff) {
         final BailiffDTO bailiffDTO = new BailiffDTO();
         bailiffDTO.setName(bailiff.getName());

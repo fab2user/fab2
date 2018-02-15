@@ -21,8 +21,7 @@ import eu.cehj.cdb2.common.dto.BaseDTO;
 import eu.cehj.cdb2.entity.BaseEntity;
 
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
-public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, ID extends Serializable> implements
-BaseService<T, U, ID> {
+public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, ID extends Serializable> implements BaseService<T, U, ID> {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -110,8 +109,25 @@ BaseService<T, U, ID> {
 
     @Override
     public U save(final U dto) throws Exception {
-        final T entity = this.populateEntityFromDTO( dto);
+        final T entity = this.populateEntityFromDTO(dto);
         this.repository.save(entity);
+        return this.populateDTOFromEntity(entity);
+    }
+
+    @Override
+    public List<U> getAllDTO() throws Exception {
+        final List<T> entities = this.repository.findAll();
+        final List<U> dtos = new ArrayList<U>(entities.size());
+        for (final T entity : entities) {
+            final U dto = this.populateDTOFromEntity(entity);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    @Override
+    public U getDTO(final ID id) throws Exception {
+        final T entity = this.get(id);
         return this.populateDTOFromEntity(entity);
     }
 

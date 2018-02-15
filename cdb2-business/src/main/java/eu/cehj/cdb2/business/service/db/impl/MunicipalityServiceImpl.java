@@ -61,12 +61,6 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Munic
     }
 
     @Override
-    public MunicipalityDTO getDTO(final Long id) throws Exception {
-
-        return null;
-    }
-
-    @Override
     public Page<MunicipalityDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
         final Page<Municipality> entities = this.repository.findAll(predicate, pageable);
         final List<MunicipalityDTO> dtos = new ArrayList<>();

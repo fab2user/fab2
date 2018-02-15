@@ -1,7 +1,5 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +15,6 @@ public class CountryServiceImpl extends BaseServiceImpl<Country, CountryDTO, Lon
     private CountryRepository repository;
 
     @Override
-    public List<CountryDTO> getAllDTO() throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public CountryDTO getDTO(final Long id) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public Country populateEntityFromDTO(final CountryDTO dto) throws Exception {
         // TODO Auto-generated method stub
         return null;
@@ -36,8 +22,8 @@ public class CountryServiceImpl extends BaseServiceImpl<Country, CountryDTO, Lon
 
     @Override
     public CountryDTO populateDTOFromEntity(final Country entity) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        final CountryDTO dto = new CountryDTO(entity.getName(), entity.getUrl(), entity.isActive());
+        return dto;
     }
 
 
