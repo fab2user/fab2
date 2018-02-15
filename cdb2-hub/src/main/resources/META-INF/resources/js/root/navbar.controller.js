@@ -3,16 +3,14 @@
 
   angular.module('hub').controller('NavBarController', NavBarController);
 
-  NavBarController.$inject = ['$scope', '$translate', '$log','$localForage', 'AuthService', 'STORE', 'EVENT'];
+  NavBarController.$inject = ['$scope', '$translate', '$log','$sessionStorage', 'AuthService', 'STORE', 'EVENT'];
 
-  function NavBarController($scope, $translate, $log, $localForage, AuthService, STORE, EVENT) {
+  function NavBarController($scope, $translate, $log, $sessionStorage, AuthService, STORE, EVENT) {
     var vm = this;
     vm.langKeys = ['en', 'fr'];
     vm.isCollapsed = true;
 
-     $localForage.getItem(STORE.AUTHENTICATED).then(function(val){
-       vm.authenticated = val;
-     });
+    vm.authenticated = $sessionStorage[STORE.AUTHENTICATED];
 
     vm.status = {
       isopen: false

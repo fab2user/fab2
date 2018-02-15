@@ -1,0 +1,17 @@
+{
+    "extends": "eslint:recommended",
+    "plugins": ["angular"],
+    "env": {
+      "browser": true,
+      "jasmine": true
+    },
+    "globals": {
+      "angular": true,
+      "module": true,
+      "inject": true
+    },
+    "rules": {
+      "no-unused-vars": [1, {"args": "all"}],
+      "semi": [2, "always"]
+    }
+  }

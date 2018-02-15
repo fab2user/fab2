@@ -5,9 +5,9 @@
     .module('hub')
     .controller('HeadController', HeadController);
 
-  HeadController.$inject = ['$scope', '$localForage', '$log', 'STORE', 'EVENT'];
+  HeadController.$inject = ['$scope', '$sessionStorage', '$log', 'STORE', 'EVENT'];
 
-  function HeadController($scope, $localForage, $log, STORE, EVENT) {
+  function HeadController($scope, $sessionStorage, $log, STORE, EVENT) {
     var vm = this;
 
     loadCurrentUser();
@@ -18,10 +18,8 @@
     });
 
     function loadCurrentUser(){
-      $localForage.getItem(STORE.USER).then(function (currentUser) {
-        vm.currentUser = currentUser;
-        $log.debug('Current user \'' + currentUser + '\' loaded in HeadController from key: ' + STORE.USER);
-      });
+        vm.currentUser = $sessionStorage[STORE.USER];
+        $log.debug('Current user \'' + vm.currentUser + '\' loaded in HeadController from key: ' + STORE.USER);
     } 
   }
 

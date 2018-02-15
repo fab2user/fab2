@@ -15,9 +15,9 @@
       'ngLodash',
       'ui.bootstrap',
       'angucomplete-alt',
-      'LocalForageModule',
       'ngLoadingSpinner',
-      'angular-confirm'
+      'angular-confirm',
+      'ngStorage'
     ]);
 
 })();

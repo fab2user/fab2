@@ -8,8 +8,8 @@
             'API': 'http://localhost:8181/api'
         })
         .constant('STORE', {
-            'USER' :'connected_user',
-            'AUTHENTICATED': 'authenticated'
+            'USER' :'hub_connected_user',
+            'AUTHENTICATED': 'hub_authenticated'
         })
         .constant('EVENT', {
             'LOGGED_IN': 1

@@ -3,9 +3,9 @@
 
   angular.module('hub').config(config);
 
-  config.$inject = ['$logProvider', '$translateProvider', '$httpProvider', '$localForageProvider', 'toastrConfig', 'SERVER'];
+  config.$inject = ['$logProvider', '$translateProvider', '$httpProvider', '$localStorageProvider', 'toastrConfig', 'SERVER'];
 
-  function config($logProvider, $translateProvider, $httpProvider, $localForageProvider, toastrConfig, SERVER) {
+  function config($logProvider, $translateProvider, $httpProvider, $localStorageProvider, toastrConfig, SERVER) {
     // Enable log
     $logProvider.debugEnabled(true);
     
@@ -26,11 +26,7 @@
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     $httpProvider.interceptors.push('apiErrorInterceptor');
 
-    $localForageProvider.config({
-      name        : 'cdb', // name of the database and prefix for your data, it is "lf" by default
-      storeName   : 'general', // name of the table
-      description : 'CDB2 hub storage'
-  });
+    $localStorageProvider.setKeyPrefix('');
      
   }
 

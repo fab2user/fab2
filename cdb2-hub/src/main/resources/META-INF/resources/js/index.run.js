@@ -5,25 +5,20 @@
         .module('hub')
         .run(runBlock);
 
-    runBlock.$inject = ['$localForage', '$log', '$rootScope', '$state'];
+    runBlock.$inject = ['$sessionStorage', '$transitions', 'STORE'];
 
-    function runBlock($localForage, $log, $rootScope, $state) {
+    function runBlock($sessionStorage, $transitions, STORE) {
 
-        $rootScope.$on('$stateChangeStart', function (ev, to, toParams, from, fromParams, options) {
-            $rootScope.previousState = from.name;
-            $rootScope.previousParams = fromParams;
-            $log.debug('Previous state:' + $rootScope.previousState);
-            $localForage
-                .getItem('authenticated')
-                .then(function (authenticated) {
-                    if (!authenticated) {
-                        $state.go('root.login');
-                    }
-                })
-                .catch(function (err) {
-                    $log.error(err);
-                    $state.go('root.login');
-                });
+        $transitions.onBefore({}, function (transition) {
+            if (transition.to().name === 'root.login') {
+                return true;
+            }
+            if ($sessionStorage[STORE.AUTHENTICATED]) {
+                return true;
+            } else {
+                return transition.router.stateService.target('root.login');
+            }
+
         });
     }
 })();
