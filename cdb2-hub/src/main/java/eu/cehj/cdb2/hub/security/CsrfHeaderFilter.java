@@ -1,4 +1,4 @@
-package eu.chj.cdb2.hub.security;
+package eu.cehj.cdb2.hub.security;
 
 import java.io.IOException;
 

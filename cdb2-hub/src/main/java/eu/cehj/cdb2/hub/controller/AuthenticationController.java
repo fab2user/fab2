@@ -1,4 +1,4 @@
-package eu.chj.cdb2.hub.controller;
+package eu.cehj.cdb2.hub.controller;
 
 import java.security.Principal;
 

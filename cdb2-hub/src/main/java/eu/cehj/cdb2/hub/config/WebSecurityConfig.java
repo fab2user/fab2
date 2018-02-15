@@ -1,4 +1,4 @@
-package eu.chj.cdb2.hub.config;
+package eu.cehj.cdb2.hub.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -11,7 +11,7 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
-import eu.chj.cdb2.hub.security.CsrfHeaderFilter;
+import eu.cehj.cdb2.hub.security.CsrfHeaderFilter;
 
 
 @Configuration

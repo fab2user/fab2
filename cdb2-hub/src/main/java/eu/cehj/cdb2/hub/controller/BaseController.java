@@ -1,4 +1,4 @@
-package eu.chj.cdb2.hub.controller;
+package eu.cehj.cdb2.hub.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

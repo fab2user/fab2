@@ -1,0 +1,80 @@
+<div class="modal-content">
+  <form class="form form-horizontal" role="form" name="countryEditCtrl.countryForm" ng-submit="countryEditCtrl.save(countryEditCtrl.countryForm.$valid)"
+    novalidate>
+
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="countryEditCtrl.modalInstance.dismiss()">&times;</button>
+      <h4 class="modal-title">
+        <span translate="country.edit.title">title</span>
+        <span>{{ countryEditCtrl.country.name }}</span>
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="form-group">
+            <label for="id" translate="global.label.id" class="col-md-3">id</label>
+            <div class="col-md-9">
+              <input type="text" name="id" class="form-control" id="id" ng-model="countryEditCtrl.country.id" disabled>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name" translate="global.label.name" class="col-md-3">country name</label>
+            <div class="col-md-9">
+              <input type="text" name="name" class="form-control" id="name" ng-model="countryEditCtrl.country.name" required autofocus="autofocus">
+              <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.name.$error">
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="url" translate="country.field.url" class="col-md-3">url</label>
+            <div class="col-md-9">
+              <input type="text" name="url" class="form-control" id="url" ng-model="countryEditCtrl.country.url" autofocus="autofocus">
+              <!-- FIXME: custom rule to validate url format (http://...) -->
+              <!-- <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.name.$error">
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="active" translate="global.label.active" class="col-md-3">active</label>
+            <div class="col-md-9">
+              <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">
+            </div>
+          </div>
+
+
+          <div class="alert alert-danger" role="alert" ng-if="countryEditCtrl.errorsFromServer">
+            <strong>{{countryEditCtrl.errorsFromServer}}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-danger pull-left action-button" ng-if="countryEditCtrl.country.id" ng-click="countryEditCtrl.delete()">
+            <span class="glyphicon glyphicon-trash"></span>
+            <span translate="global.button.delete"></span>
+          </button>
+
+          <button type="button" class="btn btn-primary pull-right action-button" ng-click="countryEditCtrl.modalInstance.close()">
+            <span class="glyphicon glyphicon-remove-sign"></span>
+            <span translate="global.button.cancel"></span>
+          </button>
+
+          <button class="btn btn-primary pull-right action-button">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            <span translate="global.button.save"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

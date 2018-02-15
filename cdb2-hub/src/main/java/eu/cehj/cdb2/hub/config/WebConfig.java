@@ -1,4 +1,4 @@
-package eu.chj.cdb2.hub.config;
+package eu.cehj.cdb2.hub.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

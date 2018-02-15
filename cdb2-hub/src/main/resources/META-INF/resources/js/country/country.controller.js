@@ -5,12 +5,35 @@
       .module('hub')
       .controller('CountryController', CountryController);
   
-      CountryController.$inject = [];
+      CountryController.$inject = ['$uibModal', 'NgTableParams', 'CountryAPIService'];
   
-    function CountryController() {
+    function CountryController($uibModal, NgTableParams, CountryAPIService) {
       var vm = this;
-      vm.dummyValue = 'dummy value !';
+      fetchCountries();
+
+
+      vm.edit = function(country){
+        var modalInstance = $uibModal.open({
+          templateUrl: '/js/country/country.edit.html',
+          controller: 'CountryEditController as countryEditCtrl',
+          windowClass: 'modal-md',
+          backdrop: 'static',
+          resolve: {
+            country: country
+          }
+        });
+        modalInstance.result.then(function () {
+          fetchCountries();
+        });
+      };
+
+      function fetchCountries(){
+        CountryAPIService.getAll().$promise.then(
+          function(success){
+            vm.tableParams = new NgTableParams({}, {dataset: success});
+          }
+        );
+      }
     }
-  
   })();
   
