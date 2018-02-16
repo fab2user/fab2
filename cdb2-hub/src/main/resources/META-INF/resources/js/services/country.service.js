@@ -14,7 +14,7 @@
     CountryService.sync = function (country) {
       // 1- Query national WS
       var headers = {
-        Authorization: 'Basic ' + btoa(country.user + ":" + country.password + 'a')
+        Authorization: 'Basic ' + btoa(country.user + ":" + country.password)
       };
 
       $http.get(country.url, {headers: headers})
