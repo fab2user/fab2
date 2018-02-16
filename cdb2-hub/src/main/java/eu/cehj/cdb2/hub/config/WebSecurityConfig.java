@@ -47,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/public/**",
                 "/localisation"
                 ).permitAll()
-        .antMatchers("/api/**", "/user", "/logout").authenticated().and()
+        .antMatchers("/api/**", "/user", "/logout").authenticated()
+        .and()
         .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
         .csrf().csrfTokenRepository(this.csrfTokenRepository());
     }

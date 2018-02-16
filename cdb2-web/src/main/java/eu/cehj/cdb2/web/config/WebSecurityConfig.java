@@ -1,20 +1,28 @@
 package eu.cehj.cdb2.web.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import eu.cehj.cdb2.web.security.CsrfHeaderFilter;
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -46,7 +54,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/public/**",
                 "/localisation"
                 ).permitAll()
-        .antMatchers("/api/**", "/user", "/logout", "/v2/**").authenticated().and()
+
+        .antMatchers("/api/**", "/user", "/logout", "/v2/**").authenticated()
+        .antMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
+        .and()
+        .cors()
+        .and()
         .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
         .csrf().csrfTokenRepository(this.csrfTokenRepository());
     }
@@ -55,5 +68,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         final HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
         repository.setHeaderName("X-XSRF-TOKEN");
         return repository;
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        final CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "OPTIONS"));
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
