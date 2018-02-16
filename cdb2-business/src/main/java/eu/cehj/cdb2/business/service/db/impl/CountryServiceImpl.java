@@ -15,12 +15,21 @@ public class CountryServiceImpl extends BaseServiceImpl<Country, CountryDTO, Lon
         entity.setActive(dto.isActive());
         entity.setName(dto.getName());
         entity.setUrl(dto.getUrl());
+        entity.setUser(dto.getUser());
+        entity.setPassword(dto.getPassword());
         return entity;
     }
 
     @Override
     public CountryDTO populateDTOFromEntity(final Country entity) throws Exception {
-        final CountryDTO dto = new CountryDTO(entity.getName(), entity.getUrl(), entity.isActive());
+        final CountryDTO dto = new CountryDTO();
+        dto.setName(entity.getName());
+        dto.setActive(entity.isActive());
+        dto.setId(entity.getId());
+        // dto.setLastSync(entity.getSynchronizations().); FIXME: add method to get last sync on entity
+        dto.setPassword(entity.getPassword());
+        dto.setUser(entity.getUser());
+        dto.setUrl(entity.getUrl());
         return dto;
     }
 

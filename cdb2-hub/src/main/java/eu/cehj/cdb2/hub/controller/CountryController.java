@@ -3,6 +3,7 @@ package eu.cehj.cdb2.hub.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -33,6 +34,13 @@ public class CountryController extends BaseController {
     @ResponseStatus(value = CREATED)
     public CountryDTO save(@RequestBody final CountryDTO dto) throws Exception {
         return this.countryService.save(dto);
+    }
+
+
+    @RequestMapping(method = { DELETE }, value = "/{id}")
+    @ResponseStatus(value = NO_CONTENT)
+    public void delete(@PathVariable final Long id) throws Exception {
+        this.countryService.delete(id);
     }
 
 }

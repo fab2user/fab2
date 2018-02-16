@@ -10,4 +10,5 @@ import eu.cehj.cdb2.entity.Country;
 @RepositoryRestResource
 public interface CountryRepository extends JpaRepository<Country, Long>, QueryDslPredicateExecutor<Country> {
 
+    public Country getByName(String countryName) throws Exception;
 }

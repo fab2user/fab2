@@ -5,9 +5,9 @@
       .module('hub')
       .controller('CountryController', CountryController);
   
-      CountryController.$inject = ['$uibModal', 'NgTableParams', 'CountryAPIService'];
+      CountryController.$inject = ['$uibModal', '$translate', 'NgTableParams', 'toastr', 'CountryAPIService', 'CountryService'];
   
-    function CountryController($uibModal, NgTableParams, CountryAPIService) {
+    function CountryController($uibModal, $translate, NgTableParams, toastr, CountryAPIService, CountryService) {
       var vm = this;
       fetchCountries();
 
@@ -25,6 +25,17 @@
         modalInstance.result.then(function () {
           fetchCountries();
         });
+      };
+
+      vm.delete = function(country){
+        CountryAPIService.delete({id: country.id}).$promise.then(function(){
+          toastr.success($translate.instant('global.toastr.delete.success'));
+          fetchCountries();
+        });
+      };
+
+      vm.sync = function(country){
+        CountryService.sync(country);
       };
 
       function fetchCountries(){

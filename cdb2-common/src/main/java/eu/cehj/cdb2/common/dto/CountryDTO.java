@@ -14,15 +14,9 @@ public class CountryDTO extends BaseDTO{
 
     private Date lastSync;
 
-    public CountryDTO(final String name, final String url, final boolean active) {
-        this.name = name;
-        this.url = url;
-        this.active = active;
-    }
+    private String user;
 
-    public CountryDTO() {
-        super();
-    }
+    private String password;
 
     public String getName() {
         return this.name;
@@ -54,6 +48,22 @@ public class CountryDTO extends BaseDTO{
 
     public void setLastSync(final Date lastSync) {
         this.lastSync = lastSync;
+    }
+
+    public String getUser() {
+        return this.user;
+    }
+
+    public void setUser(final String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
     }
 
 }
