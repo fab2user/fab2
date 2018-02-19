@@ -22,6 +22,10 @@ public class Address extends BaseAuditedEntity<String> {
     @JoinColumn(name = "municipality")
     private Municipality municipality;
 
+    @ManyToOne
+    @JoinColumn(name = "country")
+    private Country country;
+
     public String getAddress() {
         return this.address;
     }
@@ -36,6 +40,14 @@ public class Address extends BaseAuditedEntity<String> {
 
     public void setMunicipality(final Municipality municipality) {
         this.municipality = municipality;
+    }
+
+    public Country getCountry() {
+        return this.country;
+    }
+
+    public void setCountry(final Country country) {
+        this.country = country;
     }
 
 }

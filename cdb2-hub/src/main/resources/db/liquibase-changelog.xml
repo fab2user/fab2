@@ -46,4 +46,18 @@
             <column name="password" type="varchar(50)"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="hub-3" author="landry">
+        <renameTable newTableName="country_sync" oldTableName="country"/>
+    </changeSet>
+    <changeSet id="hub-4" author="landry">
+        <dropForeignKeyConstraint baseTableName="sync" constraintName="FK_sync_country"/>
+        <addForeignKeyConstraint constraintName="FK_sync_country" referencedTableName="country_sync" baseColumnNames="country" baseTableName="sync" referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="hub-5" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="country_code" type="varchar(3)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

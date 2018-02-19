@@ -92,6 +92,14 @@ public class BailiffDTO extends BaseDTO{
         this.city = city;
     }
 
+    public Long getLangOfDetails() {
+        return this.langOfDetails;
+    }
+
+    public void setLangOfDetails(final Long langOfDetails) {
+        this.langOfDetails = langOfDetails;
+    }
+
     public List<Long> getLanguages() {
         return this.languages;
     }
@@ -100,12 +108,6 @@ public class BailiffDTO extends BaseDTO{
         this.languages = languages;
     }
 
-    public Long getLangOfDetails() {
-        return this.langOfDetails;
-    }
 
-    public void setLangOfDetails(final Long langOfDetails) {
-        this.langOfDetails = langOfDetails;
-    }
 
 }

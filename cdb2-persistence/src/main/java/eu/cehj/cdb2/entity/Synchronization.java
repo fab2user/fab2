@@ -35,7 +35,7 @@ public class Synchronization extends BaseAuditedEntity<String> {
 
     @ManyToOne
     @JoinColumn(name = "country", nullable=false)
-    private Country country;
+    private CountryOfSync country;
 
     public Date getExecutionDate() {
         return this.executionDate;
@@ -53,11 +53,11 @@ public class Synchronization extends BaseAuditedEntity<String> {
         this.active = active;
     }
 
-    public Country getCountry() {
+    public CountryOfSync getCountry() {
         return this.country;
     }
 
-    public void setCountry(final Country country) {
+    public void setCountry(final CountryOfSync country) {
         this.country = country;
     }
 

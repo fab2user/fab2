@@ -2,7 +2,7 @@ package eu.cehj.cdb2.common.dto;
 
 import java.util.Date;
 
-public class CountryDTO extends BaseDTO{
+public class CountryOfSyncDTO extends BaseDTO{
 
     private static final long serialVersionUID = -6448266488847252561L;
 

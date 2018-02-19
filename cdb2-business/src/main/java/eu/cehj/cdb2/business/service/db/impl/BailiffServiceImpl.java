@@ -110,7 +110,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         });
         final Long idLangOfDetails = dto.getLangOfDetails();
         entity.getLangOfDetails().clear();
-        if(idLangOfDetails != null) {
+        if (idLangOfDetails != null) {
             final Language lang = this.languageRepository.getOne(idLangOfDetails);
             entity.getLangOfDetails().add(lang);
         }

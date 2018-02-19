@@ -125,4 +125,29 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             <column name="web_site" type="varchar(30)"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="cdb-12" author="landry">
+        <createTable tableName="country">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="deleted" type="bit" defaultValueBoolean="false" />
+            <column name="created_by" type="varchar(255)"></column>
+            <column name="created_on" type="datetime"></column>
+            <column name="modified_by" type="varchar(255)"></column>
+            <column name="modified_on" type="datetime"></column>
+            <column name="code" type="varchar(3)">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="cdb-13" author="landry">
+        <addColumn tableName="address">
+            <column name="country" type="bigint">
+                <constraints foreignKeyName="FK_ADDR_COUNTRY" referencedTableName="country" referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+    </changeSet>
    </databaseChangeLog>

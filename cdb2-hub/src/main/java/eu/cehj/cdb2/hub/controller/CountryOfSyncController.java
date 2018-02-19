@@ -13,34 +13,34 @@ import static org.springframework.http.HttpStatus.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-import eu.cehj.cdb2.business.service.db.CountryService;
-import eu.cehj.cdb2.common.dto.CountryDTO;
+import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
+import eu.cehj.cdb2.common.dto.CountryOfSyncDTO;
 
 @RestController
 @RequestMapping("api/country")
-public class CountryController extends BaseController {
+public class CountryOfSyncController extends BaseController {
 
 
     @Autowired
-    CountryService countryService;
+    CountryOfSyncService countryOfSyncService;
 
     @RequestMapping(method = { GET })
     @ResponseStatus(value = OK)
-    public List<CountryDTO> get() throws Exception {
-        return this.countryService.getAllDTO();
+    public List<CountryOfSyncDTO> get() throws Exception {
+        return this.countryOfSyncService.getAllDTO();
     }
 
     @RequestMapping(method = { POST })
     @ResponseStatus(value = CREATED)
-    public CountryDTO save(@RequestBody final CountryDTO dto) throws Exception {
-        return this.countryService.save(dto);
+    public CountryOfSyncDTO save(@RequestBody final CountryOfSyncDTO dto) throws Exception {
+        return this.countryOfSyncService.save(dto);
     }
 
 
     @RequestMapping(method = { DELETE }, value = "/{id}")
     @ResponseStatus(value = NO_CONTENT)
     public void delete(@PathVariable final Long id) throws Exception {
-        this.countryService.delete(id);
+        this.countryOfSyncService.delete(id);
     }
 
 }
