@@ -1,11 +1,10 @@
 package eu.cehj.cdb2.hub.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,10 +21,16 @@ import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.service.QueryDslPredicateAnalyzer;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.hub.service.SearchInterfaceService;
+import eu.cehj.cdb2.hub.utils.ParamsInterceptor;
 
+/**
+ * Search interface provided by the Hub. Redirects users' requests to correct national database.<br/>
+ * As we want to take benefit from national APIs features (search, pagination), we must intercept requests with {@link ParamsInterceptor}.
+ *
+ */
 @RestController
-@RequestMapping("api/bailiff")
-public class BailiffController extends BaseController {
+@RequestMapping("api/search")
+public class SearchController extends BaseController {
 
     @Autowired
     SearchInterfaceService searchService;
@@ -33,19 +38,25 @@ public class BailiffController extends BaseController {
     @Autowired
     QueryDslPredicateAnalyzer predicateAnalyzer;
 
-    @RequestMapping(method = GET, value = "search")
+    /**
+     *
+     * Public REST service providing Bailiff search.
+     * @param predicate
+     * available search terms are: <ul><li>name</li><li>city</li></ul>
+     * @param pageable
+     *
+     * @param countryCode
+     * <strong>Required</strong>. ISO code of country to search.
+     * @param transformedReq Added by {@link ParamsInterceptor}. Internal use.
+     * @return {@link Pageable} object containing search results
+     * @throws Exception
+     */
+    @RequestMapping(method = GET, value = "bailiff")
     @ResponseStatus(value = OK)
     public Page<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable,
-            @RequestParam(name = "country", required = true) final String countryCode,  @RequestAttribute(name="transformedReq", required = false) final Map<String, String> transformedReq) throws Exception {
-        //        final List<Expression<?>> expressions = ((BooleanOperation) predicate).getArgs();
-        //        for (final Expression<?> expression : expressions) {
-        //            final String expressionPath = expression.accept(PathExtractor.DEFAULT, null).toString();
-        //            final String value = expression.accept(ToStringVisitor.DEFAULT, null);
-        //            this.logger.debug(expressionPath);
-        //            this.logger.debug(value.toString());
-        //        }
-        this.searchService.sendQuery(countryCode, transformedReq);
-        return null;
+            @RequestParam(name = "country", required = true) final String countryCode,
+            @RequestAttribute(name = "transformedReq", required = false) final MultiValueMap<String, String> transformedReq) throws Exception {
+        return this.searchService.sendQuery(countryCode, transformedReq);
 
     }
 

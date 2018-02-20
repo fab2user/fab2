@@ -19,7 +19,7 @@ public class WebConfig  extends WebMvcConfigurerAdapter{
     @Override
     public void addInterceptors(final InterceptorRegistry registry) {
         // Register guest interceptor with single path pattern
-        registry.addInterceptor(new ParamsInterceptor()).addPathPatterns("/api/bailiff/search");
+        registry.addInterceptor(new ParamsInterceptor()).addPathPatterns("/api/search/bailiff");
     }
 }
 
