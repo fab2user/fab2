@@ -27,6 +27,8 @@
               });
             })
             .then(function () {
+              // Load and store application properties
+              
               // Redirect user to where he came from unless he comes from root.login. In this case, redirect him arbitrarily to root.bailiff
               var stateToGo = {name: 'root.bailiff', params: {}};
               if(previousState.name !== 'root.login'){
