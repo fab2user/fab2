@@ -15,12 +15,13 @@
       'ngLodash',
       'ui.bootstrap',
       'angucomplete-alt',
-      'LocalForageModule',
       'ngFileUpload',
       'ngLoadingSpinner',
       'checklist-model',
       'ngFileSaver',
-      'angular-confirm'
+      'angular-confirm',
+      'ngStorage',
+      'LocalForageModule'
     ]);
 
 })();

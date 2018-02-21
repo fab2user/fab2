@@ -11,12 +11,12 @@
     <description>Web module for CDB2</description>
 
     <parent>
-    <groupId>eu.cehj</groupId>
-    <artifactId>cdb2-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-<!--         <groupId>org.springframework.boot</groupId> -->
-<!--         <artifactId>spring-boot-starter-parent</artifactId> -->
-<!--         <version>1.5.9.RELEASE</version> -->
+        <groupId>eu.cehj</groupId>
+        <artifactId>cdb2-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <!-- <groupId>org.springframework.boot</groupId> -->
+        <!-- <artifactId>spring-boot-starter-parent</artifactId> -->
+        <!-- <version>1.5.9.RELEASE</version> -->
     </parent>
 
     <properties>
@@ -162,11 +162,6 @@
         </dependency>
         <dependency>
             <groupId>org.webjars.bower</groupId>
-            <artifactId>localforage</artifactId>
-            <version>1.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
             <artifactId>ng-file-upload</artifactId>
             <version>12.2.13</version>
         </dependency>
@@ -199,6 +194,16 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>angular-confirm-modal</artifactId>
             <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>localforage</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>ngstorage</artifactId>
+            <version>0.3.11</version>
         </dependency>
         <dependency>
             <groupId>pl.jalokim.propertiestojson</groupId>

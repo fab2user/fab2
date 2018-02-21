@@ -5,10 +5,14 @@
     .module('cdb2')
     .controller('HeadController', HeadController);
 
-  HeadController.$inject = ['$scope', '$localForage', '$log', 'STORE', 'EVENT'];
+  HeadController.$inject = ['$scope', '$log', '$localForage', 'STORE', 'EVENT', 'AuthService'];
 
-  function HeadController($scope, $localForage, $log, STORE, EVENT) {
+  function HeadController($scope, $log, $localForage, STORE, EVENT, AuthService) {
     var vm = this;
+
+    $localForage.getItem('country').then(function(data){
+      vm.country = data;
+    });
 
     loadCurrentUser();
 
@@ -18,10 +22,8 @@
     });
 
     function loadCurrentUser(){
-      $localForage.getItem(STORE.USER).then(function (currentUser) {
-        vm.currentUser = currentUser;
-        $log.debug('Current user \'' + currentUser + '\' loaded in HeadController from key: ' + STORE.USER);
-      });
+        vm.currentUser = AuthService.currentUser();
+        $log.debug('Current user \'' + vm.currentUser + '\' loaded in HeadController from key: ' + STORE.USER);
     } 
   }
 

@@ -62,12 +62,13 @@
         <link th:href="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap-csp.css}" rel="stylesheet" />
         <script th:src="@{/webjars/angucomplete-alt/2.5.0/angucomplete-alt.js}"></script>
         <link th:href="@{/webjars/angucomplete-alt/2.5.0/angucomplete-alt.css}" rel="stylesheet" />
-        <script th:src="@{/webjars/localforage/1.4.1/dist/localforage.js}"></script>
         <script th:src="@{/webjars/ng-file-upload/12.2.13/ng-file-upload-shim.js}"></script>
         <script th:src="@{/webjars/ng-file-upload/12.2.13/ng-file-upload.js}"></script>
         <script th:src="@{/webjars/checklist-model/0.11.0/checklist-model.js}"></script>
         <script th:src="@{/webjars/angular-file-saver/1.1.3/dist/angular-file-saver.bundle.js}"></script>
         <script th:src="@{/webjars/angular-confirm-modal/1.2.6/angular-confirm.js}"></script>
+        <script th:src="@{/webjars/ngstorage/0.3.11/ngStorage.js}"></script>
+        <script th:src="@{/webjars/localforage/1.4.1/dist/localforage.js}"></script>
         
 		<!-- angular application -->
 		<script src="/js/index.module.js"></script>
@@ -100,9 +101,10 @@
         <script src="/js/common/login.controller.js"></script>
         <script src="/js/common/auth.service.js"></script>
         <script src="/js/common/api.error.interceptor.js"></script>
+        <script src="/js/common/settings.service.js"></script>
+        <script src="/js/common/settings.api.service.js"></script>
         
         <script src="/js/libs/angular-localForage.js"></script>
-        <script src="/js/libs/localforage-SessionStorageWrapper.js"></script>
 	</div>
 </body>
 </html>

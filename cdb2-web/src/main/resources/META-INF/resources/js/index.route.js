@@ -95,7 +95,7 @@
         }
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/bailiff');
   }
 
 })();
