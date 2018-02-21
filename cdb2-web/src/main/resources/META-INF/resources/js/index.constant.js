@@ -4,8 +4,8 @@
     angular
         .module('cdb2')
         .constant('SERVER', {
-            'ROOT': 'http://localhost:8080',
-            'API': 'http://localhost:8080/api'
+            'ROOT': '',
+            'API': 'api'
         })
         .constant('STORE', {
             'USER' :'connected_user',
