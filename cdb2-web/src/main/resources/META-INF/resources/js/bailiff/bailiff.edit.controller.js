@@ -61,7 +61,8 @@
         vm.submitted = true;
         var serializedBailiff = serializeBailiff();
 
-        BailiffAPIService.save({}, serializedBailiff).$promise.then(function () {
+        BailiffAPIService.save({}, serializedBailiff).$promise.then(function (data) {
+          vm.bailiff.id = data.id;
           toastr.success($translate.instant('global.toastr.save.success'));
         }).catch(function (err) {
           $log.error(err);

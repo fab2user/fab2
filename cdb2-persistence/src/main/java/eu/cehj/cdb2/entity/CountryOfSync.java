@@ -35,7 +35,7 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "country_code")
+    @Column(name = "country_code", nullable = false)
     private String countryCode;
 
     public String getName() {

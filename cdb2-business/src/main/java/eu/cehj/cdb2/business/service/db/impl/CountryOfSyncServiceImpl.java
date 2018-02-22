@@ -22,6 +22,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         entity.setUrl(dto.getUrl());
         entity.setUser(dto.getUser());
         entity.setPassword(dto.getPassword());
+        entity.setCountryCode(dto.getCountryCode());
         return entity;
     }
 
@@ -35,6 +36,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setPassword(entity.getPassword());
         dto.setUser(entity.getUser());
         dto.setUrl(entity.getUrl());
+        dto.setCountryCode(entity.getCountryCode());
         return dto;
     }
 

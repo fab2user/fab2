@@ -32,6 +32,16 @@
           </div>
 
           <div class="form-group">
+            <label for="name" translate="global.label.code" class="col-md-3">country code</label>
+            <div class="col-md-9">
+              <input type="text" name="code" class="form-control" id="name" ng-model="countryEditCtrl.country.countryCode" required autofocus="autofocus">
+              <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.code.$error">
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label for="url" translate="country.field.url" class="col-md-3">url</label>
             <div class="col-md-9">
               <input type="text" name="url" class="form-control" id="url" ng-model="countryEditCtrl.country.url" autofocus="autofocus">

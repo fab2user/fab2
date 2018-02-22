@@ -18,6 +18,8 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private String password;
 
+    private String countryCode;
+
     public String getName() {
         return this.name;
     }
@@ -64,6 +66,14 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setPassword(final String password) {
         this.password = password;
+    }
+
+    public String getCountryCode() {
+        return this.countryCode;
+    }
+
+    public void setCountryCode(final String countryCode) {
+        this.countryCode = countryCode;
     }
 
 }
