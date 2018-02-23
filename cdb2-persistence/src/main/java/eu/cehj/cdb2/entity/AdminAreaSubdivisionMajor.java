@@ -23,6 +23,7 @@ public class AdminAreaSubdivisionMajor  extends BaseAuditedEntity<String> {
     @Column(name = "name", nullable=false)
     private String name;
 
+
     @OneToMany(mappedBy="adminAreaSubdivisionMajor")
     private List<AdminAreaSubdivisionMiddle> adminAreaSubdivisionMiddles;
 

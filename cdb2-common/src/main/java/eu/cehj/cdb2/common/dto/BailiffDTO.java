@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.cehj.cdb2.entity.Address;
-
 public class BailiffDTO extends BaseDTO{
 
     private static final long serialVersionUID = 6204512676632176957L;

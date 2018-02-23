@@ -150,4 +150,9 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="cdb-14" author="landry">
+        <addColumn tableName="bailiff">
+            <column name="video_conference" type="boolean" defaultValueBoolean="false"></column>
+        </addColumn>
+    </changeSet>
    </databaseChangeLog>

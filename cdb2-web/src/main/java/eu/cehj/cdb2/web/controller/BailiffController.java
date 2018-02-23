@@ -1,13 +1,5 @@
 package eu.cehj.cdb2.web.controller;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
-
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,9 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.querydsl.core.types.Predicate;
 
+import static org.springframework.http.HttpStatus.*;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 import eu.cehj.cdb2.business.service.data.BailiffImportService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
+import eu.cehj.cdb2.common.dto.BailiffExportDTO;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.QBailiff;
 
@@ -66,6 +63,15 @@ public class BailiffController extends BaseController {
             return this.bailiffService.getAllEvenDeletedDTO();
         }
         return this.bailiffService.getAllDTO();
+    }
+
+    /**
+     * Used for xml generation
+     */
+    @RequestMapping(method = GET, value = "all")
+    @ResponseStatus(value = OK)
+    public List<BailiffExportDTO> getAllForExport() throws Exception {
+        return this.bailiffService.getAllForExport();
     }
 
     @RequestMapping(method = GET, value = "search")

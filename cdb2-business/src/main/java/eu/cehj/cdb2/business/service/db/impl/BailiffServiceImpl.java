@@ -21,8 +21,12 @@ import eu.cehj.cdb2.business.dao.MunicipalityRepository;
 import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
+import eu.cehj.cdb2.common.dto.BailiffExportDTO;
+import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
+import eu.cehj.cdb2.entity.BailiffCompetenceArea;
+import eu.cehj.cdb2.entity.GeoArea;
 import eu.cehj.cdb2.entity.Language;
 import eu.cehj.cdb2.entity.Municipality;
 
@@ -70,8 +74,8 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         bailiffDTO.setEmail(bailiff.getEmail());
         bailiffDTO.setPhone(bailiff.getPhone());
         bailiff.getLanguages().forEach(lang -> bailiffDTO.getLanguages().add(lang.getId()));
-        if(bailiff.getLangOfDetails().size() > 0) {
-            bailiffDTO.setLangOfDetails( bailiff.getLangOfDetails().get(0).getId());
+        if (bailiff.getLangOfDetails().size() > 0) {
+            bailiffDTO.setLangOfDetails(bailiff.getLangOfDetails().get(0).getId());
         }
 
         final Address address = bailiff.getAddress();
@@ -151,6 +155,49 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
             dtos.add(dto);
         });
         return dtos;
+    }
+
+    @Override
+    public List<BailiffExportDTO> getAllForExport() throws Exception {
+        final List<Bailiff> entities = this.repository.findAll();
+        final List<BailiffExportDTO> dtos = new ArrayList<>(entities.size());
+        for (final Bailiff entity : entities) {
+            dtos.add(this.populateExportDTOFromEntity(entity));
+        }
+        return dtos;
+    }
+
+    @Override
+    public BailiffExportDTO populateExportDTOFromEntity(final Bailiff entity) throws Exception {
+        final BailiffExportDTO dto = new BailiffExportDTO();
+        if (entity.getAddress() != null) {
+            dto.setAddress(entity.getAddress().getAddress());
+            if (entity.getAddress().getMunicipality() != null) {
+                dto.setMunicipality(entity.getAddress().getMunicipality().getName());
+                dto.setPostalCode(entity.getAddress().getMunicipality().getPostalCode());
+            }
+        }
+        dto.setFax(entity.getFax());
+        if (entity.getLanguages().size() > 0) {
+            dto.setLang(entity.getLanguages().get(0).getLanguage());
+        }
+
+        dto.setName(entity.getName());
+
+        dto.setTel(entity.getPhone());
+        dto.setVideoConference(entity.isVideoConference());
+        final List<CompetenceExportDTO> competences = new ArrayList<>();
+        for (final BailiffCompetenceArea bca : entity.getBailiffCompetenceAreas()) {
+            for (final GeoArea area : bca.getAreas()) {
+                final CompetenceExportDTO competence = new CompetenceExportDTO();
+                competence.setGeoAreaId(Long.toString(area.getId())); // TODO: Check if we need to use Area name instead (seems like according to example xml file)
+                competence.setInstrument(bca.getCompetence().getInstrument().getCode());
+                competence.setType(bca.getCompetence().getCode());
+                competences.add(competence);
+            }
+        }
+        dto.setCompetences(competences);
+        return dto;
     }
 
 }

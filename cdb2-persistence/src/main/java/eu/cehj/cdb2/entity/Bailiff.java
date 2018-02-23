@@ -53,6 +53,9 @@ public class Bailiff extends BaseAuditedEntity<String> {
     @Column(name = "web_site")
     private String webSite;
 
+    @Column(name = "video_conference", nullable = false)
+    private boolean videoConference;
+
     public String getName() {
         return this.name;
     }
@@ -111,6 +114,14 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     public void setWebSite(final String webSite) {
         this.webSite = webSite;
+    }
+
+    public boolean isVideoConference() {
+        return this.videoConference;
+    }
+
+    public void setVideoConference(final boolean videoConference) {
+        this.videoConference = videoConference;
     }
 
 }

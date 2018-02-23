@@ -17,15 +17,20 @@ import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.hub.utils.RestResponsePage;
+import eu.cehj.cdb2.hub.utils.Settings;
 
 @Service
 public class DefaultSearchInterfaceService implements SearchInterfaceService{
 
     @Autowired
-    CountryOfSyncService cosService;
+    private CountryOfSyncService cosService;
 
     @Autowired
-    RestTemplateBuilder builder;
+    private RestTemplateBuilder builder;
+
+    @Autowired
+    Settings settings;
+
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -33,7 +38,7 @@ public class DefaultSearchInterfaceService implements SearchInterfaceService{
     public Page<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) throws Exception {
         final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
-        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(cos.getUrl())
+        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(cos.getUrl() + "/" + this.settings.getSearchUrl())
                 .queryParams(params);
         final ResponseEntity<RestResponsePage<BailiffDTO>> dtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,  new ParameterizedTypeReference<RestResponsePage<BailiffDTO>>() {});
         this.logger.debug(dtos.toString());
