@@ -112,4 +112,10 @@ public class BailiffController extends BaseController {
                 .body(resource);
     }
 
+    @RequestMapping(method = GET, value = "/{id}")
+    @ResponseStatus(value = OK)
+    public BailiffDTO getById(@PathVariable final Long id) throws Exception {
+        return this.bailiffService.getDTO(id);
+    }
+
 }

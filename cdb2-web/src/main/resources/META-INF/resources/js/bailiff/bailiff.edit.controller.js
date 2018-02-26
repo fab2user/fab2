@@ -112,7 +112,8 @@
       BailiffCompAreaAPIService.delete({
         id: vm.selectedCompetence.id
       }).$promise.then(function () {
-        $uibModalInstance.close('delete');
+        delete vm.selectedCompetence;
+        loadBailiffCompArea();
         toastr.success($translate.instant('global.toastr.delete.success'));
       }).catch(function (err) {
         $log.error(err);
