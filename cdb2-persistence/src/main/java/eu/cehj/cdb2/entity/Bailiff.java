@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "bailiff")
 public class Bailiff extends BaseAuditedEntity<String> {
@@ -39,6 +41,7 @@ public class Bailiff extends BaseAuditedEntity<String> {
     private final List<Language> langOfDetails = new ArrayList<>();
 
     @OneToMany(mappedBy="bailiff")
+    @Where(clause = "deleted is null or deleted = false") // Highly important in order to pull only non-deleted records
     private final List<BailiffCompetenceArea> bailiffCompetenceAreas = new ArrayList<>();
 
     @Column(name = "phone")

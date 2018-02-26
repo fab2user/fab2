@@ -11,6 +11,7 @@ public class BailiffExportDTO{
     private String municipality;
     private String tel;
     private String fax;
+    private String email;
     private boolean videoConference;
     private List<CompetenceExportDTO> competences;
 
@@ -67,5 +68,11 @@ public class BailiffExportDTO{
     }
     public void setCompetences(final List<CompetenceExportDTO> competences) {
         this.competences = competences;
+    }
+    public String getEmail() {
+        return this.email;
+    }
+    public void setEmail(final String email) {
+        this.email = email;
     }
 }

@@ -18,7 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <skipTests>false</skipTests>
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
@@ -32,42 +32,68 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<!--         <dependency> -->
+<!--             <groupId>org.jvnet.jaxb2.maven2</groupId> -->
+<!--             <artifactId>maven-jaxb2-plugin</artifactId> -->
+<!--             <version>0.13.3</version> -->
+<!--         </dependency> -->
+
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-xjc-plugin</artifactId>
-                <version>3.2.1</version>
-                <configuration>
-                    <extensions>
-                        <extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:3.2.1</extension>
-                    </extensions>
-                </configuration>
+     <groupId>org.codehaus.mojo</groupId>
+    <artifactId>jaxb2-maven-plugin</artifactId>
+    <version>2.3.1</version>
                 <executions>
                     <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
+                        <id>xjc</id>
                         <goals>
-                            <goal>xsdtojava</goal>
+                            <goal>xjc</goal>
                         </goals>
-                        <configuration>
-                            <sourceRoot>${project.basedir}/target/generated-sources/java</sourceRoot>
-                            <xsdOptions>
-                                <xsdOption>
-                                    <extensionArgs>
-                                        <arg>-encoding</arg>
-                                        <arg>UTF-8</arg>
-                                    </extensionArgs>
-                                    <xsd>${basedir}/src/main/resources/xml/court_database.xsd</xsd>
-                                    <packagename>eu.chj.cdb2.common</packagename>
-                                </xsdOption>
-                            </xsdOptions>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <sources>
+                        <source>${basedir}/src/main/resources/xml/court_database.xsd</source>
+                    </sources>
+                    <!-- The package of your generated sources -->
+                    <packageName>eu.chj.cdb2.common</packageName>
+                </configuration>
             </plugin>
+            <!-- <plugin> -->
+            <!-- <groupId>org.apache.cxf</groupId> -->
+            <!-- <artifactId>cxf-xjc-plugin</artifactId> -->
+            <!-- <version>3.2.1</version> -->
+            <!-- <configuration> -->
+            <!-- <extensions> -->
+            <!-- <extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:3.2.1</extension> -->
+            <!-- </extensions> -->
+            <!-- </configuration> -->
+            <!-- <executions> -->
+            <!-- <execution> -->
+            <!-- <id>generate-sources</id> -->
+            <!-- <phase>generate-sources</phase> -->
+            <!-- <goals> -->
+            <!-- <goal>xsdtojava</goal> -->
+            <!-- </goals> -->
+            <!-- <configuration> -->
+            <!-- <sourceRoot>${project.basedir}/target/generated-sources/java</sourceRoot> -->
+            <!-- <xsdOptions> -->
+            <!-- <xsdOption> -->
+            <!-- <extensionArgs> -->
+            <!-- <arg>-encoding</arg> -->
+            <!-- <arg>UTF-8</arg> -->
+            <!-- </extensionArgs> -->
+            <!-- <xsd>${basedir}/src/main/resources/xml/court_database.xsd</xsd> -->
+            <!-- <packagename>eu.chj.cdb2.common</packagename> -->
+            <!-- </xsdOption> -->
+            <!-- </xsdOptions> -->
+            <!-- </configuration> -->
+            <!-- </execution> -->
+            <!-- </executions> -->
+            <!-- </plugin> -->
         </plugins>
     </build>
 </project>

@@ -185,6 +185,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         dto.setName(entity.getName());
 
         dto.setTel(entity.getPhone());
+        dto.setEmail(entity.getEmail());
         dto.setVideoConference(entity.isVideoConference());
         final List<CompetenceExportDTO> competences = new ArrayList<>();
         for (final BailiffCompetenceArea bca : entity.getBailiffCompetenceAreas()) {
