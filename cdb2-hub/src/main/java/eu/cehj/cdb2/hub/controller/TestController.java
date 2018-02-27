@@ -24,7 +24,7 @@ public class TestController extends BaseController {
     @RequestMapping(method = GET)
     @ResponseStatus(value = OK)
     public CdbPushMessage test() throws Exception {
-        return this.pushDataService.pushData();
+        return this.pushDataService.process("FR");
 
     }
 

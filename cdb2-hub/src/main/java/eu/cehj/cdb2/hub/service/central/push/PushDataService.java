@@ -1,16 +1,19 @@
 package eu.cehj.cdb2.hub.service.central.push;
 
-import java.util.List;
-
-import eu.cehj.cdb2.common.dto.BailiffExportDTO;
 import eu.cehj.cdb2.common.service.CdbPushMessage;
+import eu.cehj.cdb2.entity.CountryOfSync;
+import eu.chj.cdb2.common.Data;
 
 public interface PushDataService {
 
-    public List<BailiffExportDTO> fetchBailiffs(String countryCode) throws Exception;
+    public CountryOfSync getCountryUrl(final String countryCode) throws Exception;
 
-    public CdbPushMessage generateXmlContent(List<BailiffExportDTO> dtos, String countryCode) throws Exception;
+    public Data processBailiffs( final CountryOfSync cos) throws Exception;
 
-    public CdbPushMessage pushData() throws Exception;
+    public Data processAreas(final CountryOfSync cos) throws Exception;
+
+    public CdbPushMessage pushData(final Data data) throws Exception;
+
+    public CdbPushMessage process(final String countryCode) throws Exception;
 
 }

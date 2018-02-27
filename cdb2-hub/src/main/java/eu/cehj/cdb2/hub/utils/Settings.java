@@ -19,6 +19,9 @@ public class Settings implements Serializable{
     @Value("${settings.bailiffs.url}")
     private String bailiffsUrl;
 
+    @Value("${settings.areas.url}")
+    private String areasUrl;
+
     public String getSearchUrl() {
         return this.searchUrl;
     }
@@ -33,6 +36,14 @@ public class Settings implements Serializable{
 
     public void setBailiffsUrl(final String bailiffsUrl) {
         this.bailiffsUrl = bailiffsUrl;
+    }
+
+    public String getAreasUrl() {
+        return this.areasUrl;
+    }
+
+    public void setAreasUrl(final String areasUrl) {
+        this.areasUrl = areasUrl;
     }
 
 }

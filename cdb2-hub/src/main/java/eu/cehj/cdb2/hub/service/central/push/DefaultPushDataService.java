@@ -1,7 +1,11 @@
 package eu.cehj.cdb2.hub.service.central.push;
 
-import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -21,6 +25,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
 import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
+import eu.cehj.cdb2.common.dto.GeoAreaDTO;
+import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.common.service.CdbPushMessage;
 import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.hub.utils.Settings;
@@ -31,6 +37,7 @@ import eu.chj.cdb2.common.Competence;
 import eu.chj.cdb2.common.Data;
 import eu.chj.cdb2.common.Detail;
 import eu.chj.cdb2.common.GeoArea;
+import eu.chj.cdb2.common.Municipality;
 import eu.chj.cdb2.common.ObjectFactory;
 
 @Service
@@ -48,25 +55,27 @@ public class DefaultPushDataService implements PushDataService {
     private Settings settings;
 
     @Override
-    public List<BailiffExportDTO> fetchBailiffs(final String countryCode) throws Exception {
-        final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
-        final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
-        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(cos.getUrl() + "/" + this.settings.getBailiffsUrl());
-        final ResponseEntity<List<BailiffExportDTO>> entities = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<BailiffExportDTO>>() {
-        });
-        this.logger.debug(entities.toString());
-        return entities.getBody();
+    public CountryOfSync getCountryUrl(final String countryCode) throws Exception {
+        return this.cosService.getByCountryCode(countryCode);
+
     }
 
     @Override
-    public CdbPushMessage generateXmlContent(final List<BailiffExportDTO> dtos, final String countryCode) throws Exception {
-        final ByteArrayOutputStream os = new ByteArrayOutputStream();
+    public Data processBailiffs( final CountryOfSync cos) throws Exception {
+
+        final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
+
+        final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(cos.getUrl() + "/" + this.settings.getBailiffsUrl());
+        final ResponseEntity<List<BailiffExportDTO>> entities = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<BailiffExportDTO>>() {
+        });
+        this.logger.debug(entities.toString());
+        final List<BailiffExportDTO> dtos = entities.getBody();
         final Data data = new Data();
         final ObjectFactory factory = new ObjectFactory();
         for (final BailiffExportDTO dto : dtos) {
             final Body body = new Body();
-            body.setCountry(countryCode);
+            body.setCountry(cos.getCountryCode());
             final Details details = new Details();
             final Detail detail = new Detail();
             detail.setName(dto.getName());
@@ -92,8 +101,45 @@ public class DefaultPushDataService implements PushDataService {
             }
             body.setCompetences(competences);
         }
+        return data;
+    }
+
+    @Override
+    public Data processAreas(final CountryOfSync cos) throws Exception {
+        // TODO: If needed, create a new geoArea service returning only data needed by CDB
+        final Data data = new Data();
+        final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
+        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(cos.getUrl() + "/" + this.settings.getAreasUrl());
+
+        final ResponseEntity<List<GeoAreaDTO>> respDtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<GeoAreaDTO>>() {
+        });
+        this.logger.debug(respDtos.toString());
+        final List<GeoAreaDTO> dtos = respDtos.getBody();
+        for(final GeoAreaDTO dto: dtos) {
+            final GeoArea geoArea = this.buildGeoArea(dto);
+            data.getGeoArea().add(geoArea);
+        }
+        return data;
+
+    }
+
+    public GeoArea buildGeoArea(final GeoAreaDTO dto) throws Exception{
+        final GeoArea geoArea = new GeoArea();
+        geoArea.setId(Long.toString(dto.getId()));
+        for(final MunicipalityDTO municipalityDTO:dto.getMunicipalities()) {
+            final Municipality municipality = new Municipality();
+            municipality.setName(municipalityDTO.getName());
+            municipality.setPostalCode(municipalityDTO.getPostalCode());
+            geoArea.getMunicipalityOrStreetOrAddress().add(municipality);
+        }
+
+        return geoArea;
+    }
 
 
+    @Override
+    public CdbPushMessage pushData(final Data data) throws Exception {
         final JAXBContext context = JAXBContext.newInstance(CdbPushMessage.class);
         final Marshaller m = context.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -104,9 +150,36 @@ public class DefaultPushDataService implements PushDataService {
     }
 
     @Override
-    public CdbPushMessage pushData() throws Exception {
-        final List<BailiffExportDTO> dtos = this.fetchBailiffs("FR");
-        return this.generateXmlContent(dtos, "FR");
+    public CdbPushMessage process(final String countryCode) throws Exception {
+        final ExecutorService executor = Executors.newWorkStealingPool();
+        final CountryOfSync cos = this.getCountryUrl(countryCode);
+        final Callable<Data> taskBailiff = () -> {
+            try {
+                return this.processBailiffs(cos);
+            }
+            catch (final InterruptedException e) {
+                throw new IllegalStateException("task interrupted", e);
+            }
+        };
+        final Callable<Data> taskArea = () -> {
+            try {
+                return this.processAreas(cos);
+            }
+            catch (final InterruptedException e) {
+                throw new IllegalStateException("task interrupted", e);
+            }
+        };
+        final List<Callable<Data>> callables = new ArrayList<Callable<Data>>();
+        callables.add(taskBailiff);
+        callables.add(taskArea);
+
+        final List<Future<Data>> finishedData = executor.invokeAll(callables);
+        final Data bailiffData = finishedData.get(0).get();
+        final Data areasData = finishedData.get(1).get();
+        for(final GeoArea area: areasData.getGeoArea()) {
+            bailiffData.getGeoArea().add(area);
+        }
+        return this.pushData(bailiffData);
     }
 
 }
