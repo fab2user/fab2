@@ -28,11 +28,4 @@ public class TestController extends BaseController {
 
     }
 
-    @RequestMapping(method = GET, value = "send")
-    @ResponseStatus(value = OK)
-    public void testWithSend() throws Exception {
-        this.pushDataService.processWithSend("FR");
-
-    }
-
 }

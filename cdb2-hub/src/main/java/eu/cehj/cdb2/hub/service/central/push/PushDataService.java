@@ -16,6 +16,4 @@ public interface PushDataService {
 
     public CdbPushMessage process(final String countryCode) throws Exception;
 
-    public void processWithSend(String countryCode) throws Exception;
-
 }
