@@ -1,4 +1,4 @@
-package eu.cehj.cdb2;
+package eu.cehj.cdb2.persistence;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

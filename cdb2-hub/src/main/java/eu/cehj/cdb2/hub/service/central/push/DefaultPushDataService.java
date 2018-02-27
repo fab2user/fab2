@@ -1,5 +1,6 @@
 package eu.cehj.cdb2.hub.service.central.push;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -39,6 +40,7 @@ import eu.chj.cdb2.common.Detail;
 import eu.chj.cdb2.common.GeoArea;
 import eu.chj.cdb2.common.Municipality;
 import eu.chj.cdb2.common.ObjectFactory;
+import eu.europa.eucdb.data.transfer.service.eucdb.EucdbDataTransferAdapter;
 
 @Service
 public class DefaultPushDataService implements PushDataService {
@@ -53,6 +55,9 @@ public class DefaultPushDataService implements PushDataService {
 
     @Autowired
     private Settings settings;
+
+    @Autowired
+    private EucdbDataTransferAdapter transferAdapter;
 
     @Override
     public CountryOfSync getCountryUrl(final String countryCode) throws Exception {
@@ -140,9 +145,9 @@ public class DefaultPushDataService implements PushDataService {
 
     @Override
     public CdbPushMessage pushData(final Data data) throws Exception {
-        final JAXBContext context = JAXBContext.newInstance(CdbPushMessage.class);
-        final Marshaller m = context.createMarshaller();
-        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        //        final JAXBContext context = JAXBContext.newInstance(CdbPushMessage.class);
+        //        final Marshaller m = context.createMarshaller();
+        //        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         final CdbPushMessage message = new CdbPushMessage();
         message.setData(data);
         return message;
@@ -180,6 +185,44 @@ public class DefaultPushDataService implements PushDataService {
             bailiffData.getGeoArea().add(area);
         }
         return this.pushData(bailiffData);
+    }
+
+    @Override
+    public void processWithSend(final String countryCode) throws Exception {
+        final ExecutorService executor = Executors.newWorkStealingPool();
+        final CountryOfSync cos = this.getCountryUrl(countryCode);
+        final Callable<Data> taskBailiff = () -> {
+            try {
+                return this.processBailiffs(cos);
+            }
+            catch (final InterruptedException e) {
+                throw new IllegalStateException("task interrupted", e);
+            }
+        };
+        final Callable<Data> taskArea = () -> {
+            try {
+                return this.processAreas(cos);
+            }
+            catch (final InterruptedException e) {
+                throw new IllegalStateException("task interrupted", e);
+            }
+        };
+        final List<Callable<Data>> callables = new ArrayList<Callable<Data>>();
+        callables.add(taskBailiff);
+        callables.add(taskArea);
+
+        final List<Future<Data>> finishedData = executor.invokeAll(callables);
+        final Data bailiffData = finishedData.get(0).get();
+        final Data areasData = finishedData.get(1).get();
+        for(final GeoArea area: areasData.getGeoArea()) {
+            bailiffData.getGeoArea().add(area);
+        }
+        final JAXBContext context = JAXBContext.newInstance(CdbPushMessage.class);
+        final Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        marshaller.marshal(bailiffData, baos);
+        this.transferAdapter.uploadData(baos.toByteArray());
     }
 
 }
