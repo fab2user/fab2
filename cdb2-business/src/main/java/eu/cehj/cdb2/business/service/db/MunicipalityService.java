@@ -16,4 +16,6 @@ public interface MunicipalityService extends BaseService<Municipality, Municipal
 
     public Page<MunicipalityDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
 
+    public Municipality getByPostalCodeAndName(String postalCode, String name) throws Exception;
+
 }

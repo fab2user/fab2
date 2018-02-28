@@ -20,9 +20,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import eu.cehj.cdb2.business.service.db.AddressService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
+import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.business.utils.BailiffImportModel;
+import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
+import eu.cehj.cdb2.entity.Municipality;
 
 @Service
 public class BailiffImportService {
@@ -32,6 +36,12 @@ public class BailiffImportService {
     @Autowired
     BailiffService bailiffService;
 
+    @Autowired
+    MunicipalityService municipalityService;
+
+    @Autowired
+    AddressService addressService;
+
     @Transactional
     public void importFile(final InputStream is, final String countryCode) throws Exception {
         try (final Workbook workbook = new XSSFWorkbook(is)) {
@@ -39,8 +49,7 @@ public class BailiffImportService {
             final Iterator<Row> it = sheet.rowIterator();
             it.next(); // We skip first row since it contains table's header
             while (it.hasNext()) {
-                final Bailiff bailiff = this.populateBailiff(it.next(), this.getImportModel(countryCode));
-                this.bailiffService.save(bailiff);
+                this.processBailiff(it.next(), this.getImportModel(countryCode));
             }
 
         }
@@ -66,7 +75,7 @@ public class BailiffImportService {
                 cell.setCellValue(bailiff.getEmail());
                 currentRow.createCell(4, CellType.STRING);
                 cell.setCellValue(bailiff.getWebSite());
-                index ++;
+                index++;
             }
 
             final File currDir = new File(".");
@@ -79,7 +88,7 @@ public class BailiffImportService {
         }
     }
 
-    private Row writeHeaders(final Sheet sheet, final BailiffImportModel importModel)throws Exception {
+    private Row writeHeaders(final Sheet sheet, final BailiffImportModel importModel) throws Exception {
         final Row row = sheet.createRow(0);
         Cell cell = row.createCell(0, CellType.STRING);
         cell.setCellValue("Name");
@@ -94,39 +103,61 @@ public class BailiffImportService {
         return row;
     }
 
-    private BailiffImportModel getImportModel(final String countryCode)throws Exception {
+    private BailiffImportModel getImportModel(final String countryCode) throws Exception {
         final String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         final String path = rootPath + "xls_" + countryCode + ".properties";
-        try(FileInputStream fis = new FileInputStream(path)){
+        try (FileInputStream fis = new FileInputStream(path)) {
             final Properties xlsProps = new Properties();
             xlsProps.load(fis);
             return new BailiffImportModel(xlsProps);
         }
     }
 
-    private Bailiff populateBailiff(final Row row, final BailiffImportModel importModel) throws Exception {
-        final Bailiff bailiff = new Bailiff();
-        Cell cell = row.getCell(importModel.getName());
-        final String name = cell.getStringCellValue();
-        bailiff.setName(name);
-        cell = row.getCell(importModel.getPhone());
-        final String phone = cell.getStringCellValue();
-        bailiff.setPhone(phone);
-        cell = row.getCell(importModel.getFax());
-        final String fax = cell.getStringCellValue();
-        bailiff.setFax(fax);
-        cell = row.getCell(importModel.getEmail());
-        final String email = cell.getStringCellValue();
-        bailiff.setEmail(email);
-        cell = row.getCell(importModel.getWebSite());
-        final String webSite = cell.getStringCellValue();
-        bailiff.setWebSite(webSite);
-
-        return bailiff;
+    private void processBailiff(final Row row, final BailiffImportModel importModel) throws Exception {
+        final Bailiff bailiff = this.populateBailiff(row, importModel);
+        final Address address = this.populateAddress(row, importModel);
+        bailiff.setAddress(address);
+        this.bailiffService.save(bailiff);
 
     }
 
+    private Bailiff populateBailiff(final Row row, final BailiffImportModel importModel) {
+        final Bailiff bailiff = new Bailiff();
+        Cell cell = row.getCell(importModel.getName());
+        final String name = cell.getStringCellValue().trim();
+        bailiff.setName(name);
+        cell = row.getCell(importModel.getPhone());
+        final String phone = cell.getStringCellValue().trim();
+        bailiff.setPhone(phone);
+        cell = row.getCell(importModel.getFax());
+        final String fax = cell.getStringCellValue().trim();
+        bailiff.setFax(fax);
+        cell = row.getCell(importModel.getEmail());
+        final String email = cell.getStringCellValue().trim();
+        bailiff.setEmail(email);
+        cell = row.getCell(importModel.getWebSite());
+        final String webSite = cell.getStringCellValue().trim();
+        bailiff.setWebSite(webSite);
+        return bailiff;
+    }
+
+    private Address populateAddress(final Row row, final BailiffImportModel importModel) throws Exception {
+        Cell cell = row.getCell(importModel.getMunicipality());
+        final String name = cell.getStringCellValue().trim();
+        cell = row.getCell(importModel.getPostalCode());
+        final String postalCode = cell.getStringCellValue().trim();
+        Municipality municipality = this.municipalityService.getByPostalCodeAndName(postalCode, name);
+        if (municipality == null) {
+            municipality = new Municipality();
+            municipality.setName(name);
+            municipality.setPostalCode(postalCode);
+            municipality = this.municipalityService.save(municipality);
+        }
+        final Address address = new Address();
+        cell = row.getCell(importModel.getAddress());
+        address.setAddress(cell.getStringCellValue().trim());
+        address.setMunicipality(municipality);
+        return this.addressService.save(address);
+    }
+
 }
-
-
-

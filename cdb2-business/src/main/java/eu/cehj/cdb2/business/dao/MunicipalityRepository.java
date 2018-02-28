@@ -16,11 +16,11 @@ import eu.cehj.cdb2.entity.QMunicipality;
 @RepositoryRestResource
 public interface MunicipalityRepository extends JpaRepository<Municipality, Long>, QueryDslPredicateExecutor<Municipality>, QuerydslBinderCustomizer<QMunicipality> {
 
-    public Municipality getByPostalCode(String postalCode);
-
     public Municipality getByPostalCodeAndName(String postalCode, String name);
 
     public List<Municipality> findAllByOrderByPostalCode();
+
+    public Municipality getByName(String name);
 
     @Override
     default public void customize(final QuerydslBindings bindings, final QMunicipality root) {

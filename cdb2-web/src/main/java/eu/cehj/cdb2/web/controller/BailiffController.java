@@ -35,6 +35,7 @@ import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.QBailiff;
+import eu.cehj.cdb2.web.utils.Settings;
 
 @RestController
 @RequestMapping("api/bailiff")
@@ -45,6 +46,9 @@ public class BailiffController extends BaseController {
 
     @Autowired
     BailiffImportService bailiffImportService;
+
+    @Autowired
+    Settings settings;
 
     @RequestMapping(
             method = {
@@ -93,7 +97,7 @@ public class BailiffController extends BaseController {
     @ResponseStatus(value = HttpStatus.OK)
     public void importData(@RequestParam("file") final MultipartFile file) throws Exception{
         try (InputStream is = file.getInputStream()) {
-            this.bailiffImportService.importFile(is, "AT");
+            this.bailiffImportService.importFile(is, this.settings.getCountryCode());
         }
     }
 

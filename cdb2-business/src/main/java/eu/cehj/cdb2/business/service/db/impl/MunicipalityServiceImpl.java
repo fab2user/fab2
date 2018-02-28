@@ -118,4 +118,9 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Munic
         return null;
     }
 
+    @Override
+    public Municipality getByPostalCodeAndName(final String postalCode, final String name) throws Exception {
+        return this.repository.getByPostalCodeAndName(postalCode, name);
+    }
+
 }

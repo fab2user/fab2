@@ -16,11 +16,22 @@ public class Settings implements Serializable{
     @Value("${country.name}")
     private String country;
 
+    @Value("${country.code}")
+    private String countryCode;
+
     public String getCountry() {
         return this.country;
     }
 
     public void setCountry(final String country) {
         this.country = country;
+    }
+
+    public String getCountryCode() {
+        return this.countryCode;
+    }
+
+    public void setCountryCode(final String countryCode) {
+        this.countryCode = countryCode;
     }
 }

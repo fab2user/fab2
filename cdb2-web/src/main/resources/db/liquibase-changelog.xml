@@ -155,4 +155,9 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             <column name="video_conference" type="boolean" defaultValueBoolean="false"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="cdb-15" author="landry">
+        <createIndex tableName="municipality" indexName="IND_MUNICIPALITY_NAME">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
    </databaseChangeLog>
