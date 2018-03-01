@@ -17,12 +17,11 @@
     'toastr',
     'MunicipalityAPIService',
     'SERVER',
-    'StatusService',
     'EVENT',
     'STATUS'
   ];
 
-  function BailiffController($log, $translate, $uibModal, $http, $interval, $rootScope, FileSaver, Blob, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService, SERVER, StatusService, EVENT, STATUS) {
+  function BailiffController($log, $translate, $uibModal, $http, $interval, $rootScope, FileSaver, Blob, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService, SERVER, EVENT, STATUS) {
 
     var vm = this;
     vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
@@ -79,7 +78,6 @@
         toastr.success($translate.instant('bailiff.import.inprogress'));
         vm.importFile = null;
         
-        StatusService.tasks[success.data.code] = success.data;
         $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
         // start polling
         vm.startPolling(success.data.code);

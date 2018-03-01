@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -64,7 +65,11 @@ public class BailiffImportService {
             }}
         catch(final Exception e) {
             task.setStatus(TaskStatus.Status.ERROR);
-            task.setMessage(e.getMessage());
+            String message = e.getMessage();
+            if(StringUtils.isBlank(message)) {
+                message = "Unknown server error while processing xls import file.";
+            }
+            task.setMessage(message);
             throw e;
         }finally {
             this.storageService.deleteFile(fileName);
