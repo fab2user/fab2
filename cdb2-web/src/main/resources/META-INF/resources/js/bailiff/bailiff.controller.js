@@ -8,16 +8,22 @@
     '$translate',
     '$uibModal',
     '$http',
+    '$interval',
+    '$rootScope',
     'FileSaver',
     'Blob',
     'NgTableParams',
     'BailiffAPIService',
     'toastr',
     'MunicipalityAPIService',
-    'SERVER'
+    'SERVER',
+    'StatusService',
+    'EVENT',
+    'STATUS'
   ];
 
-  function BailiffController($log, $translate, $uibModal, $http, FileSaver, Blob, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService, SERVER) {
+  function BailiffController($log, $translate, $uibModal, $http, $interval, $rootScope, FileSaver, Blob, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService, SERVER, StatusService, EVENT, STATUS) {
+
     var vm = this;
     vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
     vm.selectedBailiff = {};
@@ -68,15 +74,44 @@
         headers: {
           'Content-Type': undefined
         }
-      }).then(function () {
+      }).then(function (success) {
         $log.debug('Update successfully submitted');
-        toastr.success($translate.instant('bailiff.import.transmitted'));
+        toastr.success($translate.instant('bailiff.import.inprogress'));
         vm.importFile = null;
-        vm.fetchBailiffs();
+        
+        StatusService.tasks[success.data.code] = success.data;
+        $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
+        // start polling
+        vm.startPolling(success.data.code);
+
       })
       .finally(function () {
         vm.submitted = false;
       });
+    };
+
+    vm.polling = undefined;
+
+    vm.startPolling = function(taskCode){
+      if(angular.isDefined(vm.polling)) return;
+      vm.polling = $interval(function(){
+        $http.get(SERVER.API + '/task/' + taskCode).then(function(success){
+          if(success.data.status === STATUS.OK){
+            vm.fetchBailiffs();
+          }
+          if(success.data.status === STATUS.OK || success.data.status === STATUS.ERROR){
+            $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
+            vm.endPolling();
+          }
+        });
+      }, 10000, 5);
+    };
+
+    vm.endPolling = function(){
+      if (angular.isDefined(vm.polling)) {
+        $interval.cancel(vm.polling);
+        vm.polling = undefined;
+      }
     };
 
     function loadModal(bailiff) {

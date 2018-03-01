@@ -1,6 +1,5 @@
 package eu.cehj.cdb2.web.controller;
 
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,6 +32,9 @@ import eu.cehj.cdb2.business.service.data.BailiffImportService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
+import eu.cehj.cdb2.common.service.StorageService;
+import eu.cehj.cdb2.common.service.task.TaskManager;
+import eu.cehj.cdb2.common.service.task.TaskStatus;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.QBailiff;
 import eu.cehj.cdb2.web.utils.Settings;
@@ -49,6 +51,12 @@ public class BailiffController extends BaseController {
 
     @Autowired
     Settings settings;
+
+    @Autowired
+    TaskManager taskManager;
+
+    @Autowired
+    StorageService storageService;
 
     @RequestMapping(
             method = {
@@ -95,10 +103,14 @@ public class BailiffController extends BaseController {
 
     @RequestMapping(method = { POST }, value="import")
     @ResponseStatus(value = HttpStatus.OK)
-    public void importData(@RequestParam("file") final MultipartFile file) throws Exception{
-        try (InputStream is = file.getInputStream()) {
-            this.bailiffImportService.importFile(is, this.settings.getCountryCode());
-        }
+    public TaskStatus importData(@RequestParam("file") final MultipartFile file) throws Exception{
+        final TaskStatus task = this.taskManager.createTask(TaskManager.Type.IMPORT_XLS);
+        //        try (InputStream is = file.getInputStream()) {
+        //            this.bailiffImportService.importFile(is, this.settings.getCountryCode(), task);
+        //        }
+        this.storageService.store(file);
+        this.bailiffImportService.importFile(file.getOriginalFilename(), this.settings.getCountryCode(), task);
+        return task;
     }
 
     @RequestMapping(method = { GET }, value="export")

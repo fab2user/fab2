@@ -45,7 +45,7 @@ public class LocalisationController extends BaseController {
             try (InputStream is = fileSystemResource.getInputStream()) {
                 props.load(is);
             }catch(final FileNotFoundException err) {
-                this.logger.warn(err.getMessage(), err);
+                this.logger.warn(err.getMessage());
             }
         }
 

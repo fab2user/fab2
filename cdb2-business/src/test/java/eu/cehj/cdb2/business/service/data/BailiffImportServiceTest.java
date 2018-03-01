@@ -1,7 +1,5 @@
 package eu.cehj.cdb2.business.service.data;
 
-import java.io.InputStream;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -22,15 +20,15 @@ public class BailiffImportServiceTest {
     @Autowired
     private BailiffImportService service;
 
-    @Test
-    public void testImportFile() {
-
-        try (final InputStream is = this.getClass().getResourceAsStream("AT.xlsx");) {
-            this.service.importFile(is, "AT");
-        } catch (final Throwable e) {
-            this.logger.error(e.getMessage(), e);
-        }
-    }
+    //    @Test
+    //    public void testImportFile() {
+    //
+    //        try (final InputStream is = this.getClass().getResourceAsStream("AT.xlsx");) {
+    //            this.service.importFile(is, "AT", null);
+    //        } catch (final Throwable e) {
+    //            this.logger.error(e.getMessage(), e);
+    //        }
+    //    }
 
     @Test
     public void testExportFile() {

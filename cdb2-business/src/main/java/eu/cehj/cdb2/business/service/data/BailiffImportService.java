@@ -3,7 +3,6 @@ package eu.cehj.cdb2.business.service.data;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -17,6 +16,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,8 @@ import eu.cehj.cdb2.business.service.db.AddressService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.business.utils.BailiffImportModel;
+import eu.cehj.cdb2.common.service.StorageService;
+import eu.cehj.cdb2.common.service.task.TaskStatus;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.Municipality;
@@ -34,24 +37,37 @@ public class BailiffImportService {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    BailiffService bailiffService;
+    private BailiffService bailiffService;
 
     @Autowired
-    MunicipalityService municipalityService;
+    private MunicipalityService municipalityService;
 
     @Autowired
-    AddressService addressService;
+    private AddressService addressService;
 
+    @Autowired
+    private StorageService storageService;
+
+    @Async
     @Transactional
-    public void importFile(final InputStream is, final String countryCode) throws Exception {
-        try (final Workbook workbook = new XSSFWorkbook(is)) {
-            final Sheet sheet = workbook.getSheet("detail");
-            final Iterator<Row> it = sheet.rowIterator();
-            it.next(); // We skip first row since it contains table's header
-            while (it.hasNext()) {
-                this.processBailiff(it.next(), this.getImportModel(countryCode));
-            }
-
+    public void importFile(final String fileName, final String countryCode, final TaskStatus task) throws Exception{
+        try {
+            final Resource file = this.storageService.loadFile(fileName);
+            try ( final Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
+                final Sheet sheet = workbook.getSheet("detail");
+                final Iterator<Row> it = sheet.rowIterator();
+                it.next(); // We skip first row since it contains table's header
+                while (it.hasNext()) {
+                    this.processBailiff(it.next(), this.getImportModel(countryCode));
+                }
+                task.setStatus(TaskStatus.Status.OK);
+            }}
+        catch(final Exception e) {
+            task.setStatus(TaskStatus.Status.ERROR);
+            task.setMessage(e.getMessage());
+            throw e;
+        }finally {
+            this.storageService.deleteFile(fileName);
         }
     }
 

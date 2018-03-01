@@ -20,6 +20,9 @@ import eu.cehj.cdb2.business.service.data.GeoDataStructure;
 import eu.cehj.cdb2.business.service.data.RecordBuilderHelper;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
+import eu.cehj.cdb2.entity.AdminAreaSubdivisionMajor;
+import eu.cehj.cdb2.entity.AdminAreaSubdivisionMiddle;
+import eu.cehj.cdb2.entity.AdminAreaSubdivisionMinor;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
@@ -52,9 +55,18 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Munic
             dto.setId(m.getId());
             dto.setName(m.getName());
             dto.setPostalCode(m.getPostalCode());
-            dto.setAdminAreaSubdivisionMajor(m.getAdminAreaSubdivisionMajor().getName());
-            dto.setAdminAreaSubdivisionMiddle(m.getAdminAreaSubdivisionMiddle().getName());
-            dto.setAdminAreaSubdivisionMinor(m.getAdminAreaSubdivisionMinor().getName());
+            final AdminAreaSubdivisionMajor areaMajor = m.getAdminAreaSubdivisionMajor();
+            if (areaMajor != null) {
+                dto.setAdminAreaSubdivisionMajor(areaMajor.getName());
+            }
+            final AdminAreaSubdivisionMiddle areaMiddle = m.getAdminAreaSubdivisionMiddle();
+            if (areaMiddle != null) {
+                dto.setAdminAreaSubdivisionMiddle(areaMiddle.getName());
+            }
+            final AdminAreaSubdivisionMinor areaMinor = m.getAdminAreaSubdivisionMinor();
+            if (areaMinor != null) {
+                dto.setAdminAreaSubdivisionMinor(areaMinor.getName());
+            }
             municipalityDTOs.add(dto);
         });
         return municipalityDTOs;
