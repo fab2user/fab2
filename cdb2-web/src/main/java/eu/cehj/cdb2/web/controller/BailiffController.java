@@ -105,9 +105,6 @@ public class BailiffController extends BaseController {
     @ResponseStatus(value = HttpStatus.OK)
     public TaskStatus importData(@RequestParam("file") final MultipartFile file) throws Exception{
         final TaskStatus task = this.taskManager.createTask(TaskManager.Type.IMPORT_XLS);
-        //        try (InputStream is = file.getInputStream()) {
-        //            this.bailiffImportService.importFile(is, this.settings.getCountryCode(), task);
-        //        }
         this.storageService.store(file);
         this.bailiffImportService.importFile(file.getOriginalFilename(), this.settings.getCountryCode(), task);
         return task;
@@ -118,13 +115,10 @@ public class BailiffController extends BaseController {
         final String exportFilePath = this.bailiffImportService.export("AT");
         final Path path = Paths.get(exportFilePath);
         final ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-        //        final HttpHeaders headers = new HttpHeaders();
-        //        headers.add("filename", "pop");
         this.logger.debug("headers : " + resource.getFilename());
         return ResponseEntity.ok()
                 .contentLength(resource.contentLength())
                 .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-                //                .headers(headers)
                 .body(resource);
     }
 

@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "country_sync")
 @Where(clause="deleted=0 or deleted is null")
@@ -27,6 +29,7 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     private boolean active = true;
 
     @OneToMany(mappedBy="country")
+    @JsonBackReference
     private final List<Synchronization> synchronizations = new ArrayList<>();
 
     @Column(name = "user")

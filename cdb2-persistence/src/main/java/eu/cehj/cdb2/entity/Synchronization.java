@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "sync")
 public class Synchronization extends BaseAuditedEntity<String> {
@@ -17,13 +19,16 @@ public class Synchronization extends BaseAuditedEntity<String> {
     public static  enum  SyncStatus{
         OK,
         ERROR,
-        PENDING
+        PENDING,
+        IN_PROGRESS,
+        BUILDING_DATA,
+        SENDING_TO_CDB
     }
 
 
     private static final long serialVersionUID = -3906005306114553599L;
 
-    @Column(name = "exec_date", nullable=false)
+    @Column(name = "exec_date")
     private Date executionDate;
 
     @Enumerated(EnumType.STRING)
@@ -35,7 +40,11 @@ public class Synchronization extends BaseAuditedEntity<String> {
 
     @ManyToOne
     @JoinColumn(name = "country", nullable=false)
+    @JsonManagedReference
     private CountryOfSync country;
+
+    @Column(name = "message")
+    private String message;
 
     public Date getExecutionDate() {
         return this.executionDate;
@@ -67,6 +76,14 @@ public class Synchronization extends BaseAuditedEntity<String> {
 
     public void setStatus(final SyncStatus status) {
         this.status = status;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    public void setMessage(final String message) {
+        this.message = message;
     }
 
 }

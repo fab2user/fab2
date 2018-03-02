@@ -1,6 +1,7 @@
 package eu.cehj.cdb2.hub.service.central.push;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -9,24 +10,34 @@ import java.util.concurrent.Future;
 
 import javax.xml.bind.JAXBElement;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
+import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
 import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
 import eu.cehj.cdb2.common.dto.GeoAreaDTO;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.common.service.CdbPushMessage;
 import eu.cehj.cdb2.entity.CountryOfSync;
+import eu.cehj.cdb2.entity.Synchronization;
+import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
+import eu.cehj.cdb2.hub.utils.CdbResponse;
 import eu.cehj.cdb2.hub.utils.Settings;
 import eu.chj.cdb2.common.Body;
 import eu.chj.cdb2.common.Body.Competences;
@@ -52,6 +63,18 @@ public class DefaultPushDataService implements PushDataService {
     @Autowired
     private Settings settings;
 
+    @Autowired
+    private SynchronizationService syncService;
+
+    @Value("${cdb.update.url}")
+    private String cdbUrl;
+
+    @Value("${cdb.update.user}")
+    private String cdbUser;
+
+    @Value("${cdb.update.password}")
+    private String cdbPassword;
+
     @Override
     public CountryOfSync getCountryUrl(final String countryCode) throws Exception {
         return this.cosService.getByCountryCode(countryCode);
@@ -59,7 +82,7 @@ public class DefaultPushDataService implements PushDataService {
     }
 
     @Override
-    public Data processBailiffs( final CountryOfSync cos) throws Exception {
+    public Data processBailiffs(final CountryOfSync cos) throws Exception {
 
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
 
@@ -87,7 +110,7 @@ public class DefaultPushDataService implements PushDataService {
             body.setDetails(details);
             data.getCourtOrPhysicalPerson().add(body);
             final Competences competences = new Competences();
-            for(final CompetenceExportDTO competenceDTO: dto.getCompetences()) {
+            for (final CompetenceExportDTO competenceDTO : dto.getCompetences()) {
                 final Competence competence = new Competence();
                 final GeoArea area = new GeoArea();
                 area.setId(competenceDTO.getGeoAreaId());
@@ -114,7 +137,7 @@ public class DefaultPushDataService implements PushDataService {
         });
         this.logger.debug(respDtos.toString());
         final List<GeoAreaDTO> dtos = respDtos.getBody();
-        for(final GeoAreaDTO dto: dtos) {
+        for (final GeoAreaDTO dto : dtos) {
             final GeoArea geoArea = this.buildGeoArea(dto);
             data.getGeoArea().add(geoArea);
         }
@@ -122,10 +145,10 @@ public class DefaultPushDataService implements PushDataService {
 
     }
 
-    public GeoArea buildGeoArea(final GeoAreaDTO dto) throws Exception{
+    public GeoArea buildGeoArea(final GeoAreaDTO dto) throws Exception {
         final GeoArea geoArea = new GeoArea();
         geoArea.setId(Long.toString(dto.getId()));
-        for(final MunicipalityDTO municipalityDTO:dto.getMunicipalities()) {
+        for (final MunicipalityDTO municipalityDTO : dto.getMunicipalities()) {
             final Municipality municipality = new Municipality();
             municipality.setName(municipalityDTO.getName());
             municipality.setPostalCode(municipalityDTO.getPostalCode());
@@ -135,49 +158,86 @@ public class DefaultPushDataService implements PushDataService {
         return geoArea;
     }
 
-
     @Override
-    public CdbPushMessage pushData(final Data data) throws Exception {
-        //        final JAXBContext context = JAXBContext.newInstance(CdbPushMessage.class);
-        //        final Marshaller m = context.createMarshaller();
-        //        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+    public void sendToCDB(final Data data, final Synchronization sync) throws Exception {
+        sync.setStatus(SyncStatus.SENDING_TO_CDB);
+        this.syncService.save(sync);
         final CdbPushMessage message = new CdbPushMessage();
         message.setData(data);
-        return message;
+        final RestTemplate restTemplate = this.builder.basicAuthorization(this.cdbUser, this.cdbPassword).build();
 
+        final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_XML);
+        final HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+
+        final ResponseEntity<CdbResponse> response = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.POST, entity,
+                new ParameterizedTypeReference<CdbResponse>() {
+        });
+        if (response.getStatusCode().is2xxSuccessful()){
+            sync.setStatus(SyncStatus.OK);
+        }else {
+            // TODO: If CDB WS doesn't return failureDescription, generate error message according to failureCode, following mapping in user manual
+            sync.setMessage(response.getBody().getFailureDescription());
+        }
+
+        this.syncService.save(sync);
     }
 
     @Override
-    public CdbPushMessage process(final String countryCode) throws Exception {
-        final ExecutorService executor = Executors.newWorkStealingPool();
-        final CountryOfSync cos = this.getCountryUrl(countryCode);
-        final Callable<Data> taskBailiff = () -> {
-            try {
-                return this.processBailiffs(cos);
-            }
-            catch (final InterruptedException e) {
-                throw new IllegalStateException("task interrupted", e);
-            }
-        };
-        final Callable<Data> taskArea = () -> {
-            try {
-                return this.processAreas(cos);
-            }
-            catch (final InterruptedException e) {
-                throw new IllegalStateException("task interrupted", e);
-            }
-        };
-        final List<Callable<Data>> callables = new ArrayList<Callable<Data>>();
-        callables.add(taskBailiff);
-        callables.add(taskArea);
+    public Synchronization process(final String countryCode) throws Exception {
 
-        final List<Future<Data>> finishedData = executor.invokeAll(callables);
-        final Data bailiffData = finishedData.get(0).get();
-        final Data areasData = finishedData.get(1).get();
-        for(final GeoArea area: areasData.getGeoArea()) {
-            bailiffData.getGeoArea().add(area);
+        final CountryOfSync cos = this.getCountryUrl(countryCode);
+
+        Synchronization sync = new Synchronization();
+        sync.setCountry(cos);
+        sync.setStatus(SyncStatus.IN_PROGRESS);
+        sync = this.syncService.save(sync);
+        //        this.processAsync(cos, sync);
+        return sync;
+    }
+
+    @Async
+    private void processAsync(final CountryOfSync cos, final Synchronization sync) throws Exception {
+        // FIXME: doesn't execute asynchronously !
+        try {
+            final ExecutorService executor = Executors.newWorkStealingPool();
+            final Callable<Data> taskBailiff = () -> {
+                try {
+                    return this.processBailiffs(cos);
+                } catch (final InterruptedException e) {
+                    throw new IllegalStateException("task interrupted", e);
+                }
+            };
+            final Callable<Data> taskArea = () -> {
+                try {
+                    return this.processAreas(cos);
+                } catch (final InterruptedException e) {
+                    throw new IllegalStateException("task interrupted", e);
+                }
+            };
+            final List<Callable<Data>> callables = new ArrayList<Callable<Data>>();
+            callables.add(taskBailiff);
+            callables.add(taskArea);
+
+            final List<Future<Data>> finishedData = executor.invokeAll(callables);
+            final Data dataToSend = finishedData.get(0).get();
+            final Data areasData = finishedData.get(1).get();
+            for (final GeoArea area : areasData.getGeoArea()) {
+                dataToSend.getGeoArea().add(area);
+            }
+            this.sendToCDB(dataToSend, sync);
+        } catch (final Exception e) {
+            sync.setStatus(SyncStatus.ERROR);
+            String message = e.getMessage();
+            if(StringUtils.isBlank(message)) {
+                message = "Unknown error while processing xml export file.";
+            }
+            sync.setMessage(message);
+        }finally {
+            sync.setExecutionDate(new Date());
+            this.syncService.save(sync);
         }
-        return this.pushData(bailiffData);
     }
 
 }

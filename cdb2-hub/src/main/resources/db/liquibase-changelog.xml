@@ -60,4 +60,17 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="hub-6" author="landry">
+        <addColumn tableName="sync">
+            <column name="active" type="boolean" defaultValue="true"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="hub-7" author="landry">
+        <dropNotNullConstraint tableName="sync" columnName="exec_date" columnDataType="datetime"/>
+    </changeSet>
+    <changeSet id="hub-8" author="landry">
+        <addColumn tableName="sync">
+            <column name="message" type="varchar(255)"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

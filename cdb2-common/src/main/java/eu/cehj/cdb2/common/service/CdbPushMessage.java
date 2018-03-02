@@ -4,6 +4,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import eu.chj.cdb2.common.Data;
 
+/**
+ * Only purpose is to wrap xml jaxb message inside an XmlRootElement.
+ *
+ */
 @XmlRootElement
 public class CdbPushMessage {
 
