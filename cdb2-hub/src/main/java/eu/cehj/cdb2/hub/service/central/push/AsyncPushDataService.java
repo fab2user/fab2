@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
+import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
 import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
@@ -50,21 +50,18 @@ import eu.chj.cdb2.common.Municipality;
 import eu.chj.cdb2.common.ObjectFactory;
 
 @Service
-public class DefaultPushDataService implements PushDataService {
-
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+public class AsyncPushDataService  implements PushDataService {
 
     @Autowired
-    private CountryOfSyncService cosService;
+    private SynchronizationService syncService;
+
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private RestTemplateBuilder builder;
 
     @Autowired
     private Settings settings;
-
-    @Autowired
-    private SynchronizationService syncService;
 
     @Value("${cdb.update.url}")
     private String cdbUrl;
@@ -75,18 +72,57 @@ public class DefaultPushDataService implements PushDataService {
     @Value("${cdb.update.password}")
     private String cdbPassword;
 
+    @Async
     @Override
-    public CountryOfSync getCountryUrl(final String countryCode) throws Exception {
-        return this.cosService.getByCountryCode(countryCode);
+    public void process(final CountryOfSync cos, final Synchronization sync) throws Exception {
+        // FIXME: doesn't execute asynchronously ! According to https://dzone.com/articles/spring-and-threads-async, seems like @Async doesn't work if called from same object.
+        try {
+            final ExecutorService executor = Executors.newWorkStealingPool();
+            final Callable<Data> taskBailiff = () -> {
+                try {
+                    return this.processBailiffs(cos);
+                } catch (final InterruptedException e) {
+                    throw new IllegalStateException("task interrupted", e);
+                }
+            };
+            final Callable<Data> taskArea = () -> {
+                try {
+                    return this.processAreas(cos);
+                } catch (final InterruptedException e) {
+                    throw new IllegalStateException("task interrupted", e);
+                }
+            };
+            final List<Callable<Data>> callables = new ArrayList<Callable<Data>>();
+            callables.add(taskBailiff);
+            callables.add(taskArea);
 
+            final List<Future<Data>> finishedData = executor.invokeAll(callables);
+            final Data dataToSend = finishedData.get(0).get();
+            final Data areasData = finishedData.get(1).get();
+            for (final GeoArea area : areasData.getGeoArea()) {
+                dataToSend.getGeoArea().add(area);
+            }
+            this.sendToCDB(dataToSend, sync);
+        } catch (final Exception e) {
+            sync.setStatus(SyncStatus.ERROR);
+            String message = e.getMessage();
+            if(StringUtils.isBlank(message)) {
+                message = "Unknown error while processing xml export file.";
+            }
+            sync.setMessage(message);
+        }finally {
+            sync.setExecutionDate(new Date());
+            this.syncService.save(sync);
+        }
     }
 
     @Override
     public Data processBailiffs(final CountryOfSync cos) throws Exception {
 
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
-
-        final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(cos.getUrl() + "/" + this.settings.getBailiffsUrl());
+        final String bailiffsUrl = cos.getUrl() + "/" + this.settings.getBailiffsUrl();
+        final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(bailiffsUrl);
+        this.logger.info("Push Service - Sending request to " + bailiffsUrl);
         final ResponseEntity<List<BailiffExportDTO>> entities = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<BailiffExportDTO>>() {
         });
@@ -129,9 +165,10 @@ public class DefaultPushDataService implements PushDataService {
     public Data processAreas(final CountryOfSync cos) throws Exception {
         // TODO: If needed, create a new geoArea service returning only data needed by CDB
         final Data data = new Data();
+        final String areasUrl = cos.getUrl() + "/" + this.settings.getAreasUrl();
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
-        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(cos.getUrl() + "/" + this.settings.getAreasUrl());
-
+        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(areasUrl);
+        this.logger.info("Push Service - Sending request to " + areasUrl);
         final ResponseEntity<List<GeoAreaDTO>> respDtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<GeoAreaDTO>>() {
         });
@@ -143,6 +180,37 @@ public class DefaultPushDataService implements PushDataService {
         }
         return data;
 
+    }
+
+    @Override
+    public void sendToCDB(final Data data, final Synchronization sync) throws Exception {
+        sync.setStatus(SyncStatus.SENDING_TO_CDB);
+        this.syncService.save(sync);
+        final CdbPushMessage message = new CdbPushMessage();
+        message.setData(data);
+        final RestTemplate restTemplate = this.builder.basicAuthorization(this.cdbUser, this.cdbPassword).build();
+
+        final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_XML);
+        final HttpEntity<CdbPushMessage> entity = new HttpEntity<CdbPushMessage>(message, headers);
+
+        try {
+            final ResponseEntity<CdbResponse> response = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.POST, entity,
+                    new ParameterizedTypeReference<CdbResponse>() {
+            });
+            if (response.getStatusCode().is2xxSuccessful()){
+                sync.setStatus(SyncStatus.OK);
+            }else {
+                // TODO: If CDB WS doesn't return failureDescription, generate error message according to failureCode, following mapping in user manual
+                sync.setMessage(response.getBody().getFailureDescription());
+            }
+
+            this.syncService.save(sync);
+        } catch (final Exception e) {
+            // If CDB processes the request and an error occurs, it will answer with a nice message and code. But if we mess the things up before (wrong url or credentials), we get a dumb error message. That's why I prefer catching it here.
+            throw new CDBException("Error while sending data to CDB.");
+        }
     }
 
     public GeoArea buildGeoArea(final GeoAreaDTO dto) throws Exception {
@@ -157,87 +225,4 @@ public class DefaultPushDataService implements PushDataService {
 
         return geoArea;
     }
-
-    @Override
-    public void sendToCDB(final Data data, final Synchronization sync) throws Exception {
-        sync.setStatus(SyncStatus.SENDING_TO_CDB);
-        this.syncService.save(sync);
-        final CdbPushMessage message = new CdbPushMessage();
-        message.setData(data);
-        final RestTemplate restTemplate = this.builder.basicAuthorization(this.cdbUser, this.cdbPassword).build();
-
-        final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_XML);
-        final HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-
-        final ResponseEntity<CdbResponse> response = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.POST, entity,
-                new ParameterizedTypeReference<CdbResponse>() {
-        });
-        if (response.getStatusCode().is2xxSuccessful()){
-            sync.setStatus(SyncStatus.OK);
-        }else {
-            // TODO: If CDB WS doesn't return failureDescription, generate error message according to failureCode, following mapping in user manual
-            sync.setMessage(response.getBody().getFailureDescription());
-        }
-
-        this.syncService.save(sync);
-    }
-
-    @Override
-    public Synchronization process(final String countryCode) throws Exception {
-
-        final CountryOfSync cos = this.getCountryUrl(countryCode);
-
-        Synchronization sync = new Synchronization();
-        sync.setCountry(cos);
-        sync.setStatus(SyncStatus.IN_PROGRESS);
-        sync = this.syncService.save(sync);
-        //        this.processAsync(cos, sync);
-        return sync;
-    }
-
-    @Async
-    private void processAsync(final CountryOfSync cos, final Synchronization sync) throws Exception {
-        // FIXME: doesn't execute asynchronously !
-        try {
-            final ExecutorService executor = Executors.newWorkStealingPool();
-            final Callable<Data> taskBailiff = () -> {
-                try {
-                    return this.processBailiffs(cos);
-                } catch (final InterruptedException e) {
-                    throw new IllegalStateException("task interrupted", e);
-                }
-            };
-            final Callable<Data> taskArea = () -> {
-                try {
-                    return this.processAreas(cos);
-                } catch (final InterruptedException e) {
-                    throw new IllegalStateException("task interrupted", e);
-                }
-            };
-            final List<Callable<Data>> callables = new ArrayList<Callable<Data>>();
-            callables.add(taskBailiff);
-            callables.add(taskArea);
-
-            final List<Future<Data>> finishedData = executor.invokeAll(callables);
-            final Data dataToSend = finishedData.get(0).get();
-            final Data areasData = finishedData.get(1).get();
-            for (final GeoArea area : areasData.getGeoArea()) {
-                dataToSend.getGeoArea().add(area);
-            }
-            this.sendToCDB(dataToSend, sync);
-        } catch (final Exception e) {
-            sync.setStatus(SyncStatus.ERROR);
-            String message = e.getMessage();
-            if(StringUtils.isBlank(message)) {
-                message = "Unknown error while processing xml export file.";
-            }
-            sync.setMessage(message);
-        }finally {
-            sync.setExecutionDate(new Date());
-            this.syncService.save(sync);
-        }
-    }
-
 }

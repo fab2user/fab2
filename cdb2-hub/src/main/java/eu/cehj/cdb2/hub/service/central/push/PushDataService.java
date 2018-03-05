@@ -6,14 +6,12 @@ import eu.chj.cdb2.common.Data;
 
 public interface PushDataService {
 
-    public CountryOfSync getCountryUrl(final String countryCode) throws Exception;
-
     public Data processBailiffs( final CountryOfSync cos) throws Exception;
 
     public Data processAreas(final CountryOfSync cos) throws Exception;
 
     public void sendToCDB(final Data data, Synchronization sync) throws Exception;
 
-    public Synchronization process(final String countryCode) throws Exception;
+    public void process(CountryOfSync cos, Synchronization sync) throws Exception;
 
 }

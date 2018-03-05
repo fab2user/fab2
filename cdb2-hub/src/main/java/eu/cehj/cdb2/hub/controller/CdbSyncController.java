@@ -11,14 +11,14 @@ import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import eu.cehj.cdb2.entity.Synchronization;
-import eu.cehj.cdb2.hub.service.central.push.PushDataService;
+import eu.cehj.cdb2.hub.service.central.push.PushDataServiceLauncher;
 
 @RestController
 @RequestMapping("api/cdb")
 public class CdbSyncController extends BaseController{
 
     @Autowired
-    private PushDataService pushDataService;
+    private PushDataServiceLauncher pushDataService;
 
     @RequestMapping(method = { GET }, value = "send")
     @ResponseStatus(value = OK)
