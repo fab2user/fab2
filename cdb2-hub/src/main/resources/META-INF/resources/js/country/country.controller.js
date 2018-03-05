@@ -5,9 +5,9 @@
       .module('hub')
       .controller('CountryController', CountryController);
   
-      CountryController.$inject = ['$uibModal', '$translate', 'NgTableParams', 'toastr', 'CountryAPIService', 'CountryService'];
+      CountryController.$inject = ['$log','$interval', '$http', '$rootScope', '$uibModal', '$translate', 'NgTableParams', 'toastr', 'CountryAPIService', 'CountryService', 'EVENT', 'SERVER', 'STATUS'];
   
-    function CountryController($uibModal, $translate, NgTableParams, toastr, CountryAPIService, CountryService) {
+    function CountryController($log, $interval, $http, $rootScope, $uibModal, $translate, NgTableParams, toastr, CountryAPIService, CountryService, EVENT, SERVER, STATUS) {
       var vm = this;
       fetchCountries();
 
@@ -35,7 +35,30 @@
       };
 
       vm.sync = function(country){
-        CountryService.sync(country);
+        $log.info('Sync started');
+        CountryService.sync(country).then(function(success){
+          toastr.info($translate.instant('global.export.inprogress'));
+          $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
+          // start polling
+          vm.startPolling(success.data.id);
+        });
+      };
+
+      vm.polling = undefined;
+
+      vm.startPolling = function(taskId){
+        if(angular.isDefined(vm.polling)) return;
+        vm.polling = $interval(function(){
+          $http.get(SERVER.API + '/task/' + taskId).then(function(success){
+            if(success.data.status === STATUS.OK){
+              // If some data refresh would have to be done, it should be done here
+            }
+            if(success.data.status === STATUS.OK || success.data.status === STATUS.ERROR){
+              $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
+              vm.endPolling();
+            }
+          });
+        }, 50000, 5);
       };
 
       function fetchCountries(){

@@ -2,12 +2,13 @@ package eu.cehj.cdb2.business.service.db.impl;
 
 import org.springframework.stereotype.Service;
 
+import eu.cehj.cdb2.business.dao.InstrumentRepository;
 import eu.cehj.cdb2.business.service.db.InstrumentService;
 import eu.cehj.cdb2.common.dto.InstrumentDTO;
 import eu.cehj.cdb2.entity.Instrument;
 
 @Service
-public class InstrumentServiceImpl extends BaseServiceImpl<Instrument, InstrumentDTO, Long> implements InstrumentService {
+public class InstrumentServiceImpl extends BaseServiceImpl<Instrument, InstrumentDTO, Long, InstrumentRepository> implements InstrumentService {
 
     @Override
     public InstrumentDTO populateDTOFromEntity(final Instrument instrument) throws Exception {

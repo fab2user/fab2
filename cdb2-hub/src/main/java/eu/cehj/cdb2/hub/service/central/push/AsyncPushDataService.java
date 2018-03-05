@@ -111,7 +111,7 @@ public class AsyncPushDataService  implements PushDataService {
             }
             sync.setMessage(message);
         }finally {
-            sync.setExecutionDate(new Date());
+            sync.setEndDate(new Date());
             this.syncService.save(sync);
         }
     }

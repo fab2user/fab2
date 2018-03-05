@@ -1,8 +1,5 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
-import javax.persistence.EntityManager;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import eu.cehj.cdb2.business.dao.AdminAreaSubdivisionMajorRepository;
@@ -13,13 +10,7 @@ import eu.cehj.cdb2.common.dto.AdminAreaSubdivisionMajorDTO;
 import eu.cehj.cdb2.entity.AdminAreaSubdivisionMajor;
 
 @Service
-public class AdminAreaSubdivisionMajorServiceImpl  extends BaseServiceImpl<AdminAreaSubdivisionMajor, AdminAreaSubdivisionMajorDTO, Long> implements AdminAreaSubdivisionMajorService {
-
-    @Autowired
-    private EntityManager em;
-
-    @Autowired
-    private AdminAreaSubdivisionMajorRepository repository;
+public class AdminAreaSubdivisionMajorServiceImpl  extends BaseServiceImpl<AdminAreaSubdivisionMajor, AdminAreaSubdivisionMajorDTO, Long, AdminAreaSubdivisionMajorRepository> implements AdminAreaSubdivisionMajorService {
 
     @Override
     public void updateAreaFromStructure(final GeoDataStructure structure, final RecordBuilderHelper helper) {

@@ -6,7 +6,9 @@ public class SynchronizationDTO extends BaseDTO{
 
     private static final long serialVersionUID = 7089475544349832137L;
 
-    private Date executionDate;
+    private Date endDate;
+
+    private Date startDate;
 
     private String countryName;
 
@@ -20,14 +22,6 @@ public class SynchronizationDTO extends BaseDTO{
 
     public void setCountryName(final String countryName) {
         this.countryName = countryName;
-    }
-
-    public Date getExecutionDate() {
-        return this.executionDate;
-    }
-
-    public void setExecutionDate(final Date executionDate) {
-        this.executionDate = executionDate;
     }
 
     public boolean isActive() {
@@ -44,6 +38,22 @@ public class SynchronizationDTO extends BaseDTO{
 
     public void setStatus(final String status) {
         this.status = status;
+    }
+
+    public Date getEndDate() {
+        return this.endDate;
+    }
+
+    public void setEndDate(final Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getStartDate() {
+        return this.startDate;
+    }
+
+    public void setStartDate(final Date startDate) {
+        this.startDate = startDate;
     }
 
 }

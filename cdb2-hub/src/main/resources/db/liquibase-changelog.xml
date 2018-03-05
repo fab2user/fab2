@@ -73,4 +73,10 @@
             <column name="message" type="varchar(255)"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="hub-9" author="landry">
+        <renameColumn tableName="sync" oldColumnName="exec_date" newColumnName="end_date" columnDataType="datetime"/>
+        <addColumn tableName="sync">
+            <column name="start_date" type="datetime"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

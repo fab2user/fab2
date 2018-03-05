@@ -21,7 +21,7 @@ import eu.cehj.cdb2.common.dto.BaseDTO;
 import eu.cehj.cdb2.entity.BaseEntity;
 
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
-public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, ID extends Serializable> implements BaseService<T, U, ID> {
+public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, ID extends Serializable, R extends JpaRepository<T, ID>> implements BaseService<T, U, ID> {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -31,7 +31,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, I
     protected Class<T> entityClass;
 
     @Autowired
-    protected JpaRepository<T, ID> repository;
+    protected R repository;
 
     @SuppressWarnings("unchecked")
     public BaseServiceImpl() {

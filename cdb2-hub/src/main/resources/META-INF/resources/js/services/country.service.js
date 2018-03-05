@@ -17,13 +17,10 @@
         Authorization: 'Basic ' + btoa(country.user + ":" + country.password)
       };
 
-      $http.get(country.url, {headers: headers})
+     return $http.get(country.url + '/cdb/send', {headers: headers, params:{countryCode: country.code}})
       .success(function (data) {
         $log.debug('data received from ' + country.name + ':', data);
       });
-
-      // TODO: 2- Push retrieved data to CDB. Now that we have the data in json, we just have to send it to CDB (probably after some reformatting ...)
-      return 'ok';
     };
     return CountryService;
   }

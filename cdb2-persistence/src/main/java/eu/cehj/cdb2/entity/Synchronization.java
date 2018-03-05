@@ -25,11 +25,18 @@ public class Synchronization extends BaseAuditedEntity<String> {
         SENDING_TO_CDB
     }
 
-
     private static final long serialVersionUID = -3906005306114553599L;
 
-    @Column(name = "exec_date")
-    private Date executionDate;
+    public Synchronization() {
+        super();
+        this.setStartDate(new Date());
+    }
+
+    @Column(name = "start_date")
+    private Date startDate;
+
+    @Column(name = "end_date")
+    private Date endDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable=false)
@@ -45,14 +52,6 @@ public class Synchronization extends BaseAuditedEntity<String> {
 
     @Column(name = "message")
     private String message;
-
-    public Date getExecutionDate() {
-        return this.executionDate;
-    }
-
-    public void setExecutionDate(final Date executionDate) {
-        this.executionDate = executionDate;
-    }
 
     public boolean isActive() {
         return this.active;
@@ -84,6 +83,22 @@ public class Synchronization extends BaseAuditedEntity<String> {
 
     public void setMessage(final String message) {
         this.message = message;
+    }
+
+    public Date getStartDate() {
+        return this.startDate;
+    }
+
+    public void setStartDate(final Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return this.endDate;
+    }
+
+    public void setEndDate(final Date endDate) {
+        this.endDate = endDate;
     }
 
 }

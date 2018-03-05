@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,6 @@ import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.db.CompetenceService;
 import eu.cehj.cdb2.business.service.db.GeoAreaService;
-import eu.cehj.cdb2.business.service.db.InstrumentService;
 import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaDTO;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.dto.CompetenceDTO;
@@ -29,19 +26,10 @@ import eu.cehj.cdb2.entity.Instrument;
 import eu.cehj.cdb2.entity.QBailiffCompetenceArea;
 
 @Service
-public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCompetenceArea, BailiffCompetenceAreaDTO, Long> implements BailiffCompetenceAreaService {
-
-    @Autowired
-    private EntityManager em;
-
-    @Autowired
-    private BailiffCompetenceAreaRepository repository;
+public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCompetenceArea, BailiffCompetenceAreaDTO, Long, BailiffCompetenceAreaRepository> implements BailiffCompetenceAreaService {
 
     @Autowired
     private BailiffService bailiffService;
-
-    @Autowired
-    private InstrumentService instrumentService;
 
     @Autowired
     private CompetenceService competenceService;

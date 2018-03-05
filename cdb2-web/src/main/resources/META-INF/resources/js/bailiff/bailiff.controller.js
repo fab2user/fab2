@@ -75,7 +75,7 @@
         }
       }).then(function (success) {
         $log.debug('Update successfully submitted');
-        toastr.success($translate.instant('bailiff.import.inprogress'));
+        toastr.info($translate.instant('bailiff.import.inprogress'));
         vm.importFile = null;
         
         $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);

@@ -1,6 +1,5 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import eu.cehj.cdb2.business.dao.CountryOfSyncRepository;
@@ -9,10 +8,8 @@ import eu.cehj.cdb2.common.dto.CountryOfSyncDTO;
 import eu.cehj.cdb2.entity.CountryOfSync;
 
 @Service
-public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, CountryOfSyncDTO, Long> implements CountryOfSyncService {
+public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, CountryOfSyncDTO, Long, CountryOfSyncRepository> implements CountryOfSyncService {
 
-    @Autowired
-    CountryOfSyncRepository cosRepository;
 
     @Override
     public CountryOfSync populateEntityFromDTO(final CountryOfSyncDTO dto) throws Exception {
@@ -42,7 +39,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
 
     @Override
     public CountryOfSync getByCountryCode(final String countryCode) throws Exception {
-        return this.cosRepository.getByCountryCode(countryCode);
+        return this.repository.getByCountryCode(countryCode);
     }
 
 

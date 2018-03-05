@@ -31,13 +31,10 @@ import eu.cehj.cdb2.entity.Language;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
-public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Long> implements BailiffService {
+public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Long, BailiffRepository> implements BailiffService {
 
     @Autowired
     private EntityManager em;
-
-    @Autowired
-    private BailiffRepository repository;
 
     @Autowired
     AddressRepository addressRepository;

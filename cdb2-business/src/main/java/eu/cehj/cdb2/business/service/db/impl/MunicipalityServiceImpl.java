@@ -26,13 +26,10 @@ import eu.cehj.cdb2.entity.AdminAreaSubdivisionMinor;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
-public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, MunicipalityDTO, Long> implements MunicipalityService {
+public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, MunicipalityDTO, Long, MunicipalityRepository> implements MunicipalityService {
 
     @Autowired
     private EntityManager em;
-
-    @Autowired
-    private MunicipalityRepository repository;
 
     @Override
     public MunicipalityDTO save(final MunicipalityDTO municipalityDTO) throws Exception {

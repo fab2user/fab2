@@ -32,12 +32,9 @@ import eu.cehj.cdb2.entity.Municipality;
 import eu.cehj.cdb2.entity.QMunicipality;
 
 @Service
-public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Long> implements GeoAreaService {
+public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Long, GeoAreaRepository> implements GeoAreaService {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    private GeoAreaRepository repository;
 
     @Autowired
     private MunicipalityService municipalityService;

@@ -14,10 +14,7 @@ import eu.cehj.cdb2.common.dto.CompetenceDTO;
 import eu.cehj.cdb2.entity.Competence;
 
 @Service
-public class CompetenceServiceImpl extends BaseServiceImpl<Competence, CompetenceDTO, Long> implements CompetenceService {
-
-    @Autowired
-    private CompetenceRepository repository;
+public class CompetenceServiceImpl extends BaseServiceImpl<Competence, CompetenceDTO, Long, CompetenceRepository> implements CompetenceService {
 
     @Autowired
     private InstrumentService instrumentService;
