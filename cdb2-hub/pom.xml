@@ -184,5 +184,10 @@
             <artifactId>ngstorage</artifactId>
             <version>0.3.11</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-ui-notification</artifactId>
+            <version>0.3.6</version>
+        </dependency>
     </dependencies>
 </project>

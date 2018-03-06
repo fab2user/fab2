@@ -16,6 +16,8 @@ public class SynchronizationDTO extends BaseDTO{
 
     private String status;
 
+    private String message;
+
     public String getCountryName() {
         return this.countryName;
     }
@@ -54,6 +56,14 @@ public class SynchronizationDTO extends BaseDTO{
 
     public void setStartDate(final Date startDate) {
         this.startDate = startDate;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    public void setMessage(final String message) {
+        this.message = message;
     }
 
 }

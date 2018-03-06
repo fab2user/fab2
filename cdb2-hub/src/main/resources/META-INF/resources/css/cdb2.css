@@ -103,3 +103,10 @@ a.glyphicon {
   text-decoration: none !important;
   padding-left: 0.3em;
 }
+
+.alert-dismissable .close, .alert-dismissible .close {
+  position: relative;
+  top: -15px;
+  right: -21px;
+  color: inherit;
+}

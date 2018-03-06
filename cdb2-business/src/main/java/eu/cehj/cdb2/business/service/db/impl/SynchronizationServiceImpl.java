@@ -36,6 +36,8 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
         dto.setId(entity.getId());
         dto.setActive(entity.isActive());
         dto.setEndDate(entity.getEndDate());
+        dto.setStatus(entity.getStatus().toString());
+        dto.setMessage(entity.getMessage());
         return dto;
     }
 

@@ -5,12 +5,11 @@
       .module('hub')
       .controller('CountryController', CountryController);
   
-      CountryController.$inject = ['$log','$interval', '$http', '$rootScope', '$uibModal', '$translate', 'NgTableParams', 'toastr', 'CountryAPIService', 'CountryService', 'EVENT', 'SERVER', 'STATUS'];
+      CountryController.$inject = ['$log','$interval', '$http', '$rootScope', '$uibModal', '$translate', 'NgTableParams', 'toastr', 'CountryAPIService', 'SyncService', 'EVENT', 'SERVER', 'STATUS'];
   
-    function CountryController($log, $interval, $http, $rootScope, $uibModal, $translate, NgTableParams, toastr, CountryAPIService, CountryService, EVENT, SERVER, STATUS) {
+    function CountryController($log, $interval, $http, $rootScope, $uibModal, $translate, NgTableParams, toastr, CountryAPIService, SyncService, EVENT, SERVER, STATUS) {
       var vm = this;
       fetchCountries();
-
 
       vm.edit = function(country){
         var modalInstance = $uibModal.open({
@@ -36,7 +35,7 @@
 
       vm.sync = function(country){
         $log.info('Sync started');
-        CountryService.sync(country).then(function(success){
+        SyncService.sync(country).then(function(success){
           toastr.info($translate.instant('global.export.inprogress'));
           $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
           // start polling
@@ -50,16 +49,22 @@
         if(angular.isDefined(vm.polling)) return;
         vm.polling = $interval(function(){
           $http.get(SERVER.API + '/task/' + taskId).then(function(success){
-            if(success.data.status === STATUS.OK){
-              // If some data refresh would have to be done, it should be done here
-            }
+            // Refresh status on the screen
+            $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
             if(success.data.status === STATUS.OK || success.data.status === STATUS.ERROR){
-              $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
               vm.endPolling();
             }
           });
         }, 50000, 5);
       };
+
+
+    vm.endPolling = function(){
+      if (angular.isDefined(vm.polling)) {
+        $interval.cancel(vm.polling);
+        vm.polling = undefined;
+      }
+    };
 
       function fetchCountries(){
         CountryAPIService.getAll().$promise.then(
