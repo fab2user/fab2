@@ -1,0 +1,68 @@
+<form class="form-inline" role="form" name="statusCtrl.searchForm" novalidate>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="panelPart">
+              <fieldset>
+                <legend translate="status.search.title"></legend>
+                <div class="form-group">
+  
+                    <label for="country" translate="global.label.country">Country</label>
+                    <input type="text" ng-model="statusCtrl.searchParams.country" class="inputtext form-control" maxlength="50" autofocus="autofocus" name="country"/>
+  
+                  <div class="form-group">
+                    <label class="radio-inline" for="date">
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="after"> {{'status.label.date.after'|translate}}
+                    </label>
+                    <label class="radio-inline" for="date">
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="before"> {{'status.label.date.before'|translate}}
+                    </label>
+                    <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="statusCtrl.searchParams.date" is-open="statusCtrl.popup1.opened" datepicker-options="dateOptions" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" datepicker-append-to-body="true"/>
+                    <!-- <span class="input-group-btn"> -->
+                      <button type="button" class="btn btn-default" ng-click="statusCtrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    <!-- </span> -->
+                    <!-- <input type="text" name="date" class="form-control" id="date" ng-model="statusCtrl.searchParams.date"> -->
+                  </div>
+  
+                </div>
+              </fieldset>
+            </div>
+  
+            <div class="panelPart">
+              <div class="top-1">
+  
+                <button type="submit" class="btn btn-primary pull-right action-button" ng-click="statusCtrl.search()">
+                  <span class="glyphicon glyphicon-search"></span>
+                  <span translate="global.action.search"></span>
+                </button>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" translate="status.search.results"></div>
+  
+          <div class="panel-body">
+            <div class="panelPart">
+              <div ng-show="statusCtrl.showSearchTotal">
+                <span translate="global.searchtotal"></span>
+                <span>{{statusCtrl.tableParams.total()}}</span>
+              </div>
+  
+              <table ng-table="statusCtrl.tableParams" class="table table-bordered table-striped table-condensed col-md-12">
+                <tr ng-repeat="row in $data track by row.id">
+                  <td data-title="'global.label.id'|translate" class="col-md-3" sortable="'id'">{{row.id}}</td>
+                  <td data-title="'global.label.country'|translate" class="col-md-2" sortable="'country'">{{row.country}}</td>
+                  <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate}}</td>
+                  <td data-title="'status.label.status'|translate" class="col-md-2" sortable="'status'">{{row.status}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>

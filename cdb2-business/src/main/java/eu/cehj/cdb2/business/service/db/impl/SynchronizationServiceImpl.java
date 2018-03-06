@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.querydsl.core.types.Predicate;
 
 import eu.cehj.cdb2.business.dao.CountryOfSyncRepository;
 import eu.cehj.cdb2.business.dao.SynchronizationRepository;
@@ -50,6 +55,16 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    @Override
+    public Page<SynchronizationDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+        final Page<Synchronization> entities = this.repository.findAll(predicate, pageable);
+        final List<SynchronizationDTO> dtos = new ArrayList<>();
+        for(final Synchronization entity: entities) {
+            dtos.add(this.populateDTOFromEntity(entity));
+        }
+        return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 
 }

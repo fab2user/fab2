@@ -45,6 +45,16 @@
           }
         }
       })
+      .state('root.status', {
+        url: '/status',
+        views: {
+          'content@': {
+            templateUrl: '/js/status/status.html',
+            controller: 'StatusController',
+            controllerAs: 'statusCtrl'
+          }
+        }
+      })
       .state('root.login', {
         url: '/login',
         views: {

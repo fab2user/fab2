@@ -17,7 +17,8 @@
       'angucomplete-alt',
       'ngLoadingSpinner',
       'angular-confirm',
-      'ngStorage'
+      'ngStorage',
+      'toggle-switch'
     ]);
 
 })();
