@@ -3,12 +3,18 @@ package eu.cehj.cdb2.hub.utils;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class TaskSearch implements Serializable{
 
     private static final long serialVersionUID = -3377490651331062352L;
 
     private String country;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateAfter;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateBefore;
 
     public String getCountry() {

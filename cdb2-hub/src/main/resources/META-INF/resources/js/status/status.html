@@ -1,4 +1,4 @@
-<form class="form-inline" role="form" name="statusCtrl.searchForm" novalidate>
+<form class="form-inline" ng role="form" name="statusCtrl.searchForm" novalidate>
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-default">
@@ -13,16 +13,13 @@
   
                   <div class="form-group">
                     <label class="radio-inline" for="date">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="after"> {{'status.label.date.after'|translate}}
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="statusCtrl.filters.ba" value="after"> <strong>{{'status.label.date.after'|translate}}</strong>
                     </label>
                     <label class="radio-inline" for="date">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="before"> {{'status.label.date.before'|translate}}
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="statusCtrl.filters.ba" value="before"> <strong>{{'status.label.date.before'|translate}}</strong>
                     </label>
-                    <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="statusCtrl.searchParams.date" is-open="statusCtrl.popup1.opened" datepicker-options="dateOptions" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" datepicker-append-to-body="true"/>
-                    <!-- <span class="input-group-btn"> -->
-                      <button type="button" class="btn btn-default" ng-click="statusCtrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-                    <!-- </span> -->
-                    <!-- <input type="text" name="date" class="form-control" id="date" ng-model="statusCtrl.searchParams.date"> -->
+                    <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="statusCtrl.filters.date" is-open="statusCtrl.calendar.opened" datepicker-options="dateOptions" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" datepicker-append-to-body="true"/>
+                      <button type="button" class="btn btn-default" ng-click="statusCtrl.openCalendar()"><i class="glyphicon glyphicon-calendar"></i></button>
                   </div>
   
                 </div>

@@ -1,6 +1,8 @@
 package eu.cehj.cdb2.business.dao;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,7 +34,13 @@ public interface SynchronizationRepository extends JpaRepository<Synchronization
     @Override
     default public void customize(final QuerydslBindings bindings, final QSynchronization root) {
         bindings.bind(String.class).first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
-        bindings.bind(QSynchronization.synchronization.endDate).as("dateAfter").first((final DateTimePath<Date> path, final Date value) -> path.after(value));
+        final Calendar calStart = new GregorianCalendar(1900,0,1);
+        final Date startDate = new Date(calStart.getTimeInMillis());
+        final Calendar calEnd = new GregorianCalendar(2030,0,1);
+        final Date endDate = new Date(calEnd.getTimeInMillis());
+        bindings.bind(QSynchronization.synchronization.startDate).as("dateBefore").first((final DateTimePath<Date> path, final Date value) -> path.between(startDate, value));
+        bindings.bind(QSynchronization.synchronization.endDate).as("dateAfter").first((final DateTimePath<Date> path, final Date value) -> path.between(value, endDate));
+
         //            // Allow use of alias city instead of ugly address.municipality.name
         //            bindings.bind(QBailiff.bailiff.address.municipality.name).as("city").first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
         //            //FIXME: Filter by competence works only when when alone or associated with city, but breaks with bailiff.name...

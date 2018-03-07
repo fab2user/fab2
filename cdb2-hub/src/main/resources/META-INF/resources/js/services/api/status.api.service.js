@@ -9,6 +9,8 @@
       return $resource(SERVER.API + '/task/:id', {}, {
         getAll: {
           isArray: true
+        },
+        search: {
         }
       });
     }

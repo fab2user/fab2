@@ -34,6 +34,7 @@ public class Synchronization extends BaseAuditedEntity<String> {
         this.setStartDate(new Date());
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_date")
     private Date startDate;
 
