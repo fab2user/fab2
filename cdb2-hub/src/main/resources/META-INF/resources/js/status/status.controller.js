@@ -24,9 +24,11 @@
       getData: function (params) {
         var sort = function (params) {
           var sortParam = params.sorting();
-          if (Object.keys(sortParam).length > 0) {
-            var k = Object.keys(sortParam)[0];
-            return k + ',' + sortParam[k];
+          if (sortParam != null) {
+            if (Object.keys(sortParam).length > 0) {
+              var k = Object.keys(sortParam)[0];
+              return k + ',' + sortParam[k];
+            }
           }
           return '';
         };
@@ -67,6 +69,7 @@
 
     vm.clearSearch = function () {
       vm.searchParams = {};
+      delete vm.filters.date;
       vm.tableParams.reload();
     };
 
