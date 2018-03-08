@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -38,21 +37,20 @@ public class TaskController extends BaseController {
     @RequestMapping(method = GET)
     @ResponseStatus(value = OK)
     public Page<SynchronizationDTO> get(final TaskSearch search, final Pageable pageable) throws Exception{
-        final Predicate dateBefore = null;
+        // Here we can't use standard querydsl/springboot web query parameters handling because of the date before/after stuff...
+        final BooleanBuilder where = new BooleanBuilder();
         if(search.getDateBefore() != null) {
-            QSynchronization.synchronization.endDate.before(search.getDateBefore());
+            where.and(QSynchronization.synchronization.endDate.before(search.getDateBefore()));
         }
-        final Predicate dateAfter = null;
         if(search.getDateAfter()!=null) {
-            QSynchronization.synchronization.endDate.after(search.getDateAfter());
+            where.and(QSynchronization.synchronization.endDate.after(search.getDateAfter()));
         }
-        final Predicate country = null;
-        if(search.getCountry() != null) {
-            QSynchronization.synchronization.country.countryCode.eq(search.getCountry());
+        if( search.getCountryId() != null) {
+            where.and(QSynchronization.synchronization.country.id.eq(search.getCountryId()));
         }
-        final BooleanBuilder booleanBuilder = new BooleanBuilder();
 
-        return this.syncService.findAll(booleanBuilder.and(dateBefore).and(dateAfter).and(country), pageable);
+
+        return this.syncService.findAll(where, pageable);
     }
 
     @RequestMapping(method = GET, value = "last")

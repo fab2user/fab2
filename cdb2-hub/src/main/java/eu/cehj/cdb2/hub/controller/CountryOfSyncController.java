@@ -15,6 +15,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
 import eu.cehj.cdb2.common.dto.CountryOfSyncDTO;
+import eu.cehj.cdb2.common.dto.CountryOfSyncRefDTO;
 
 @RestController
 @RequestMapping("api/country")
@@ -28,6 +29,12 @@ public class CountryOfSyncController extends BaseController {
     @ResponseStatus(value = OK)
     public List<CountryOfSyncDTO> get() throws Exception {
         return this.countryOfSyncService.getAllDTO();
+    }
+
+    @RequestMapping(method = { GET }, value = "refs")
+    @ResponseStatus(value = OK)
+    public List<CountryOfSyncRefDTO> getRefs() throws Exception {
+        return this.countryOfSyncService.getAllRefDTO();
     }
 
     @RequestMapping(method = { POST })

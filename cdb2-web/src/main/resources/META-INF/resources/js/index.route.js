@@ -5,7 +5,8 @@
     .module('cdb2')
     .config(routerConfig);
 
-  /** @ngInject */
+  routerConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('root', {

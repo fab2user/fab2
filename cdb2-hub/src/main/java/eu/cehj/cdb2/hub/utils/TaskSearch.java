@@ -9,7 +9,7 @@ public class TaskSearch implements Serializable{
 
     private static final long serialVersionUID = -3377490651331062352L;
 
-    private String country;
+    private Long countryId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateAfter;
@@ -17,12 +17,6 @@ public class TaskSearch implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateBefore;
 
-    public String getCountry() {
-        return this.country;
-    }
-    public void setCountry(final String country) {
-        this.country = country;
-    }
     public Date getDateAfter() {
         return this.dateAfter;
     }
@@ -34,5 +28,11 @@ public class TaskSearch implements Serializable{
     }
     public void setDateBefore(final Date dateBefore) {
         this.dateBefore = dateBefore;
+    }
+    public Long getCountryId() {
+        return this.countryId;
+    }
+    public void setCountryId(final Long countryId) {
+        this.countryId = countryId;
     }
 }

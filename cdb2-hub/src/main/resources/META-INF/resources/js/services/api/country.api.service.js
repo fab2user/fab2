@@ -9,6 +9,10 @@
       return $resource(SERVER.API + '/country/:id', {}, {
         getAll: {
           isArray: true
+        },
+        getRefs: {
+          isArray: true,
+          url: SERVER.API + '/country/refs'
         }
       });
     }

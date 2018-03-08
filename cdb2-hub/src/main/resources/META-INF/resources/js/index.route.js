@@ -4,8 +4,8 @@
   angular
     .module('hub')
     .config(routerConfig);
+  routerConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-  /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('root', {
@@ -53,6 +53,11 @@
             controller: 'StatusController',
             controllerAs: 'statusCtrl'
           }
+        },
+        resolve: {
+          countryList: ['CountryAPIService', function(CountryAPIService){
+            return CountryAPIService.getRefs();
+          }]
         }
       })
       .state('root.login', {

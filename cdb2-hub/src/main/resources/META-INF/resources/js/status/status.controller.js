@@ -5,13 +5,14 @@
     .module('hub')
     .controller('StatusController', StatusController);
 
-  StatusController.$inject = ['$log', 'NgTableParams', 'lodash', 'StatusAPIService'];
+  StatusController.$inject = ['$log', 'NgTableParams', 'lodash', 'StatusAPIService', 'countryList'];
 
-  function StatusController($log, NgTableParams, lodash, StatusAPIService) {
+  function StatusController($log, NgTableParams, lodash, StatusAPIService, countryList) {
     var vm = this;
 
     vm.filters = {
-      ba: 'after'
+      ba: 'after',
+      countries: countryList
     };
 
     vm.searchParams = {};
@@ -50,24 +51,24 @@
       vm.calendar.opened = true;
     };
 
-    vm.search = function(){
-      if(vm.filters.date){
+    vm.search = function () {
+      if (vm.filters.date) {
         delete vm.searchParams.dateBefore;
         delete vm.searchParams.dateAfter;
-        if(vm.filters.ba === 'before'){
-          vm.searchParams.dateBefore =  vm.filters.date.toJSON().substring(0,vm.filters.date.toJSON().indexOf('T'));
-          // delete vm.searchParams.date;
-        }else{
-          vm.searchParams.dateAfter =  vm.filters.date.toJSON().substring(0,vm.filters.date.toJSON().indexOf('T'));
-          // delete vm.searchParams.date;
+        var formattedDate = new Date(vm.filters.date.getTime() + vm.filters.date.getTimezoneOffset() * 60000).toJSON().substring(0, vm.filters.date.toJSON().indexOf('T'));
+        if (vm.filters.ba === 'before') {
+          vm.searchParams.dateBefore = formattedDate;
+        } else {
+          vm.searchParams.dateAfter = formattedDate;
         }
       }
       vm.tableParams.reload();
     };
 
-
-
-
+    vm.clearSearch = function () {
+      vm.searchParams = {};
+      vm.tableParams.reload();
+    };
 
   }
 
