@@ -64,7 +64,7 @@
               <tr ng-repeat="row in $data track by row.id">
                 <td data-title="'global.label.id'|translate" class="col-md-3" sortable="'id'">{{row.id}}</td>
                 <td data-title="'global.label.country'|translate" class="col-md-2" sortable="'country'">{{row.countryName}}</td>
-                <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|date:'yyyy-MM-dd'}}</td>
+                <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td data-title="'status.label.status'|translate" class="col-md-2" sortable="'status'">{{row.status}}</td>
               </tr>
             </table>

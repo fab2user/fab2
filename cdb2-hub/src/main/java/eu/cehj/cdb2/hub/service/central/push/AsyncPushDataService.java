@@ -75,7 +75,6 @@ public class AsyncPushDataService  implements PushDataService {
     @Async
     @Override
     public void process(final CountryOfSync cos, final Synchronization sync) throws Exception {
-        // FIXME: doesn't execute asynchronously ! According to https://dzone.com/articles/spring-and-threads-async, seems like @Async doesn't work if called from same object.
         try {
             final ExecutorService executor = Executors.newWorkStealingPool();
             final Callable<Data> taskBailiff = () -> {
@@ -184,6 +183,7 @@ public class AsyncPushDataService  implements PushDataService {
 
     @Override
     public void sendToCDB(final Data data, final Synchronization sync) throws Exception {
+        // FIXME: Always in error since we don't have any test server able to process the XML file for now
         sync.setStatus(SyncStatus.SENDING_TO_CDB);
         this.syncService.save(sync);
         final CdbPushMessage message = new CdbPushMessage();
