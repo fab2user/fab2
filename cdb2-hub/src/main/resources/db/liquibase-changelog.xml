@@ -79,4 +79,11 @@
             <column name="start_date" type="datetime"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="hub-10" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="frequency" type="char(5)" defaultValue="02:00">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

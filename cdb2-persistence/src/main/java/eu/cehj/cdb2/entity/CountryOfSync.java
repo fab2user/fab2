@@ -41,6 +41,9 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     @Column(name = "country_code", nullable = false)
     private String countryCode;
 
+    @Column(name = "frequency", nullable = false, length = 5)
+    private String frequency;
+
     public String getName() {
         return this.name;
     }
@@ -91,6 +94,14 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
 
     public void setCountryCode(final String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public String getFrequency() {
+        return this.frequency;
+    }
+
+    public void setFrequency(final String frequency) {
+        this.frequency = frequency;
     }
 
 

@@ -31,7 +31,7 @@ public class PushDataServiceLauncher{
     }
 
     public Synchronization process(final String countryCode) throws Exception {
-
+        this.logger.debug("Starting CDB sync for country " + countryCode + "...");
         final CountryOfSync cos = this.getCountryUrl(countryCode);
 
         Synchronization sync = new Synchronization();
