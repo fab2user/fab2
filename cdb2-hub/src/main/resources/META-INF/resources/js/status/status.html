@@ -7,29 +7,29 @@
             <fieldset>
               <legend translate="status.search.title"></legend>
               <div class="form-group">
-
                 <label for="country" translate="global.label.country">Country</label>
                 <select ng-options="country.id as country.name for country in statusCtrl.filters.countries" ng-model="statusCtrl.searchParams.countryId"
-                  class="form-control" autofocus="autofocus" name="country"></select>
-
-                <div class="form-group">
-                  <label class="radio-inline" for="date">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="statusCtrl.filters.ba" value="after">
-                    <strong>{{'status.label.date.after'|translate}}</strong>
-                  </label>
-                  <label class="radio-inline" for="date">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="statusCtrl.filters.ba" value="before">
-                    <strong>{{'status.label.date.before'|translate}}</strong>
-                  </label>
-                  <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="statusCtrl.filters.date" is-open="statusCtrl.calendar.opened"
-                    datepicker-options="dateOptions" ng-required="false" close-text="Close" alt-input-formats="altInputFormats"
-                    datepicker-append-to-body="true" />
-                  <button type="button" class="btn btn-default" ng-click="statusCtrl.openCalendar()">
-                    <i class="glyphicon glyphicon-calendar"></i>
-                  </button>
-                </div>
-
+                  class="form-control" autofocus="autofocus" name="country">
+                  <option value="">{{'global.label.select.default.country'|translate}}</option>
+                </select>
               </div>
+              <div class="form-group left-5">
+                <label class="radio-inline" for="date">
+                  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="statusCtrl.filters.ba" value="after">
+                  <strong>{{'status.label.date.after'|translate}}</strong>
+                </label>
+                <label class="radio-inline" for="date">
+                  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="statusCtrl.filters.ba" value="before">
+                  <strong>{{'status.label.date.before'|translate}}</strong>
+                </label>
+                <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="statusCtrl.filters.date" is-open="statusCtrl.calendar.opened"
+                  datepicker-options="dateOptions" ng-required="false" close-text="Close" alt-input-formats="altInputFormats"
+                  datepicker-append-to-body="true" />
+                <button type="button" class="btn btn-default" ng-click="statusCtrl.openCalendar()">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </div>
+              <!-- </div> -->
             </fieldset>
           </div>
 
@@ -42,7 +42,7 @@
               </button>
 
               <button type="button" class="btn btn-default pull-right" ng-click="statusCtrl.clearSearch()">
-                  <i class="glyphicon glyphicon-remove-sign"></i>
+                <i class="glyphicon glyphicon-remove-sign"></i>
                 <span translate="global.button.clear.search"></span>
               </button>
             </div>

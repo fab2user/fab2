@@ -57,7 +57,8 @@
       if (vm.filters.date) {
         delete vm.searchParams.dateBefore;
         delete vm.searchParams.dateAfter;
-        var formattedDate = new Date(vm.filters.date.getTime() + vm.filters.date.getTimezoneOffset() * 60000).toJSON().substring(0, vm.filters.date.toJSON().indexOf('T'));
+        // var formattedDate = new Date(vm.filters.date.getTime() + vm.filters.date.getTimezoneOffset() * 60000).toJSON().substring(0, vm.filters.date.toJSON().indexOf('T'));
+        var formattedDate = vm.filters.date.toJSON().substring(0, vm.filters.date.toJSON().indexOf('T'));
         if (vm.filters.ba === 'before') {
           vm.searchParams.dateBefore = formattedDate;
         } else {

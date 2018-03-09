@@ -23,6 +23,10 @@
   margin-top: 10em;
 }
 
+.left-5{
+  margin-left: 5em;
+}
+
 .modal-hg .modal-dialog {
   width: 96%;
 }
@@ -109,4 +113,8 @@ a.glyphicon {
   top: -15px;
   right: -21px;
   color: inherit;
+}
+
+.pull-right{
+  margin-left: 0.2em;
 }
