@@ -11,6 +11,10 @@
           isArray: true
         },
         search: {
+        },
+        statuses: {
+          url: SERVER.API + '/task/status',
+          isArray: true
         }
       });
     }

@@ -19,6 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.SynchronizationDTO;
 import eu.cehj.cdb2.entity.QSynchronization;
+import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
 import eu.cehj.cdb2.hub.utils.TaskSearch;
 
 @RestController
@@ -48,6 +49,9 @@ public class TaskController extends BaseController {
         if( search.getCountryId() != null) {
             where.and(QSynchronization.synchronization.country.id.eq(search.getCountryId()));
         }
+        if( search.getStatus() != null) {
+            where.and(QSynchronization.synchronization.status.eq(search.getStatus()));
+        }
 
 
         return this.syncService.findAll(where, pageable);
@@ -57,6 +61,12 @@ public class TaskController extends BaseController {
     @ResponseStatus(value = OK)
     public List<SynchronizationDTO> getLastTasks() throws Exception{
         return this.syncService.getLastByCountry();
+    }
+
+    @RequestMapping(method = GET, value = "status")
+    @ResponseStatus(value = OK)
+    public SyncStatus[] getAllStatus() throws Exception{
+        return SyncStatus.values();
     }
 
 }

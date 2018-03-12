@@ -5,14 +5,15 @@
     .module('hub')
     .controller('StatusController', StatusController);
 
-  StatusController.$inject = ['$log', 'NgTableParams', 'lodash', 'StatusAPIService', 'countryList'];
+  StatusController.$inject = ['$log', 'NgTableParams', 'lodash', 'StatusAPIService', 'countryList', 'statuses'];
 
-  function StatusController($log, NgTableParams, lodash, StatusAPIService, countryList) {
+  function StatusController($log, NgTableParams, lodash, StatusAPIService, countryList, statuses) {
     var vm = this;
 
     vm.filters = {
       ba: 'after',
-      countries: countryList
+      countries: countryList,
+      statuses: statuses
     };
 
     vm.searchParams = {};

@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
+
 public class TaskSearch implements Serializable{
 
     private static final long serialVersionUID = -3377490651331062352L;
@@ -16,6 +18,8 @@ public class TaskSearch implements Serializable{
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateBefore;
+
+    private String status;
 
     public Date getDateAfter() {
         return this.dateAfter;
@@ -34,5 +38,14 @@ public class TaskSearch implements Serializable{
     }
     public void setCountryId(final Long countryId) {
         this.countryId = countryId;
+    }
+    public SyncStatus getStatus() {
+        if(this.status == null) {
+            return null;
+        }
+        return SyncStatus.valueOf(this.status);
+    }
+    public void setStatus(final String status) {
+        this.status = status;
     }
 }

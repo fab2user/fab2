@@ -57,6 +57,9 @@
         resolve: {
           countryList: ['CountryAPIService', function(CountryAPIService){
             return CountryAPIService.getRefs();
+          }],
+          statuses: ['StatusAPIService', function(StatusAPIService){
+            return StatusAPIService.statuses();
           }]
         }
       })

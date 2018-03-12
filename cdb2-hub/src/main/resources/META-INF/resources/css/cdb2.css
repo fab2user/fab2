@@ -118,3 +118,7 @@ a.glyphicon {
 .pull-right{
   margin-left: 0.2em;
 }
+
+.table-bordered.data-grid>thead>tr>td, .table-bordered.data-grid>thead>tr>th{
+  border-bottom-width: 1px;
+}

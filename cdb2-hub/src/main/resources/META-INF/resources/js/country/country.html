@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <table ng-table="countryCtrl.tableParams" class="table" show-filter="true">
+    <table ng-table="countryCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
       <tr ng-repeat="country in $data track by country.id">
         <td data-title="'global.label.id'|translate" filter="{ id: 'number'}" sortable="'id'">
           {{country.id}}</td>
