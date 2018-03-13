@@ -35,8 +35,8 @@
         <div class="col-md-4">
           <span>{{ 'area.edit.cities.total'|translate }}: {{ areaDetailCtrl.tableParamsEdit.total() }}</span>
           <span>{{ 'area.edit.cities.selected.removal'|translate }}: {{ areaDetailCtrl.selectedForRemoval.length }}</span>
-          <table ng-table="areaDetailCtrl.tableParamsEdit" class="table" show-filter="true">
-            <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'bg-danger': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}"
+          <table ng-table="areaDetailCtrl.tableParamsEdit" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
+            <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'selected-rem': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}"
               class="pointable">
               <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
                 {{city.id}}</td>
@@ -51,12 +51,12 @@
         <div class="col-md-1 center-block">
           <div class="row top-3">
             <div class="col-md-12">
-              <button type="button" class="btn btn-success btn-block glyphicon glyphicon-menu-left" ng-click="areaDetailCtrl.addSelected()"></button>
+              <button type="button" class="btn btn-success btn-block glyphicon glyphicon-menu-left" ng-click="areaDetailCtrl.addSelected()"  uib-tooltip="{{'area.edit.add.selected'|translate}}"></button>
             </div>
           </div>
           <div class="row top-1">
             <div class="col-md-12" ng-click="areaDetailCtrl.addFiltered()">
-              <button type="button" class="btn btn-success btn-block">
+              <button type="button" class="btn btn-success btn-block"  uib-tooltip="{{'area.edit.add.visible'|translate}}">
                 <span class="glyphicon glyphicon-menu-left"></span>
                 <span class="glyphicon glyphicon-menu-left"></span>
               </button>
@@ -64,12 +64,12 @@
           </div>
           <div class="row top-1">
             <div class="col-md-12" ng-click="areaDetailCtrl.removeSelected()">
-              <button type="button" class="btn btn-danger btn-block glyphicon glyphicon-menu-right"></button>
+              <button type="button" class="btn btn-danger btn-block glyphicon glyphicon-menu-right"  uib-tooltip="{{'area.edit.remove.selected'|translate}}"></button>
             </div>
           </div>
           <div class="row top-1">
             <div class="col-md-12" ng-click="areaDetailCtrl.removeFiltered()">
-              <button type="button" class="btn btn-danger btn-block">
+              <button type="button" class="btn btn-danger btn-block"  uib-tooltip="{{'area.edit.remove.visible'|translate}}">
                 <span class="glyphicon glyphicon-menu-right"></span>
                 <span class="glyphicon glyphicon-menu-right"></span>
               </button>
@@ -79,8 +79,8 @@
         <div class="col-md-7">
           <span>{{ 'area.edit.cities.filtered'|translate }}: {{ areaDetailCtrl.tableParams.total() }}</span>
           <span>{{ 'area.edit.cities.selected.addition'|translate }}: {{ areaDetailCtrl.selectedForAddition.length }}</span>
-          <table ng-table="areaDetailCtrl.tableParams" class="table" show-filter="true">
-            <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city)" ng-class="{'bg-success': areaDetailCtrl.selectedForAddition.indexOf(city) > -1}"
+          <table ng-table="areaDetailCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
+            <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleAddition(city)" ng-class="{'selected-add': areaDetailCtrl.selectedForAddition.indexOf(city) > -1}"
               class="pointable">
               <td data-title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'">
                 {{city.id}}</td>

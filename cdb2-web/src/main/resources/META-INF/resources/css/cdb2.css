@@ -85,3 +85,15 @@ div.user-id{
 form.info-title{
   text-align: right;
 }
+
+.table-bordered.data-grid>thead>tr>td, .table-bordered.data-grid>thead>tr>th{
+  border-bottom-width: 1px;
+}
+
+.selected-add{
+  background-color: #cae0c1 !important;
+}
+
+.selected-rem{
+  background-color: #e0cac1 !important;
+}

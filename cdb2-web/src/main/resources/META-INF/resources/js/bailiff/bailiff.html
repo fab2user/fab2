@@ -9,7 +9,7 @@
       <div class="panel-body">
         <div class="row vertical-align">
           <div class="col-md-10">
-            <table ng-table="bailiffCtrl.tableParams" class="table" show-filter="true">
+            <table ng-table="bailiffCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
               <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'bg-info': bailiff.id === bailiffCtrl.selectedBailiff.id}"
                 class="pointable">
                 <td data-title="'bailiff.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">

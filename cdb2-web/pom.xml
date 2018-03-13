@@ -106,7 +106,7 @@
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>ng-table</artifactId>
-            <version>1.0.0</version>
+            <version>0.8.3</version>
         </dependency>
         <dependency>
             <groupId>org.webjars.bower</groupId>

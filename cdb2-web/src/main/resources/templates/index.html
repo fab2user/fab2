@@ -23,7 +23,7 @@
 			toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
 		<div id="wrap"><span us-spinner="" key="spin-1"></span></div>
         <div id="head" ui-view="head"></div>
-		<div id="main" class="container-fluid" ui-view="content"></div>
+		<div id="main" ui-view="content"></div>
 		<div class="footer" data-ng-cloak="" ui-view="footer">
 
 		</div>
@@ -54,8 +54,8 @@
         <script th:src="@{/webjars/angular-toastr/1.5.0/angular-toastr.tpls.js}"></script>
         <link th:href="@{/webjars/angular-toastr/1.5.0/angular-toastr.css}" rel="stylesheet" />
 		<script th:src="@{/webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.js}"></script>
-        <script th:src="@{/webjars/ng-table/1.0.0/dist/ng-table.js}"></script>
-		<link th:href="@{/webjars/ng-table/1.0.0/dist/ng-table.css}" rel="stylesheet" />
+<!--         <script th:src="@{/webjars/ng-table/0.8.3/dist/ng-table.js}"></script> -->
+<!-- 		<link th:href="@{/webjars/ng-table/0.8.3/dist/ng-table.css}" rel="stylesheet" /> -->
         <script th:src="@{/webjars/ng-lodash/0.4.0/build/ng-lodash.js}"></script>
         <script th:src="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap.js}"></script>
         <script th:src="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap-tpls.js}"></script>
@@ -106,6 +106,9 @@
         <script src="/js/common/status/status.directive.js"></script>
         
         <script src="/js/libs/angular-localForage.js"></script>
+        <script src="/js/libs/ng-table.js"></script>
+        <link href="/js/libs/ng-table.css" rel="stylesheet"></link>
+        <link src="/js/libs/ng-table.css.map" rel="stylesheet"></link>
 	</div>
 </body>
 </html>
