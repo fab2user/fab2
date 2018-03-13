@@ -97,3 +97,17 @@ form.info-title{
 .selected-rem{
   background-color: #e0cac1 !important;
 }
+
+/* Fits column width to content */
+.table td.fit, 
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+
+/* Fits columns width with content, with some room left to allow search (specifically used for id fields) */
+.table td.fit-id, 
+.table th.fit-id {
+    white-space: nowrap;
+    width: 8%;
+}
