@@ -10,7 +10,7 @@
         <div class="row vertical-align">
           <div class="col-md-10">
             <table ng-table="bailiffCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
-              <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'bg-info': bailiff.id === bailiffCtrl.selectedBailiff.id}"
+              <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'selected-info': bailiff.id === bailiffCtrl.selectedBailiff.id}"
                 class="pointable">
                 <td data-title="'bailiff.list.id'|translate" filter="{ id: 'number'}" sortable="'id'" class="fit-id">
                   {{bailiff.id}}</td>
@@ -18,7 +18,7 @@
                   {{bailiff.name}}</td>
                 <td data-title="'bailiff.list.address'|translate" filter="{ address: 'text'}" sortable="'address'">
                   {{bailiff.address}}</td>
-                <td data-title="'bailiff.list.municipality'|translate" filter="{ municipality: 'text'}" sortable="'municipality'">
+                <td data-title="'bailiff.list.municipality'|translate" filter="{ city: 'text'}" sortable="'city'">
                   {{bailiff.city}}</td>
               </tr>
             </table>
@@ -42,7 +42,7 @@
             </div>
             <div class="row">
               <div class="col-md-12 top-1">
-                <button class="btn btn-danger btn-block" ng-click="bailiffCtrl.delete()" confirm="Are you sure ?" ng-disabled="!bailiffCtrl.selectedBailiff.id">
+                <button class="btn btn-danger btn-block" ng-click="bailiffCtrl.delete()" confirm="{{'global.label.confirm.delete.detail'|translate}}" ng-disabled="!bailiffCtrl.selectedBailiff.id">
                   <span class="glyphicon glyphicon-remove-sign"></span>
                   <span translate="global.button.remove">Remove</span>
                 </button>

@@ -90,6 +90,10 @@ form.info-title{
   border-bottom-width: 1px;
 }
 
+.selected-info{
+  background-color: #D6EDF6 !important;
+}
+
 .selected-add{
   background-color: #cae0c1 !important;
 }

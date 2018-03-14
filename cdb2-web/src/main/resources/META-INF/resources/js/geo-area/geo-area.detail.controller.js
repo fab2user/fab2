@@ -33,6 +33,8 @@
     ngTableEventsChannel.onAfterDataFiltered(function (filter, ngTable, filteredData) {
       if (ngTable === vm.tableParams) {
         vm.filteredCities = filteredData;
+      }else if(ngTable === vm.tableParamsEdit){
+        vm.filteredCitiesArea = filteredData;
       }
     });
 
@@ -99,7 +101,8 @@
     };
 
     vm.removeFiltered = function () {
-      vm.tableParamsEdit.data.forEach(function (city) {
+      // vm.tableParamsEdit.data.forEach(function (city) {
+      vm.filteredCitiesArea.forEach(function (city) {
         vm.toggleRemoval(city);
       });
       vm.removeSelected();

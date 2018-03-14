@@ -11,7 +11,7 @@
     <div class="modal-body">
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div>
 
             <div class="form-group">
@@ -38,11 +38,11 @@
           <table ng-table="areaDetailCtrl.tableParamsEdit" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
             <tr ng-repeat="city in $data track by city.id" ng-click="areaDetailCtrl.toggleRemoval(city)" ng-class="{'selected-rem': areaDetailCtrl.selectedForRemoval.indexOf(city) > -1}"
               class="pointable">
-              <td title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'" class="fit-id">
+              <td data-title="'area.edit.table.id'|translate" filter="{ id: 'number'}" sortable="'id'" class="fit-id">
                 {{city.id}}</td>
-              <td title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
+              <td data-title="'area.edit.table.name'|translate" filter="{ name: 'text'}" sortable="'name'">
                 {{city.name}}</td>
-              <td title="'area.edit.table.zipcode'|translate" filter="{ postalCode: 'text'}">
+              <td data-title="'area.edit.table.zipcode'|translate" filter="{ postalCode: 'text'}">
                 {{city.postalCode}}</td>
 
             </tr>

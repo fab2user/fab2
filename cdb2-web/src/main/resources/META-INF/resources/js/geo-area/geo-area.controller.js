@@ -5,9 +5,9 @@
     .module('cdb2')
     .controller('GeoAreaController', GeoAreaController);
 
-  GeoAreaController.$inject = ['$uibModal', '$translate', 'GeoAreaAPIService', 'NgTableParams', 'lodash', 'toastr'];
+  GeoAreaController.$inject = ['$uibModal', '$translate', 'GeoAreaAPIService', 'NgTableParams', 'toastr'];
 
-  function GeoAreaController($uibModal, $translate, GeoAreaAPIService, NgTableParams, lodash, toastr) {
+  function GeoAreaController($uibModal, $translate, GeoAreaAPIService, NgTableParams, toastr) {
     var vm = this;
 
     fetchGeoAreas();
