@@ -102,9 +102,11 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-primary" translate="global.button.save" ng-click="areaDetailCtrl.save(areaDetailCtrl.areaForm.$valid)"
-        ng-disabled="areaDetailCtrl.submitted"></button>
-      <button type="button" class="btn btn-danger" ng-click="areaDetailCtrl.cancel()" translate="global.button.cancel"></button>
+      <div class="col-md-2 col-md-offset-10 light-pull-right">
+      <button class="btn btn-primary" ng-click="areaDetailCtrl.save(areaDetailCtrl.areaForm.$valid)"
+        ng-disabled="areaDetailCtrl.submitted"><span class="glyphicon glyphicon-floppy-disk"></span> <span translate="global.button.save"></span></button>
+      <button type="button" class="btn btn-danger" ng-click="areaDetailCtrl.cancel()"><span class="glyphicon glyphicon-remove-circle"></span> <span translate="global.button.cancel"></span></button>
     </div>
+  </div>
   </form>
 </div>

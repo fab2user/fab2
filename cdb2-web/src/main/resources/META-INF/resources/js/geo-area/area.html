@@ -1,14 +1,17 @@
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-md-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><span translate="area.list.title"></h3>
+        <h3 class="panel-title">
+          <span translate="area.list.title">
+        </h3>
       </div>
       <div class="panel-body">
         <div class="row vertical-align">
-          <div class="col-lg-10">
+          <div class="col-md-10">
             <table ng-table="areaCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
-              <tr ng-repeat="area in $data track by area.id" ng-click="areaCtrl.selectedArea = area" ng-class="{'selected-info': area.id === areaCtrl.selectedArea.id}" class="pointable">
+              <tr ng-repeat="area in $data track by area.id" ng-click="areaCtrl.selectArea(area)" ng-class="{'selected-info': area.id === areaCtrl.selectedArea.id}"
+                class="pointable">
                 <td data-title="'area.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
                   {{area.id}}</td>
                 <td data-title="'area.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">
@@ -18,15 +21,21 @@
               </tr>
             </table>
           </div>
-          <div class="col-lg-2  btn-group-vertical">
+          <div class="col-md-2  btn-group-vertical">
             <div class="row">
-              <div class="col-lg-12">
-                <button class="btn btn-primary btn-block" ng-click="areaCtrl.new()"><span class="glyphicon glyphicon-plus-sign"></span> <span translate="global.button.add">Add</span></button>
+              <div class="col-md-12">
+                <button class="btn btn-primary btn-block" ng-click="areaCtrl.new()">
+                  <span class="glyphicon glyphicon-plus-sign"></span>
+                  <span translate="global.button.add">Add</span>
+                </button>
               </div>
             </div>
             <div class="row">
-              <div class="col-lg-12 top-1">
-                <button class="btn btn-danger btn-block" ng-click="areaCtrl.remove()"><span class="glyphicon glyphicon-remove-sign"></span> <span translate="global.button.remove">Remove</span></button>
+              <div class="col-md-12 top-1">
+                <button class="btn btn-danger btn-block" ng-click="areaCtrl.remove()">
+                  <span class="glyphicon glyphicon-remove-sign"></span>
+                  <span translate="global.button.remove">Remove</span>
+                </button>
               </div>
             </div>
           </div>
@@ -36,46 +45,34 @@
   </div>
 </div>
 <div class="row" ng-show="areaCtrl.selectedArea">
-  <div class="col-lg-12">
+  <div class="col-md-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><span translate="area.detail.list"></h3>
+        <h3 class="panel-title">
+          <span translate="area.list.detail.title" translate-values="{ areaName: areaCtrl.selectedArea.name }">
+        </h3>
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-lg-12">
-            <p class="bg-primary">{{ areaCtrl.selectedArea.name }}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <table class="table table-bordered">
-              <tr>
-                <th translate="area.detail.id">
-                  ID
-                </th>
-                <th translate="area.detail.postalcode">
-                  zip
-                </th>
-                <th translate="area.detail.municipality">
-                  city
-                </th>
-              </tr>
-              <tr ng-repeat="city in areaCtrl.selectedArea.municipalities track by city.id">
-                <td>
-                  {{ city.id }}
-                </td>
-                <td>
-                  {{ city.postalCode }}
-                </td>
-                <td>
-                  {{ city.name }}
-                </td>
+          <div class="col-md-12">
+            <table ng-table="areaCtrl.areaDetailsTable" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
+              <tr ng-repeat="city in $data track by city.id">
+                <td data-title="'area.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">
+                  {{city.id}}</td>
+                <td data-title="'area.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">
+                  {{city.name}}</td>
+                <td data-title="'municipality.list.postalcode'|translate" filter="{ postalCode: 'text'}">
+                  {{city.postalCode}}</td>
               </tr>
             </table>
           </div>
-          <div class="col-lg-12">
-            <button class="btn btn-default" translate="global.button.edit" ng-click="areaCtrl.edit()">edit</button>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary pull-right" ng-click="areaCtrl.edit()">
+              <span class="glyphicon glyphicon-pencil"></span>
+              <span translate="global.button.edit"></span>
+            </button>
           </div>
         </div>
       </div>

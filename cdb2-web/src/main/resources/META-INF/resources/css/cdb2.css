@@ -115,3 +115,13 @@ form.info-title{
     white-space: nowrap;
     width: 8%;
 }
+
+/* Fix display issue on ng-table when list size bar without paging bar */
+.btn-group {
+  margin-bottom: 0.5em
+}
+
+.light-pull-right{
+  text-align: right;
+}
+

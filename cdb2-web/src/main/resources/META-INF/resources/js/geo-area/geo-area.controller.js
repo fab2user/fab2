@@ -12,6 +12,10 @@
 
     fetchGeoAreas();
 
+    vm.areaDetailsTable = new NgTableParams({}, {
+      dataSet: []
+    });
+
     vm.edit = function(){
       loadModal(vm.selectedArea);
     };
@@ -29,6 +33,11 @@
           toastr.success($translate.instant('global.toastr.delete.success'));
           fetchGeoAreas();
         });
+    };
+
+    vm.selectArea = function(area){
+      vm.selectedArea = area;
+      vm.areaDetailsTable.settings({dataset: area.municipalities});
     };
 
     function loadModal(selectedArea) {
