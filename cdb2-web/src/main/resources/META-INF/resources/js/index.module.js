@@ -21,7 +21,8 @@
       'ngFileSaver',
       'angular-confirm',
       'ngStorage',
-      'LocalForageModule'
+      'LocalForageModule',
+      'angularSpinner'
     ]);
 
 })();

@@ -36,13 +36,13 @@ ALTER TABLE admin_area_subdivision_minor ADD INDEX `idx_code_minor` (`code` ASC)
 ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         </sql>
     </changeSet>
-    <changeSet id="cdb-02" author="landry">
-    <comment>Import area and municipality data</comment>
-        <loadData tableName="admin_area_subdivision_major" file="db/data/area_major.csv"></loadData>
-        <loadData tableName="admin_area_subdivision_middle" file="db/data/area_middle.csv"></loadData>
-        <loadData tableName="admin_area_subdivision_minor" file="db/data/area_minor.csv"></loadData>
-        <loadData tableName="municipality" file="db/data/municipality.csv"></loadData>
-    </changeSet>
+<!--     <changeSet id="cdb-02" author="landry"> -->
+<!--     <comment>Import area and municipality data</comment> -->
+<!--         <loadData tableName="admin_area_subdivision_major" file="db/data/area_major.csv"></loadData> -->
+<!--         <loadData tableName="admin_area_subdivision_middle" file="db/data/area_middle.csv"></loadData> -->
+<!--         <loadData tableName="admin_area_subdivision_minor" file="db/data/area_minor.csv"></loadData> -->
+<!--         <loadData tableName="municipality" file="db/data/municipality.csv"></loadData> -->
+<!--     </changeSet> -->
     <changeSet id="cdb-03" author="landry">
         <addColumn tableName="bailiff">
             <column name="email" type="varchar(100)" afterColumn="name"></column>
@@ -159,5 +159,22 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <createIndex tableName="municipality" indexName="IND_MUNICIPALITY_NAME">
             <column name="name"/>
         </createIndex>
+    </changeSet>
+    <changeSet id="cdb-16" author="landry">
+        <createTable tableName="task">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="deleted" type="bit" defaultValueBoolean="false" />
+            <column name="created_by" type="varchar(255)"></column>
+            <column name="created_on" type="datetime"></column>
+            <column name="modified_by" type="varchar(255)"></column>
+            <column name="modified_on" type="datetime"></column>
+            <column name="message" type="varchar(255)"></column>
+            <column name="start_date" type="datetime"/>
+            <column name="end_date" type="datetime"/>
+            <column name="status" type="varchar(255)"/>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
     </changeSet>
    </databaseChangeLog>

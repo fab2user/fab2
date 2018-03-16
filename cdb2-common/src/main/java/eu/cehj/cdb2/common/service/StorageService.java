@@ -19,9 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class StorageService {
 
-    //    @Value("${server.port}")
-    //    private String uploadStorageDirectory;
-
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
     private final Path rootLocation = Paths.get("uploads");
 

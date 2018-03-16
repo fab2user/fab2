@@ -3,9 +3,15 @@
 
   angular.module('cdb2').controller('NavBarController', NavBarController);
 
-  NavBarController.$inject = ['$scope', '$translate', '$log', 'AuthService', 'STORE', 'EVENT'];
+  NavBarController.$inject = [
+    '$scope',
+    '$translate',
+    '$log',
+    'AuthService',
+    'EVENT'
+  ];
 
-  function NavBarController($scope, $translate, $log, AuthService, STORE, EVENT) {
+  function NavBarController($scope, $translate, $log, AuthService, EVENT) {
     var vm = this;
     vm.langKeys = ['en', 'fr'];
     vm.isCollapsed = true;
@@ -16,8 +22,13 @@
       isopen: false
     };
 
-    $scope.$on(EVENT.LOGGED_IN, function(){
+    $scope.$on(EVENT.LOGGED_IN, function() {
       vm.authenticated = true;
+    });
+
+    $scope.$on(EVENT.GEONAME_UPDATE, function(event, params) {
+      vm.statusMessage = params.status;
+      vm.spin = params.status !== 'OK' && params.status !== 'ERROR';
     });
 
     vm.switchLang = function(langKey) {
@@ -26,9 +37,8 @@
       $translate.use(langKey);
     };
 
-    vm.logout = function(){
+    vm.logout = function() {
       AuthService.logout();
     };
   }
-
 })();

@@ -6,8 +6,11 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import eu.cehj.cdb2.entity.CDBTask;
+
 /**
  * In charge of storing status related to time consuming tasks, such as xls import.
+ * These tasks aren't store in database, unlike {@link CDBTask}. TaskManager may be removed in the future, in favor of CDBTask.
  */
 @Service
 public class TaskManager {

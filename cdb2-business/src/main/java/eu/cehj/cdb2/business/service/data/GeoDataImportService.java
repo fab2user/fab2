@@ -1,32 +1,74 @@
 package eu.cehj.cdb2.business.service.data;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import eu.cehj.cdb2.business.service.db.CDBTaskService;
+import eu.cehj.cdb2.common.service.StorageService;
+import eu.cehj.cdb2.entity.CDBTask;
+import eu.cehj.cdb2.entity.CDBTask.Status;
 
 /**
  * Imports areas geo data into database, from http://www.geonames.org/.
  */
 @Service
+@Scope("prototype")
 public class GeoDataImportService implements DataImportService {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private CDBTask task;
+
+    @Autowired
+    private StorageService storageService;
+
     @Autowired
     private GeoDataPersistenceService geoDataPersistenceService;
 
+    @Autowired
+    private CDBTaskService taskService;
+
     @Override
-    public void importData(final BufferedReader reader) {
-        final List<GeoDataStructure> dataStructures  = this.processLines(reader);
-        this.geoDataPersistenceService.persistData(dataStructures);
+    @Async
+    @Transactional
+    public void importData(final String fileName, final CDBTask task) throws Exception{
+        this.task = task;
+        try (final BufferedReader reader = new BufferedReader(new InputStreamReader(this.storageService.loadFile(fileName).getInputStream()))) {
+
+            List<GeoDataStructure> dataStructures;
+            try {
+                dataStructures = this.processLines(reader);
+                this.geoDataPersistenceService.persistData(dataStructures);
+            } catch (final Exception e) {
+                this.logger.error(String.format("Geoname import with id #%d failed with error %s", task.getId(), e.getMessage()), e);
+                task.setEndDate(new Date());
+                task.setStatus(Status.ERROR);
+                task.setMessage(e.getMessage());
+                this.taskService.save(task);
+            }
+            this.logger.info(String.format("Geoname import with id #%d successful", task.getId()));
+            task.setEndDate(new Date());
+            task.setStatus(Status.OK);
+            this.taskService.save(task);
+        }finally {
+            this.storageService.deleteFile(fileName);
+        }
     }
 
-    public List<GeoDataStructure> processLines(final BufferedReader reader) {
+    public List<GeoDataStructure> processLines(final BufferedReader reader) throws Exception {
+        this.task.setStatus(Status.IN_PROGRESS);
+        this.taskService.save(this.task);
         final List<GeoDataStructure> dataStructures = new ArrayList<>();
         reader.lines().forEach(line -> {
             final GeoDataStructure dataStructure = this.processLine(line);
@@ -53,6 +95,10 @@ public class GeoDataImportService implements DataImportService {
         dataStructure.setyPos(fields[10]);
         this.logger.debug(dataStructure.toString());
         return dataStructure;
+    }
+
+    public CDBTask getTask() {
+        return this.task;
     }
 
 }

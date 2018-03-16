@@ -11,7 +11,7 @@
     "inject": true
   },
   "rules": {
-    "no-unused-vars": [1, {"args": "all"}],
+    "no-unused-vars": [1, { "args": "after-used" }],
     "semi": [2, "always"]
   }
 }

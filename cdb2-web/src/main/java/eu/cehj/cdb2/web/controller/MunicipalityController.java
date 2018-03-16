@@ -1,17 +1,10 @@
 package eu.cehj.cdb2.web.controller;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,9 +22,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.querydsl.core.types.Predicate;
 
+import static org.springframework.http.HttpStatus.*;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 import eu.cehj.cdb2.business.service.data.DataImportService;
+import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
+import eu.cehj.cdb2.common.dto.CDBTaskDTO;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
+import eu.cehj.cdb2.common.service.StorageService;
+import eu.cehj.cdb2.entity.CDBTask;
 import eu.cehj.cdb2.entity.Municipality;
 
 @RestController
@@ -47,6 +47,12 @@ public class MunicipalityController extends BaseController {
 
     @Autowired
     private DataImportService importService;
+
+    @Autowired
+    private CDBTaskService taskService;
+
+    @Autowired
+    private StorageService storageService;
 
     @RequestMapping(method = { POST, PUT })
     @ResponseStatus(value = CREATED)
@@ -78,14 +84,12 @@ public class MunicipalityController extends BaseController {
 
     @RequestMapping(method = { POST }, value="update")
     @ResponseStatus(value = HttpStatus.OK)
-    @Async
-    public CompletableFuture<List<MunicipalityDTO>> upload(@RequestParam("file") final MultipartFile file) throws Exception{
-        try (final InputStream is = file.getInputStream(); BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));) {
-            this.importService.importData(reader);
-        } catch (final Throwable e) {
-            this.logger.error(e.getMessage(), e);
-        }
-        return null;
+    //    public CompletableFuture<List<MunicipalityDTO>> upload(@RequestParam("file") final MultipartFile file) throws Exception{
+    public CDBTaskDTO upload(@RequestParam("file") final MultipartFile file) throws Exception{
+        final CDBTask task = this.taskService.save(new CDBTask());
+        this.storageService.store(file);
+        this.importService.importData(file.getOriginalFilename(), task);
+        return this.taskService.getDTO(task.getId());
     }
 
 }
