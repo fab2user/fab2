@@ -20,7 +20,7 @@ import eu.cehj.cdb2.hub.utils.RestResponsePage;
 import eu.cehj.cdb2.hub.utils.Settings;
 
 @Service
-public class DefaultSearchInterfaceService implements SearchInterfaceService{
+public class ManagedSearchService implements SearchService{
 
     @Autowired
     private CountryOfSyncService cosService;

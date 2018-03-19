@@ -20,7 +20,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.service.QueryDslPredicateAnalyzer;
 import eu.cehj.cdb2.entity.Bailiff;
-import eu.cehj.cdb2.hub.service.SearchInterfaceService;
+import eu.cehj.cdb2.hub.service.SearchService;
 import eu.cehj.cdb2.hub.utils.ParamsInterceptor;
 
 /**
@@ -33,7 +33,7 @@ import eu.cehj.cdb2.hub.utils.ParamsInterceptor;
 public class SearchController extends BaseController {
 
     @Autowired
-    SearchInterfaceService searchService;
+    SearchService searchService;
 
     @Autowired
     QueryDslPredicateAnalyzer predicateAnalyzer;
@@ -56,6 +56,8 @@ public class SearchController extends BaseController {
     public Page<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable,
             @RequestParam(name = "country", required = true) final String countryCode,
             @RequestAttribute(name = "transformedReq", required = false) final MultiValueMap<String, String> transformedReq) throws Exception {
+
+        // FIXME: Instead of calling directly SearchInterfaceService, get correct service from  a factory, by passing it country code
         return this.searchService.sendQuery(countryCode, transformedReq);
 
     }

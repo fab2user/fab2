@@ -86,4 +86,9 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="hub-11" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="managed" type="boolean" defaultValue="true"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
