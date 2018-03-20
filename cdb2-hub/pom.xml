@@ -220,35 +220,10 @@
     </dependencies>
     <build>
         <plugins>
-            <!-- <plugin> -->
-            <!-- <groupId>org.apache.cxf</groupId> -->
-            <!-- <artifactId>cxf-codegen-plugin</artifactId> -->
-            <!-- <version>${cxf.version}</version> -->
-            <!-- <executions> -->
-            <!-- <execution> -->
-            <!-- <id>generate-sources</id> -->
-            <!-- <phase>generate-sources</phase> -->
-            <!-- <configuration> -->
-            <!-- <sourceRoot>${project.build.directory}/generated-sources</sourceRoot> -->
-            <!-- <wsdlOptions> -->
-            <!-- <wsdlOption> -->
-            <!-- <wsdl>http://euro.huissier-justice.fr/annuaire.asmx?WSDL</wsdl> -->
-            <!-- <extraargs> -->
-            <!-- <extraarg>-client</extraarg> -->
-            <!-- </extraargs> -->
-            <!-- </wsdlOption> -->
-            <!-- </wsdlOptions> -->
-            <!-- </configuration> -->
-            <!-- <goals> -->
-            <!-- <goal>wsdl2java</goal> -->
-            <!-- </goals> -->
-            <!-- </execution> -->
-            <!-- </executions> -->
-            <!-- </plugin> -->
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.13.1</version>
+                <version>0.13.3</version>
                 <executions>
                     <execution>
                         <goals>
@@ -261,7 +236,9 @@
                     <generatePackage>eu.cehj.cdb2.hub.service.soap.france</generatePackage>
                     <schemas>
                         <schema>
-                            <url>http://euro.huissier-justice.fr/annuaire.asmx?WSDL</url>
+                        <fileset>
+                        <directory>${project.basedir}/src/main/resources/wsdl/france</directory>
+                        </fileset>
                         </schema>
                     </schemas>
                 </configuration>

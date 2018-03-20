@@ -64,29 +64,31 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public BailiffDTO populateDTOFromEntity(final Bailiff bailiff) {
-        final BailiffDTO bailiffDTO = new BailiffDTO();
-        bailiffDTO.setName(bailiff.getName());
-        bailiffDTO.setId(bailiff.getId());
-        bailiffDTO.setEmail(bailiff.getEmail());
-        bailiffDTO.setPhone(bailiff.getPhone());
-        bailiff.getLanguages().forEach(lang -> bailiffDTO.getLanguages().add(lang.getId()));
-        if (bailiff.getLangOfDetails().size() > 0) {
-            bailiffDTO.setLangOfDetails(bailiff.getLangOfDetails().get(0).getId());
+    public BailiffDTO populateDTOFromEntity(final Bailiff entity) {
+        final BailiffDTO dto = new BailiffDTO();
+        dto.setName(entity.getName());
+        dto.setId(entity.getId());
+        dto.setEmail(entity.getEmail());
+        dto.setPhone(entity.getPhone());
+        dto.setWebSite(entity.getWebSite());
+        dto.setFax(entity.getFax());
+        entity.getLanguages().forEach(lang -> dto.getLanguages().add(lang.getId()));
+        if (entity.getLangOfDetails().size() > 0) {
+            dto.setLangOfDetails(entity.getLangOfDetails().get(0).getId());
         }
 
-        final Address address = bailiff.getAddress();
+        final Address address = entity.getAddress();
         if (address != null) {
-            bailiffDTO.setAddressId(address.getId());
-            bailiffDTO.setAddress(address.getAddress());
+            dto.setAddressId(address.getId());
+            dto.setAddress(address.getAddress());
             final Municipality municipality = address.getMunicipality();
             if (municipality != null) {
-                bailiffDTO.setCity(municipality.getName());
-                bailiffDTO.setPostalCode(municipality.getPostalCode());
-                bailiffDTO.setMunicipalityId(municipality.getId());
+                dto.setCity(municipality.getName());
+                dto.setPostalCode(municipality.getPostalCode());
+                dto.setMunicipalityId(municipality.getId());
             }
         }
-        return bailiffDTO;
+        return dto;
     }
 
     @Override

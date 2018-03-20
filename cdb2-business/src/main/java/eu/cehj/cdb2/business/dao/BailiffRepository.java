@@ -23,6 +23,7 @@ public interface BailiffRepository extends JpaRepository<Bailiff, Long>, QueryDs
         bindings.bind(String.class).first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
         // Allow use of alias city instead of ugly address.municipality.name
         bindings.bind(QBailiff.bailiff.address.municipality.name).as("city").first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
+        bindings.bind(QBailiff.bailiff.address.municipality.postalCode).as("postalCode").first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
         //FIXME: Filter by competence works only when when alone or associated with city, but breaks with bailiff.name...
         bindings.bind(QBailiff.bailiff.bailiffCompetenceAreas.any().competence.code).as("competence").first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
 

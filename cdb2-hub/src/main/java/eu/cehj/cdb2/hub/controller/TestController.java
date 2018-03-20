@@ -4,17 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import eu.cehj.cdb2.hub.service.central.push.PushDataService;
+import eu.cehj.cdb2.hub.service.FranceSearchService;
 
 
 @RestController
-@RequestMapping("test")
+@RequestMapping("api/test")
 public class TestController extends BaseController {
 
     @Autowired
-    PushDataService pushDataService;
+    FranceSearchService searchService;
 
-
+    //    @RequestMapping(method = GET)
+    //    @ResponseStatus(value = OK)
+    //    public List<BailiffDTO> test() throws Exception {
+    //        final ListeEtudeByInseeResponse resp =  this.searchService.sendQuery(countryCode, params)();
+    //        return new ArrayList<>();
+    //    }
     //    @RequestMapping(method = GET)
     //    @ResponseStatus(value = OK)
     //    public CdbPushMessage test() throws Exception {

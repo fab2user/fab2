@@ -1,7 +1,8 @@
 package eu.cehj.cdb2.hub.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.util.MultiValueMap;
@@ -48,12 +49,12 @@ public class SearchController extends BaseController {
      * @param countryCode
      * <strong>Required</strong>. ISO code of country to search.
      * @param transformedReq Added by {@link ParamsInterceptor}. Internal use.
-     * @return {@link Pageable} object containing search results
+     * @return {@link List} object containing search results
      * @throws Exception
      */
     @RequestMapping(method = GET, value = "bailiff")
     @ResponseStatus(value = OK)
-    public Page<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable,
+    public List<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable,
             @RequestParam(name = "country", required = true) final String countryCode,
             @RequestAttribute(name = "transformedReq", required = false) final MultiValueMap<String, String> transformedReq) throws Exception {
 
