@@ -15,6 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <skipTests>true</skipTests>
+        <cxf.version>3.1.2</cxf.version>
     </properties>
     <artifactId>cdb2-hub</artifactId>
     <packaging>jar</packaging>
@@ -41,6 +42,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -213,4 +218,54 @@
             <version>1.3.0</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <!-- <plugin> -->
+            <!-- <groupId>org.apache.cxf</groupId> -->
+            <!-- <artifactId>cxf-codegen-plugin</artifactId> -->
+            <!-- <version>${cxf.version}</version> -->
+            <!-- <executions> -->
+            <!-- <execution> -->
+            <!-- <id>generate-sources</id> -->
+            <!-- <phase>generate-sources</phase> -->
+            <!-- <configuration> -->
+            <!-- <sourceRoot>${project.build.directory}/generated-sources</sourceRoot> -->
+            <!-- <wsdlOptions> -->
+            <!-- <wsdlOption> -->
+            <!-- <wsdl>http://euro.huissier-justice.fr/annuaire.asmx?WSDL</wsdl> -->
+            <!-- <extraargs> -->
+            <!-- <extraarg>-client</extraarg> -->
+            <!-- </extraargs> -->
+            <!-- </wsdlOption> -->
+            <!-- </wsdlOptions> -->
+            <!-- </configuration> -->
+            <!-- <goals> -->
+            <!-- <goal>wsdl2java</goal> -->
+            <!-- </goals> -->
+            <!-- </execution> -->
+            <!-- </executions> -->
+            <!-- </plugin> -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.13.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generatePackage>eu.cehj.cdb2.hub.service.soap.france</generatePackage>
+                    <schemas>
+                        <schema>
+                            <url>http://euro.huissier-justice.fr/annuaire.asmx?WSDL</url>
+                        </schema>
+                    </schemas>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
