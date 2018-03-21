@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.MultiValueMap;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
@@ -15,6 +16,9 @@ import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInsee;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInseeResponse;
 
 public class FranceSearchService extends WebServiceGatewaySupport implements SearchService {
+
+    @Value("${cdb.france.soap.action}")
+    private String soapAction;
 
     @Override
     public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) throws Exception {
@@ -29,7 +33,7 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Sea
         }
         //FIXME: fetch soap action url from database !
         final ListeEtudeByInseeResponse resp = (ListeEtudeByInseeResponse) this.getWebServiceTemplate().marshalSendAndReceive(req,
-                new SoapActionCallback("http://euro.huissier-justice.fr/ListeEtudeByInsee"));
+                new SoapActionCallback(this.soapAction));
         final List<Etude> rawBailiffs = resp.getListeEtudeByInseeResult().getEtude();
         return rawBailiffs.stream().map(e -> this.convertEtudeToDTO(e)).collect(Collectors.toList());
     }

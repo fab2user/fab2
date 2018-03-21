@@ -8,24 +8,7 @@ import eu.cehj.cdb2.common.dto.LanguageDTO;
 import eu.cehj.cdb2.entity.Language;
 
 @Service
+// We just need to declare empty class, since everything is done in generic parent class !
 public class LanguageServiceImpl extends BaseServiceImpl<Language, LanguageDTO, Long, LanguageRepository> implements LanguageService {
-
-    @Override
-    public LanguageDTO populateDTOFromEntity(final Language language) {
-        final LanguageDTO dto = new LanguageDTO();
-        dto.setId(language.getId());
-        dto.setCode(language.getCode());
-        dto.setLanguage(language.getLanguage());
-        return dto;
-    }
-
-    @Override
-    public Language populateEntityFromDTO(final LanguageDTO dto) throws Exception {
-        final Language entity = dto.getId() == null ? new Language() : this.get(dto.getId());
-        entity.setId(dto.getId());
-        entity.setCode(dto.getCode());
-        entity.setLanguage(dto.getLanguage());
-        return entity;
-    }
 
 }

@@ -1,7 +1,6 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,35 +19,22 @@ public class CompetenceServiceImpl extends BaseServiceImpl<Competence, Competenc
     private InstrumentService instrumentService;
 
     @Override
-    public List<CompetenceDTO> getAllDTO() throws Exception {
-        //FIXME
-        final List<Competence> competences = this.repository.findAll();
-        final List<CompetenceDTO> dtos = new ArrayList<CompetenceDTO>(competences.size());
-        final Iterator<Competence> it = competences.iterator();
-        while(it.hasNext()) {
-            dtos.add(this.populateDTOFromEntity(it.next()));
-        }
-        return dtos;
-    }
-
-    @Override
     public CompetenceDTO populateDTOFromEntity(final Competence competence) throws Exception {
-        final CompetenceDTO dto = new CompetenceDTO();
-        dto.setId(competence.getId());
-        dto.setCode(competence.getCode());
-        dto.setDescription(competence.getDescription());
+        //        final CompetenceDTO dto = new CompetenceDTO();
+        //        dto.setId(competence.getId());
+        //        dto.setCode(competence.getCode());
+        //        dto.setDescription(competence.getDescription());
+        final CompetenceDTO dto = super.populateDTOFromEntity(competence);
         dto.setInstrument(this.instrumentService.populateDTOFromEntity(competence.getInstrument()));
         return dto;
     }
 
     @Override
     public List<CompetenceDTO> getAllDTOForInstrument(final Long instrumentId) throws Exception {
-        //FIXME
         final List<Competence> entities = this.repository.findAllByInstrumentId(instrumentId);
         final List<CompetenceDTO> dtos = new ArrayList<CompetenceDTO>(entities.size());
-        final Iterator<Competence> it = entities.iterator();
-        while(it.hasNext()) {
-            dtos.add(this.populateDTOFromEntity(it.next()));
+        for(final Competence competence : entities) {
+            dtos.add(this.populateDTOFromEntity(competence));
         }
         return dtos;
     }

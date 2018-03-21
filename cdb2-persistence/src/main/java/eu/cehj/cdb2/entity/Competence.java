@@ -32,6 +32,9 @@ public class Competence extends BaseAuditedEntity<String>{
     @OneToMany(mappedBy="competence")
     private final List<BailiffCompetenceArea> bailiffCompetenceAreas = new ArrayList<>();
 
+    public Competence() {
+
+    }
 
     public String getCode() {
         return this.code;

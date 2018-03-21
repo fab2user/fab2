@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,20 @@ public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, I
     protected EntityManager em;
 
     protected Class<T> entityClass;
+    protected Class<U> dtoClass;
 
     @Autowired
     protected R repository;
+
+    @Autowired
+    protected ModelMapper modelMapper;
 
     @SuppressWarnings("unchecked")
     public BaseServiceImpl() {
 
         final ParameterizedType genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();
         this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
+        this.dtoClass = (Class<U>) genericSuperclass.getActualTypeArguments()[1];
     }
 
     @Override
@@ -131,8 +137,16 @@ public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, I
         return this.populateDTOFromEntity(entity);
     }
 
-    public abstract T populateEntityFromDTO(final U dto) throws Exception;
+    @SuppressWarnings("unchecked")
+    public T populateEntityFromDTO(final U dto) throws Exception{
+        final T entity = dto.getId() == null ? this.entityClass.newInstance() : this.get((ID) dto.getId());
+        this.modelMapper.map(dto, entity);
+        return entity;
+    }
 
-    public abstract U populateDTOFromEntity(final T entity) throws Exception;
+    public U populateDTOFromEntity(final T entity) throws Exception{
+        final U dto = this.modelMapper.map(entity, this.dtoClass);
+        return dto;
+    }
 
 }
