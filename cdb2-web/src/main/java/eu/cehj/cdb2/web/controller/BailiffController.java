@@ -112,7 +112,8 @@ public class BailiffController extends BaseController {
 
     @RequestMapping(method = { GET }, value="export")
     public ResponseEntity<Resource> exportData() throws Exception{
-        final String exportFilePath = this.bailiffImportService.export("AT");
+        //TODO: For now I assume export can only be issued locally, hence we don't need to provide any country code argument. If it appears that Hub can request xls export as well, it will need to be changed.
+        final String exportFilePath = this.bailiffImportService.export(this.settings.getCountryCode());
         final Path path = Paths.get(exportFilePath);
         final ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
         this.logger.debug("headers : " + resource.getFilename());

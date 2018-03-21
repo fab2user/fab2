@@ -1,13 +1,16 @@
 package eu.cehj.cdb2.business.service.data;
 
+import static org.apache.commons.lang3.StringUtils.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -22,6 +25,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.AddressService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
@@ -49,12 +53,16 @@ public class BailiffImportService {
     @Autowired
     private StorageService storageService;
 
+    private final String[] cellTitles = {
+            "ID", "Name", "Lang", "Address", "Postal Code", "Municipality", "Phone", "Fax", "Email", "Web Site"
+    };
+
     @Async
     @Transactional
-    public void importFile(final String fileName, final String countryCode, final TaskStatus task) throws Exception{
+    public void importFile(final String fileName, final String countryCode, final TaskStatus task) throws Exception {
         try {
             final Resource file = this.storageService.loadFile(fileName);
-            try ( final Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
+            try (final Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
                 final Sheet sheet = workbook.getSheet("detail");
                 final Iterator<Row> it = sheet.rowIterator();
                 it.next(); // We skip first row since it contains table's header
@@ -62,16 +70,16 @@ public class BailiffImportService {
                     this.processBailiff(it.next(), this.getImportModel(countryCode));
                 }
                 task.setStatus(TaskStatus.Status.OK);
-            }}
-        catch(final Exception e) {
+            }
+        } catch (final Exception e) {
             task.setStatus(TaskStatus.Status.ERROR);
             String message = e.getMessage();
-            if(StringUtils.isBlank(message)) {
+            if (isBlank(message)) {
                 message = "Unknown server error while processing xls import file.";
             }
             task.setMessage(message);
             throw e;
-        }finally {
+        } finally {
             this.storageService.deleteFile(fileName);
         }
     }
@@ -80,23 +88,15 @@ public class BailiffImportService {
     public String export(final String countryCode) throws Exception {
         try (final Workbook workbook = new XSSFWorkbook()) {
             final Sheet sheet = workbook.createSheet("Bailiffs");
-            final BailiffImportModel importModel = this.getImportModel(countryCode);
-            this.writeHeaders(sheet, importModel);
+            this.writeHeaders(sheet);
             final List<Bailiff> bailiffs = this.bailiffService.getAll();
             int index = 1;
+
             for (final Bailiff bailiff : bailiffs) {
-                final Row currentRow = sheet.createRow(index);
-                Cell cell = currentRow.createCell(0, CellType.STRING);
-                cell.setCellValue(bailiff.getName());
-                cell = currentRow.createCell(1, CellType.STRING);
-                cell.setCellValue(bailiff.getPhone());
-                cell = currentRow.createCell(2, CellType.STRING);
-                cell.setCellValue(bailiff.getFax());
-                cell = currentRow.createCell(3, CellType.STRING);
-                cell.setCellValue(bailiff.getEmail());
-                currentRow.createCell(4, CellType.STRING);
-                cell.setCellValue(bailiff.getWebSite());
-                index++;
+
+                final String[] bailiffValues = this.buildValues(bailiff);
+                this.writeRow(sheet, index, bailiffValues);
+                index ++;
             }
 
             final File currDir = new File(".");
@@ -109,18 +109,56 @@ public class BailiffImportService {
         }
     }
 
-    private Row writeHeaders(final Sheet sheet, final BailiffImportModel importModel) throws Exception {
+    private String[] buildValues(final Bailiff bailiff) {
+        //@formatter:off
+        return new String[] {
+                Long.toString(bailiff.getId()),
+                defaultIfBlank(bailiff.getName(), ""),
+                this.getLangsForBailiff(bailiff),
+                Optional
+                .of(bailiff)
+                .map(Bailiff::getAddress)
+                .map(Address::getAddress)
+                .orElseGet(() -> ""),
+                this.getLangsForBailiff(bailiff),
+                Optional
+                .of(bailiff)
+                .map(Bailiff::getAddress)
+                .map(Address::getMunicipality)
+                .map(Municipality::getPostalCode)
+                .orElseGet(() -> ""),
+                Optional
+                .of(bailiff)
+                .map(Bailiff::getAddress)
+                .map(Address::getMunicipality)
+                .map(Municipality::getName)
+                .orElseGet(() -> ""),
+                defaultIfBlank(bailiff.getPhone(), ""),
+                defaultIfBlank(bailiff.getFax(), ""),
+                defaultIfBlank(bailiff.getEmail(), ""),
+                defaultIfBlank(bailiff.getWebSite(), ""),
+        };
+        //@formatter:on
+    }
+
+    private String getLangsForBailiff(final Bailiff bailiff) {
+        return bailiff.getLanguages().stream().map(l -> l.getLanguage()).collect(Collectors.joining(", "));
+    }
+
+    private void writeRow(final Sheet sheet, final int index, final String[] bailiffValues) {
+        final Row row = sheet.createRow(index);
+        for (int i = 0; i < bailiffValues.length; i++) {
+            final Cell cell = row.createCell(i, CellType.STRING);
+            cell.setCellValue(bailiffValues[i]);
+        }
+    }
+
+    private Row writeHeaders(final Sheet sheet) throws Exception {
         final Row row = sheet.createRow(0);
-        Cell cell = row.createCell(0, CellType.STRING);
-        cell.setCellValue("Name");
-        cell = row.createCell(1, CellType.STRING);
-        cell.setCellValue("Phone");
-        cell = row.createCell(2, CellType.STRING);
-        cell.setCellValue("Fax");
-        cell = row.createCell(3, CellType.STRING);
-        cell.setCellValue("Email");
-        cell = row.createCell(4, CellType.STRING);
-        cell.setCellValue("Web Site");
+        for (int ind = 0; ind < this.cellTitles.length; ind++) {
+            final Cell cell = row.createCell(ind, CellType.STRING);
+            cell.setCellValue(this.cellTitles[ind]);
+        }
         return row;
     }
 
@@ -142,24 +180,28 @@ public class BailiffImportService {
 
     }
 
-    private Bailiff populateBailiff(final Row row, final BailiffImportModel importModel) {
-        final Bailiff bailiff = new Bailiff();
-        Cell cell = row.getCell(importModel.getName());
-        final String name = cell.getStringCellValue().trim();
-        bailiff.setName(name);
-        cell = row.getCell(importModel.getPhone());
-        final String phone = cell.getStringCellValue().trim();
-        bailiff.setPhone(phone);
-        cell = row.getCell(importModel.getFax());
-        final String fax = cell.getStringCellValue().trim();
-        bailiff.setFax(fax);
-        cell = row.getCell(importModel.getEmail());
-        final String email = cell.getStringCellValue().trim();
-        bailiff.setEmail(email);
-        cell = row.getCell(importModel.getWebSite());
-        final String webSite = cell.getStringCellValue().trim();
-        bailiff.setWebSite(webSite);
-        return bailiff;
+    private Bailiff populateBailiff(final Row row, final BailiffImportModel importModel)throws Exception {
+        try {
+            final Bailiff bailiff = new Bailiff();
+            Cell cell = row.getCell(importModel.getName());
+            final String name = cell.getStringCellValue().trim();
+            bailiff.setName(name);
+            cell = row.getCell(importModel.getPhone());
+            final String phone = cell.getStringCellValue().trim();
+            bailiff.setPhone(phone);
+            cell = row.getCell(importModel.getFax());
+            final String fax = cell.getStringCellValue().trim();
+            bailiff.setFax(fax);
+            cell = row.getCell(importModel.getEmail());
+            final String email = cell.getStringCellValue().trim();
+            bailiff.setEmail(email);
+            cell = row.getCell(importModel.getWebSite());
+            final String webSite = cell.getStringCellValue().trim();
+            bailiff.setWebSite(webSite);
+            return bailiff;
+        } catch (final Exception e) {
+            throw new CDBException("Error when importing bailiff data from Excel file. Please check that the file is correct.");
+        }
     }
 
     private Address populateAddress(final Row row, final BailiffImportModel importModel) throws Exception {

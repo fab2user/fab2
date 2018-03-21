@@ -31,7 +31,6 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Sea
         if(isNotBlank(name)) {
             req.setNom(name);
         }
-        //FIXME: fetch soap action url from database !
         final ListeEtudeByInseeResponse resp = (ListeEtudeByInseeResponse) this.getWebServiceTemplate().marshalSendAndReceive(req,
                 new SoapActionCallback(this.soapAction));
         final List<Etude> rawBailiffs = resp.getListeEtudeByInseeResult().getEtude();
