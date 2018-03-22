@@ -94,8 +94,12 @@
             <strong>{{bailiffEditCtrl.errorsFromServer}}</strong>
           </div>
           <div class="row top-1">
-            <div class="col-md-12">
-              <button class="btn btn-primary pull-right" ng-click="bailiffEditCtrl.save(bailiffEditCtrl.bailiffForm.$valid)">
+            <div class="col-md-12 light-pull-right">
+              <button class="btn btn-danger" type="button" ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()" confirm="{{'global.confirm.delete'|translate}}">
+                <span class="glyphicon glyphicon-trash"></span>
+                <span translate="global.button.delete"></span>
+              </button>
+              <button class="btn btn-primary" ng-click="bailiffEditCtrl.save(bailiffEditCtrl.bailiffForm.$valid)">
                 <span class="glyphicon glyphicon-floppy-disk"></span>
                 <span translate="global.button.save"></span>
               </button>
@@ -129,7 +133,8 @@
               <span class="glyphicon glyphicon-plus-sign"></span>
               <span translate="global.button.add"></span>
             </button>
-            <a class="btn btn-danger pull-right action-button" ng-click="bailiffEditCtrl.removeCompetence()" ng-disabled="!bailiffEditCtrl.selectedCompetence.id" confirm="{{'global.label.confirm'|translate}}">
+            <a class="btn btn-danger pull-right action-button" ng-click="bailiffEditCtrl.removeCompetence()" ng-disabled="!bailiffEditCtrl.selectedCompetence.id"
+              confirm="{{'global.label.confirm'|translate}}">
               <span class="glyphicon glyphicon-trash"></span>
               <span translate="global.button.delete"></span>
             </a>
@@ -141,11 +146,6 @@
   <div class="modal-footer">
     <div class="row">
       <div class="col-md-12">
-        <a class="btn btn-danger pull-left action-button" ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()" confirm="{{'global.label.confirm'|translate}}">
-          <span class="glyphicon glyphicon-trash"></span>
-          <span translate="global.button.delete"></span>
-        </a>
-
         <a class="btn btn-primary pull-right action-button" ng-click="bailiffEditCtrl.modalInstance.close()">
           <span class="glyphicon glyphicon-remove-sign"></span>
           <span translate="global.button.close"></span>

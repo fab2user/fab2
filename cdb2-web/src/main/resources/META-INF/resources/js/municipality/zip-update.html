@@ -1,17 +1,40 @@
-<div>
-    <form name="zipCtrl.form" class="info-title" novalidate ng-submit="zipCtrl.upload()">
-        <p class="bg-info info-title" translate="municipality.import.title"></p>
-        <span ng-if="zipCtrl.file">{{ 'municipality.import.file' | translate }}:</span>
-        <span>{{ zipCtrl.file.name }}</span>
-        <div class="btn btn-default" ngf-select ng-model="zipCtrl.file" name="file" ngf-pattern="'.txt'" ngf-accept="'text/*'" ngf-min-size="100"
-            ngf-max-size="30MB" ngf-validate="{size: {min: 10, max: '30MB'}"><span class="glyphicon glyphicon-folder-open"></span> <span translate="global.form.select.file"></span></div>
-        <button class="btn btn-primary" type="submit" ng-disabled="zipCtrl.submitted || !zipCtrl.file"><span class="glyphicon glyphicon-download"></span> <span translate="municipality.import.button"></span></button>
-    </form>
-</div>
-<div ng-messages="zipCtrl.form.file.$error">
-    <div ng-message="empty" class="text-danger">{{"municipality.error.file.required"|translate}}</div>
-    <div ng-message="maxSize" class="text-danger">{{"municipality.error.file.max.size"|translate}}</div>
-</div>
-<div class="alert alert-danger" role="alert" ng-if="zipCtrl.errorsFromServer">
-    <strong>{{ zipCtrl.errorsFromServer }}</strong>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title" translate="municipality.import.title"></h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form name="zipCtrl.form" class="info-title" novalidate ng-submit="zipCtrl.upload()">
+                    <!-- <p class="bg-info info-title" translate="municipality.import.title"></p> -->
+                    <span ng-if="zipCtrl.file">{{ 'municipality.import.file' | translate }}:</span>
+                    <span>{{ zipCtrl.file.name }}</span>
+                    <div class="btn btn-default" ngf-select ng-model="zipCtrl.file" name="file" ngf-pattern="'.txt'" ngf-accept="'text/*'" ngf-min-size="100"
+                        ngf-max-size="30MB" ngf-validate="{size: {min: 10, max: '30MB'}">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span translate="global.form.select.file"></span>
+                    </div>
+                    <button class="btn btn-primary" type="submit" ng-disabled="zipCtrl.submitted || !zipCtrl.file">
+                        <span class="glyphicon glyphicon-download"></span>
+                        <span translate="municipality.import.button"></span>
+                    </button>
+                    <button class="btn btn-danger" type="button" ng-hide="zipCtrl.submitted || !zipCtrl.file" ng-click="zipCtrl.removeFile()">
+                        <span class="glyphicon glyphicon-remove-sign"></span>
+                        <span translate="global.button.cancel"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-messages="zipCtrl.form.file.$error">
+                    <div ng-message="empty" class="text-danger">{{"municipality.error.file.required"|translate}}</div>
+                    <div ng-message="maxSize" class="text-danger">{{"municipality.error.file.max.size"|translate}}</div>
+                </div>
+                <div class="alert alert-danger" role="alert" ng-if="zipCtrl.errorsFromServer">
+                    <strong>{{ zipCtrl.errorsFromServer }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

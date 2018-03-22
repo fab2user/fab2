@@ -103,6 +103,10 @@
               vm.polling = undefined;
             }
           };
+
+          vm.removeFile = function() {
+            delete vm.file;
+          };
         }
       ]
     };

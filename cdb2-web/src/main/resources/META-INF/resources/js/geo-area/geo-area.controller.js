@@ -1,43 +1,56 @@
-(function () {
+(function() {
   'use strict';
 
-  angular
-    .module('cdb2')
-    .controller('GeoAreaController', GeoAreaController);
+  angular.module('cdb2').controller('GeoAreaController', GeoAreaController);
 
-  GeoAreaController.$inject = ['$uibModal', '$translate', 'GeoAreaAPIService', 'NgTableParams', 'toastr'];
+  GeoAreaController.$inject = [
+    '$uibModal',
+    '$translate',
+    'GeoAreaAPIService',
+    'NgTableParams',
+    'toastr'
+  ];
 
-  function GeoAreaController($uibModal, $translate, GeoAreaAPIService, NgTableParams, toastr) {
+  function GeoAreaController(
+    $uibModal,
+    $translate,
+    GeoAreaAPIService,
+    NgTableParams,
+    toastr
+  ) {
     var vm = this;
 
     fetchGeoAreas();
 
-    vm.areaDetailsTable = new NgTableParams({}, {
-      dataSet: []
-    });
+    vm.areaDetailsTable = new NgTableParams(
+      {},
+      {
+        dataSet: []
+      }
+    );
 
-    vm.edit = function(){
+    vm.edit = function() {
       loadModal(vm.selectedArea);
     };
 
-    vm.new = function(){
+    vm.new = function() {
       // We pass an empty area object
-      loadModal({'municipalities':[]});
+      loadModal({ municipalities: [] });
     };
 
-    vm.remove = function(){
-      GeoAreaAPIService
-        .delete({id: vm.selectedArea.id})
-        .$promise
-        .then(function(){
+    vm.remove = function() {
+      GeoAreaAPIService.delete({ id: vm.selectedArea.id }).$promise.then(
+        function() {
           toastr.success($translate.instant('global.toastr.delete.success'));
           fetchGeoAreas();
-        });
+        }
+      );
     };
 
-    vm.selectArea = function(area){
+    vm.selectArea = function(area) {
       vm.selectedArea = area;
-      vm.areaDetailsTable.settings({dataset: area.municipalities});
+      vm.areaDetailsTable.settings({ dataset: area.municipalities });
+      vm.total = area.municipalities.length;
     };
 
     function loadModal(selectedArea) {
@@ -51,16 +64,15 @@
         }
       });
 
-      modalInstance.result.then(
-        function () {
-          fetchGeoAreas();
-          // vm.tableParams.reload();
-        });
+      modalInstance.result.then(function() {
+        fetchGeoAreas();
+        // vm.tableParams.reload();
+      });
     }
 
-    function fetchGeoAreas(){
+    function fetchGeoAreas() {
       GeoAreaAPIService.getAll().$promise.then(function(success) {
-        vm.tableParams = new NgTableParams({}, {dataset: success});
+        vm.tableParams = new NgTableParams({}, { dataset: success });
       });
     }
   }

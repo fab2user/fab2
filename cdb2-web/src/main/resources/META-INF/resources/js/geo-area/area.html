@@ -7,8 +7,8 @@
         </h3>
       </div>
       <div class="panel-body">
-        <div class="row vertical-align">
-          <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-12">
             <table ng-table="areaCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
               <tr ng-repeat="area in $data track by area.id" ng-click="areaCtrl.selectArea(area)" ng-class="{'selected-info': area.id === areaCtrl.selectedArea.id}"
                 class="pointable">
@@ -21,23 +21,17 @@
               </tr>
             </table>
           </div>
-          <div class="col-md-2  btn-group-vertical">
-            <div class="row">
-              <div class="col-md-12">
-                <button class="btn btn-primary btn-block" ng-click="areaCtrl.new()">
-                  <span class="glyphicon glyphicon-plus-sign"></span>
-                  <span translate="global.button.add">Add</span>
-                </button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 top-1">
-                <button class="btn btn-danger btn-block" ng-click="areaCtrl.remove()">
-                  <span class="glyphicon glyphicon-remove-sign"></span>
-                  <span translate="global.button.remove">Remove</span>
-                </button>
-              </div>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 light-pull-right">
+            <button class="btn btn-danger" ng-click="areaCtrl.remove()">
+              <span class="glyphicon glyphicon-remove-sign"></span>
+              <span translate="global.button.remove">Remove</span>
+            </button>
+            <button class="btn btn-primary" ng-click="areaCtrl.new()">
+              <span class="glyphicon glyphicon-plus-sign"></span>
+              <span translate="global.button.add">Add</span>
+            </button>
           </div>
         </div>
       </div>
@@ -68,7 +62,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
+            {{ areaCtrl.areaDetailsTable.total() }} {{ 'global.label.filtered'|translate }} / {{ areaCtrl.total }} {{ 'global.label.total'|translate}}
+          </div>
+          <div class="col-md-6">
             <button type="button" class="btn btn-primary pull-right" ng-click="areaCtrl.edit()">
               <span class="glyphicon glyphicon-pencil"></span>
               <span translate="global.button.edit"></span>

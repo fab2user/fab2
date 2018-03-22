@@ -1,6 +1,6 @@
 .vertical-align {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .top-1 {
@@ -15,7 +15,7 @@
   margin-top: 2em;
 }
 
-.top-5{
+.top-5 {
   margin-top: 5em;
 }
 
@@ -27,7 +27,7 @@
   width: 96%;
 }
 
-.pointable:hover{
+.pointable:hover {
   cursor: pointer;
 }
 
@@ -50,14 +50,14 @@
   box-shadow: none;
 }
 
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width: 768px) {
   .is-table-row {
-      display: table;
+    display: table;
   }
-  .is-table-row [class*="col-"] {
-      float: none;
-      display: table-cell;
-      vertical-align: top;
+  .is-table-row [class*='col-'] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
   }
 }
 
@@ -65,63 +65,88 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display:         flex;
+  display: flex;
 }
 
 .switch-control {
   font-size: 18px;
 }
 
-div.user-id{
+div.user-id {
   text-align: right;
 }
 
-.info-title{
+.info-title {
   text-align: center;
   font-weight: bolder;
-  padding: 0.5em 0 0.5em 0
+  padding: 0.5em 0 0.5em 0;
 }
 
-form.info-title{
+form.info-title {
   text-align: right;
 }
 
-.table-bordered.data-grid>thead>tr>td, .table-bordered.data-grid>thead>tr>th{
+.table-bordered.data-grid > thead > tr > td,
+.table-bordered.data-grid > thead > tr > th {
   border-bottom-width: 1px;
 }
 
-.selected-info{
-  background-color: #D6EDF6 !important;
+.selected-info {
+  background-color: #d6edf6 !important;
 }
 
-.selected-add{
+.selected-add {
   background-color: #cae0c1 !important;
 }
 
-.selected-rem{
+.selected-rem {
   background-color: #e0cac1 !important;
 }
 
 /* Fits column width to content */
-.table td.fit, 
+.table td.fit,
 .table th.fit {
-    white-space: nowrap;
-    width: 1%;
+  white-space: nowrap;
+  width: 1%;
 }
 
 /* Fits columns width with content, with some room left to allow search (specifically used for id fields) */
-.table td.fit-id, 
+.table td.fit-id,
 .table th.fit-id {
-    white-space: nowrap;
-    width: 8%;
+  white-space: nowrap;
+  width: 8%;
 }
 
 /* Fix display issue on ng-table when list size bar without paging bar */
 .btn-group {
-  margin-bottom: 0.5em
+  margin-bottom: 0.5em;
 }
 
-.light-pull-right{
+.light-pull-right {
   text-align: right;
 }
 
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+a.glyphicon {
+  text-decoration: none !important;
+  padding-left: 0.3em;
+}
+
+/* Remove spinner from input type number */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

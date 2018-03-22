@@ -21,18 +21,35 @@
     'STATUS'
   ];
 
-  function BailiffController($log, $translate, $uibModal, $http, $interval, $rootScope, FileSaver, Blob, NgTableParams, BailiffAPIService, toastr, MunicipalityAPIService, SERVER, EVENT, STATUS) {
-
+  function BailiffController(
+    $log,
+    $translate,
+    $uibModal,
+    $http,
+    $interval,
+    $rootScope,
+    FileSaver,
+    Blob,
+    NgTableParams,
+    BailiffAPIService,
+    toastr,
+    MunicipalityAPIService,
+    SERVER,
+    EVENT,
+    STATUS
+  ) {
     var vm = this;
     vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
     vm.selectedBailiff = {};
 
     vm.fetchBailiffs = function() {
-      BailiffAPIService.getAll({deleted: vm.deleted}).$promise.then(function(data) {
-        vm.tableParams = new NgTableParams({}, {dataset: data});
+      BailiffAPIService.getAll({ deleted: vm.deleted }).$promise.then(function(
+        data
+      ) {
+        vm.total = data.length;
+        vm.tableParams = new NgTableParams({}, { dataset: data });
       });
     };
-
 
     vm.fetchBailiffs();
     vm.title = $translate.instant('bailiff.list.municipality');
@@ -41,71 +58,95 @@
       loadModal({});
     };
 
-    vm.edit = function() {
+    vm.edit = function(bailiff) {
+      vm.selectedBailiff = bailiff;
       loadModal(vm.selectedBailiff);
     };
 
-    vm.delete = function(){
-      BailiffAPIService.delete({id: vm.selectedBailiff.id}).$promise.then(function(){
-        toastr.success($translate.instant('global.toastr.delete.success'));
-        vm.fetchBailiffs();
-      });
+    //TODO: Remove this method after testing
+    // vm.edit = function() {
+    //   loadModal(vm.selectedBailiff);
+    // };
+
+    vm.delete = function(bailiff) {
+      vm.selectedBailiff = bailiff;
+      vm.delete();
     };
 
-    vm.cancelUpload = function(){
+    // Don't remove : it's used in bailiff edit !
+    vm.delete = function() {
+      BailiffAPIService.delete({ id: vm.selectedBailiff.id }).$promise.then(
+        function() {
+          toastr.success($translate.instant('global.toastr.delete.success'));
+          vm.fetchBailiffs();
+        }
+      );
+    };
+
+    vm.cancelUpload = function() {
       vm.importFile = null;
     };
 
-    vm.export = function(){
-      $http.get(SERVER.API + '/bailiff/export', {responseType: 'arraybuffer'}).then(function(success){
-        var blob = new Blob([success.data]);
-            FileSaver.saveAs(blob, 'export_bailiffs.xls');
-      });
+    vm.export = function() {
+      $http
+        .get(SERVER.API + '/bailiff/export', { responseType: 'arraybuffer' })
+        .then(function(success) {
+          var blob = new Blob([success.data]);
+          FileSaver.saveAs(blob, 'export_bailiffs.xls');
+        });
     };
 
-    vm.sendImportFile = function(){
+    vm.sendImportFile = function() {
       $log.info('Upload called', vm.importFile);
       var formData = new FormData();
       formData.append('file', vm.importFile);
       formData.append('filetype', 'text');
-      $http.post(SERVER.API + '/bailiff/import', formData, {
-        transformRequest: angular.identity,
-        headers: {
-          'Content-Type': undefined
-        }
-      }).then(function (success) {
-        $log.debug('Update successfully submitted');
-        toastr.info($translate.instant('bailiff.import.inprogress'));
-        vm.importFile = null;
-        
-        $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
-        // start polling
-        vm.startPolling(success.data.code);
+      $http
+        .post(SERVER.API + '/bailiff/import', formData, {
+          transformRequest: angular.identity,
+          headers: {
+            'Content-Type': undefined
+          }
+        })
+        .then(function(success) {
+          $log.debug('Update successfully submitted');
+          toastr.info($translate.instant('bailiff.import.inprogress'));
+          vm.importFile = null;
 
-      })
-      .finally(function () {
-        vm.submitted = false;
-      });
+          $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
+          // start polling
+          vm.startPolling(success.data.code);
+        })
+        .finally(function() {
+          vm.submitted = false;
+        });
     };
 
     vm.polling = undefined;
 
-    vm.startPolling = function(taskCode){
-      if(angular.isDefined(vm.polling)) return;
-      vm.polling = $interval(function(){
-        $http.get(SERVER.API + '/task/' + taskCode).then(function(success){
-          if(success.data.status === STATUS.OK){
-            vm.fetchBailiffs();
-          }
-          if(success.data.status === STATUS.OK || success.data.status === STATUS.ERROR){
-            $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
-            vm.endPolling();
-          }
-        });
-      }, 10000, 5);
+    vm.startPolling = function(taskCode) {
+      if (angular.isDefined(vm.polling)) return;
+      vm.polling = $interval(
+        function() {
+          $http.get(SERVER.API + '/task/' + taskCode).then(function(success) {
+            if (success.data.status === STATUS.OK) {
+              vm.fetchBailiffs();
+            }
+            if (
+              success.data.status === STATUS.OK ||
+              success.data.status === STATUS.ERROR
+            ) {
+              $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
+              vm.endPolling();
+            }
+          });
+        },
+        10000,
+        5
+      );
     };
 
-    vm.endPolling = function(){
+    vm.endPolling = function() {
       if (angular.isDefined(vm.polling)) {
         $interval.cancel(vm.polling);
         vm.polling = undefined;
@@ -125,8 +166,11 @@
           },
           competences: function() {
             //Only when edition, not when creation
-            if(bailiff.id){
-              return BailiffAPIService.getCompetences({id: bailiff.id, collectionAction: 'competences'});
+            if (bailiff.id) {
+              return BailiffAPIService.getCompetences({
+                id: bailiff.id,
+                collectionAction: 'competences'
+              });
             }
           }
         }
@@ -136,6 +180,5 @@
         vm.fetchBailiffs();
       });
     }
-
   }
 })();

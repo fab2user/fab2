@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
@@ -86,9 +85,18 @@ public class BailiffController extends BaseController {
         return this.bailiffService.getAllForExport();
     }
 
+    //    @RequestMapping(method = GET, value = "search")
+    //    @ResponseStatus(value = OK)
+    //    public Page<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable) throws Exception {
+    //        // Because we return only active bailiffs, we have to tweak the search from the http request, in order to add deleted filter
+    //        final QBailiff bailiff = QBailiff.bailiff;
+    //        final Predicate tweakedPredicate = (bailiff.deleted.isFalse().or(bailiff.deleted.isNull())).and(predicate);
+    //        return this.bailiffService.findAll(tweakedPredicate, pageable);
+    //    }
+
     @RequestMapping(method = GET, value = "search")
     @ResponseStatus(value = OK)
-    public Page<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable) throws Exception {
+    public List<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable) throws Exception {
         // Because we return only active bailiffs, we have to tweak the search from the http request, in order to add deleted filter
         final QBailiff bailiff = QBailiff.bailiff;
         final Predicate tweakedPredicate = (bailiff.deleted.isFalse().or(bailiff.deleted.isNull())).and(predicate);
