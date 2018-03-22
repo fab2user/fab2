@@ -1,14 +1,13 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -135,14 +134,16 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public Page<BailiffDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+    public List<BailiffDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
         final Page<Bailiff> entities = this.repository.findAll(predicate, pageable);
-        final List<BailiffDTO> dtos = new ArrayList<>();
-        final Iterator<Bailiff> it = entities.iterator();
-        while (it.hasNext()) {
-            dtos.add(this.populateDTOFromEntity(it.next()));
-        }
-        return new PageImpl<>(dtos, pageable, entities.getTotalElements());
+        //@formatter:off
+        return this.repository.findAll(predicate, pageable).getContent()
+                .stream()
+                .map(b -> this.populateDTOFromEntity(b))
+                .collect(Collectors.toList());
+        //@formatter:on
+        //        final Page<BailiffDTO> page = new PageImpl<>(dtos, pageable, entities.getTotalElements());
+        //        return page;
     }
 
     @Override
