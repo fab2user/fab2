@@ -177,4 +177,15 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             <column name="type" type="varchar(255)"/>
         </createTable>
     </changeSet>
+    <changeSet id="cdb-17" author="landry">
+        <comment>We have to populate instrument/competence tables with correct data, hence revert what has been done by cdb-05</comment>
+        <sql>
+            SET FOREIGN_KEY_CHECKS=0;
+            TRUNCATE TABLE `instrument`;
+            TRUNCATE TABLE `competence`;
+            SET FOREIGN_KEY_CHECKS=1;
+        </sql>
+        <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
+        <loadData tableName="competence" file="db/data/competence.csv"></loadData>
+    </changeSet>
    </databaseChangeLog>

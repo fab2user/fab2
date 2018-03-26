@@ -1,4 +1,8 @@
 id,created_by,created_on,deleted,modified_by,modified_on,code,description,instrument
 1,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,CB,Central Body,1
-2,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,TA,Transmitting Agencies,2
-3,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,RA,Receiving Agencies,2
+2,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,TA,Transmitting Agencies,1
+3,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,RA,Receiving Agencies,1
+7,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,CJA,Courts with jurisdiction in case of authentic instrument,2
+6,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,AAR,Courts for appeal against refusal to issue the EAPO,2
+4,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,CER,Courts or enforcement authority for granting a remedy,2
+5,Landry Soules,2018-01-23 15:05:17,,Landry Soules,2018-01-23 15:05:17,AAD,Courts for appeal against a decision on the remedy,2

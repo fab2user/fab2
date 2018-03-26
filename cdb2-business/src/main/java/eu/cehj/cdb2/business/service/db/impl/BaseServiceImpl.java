@@ -137,6 +137,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, I
         return this.populateDTOFromEntity(entity);
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public T populateEntityFromDTO(final U dto) throws Exception{
         final T entity = dto.getId() == null ? this.entityClass.newInstance() : this.get((ID) dto.getId());
@@ -144,9 +145,18 @@ public abstract class BaseServiceImpl<T extends BaseEntity, U extends BaseDTO, I
         return entity;
     }
 
+    @Override
     public U populateDTOFromEntity(final T entity) throws Exception{
         final U dto = this.modelMapper.map(entity, this.dtoClass);
         return dto;
+    }
+
+    public Logger getLogger() {
+        return this.logger;
+    }
+
+    public void setLogger(final Logger logger) {
+        this.logger = logger;
     }
 
 }

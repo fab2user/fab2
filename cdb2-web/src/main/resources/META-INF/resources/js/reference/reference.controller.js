@@ -1,24 +1,52 @@
-(function () {
+(function() {
   'use strict';
 
   angular.module('cdb2').controller('ReferenceController', ReferenceController);
 
-  ReferenceController.$inject = ['$log', '$http', '$uibModal', '$translate', 'ReferenceAPIService', 'LanguageAPIService', 'toastr'];
+  ReferenceController.$inject = [
+    '$log',
+    '$http',
+    '$uibModal',
+    '$translate',
+    'lodash',
+    'ReferenceAPIService',
+    'LanguageAPIService',
+    'toastr'
+  ];
 
-  function ReferenceController($log, $http, $uibModal, $translate, ReferenceAPIService, LanguageAPIService, toastr) {
+  function ReferenceController(
+    $log,
+    $http,
+    $uibModal,
+    $translate,
+    lodash,
+    ReferenceAPIService,
+    LanguageAPIService,
+    toastr
+  ) {
     var vm = this;
     vm.selectedLang = null;
 
     fetchLangs();
 
-    ReferenceAPIService.getAllCompetence().$promise.then(function (data) {
-      vm.competences = data;
-    });
-    ReferenceAPIService.getAllInstrument().$promise.then(function (data) {
-      vm.instruments = data;
+    ReferenceAPIService.getAllInstrument().$promise.then(function(instruments) {
+      // Prepare data to be displayed
+      vm.instruments = [];
+      instruments.forEach(function(instrument) {
+        vm.instruments.push({
+          instrumentCode: instrument.code,
+          instrumentDesc: instrument.description
+        });
+        instrument.competences.forEach(function(competence) {
+          vm.instruments.push({
+            competenceCode: competence.code,
+            competenceDesc: competence.description
+          });
+        });
+      });
     });
 
-    vm.selectLang = function (lang) {
+    vm.selectLang = function(lang) {
       if (vm.selectedLang === lang) {
         vm.selectedLang = null;
       } else {
@@ -26,11 +54,11 @@
       }
     };
 
-    vm.new = function () {
+    vm.new = function() {
       loadModal({});
     };
 
-    vm.edit = function () {
+    vm.edit = function() {
       loadModal(vm.selectedLang);
     };
 
@@ -45,25 +73,24 @@
         }
       });
 
-      modalInstance.result.then(function () {
+      modalInstance.result.then(function() {
         fetchLangs();
       });
     }
 
     function fetchLangs() {
-      ReferenceAPIService.getAllLanguage().$promise.then(function (data) {
+      ReferenceAPIService.getAllLanguage().$promise.then(function(data) {
         vm.languages = data;
       });
     }
 
-    vm.deleteLang = function () {
+    vm.deleteLang = function() {
       LanguageAPIService.delete({
         id: vm.selectedLang.id
-      }).$promise.then(function () {
+      }).$promise.then(function() {
         toastr.success($translate.instant('global.toastr.delete.success'));
         fetchLangs();
       });
     };
-
   }
 })();

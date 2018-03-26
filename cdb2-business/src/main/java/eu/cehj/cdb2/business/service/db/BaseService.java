@@ -28,4 +28,8 @@ public interface BaseService<T extends BaseEntity, U extends BaseDTO,  ID extend
 
     public U getDTO(ID id) throws Exception;
 
+    public T populateEntityFromDTO(final U dto) throws Exception;
+
+    public U populateDTOFromEntity(final T entity) throws Exception;
+
 }

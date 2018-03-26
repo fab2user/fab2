@@ -1,5 +1,7 @@
 package eu.cehj.cdb2.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import eu.cehj.cdb2.entity.Competence;
 
 public class CompetenceDTO extends BaseDTO {
@@ -8,6 +10,8 @@ public class CompetenceDTO extends BaseDTO {
 
     private String code;
     private String description;
+
+    @JsonBackReference
     private InstrumentDTO instrument;
 
     public CompetenceDTO() {

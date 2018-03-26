@@ -2,6 +2,8 @@ package eu.cehj.cdb2.common.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import eu.cehj.cdb2.entity.Instrument;
 
 public class InstrumentDTO extends BaseDTO{
@@ -10,6 +12,8 @@ public class InstrumentDTO extends BaseDTO{
 
     private String code;
     private String description;
+
+    @JsonManagedReference
     private List<CompetenceDTO> competences;
 
     public InstrumentDTO() {
