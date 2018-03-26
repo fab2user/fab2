@@ -111,33 +111,28 @@
         <div class="row">
           <div class="col-md-12">
             <table ng-table="bailiffEditCtrl.tableParams" class="table" show-filter="true">
-              <tr ng-repeat="competence in $data track by competence.id" ng-click="bailiffEditCtrl.selectedCompetence = competence" ng-class="{'info': competence.id === bailiffEditCtrl.selectedCompetence.id}"
-                class="pointable">
+              <tr ng-repeat="competence in $data track by competence.id">
                 <td data-title="'bailiff.edit.competence'|translate" filter="{ 'competence.code': 'text'}" sortable="'competence.code'">
                   {{competence.competence.code}}</td>
                 <td data-title="'bailiff.edit.instrument'|translate" filter="{ 'competence.instrument.code': 'text'}" sortable="'name'">
                   {{competence.competence.instrument.code}}</td>
                 <td data-title="'bailiff.edit.areas'|translate" filter="{ areaNames: 'text'}" sortable="'areaNames'">
                   {{competence.areaNames}}</td>
+                <td data-title="'global.label.action'|translate">
+                  <a href="" class="glyphicon glyphicon-trash text-danger" ng-click="bailiffEditCtrl.removeCompetence(competence)" confirm="{{'global.confirm.delete'|translate}}"
+                    uib-tooltip="{{'global.button.delete'|translate}}"></a>
+                  <a href="" class="glyphicon glyphicon-pencil" ng-click="bailiffEditCtrl.editCompetence(competence)" uib-tooltip="{{'global.button.edit'|translate}}"></a>
+                </td>
               </tr>
             </table>
           </div>
         </div>
         <div class="row top-1">
           <div class="col-md-12">
-            <button type="button" class="btn btn-primary pull-right action-button" ng-click="bailiffEditCtrl.editCompetence()" ng-disabled="!bailiffEditCtrl.selectedCompetence.id">
-              <span class="glyphicon glyphicon-edit"></span>
-              <span translate="global.button.edit"></span>
-            </button>
             <button type="button" class="btn btn-primary pull-right action-button" ng-click="bailiffEditCtrl.addCompetence()" ng-disabled="!bailiffEditCtrl.bailiff.id">
               <span class="glyphicon glyphicon-plus-sign"></span>
               <span translate="global.button.add"></span>
             </button>
-            <a class="btn btn-danger pull-right action-button" ng-click="bailiffEditCtrl.removeCompetence()" ng-disabled="!bailiffEditCtrl.selectedCompetence.id"
-              confirm="{{'global.confirm.delete'|translate}}">
-              <span class="glyphicon glyphicon-trash"></span>
-              <span translate="global.button.delete"></span>
-            </a>
           </div>
         </div>
       </div>

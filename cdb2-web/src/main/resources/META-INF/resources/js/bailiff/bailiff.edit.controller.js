@@ -1,7 +1,9 @@
-(function () {
+(function() {
   'use strict';
 
-  angular.module('cdb2').controller('BailiffEditController', BailiffEditController);
+  angular
+    .module('cdb2')
+    .controller('BailiffEditController', BailiffEditController);
 
   BailiffEditController.$inject = [
     '$log',
@@ -19,17 +21,31 @@
     'competences'
   ];
 
-  function BailiffEditController($log, $translate, $uibModalInstance, $uibModal, lodash, toastr, NgTableParams, BailiffAPIService, BailiffCompAreaAPIService, LangAPIService, bailiff, cities, competences) {
+  function BailiffEditController(
+    $log,
+    $translate,
+    $uibModalInstance,
+    $uibModal,
+    lodash,
+    toastr,
+    NgTableParams,
+    BailiffAPIService,
+    BailiffCompAreaAPIService,
+    LangAPIService,
+    bailiff,
+    cities,
+    competences
+  ) {
     var vm = this;
     vm.modalInstance = $uibModalInstance;
     vm.bailiff = bailiff;
     vm.competences = competences;
 
-    LangAPIService.getAll().$promise.then(function(data){
+    LangAPIService.getAll().$promise.then(function(data) {
       vm.languages = data;
     });
-    
-    vm.getLanguages = function(){
+
+    vm.getLanguages = function() {
       return vm.bailiff.languages;
     };
 
@@ -42,7 +58,7 @@
         vm.bailiff.languages.push(value);
       }
     };
-    
+
     // Only purpose of initialCity is to display correct municipality in angucomplete when editing existing bailiff
     vm.bailiff.initialCity = {
       postalCode: vm.bailiff.postalCode,
@@ -55,21 +71,24 @@
       loadBailiffCompArea();
     }
 
-    vm.save = function (isValid) {
+    vm.save = function(isValid) {
       vm.errorsFromServer = null;
       if (isValid) {
         vm.submitted = true;
         var serializedBailiff = serializeBailiff();
 
-        BailiffAPIService.save({}, serializedBailiff).$promise.then(function (data) {
-          vm.bailiff.id = data.id;
-          toastr.success($translate.instant('global.toastr.save.success'));
-        }).catch(function (err) {
-          $log.error(err);
-          vm.errorsFromServer = $translate.instant(err.data.message);
-        }).finally(function () {
-          vm.submitted = false;
-        });
+        BailiffAPIService.save({}, serializedBailiff)
+          .$promise.then(function(data) {
+            vm.bailiff.id = data.id;
+            toastr.success($translate.instant('global.toastr.save.success'));
+          })
+          .catch(function(err) {
+            $log.error(err);
+            vm.errorsFromServer = $translate.instant(err.data.message);
+          })
+          .finally(function() {
+            vm.submitted = false;
+          });
       }
     };
 
@@ -85,46 +104,51 @@
     function loadBailiffCompArea() {
       BailiffCompAreaAPIService.getAllForBailiff({
         bailiffId: vm.bailiff.id
-      }).$promise.then(function (success) {
+      }).$promise.then(function(success) {
         //Build area names list, to be displayed in smart table
         var model = success;
         model = buildAreasList(model);
-        vm.tableParams = new NgTableParams({}, {
-          dataset: model
-        });
+        vm.tableParams = new NgTableParams(
+          {},
+          {
+            dataset: model
+          }
+        );
       });
     }
 
-    vm.addCompetence = function () {
+    vm.addCompetence = function() {
       newEdit({
         areas: []
       });
     };
 
-    vm.editCompetence = function () {
-      newEdit(vm.selectedCompetence);
+    vm.editCompetence = function(competence) {
+      newEdit(competence);
     };
 
-    vm.removeCompetence = function () {
+    vm.removeCompetence = function(competence) {
       vm.errorsFromServer = null;
       vm.submitted = true;
 
       BailiffCompAreaAPIService.delete({
-        id: vm.selectedCompetence.id
-      }).$promise.then(function () {
-        delete vm.selectedCompetence;
-        loadBailiffCompArea();
-        toastr.success($translate.instant('global.toastr.delete.success'));
-      }).catch(function (err) {
-        $log.error(err);
-        vm.errorsFromServer = $translate.instant(err.data.message);
-      }).finally(function () {
-        vm.submitted = false;
-      });
+        id: competence.id
+      })
+        .$promise.then(function() {
+          loadBailiffCompArea();
+          toastr.success($translate.instant('global.toastr.delete.success'));
+        })
+        .catch(function(err) {
+          $log.error(err);
+          vm.errorsFromServer = $translate.instant(err.data.message);
+        })
+        .finally(function() {
+          vm.submitted = false;
+        });
     };
 
     function buildAreasList(model) {
-      return lodash.map(model, function (record) {
+      return lodash.map(model, function(record) {
         var areaNames = lodash.map(record.areas, 'name');
         record.areaNames = areaNames.join(', ');
         return record;
@@ -143,10 +167,9 @@
         }
       });
 
-      modalInstance.result.then(function () {
+      modalInstance.result.then(function() {
         loadBailiffCompArea();
       });
     }
-
   }
 })();
