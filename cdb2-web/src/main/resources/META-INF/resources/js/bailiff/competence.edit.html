@@ -15,7 +15,7 @@
         <label for="instrument" translate="bailiff.competence.edit.instrument" class="col-md-2">instrument</label>
         <div class="col-md-4">
           <select name="instrument" class="form-control" id="instrument" ng-model="competenceEditCtrl.instrument" ng-options="instrument as instrument.description for instrument in competenceEditCtrl.instruments track by instrument.id"
-            ng-change="competenceEditCtrl.reloadCompetences()" ng-disabled="competenceEditCtrl.bailiffCompArea.id" required>
+            ng-disabled="competenceEditCtrl.bailiffCompArea.id" required>
             <option value=""></option>
           </select>
           <div ng-if="competenceEditCtrl.competenceForm.$submitted" ng-messages="competenceEditCtrl.competenceForm.instrument.$error">
@@ -26,14 +26,21 @@
 
       <div class="form-group">
         <label for="competence" translate="bailiff.competence.edit.competence" class="col-md-2">competence</label>
-        <div class="col-md-4">
-          <select name="competence" class="form-control" id="competence" ng-model="competenceEditCtrl.competence" ng-options="competence as competence.description for competence in competenceEditCtrl.competences track by competence.id"
+        <div class="col-md-4" ng-if="!competenceEditCtrl.bailiffCompArea.id">
+          <select name="competence" class="form-control" id="competence" ng-model="competenceEditCtrl.competence" ng-options="competence as competence.description for competence in competenceEditCtrl.instrument.competences track by competence.id"
             ng-disabled="competenceEditCtrl.bailiffCompArea.id" required>
             <option value=""></option>
           </select>
           <div ng-if="competenceEditCtrl.competenceForm.$submitted" ng-messages="competenceEditCtrl.competenceForm.competence.$error">
             <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
           </div>
+        </div>
+        <div class="col-md-4" ng-if="competenceEditCtrl.bailiffCompArea.id">
+          <input type="text" class="form-control" value="{{competenceEditCtrl.competence.description }}" disabled>
+          <!-- <select name="competence" class="form-control" id="competence" ng-model="competenceEditCtrl.competence" ng-options="competence as competence.description for competence in competenceEditCtrl.competence track by competence.id"
+            disabled required>
+            <option value=""></option>
+          </select> -->
         </div>
       </div>
 

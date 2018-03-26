@@ -10,24 +10,16 @@ import eu.cehj.cdb2.business.dao.CompetenceRepository;
 import eu.cehj.cdb2.business.service.db.CompetenceService;
 import eu.cehj.cdb2.business.service.db.InstrumentService;
 import eu.cehj.cdb2.common.dto.CompetenceDTO;
+import eu.cehj.cdb2.common.dto.SimpleCompetenceDTO;
+import eu.cehj.cdb2.common.dto.SimpleInstrumentDTO;
 import eu.cehj.cdb2.entity.Competence;
+import eu.cehj.cdb2.entity.Instrument;
 
 @Service
 public class CompetenceServiceImpl extends BaseServiceImpl<Competence, CompetenceDTO, Long, CompetenceRepository> implements CompetenceService {
 
     @Autowired
     private InstrumentService instrumentService;
-
-    //    @Override
-    //    public CompetenceDTO populateDTOFromEntity(final Competence competence) throws Exception {
-    //        //        final CompetenceDTO dto = new CompetenceDTO();
-    //        //        dto.setId(competence.getId());
-    //        //        dto.setCode(competence.getCode());
-    //        //        dto.setDescription(competence.getDescription());
-    //        final CompetenceDTO dto = super.populateDTOFromEntity(competence);
-    //        dto.setInstrument(this.instrumentService.populateDTOFromEntity(competence.getInstrument()));
-    //        return dto;
-    //    }
 
     @Override
     public List<CompetenceDTO> getAllDTOForInstrument(final Long instrumentId) throws Exception {
@@ -37,6 +29,26 @@ public class CompetenceServiceImpl extends BaseServiceImpl<Competence, Competenc
             dtos.add(this.populateDTOFromEntity(competence));
         }
         return dtos;
+    }
+
+    @Override
+    public SimpleCompetenceDTO getSimpleDTO(final Long competenceId) throws Exception {
+        final Competence entity = this.get(competenceId);
+        return this.populateSimpleDTOFromEntity(entity);
+    }
+
+    public SimpleCompetenceDTO populateSimpleDTOFromEntity(final Competence entity)throws Exception{
+        final SimpleCompetenceDTO dto = new SimpleCompetenceDTO();
+        dto.setId(entity.getId());
+        dto.setCode(entity.getCode());
+        dto.setDescription(entity.getDescription());
+        final Instrument instrument = entity.getInstrument();
+        final SimpleInstrumentDTO instDTO = new SimpleInstrumentDTO();
+        instDTO.setId(instrument.getId());
+        instDTO.setCode(instrument.getCode());
+        instDTO.setDescription(instrument.getDescription());
+        dto.setInstrument(instDTO);
+        return dto;
     }
 
 }

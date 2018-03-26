@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaCustomDTO;
 import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaDTO;
 import eu.cehj.cdb2.entity.BailiffCompetenceArea;
 import eu.cehj.cdb2.entity.GeoArea;
@@ -14,5 +15,7 @@ public interface BailiffCompetenceAreaService extends BaseService<BailiffCompete
     public List<BailiffCompetenceAreaDTO> getAllDTO(Long bailiffId) throws Exception;
 
     public Iterable<BailiffCompetenceArea> findAllForGeoArea(GeoArea geoArea) throws Exception;
+
+    List<BailiffCompetenceAreaCustomDTO> getAllSimpleDTO(Long bailiffId) throws Exception;
 
 }

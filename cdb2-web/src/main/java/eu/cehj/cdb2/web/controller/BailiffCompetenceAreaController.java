@@ -1,11 +1,5 @@
 package eu.cehj.cdb2.web.controller;
 
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.http.HttpStatus.*;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
+import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaCustomDTO;
 import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaDTO;
 
 @RestController
@@ -37,16 +36,9 @@ public class BailiffCompetenceAreaController extends BaseController {
 
     @RequestMapping(value ="api/bailiff/{bailiffId}/competences", method = { GET })
     @ResponseStatus(value = OK)
-    public List<BailiffCompetenceAreaDTO> get(@PathVariable final Long bailiffId) throws Exception {
+    public List<BailiffCompetenceAreaCustomDTO> get(@PathVariable final Long bailiffId) throws Exception {
 
-        // JPA throws automatically an exception if it can't find an entity with this id
-        //        final List<Competence> competences = bailiff.getCompetences();
-        //        return competences
-        //                .stream()
-        //                .map(competence ->
-        //                new CompetenceDTO(competence)
-        //                        ).collect(Collectors.toList());
-        return this.bcaService.getAllDTO(bailiffId);
+        return this.bcaService.getAllSimpleDTO(bailiffId);
     }
 
     @RequestMapping(value="api/bailiffcomparea", method = { POST })
