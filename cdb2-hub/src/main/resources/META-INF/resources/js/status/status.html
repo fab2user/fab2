@@ -1,96 +1,83 @@
 <form class="form-inline" ng role="form" name="statusCtrl.searchForm" novalidate>
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="panelPart">
-            <fieldset>
-              <legend translate="status.search.title"></legend>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="country" translate="global.label.country">Country</label>
-                    <select ng-options="country.id as country.name for country in statusCtrl.filters.countries" ng-model="statusCtrl.searchParams.countryId"
-                      class="form-control" autofocus="autofocus" name="country">
-                      <option value="">{{'status.label.select.default.country'|translate}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="radio-inline" for="date">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="statusCtrl.filters.ba" value="after">
-                      <strong>{{'status.label.date.after'|translate}}</strong>
-                    </label>
-                    <label class="radio-inline" for="date">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="statusCtrl.filters.ba" value="before">
-                      <strong>{{'status.label.date.before'|translate}}</strong>
-                    </label>
-                    <p class="input-group">
-                      <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="statusCtrl.filters.date" is-open="statusCtrl.calendar.opened"
-                        datepicker-options="dateOptions" ng-required="false" close-text="Close" alt-input-formats="altInputFormats"
-                        datepicker-append-to-body="true" />
-                      <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="statusCtrl.openCalendar()">
-                          <i class="glyphicon glyphicon-calendar"></i>
-                        </button>
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="status" translate="global.label.status">status</label>
-                    <select ng-options="status for status in statusCtrl.filters.statuses" ng-model="statusCtrl.searchParams.status" class="form-control"
-                      autofocus="autofocus" name="status">
-                      <option value="">{{'status.label.select.default.status'|translate}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-
-          <div class="panelPart">
-            <div class="top-1">
-
-              <button type="submit" class="btn btn-primary pull-right" ng-click="statusCtrl.newSearch()">
-                <span class="glyphicon glyphicon-search"></span>
-                <span translate="global.button.search"></span>
-              </button>
-
-              <button type="button" class="btn btn-default pull-right" ng-click="statusCtrl.clearSearch()">
-                <i class="glyphicon glyphicon-remove-sign"></i>
-                <span translate="global.button.clear.search"></span>
-              </button>
-            </div>
-          </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span translate="status.search.title">
+          </h3>
         </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading" translate="status.search.results"></div>
-
         <div class="panel-body">
-          <div class="panelPart">
-            <div ng-show="statusCtrl.showSearchTotal">
-              <span translate="global.searchtotal"></span>
-              <span>{{statusCtrl.tableParams.total()}}</span>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <fieldset>
+                    <legend translate="status.search.filter">Filters</legend>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="country" translate="global.label.country">Country</label>
+                          <select ng-options="country.id as country.name for country in statusCtrl.filters.countries" ng-model="statusCtrl.searchParams.countryId"
+                            class="form-control" autofocus="autofocus" name="country">
+                            <option value="">{{'status.label.select.default.country'|translate}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="radio-inline" for="date">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="statusCtrl.filters.ba" value="after">
+                            <strong>{{'status.label.date.after'|translate}}</strong>
+                          </label>
+                          <label class="radio-inline" for="date">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="statusCtrl.filters.ba" value="before">
+                            <strong>{{'status.label.date.before'|translate}}</strong>
+                          </label>
+                          <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="statusCtrl.filters.date" is-open="statusCtrl.calendar.opened"
+                              datepicker-options="dateOptions" ng-required="false" close-text="Close" alt-input-formats="altInputFormats"
+                              datepicker-append-to-body="true" />
+                            <span class="input-group-btn">
+                              <button type="button" class="btn btn-default" ng-click="statusCtrl.openCalendar()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                              </button>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="status" translate="global.label.status">status</label>
+                          <select ng-options="status for status in statusCtrl.filters.statuses" ng-model="statusCtrl.searchParams.status" class="form-control"
+                            autofocus="autofocus" name="status">
+                            <option value="">{{'status.label.select.default.status'|translate}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
             </div>
-
-            <table ng-table="statusCtrl.tableParams" class="table table-bordered table-striped table-condensed col-md-12 data-grid">
-              <tr ng-repeat="row in $data track by row.id">
-                <td data-title="'global.label.id'|translate" class="col-md-3" sortable="'id'">{{row.id}}</td>
-                <td data-title="'global.label.country'|translate" class="col-md-2" sortable="'country'">{{row.countryName}}</td>
-                <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td data-title="'status.label.status'|translate" class="col-md-2" sortable="'status'">{{row.status}}</td>
-              </tr>
-            </table>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table ng-table="statusCtrl.tableParams" class="table table-bordered table-striped table-condensed col-md-12 data-grid">
+                <tr ng-repeat="row in $data track by row.id">
+                  <td data-title="'global.label.id'|translate" class="col-md-3" sortable="'id'">{{row.id}}</td>
+                  <td data-title="'global.label.country'|translate" class="col-md-2" sortable="'country'">{{row.countryName}}</td>
+                  <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                  <td data-title="'status.label.status'|translate" class="col-md-2" sortable="'status'">{{row.status}}</td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </form>

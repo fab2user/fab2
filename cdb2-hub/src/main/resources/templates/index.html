@@ -17,12 +17,11 @@
 </head>
 <body>
 	<div class="container">
-
+        <div id="head" ui-view="head"></div>
 		<div ui-view="navbar" data-ng-cloak=""></div>
 		<toaster-container
 			toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
 		<div id="wrap"><span us-spinner="" key="spin-1"></span></div>
-        <div id="head" ui-view="head"></div>
 		<div id="main" ui-view="content"></div>
 		<div class="footer" data-ng-cloak="" ui-view="footer">
 

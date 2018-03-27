@@ -23,7 +23,7 @@
   margin-top: 10em;
 }
 
-.left-5{
+.left-5 {
   margin-left: 5em;
 }
 
@@ -61,7 +61,7 @@
   .is-table-row {
     display: table;
   }
-  .is-table-row [class*="col-"] {
+  .is-table-row [class*='col-'] {
     float: none;
     display: table-cell;
     vertical-align: top;
@@ -86,7 +86,7 @@ div.user-id {
 .info-title {
   text-align: center;
   font-weight: bolder;
-  padding: 0.5em 0 0.5em 0
+  padding: 0.5em 0 0.5em 0;
 }
 
 form.info-title {
@@ -108,17 +108,23 @@ a.glyphicon {
   padding-left: 0.3em;
 }
 
-.alert-dismissable .close, .alert-dismissible .close {
+.alert-dismissable .close,
+.alert-dismissible .close {
   position: relative;
   top: -15px;
   right: -21px;
   color: inherit;
 }
 
-.pull-right{
+.pull-right {
   margin-left: 0.2em;
 }
 
-.table-bordered.data-grid>thead>tr>td, .table-bordered.data-grid>thead>tr>th{
+.light-pull-right {
+  text-align: right;
+}
+
+.table-bordered.data-grid > thead > tr > td,
+.table-bordered.data-grid > thead > tr > th {
   border-bottom-width: 1px;
 }

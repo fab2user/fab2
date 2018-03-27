@@ -1,32 +1,78 @@
 <div class="row">
   <div class="col-md-12">
-    <table ng-table="countryCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
-      <tr ng-repeat="country in $data track by country.id">
-        <td data-title="'global.label.id'|translate" filter="{ id: 'number'}" sortable="'id'">
-          {{country.id}}</td>
-        <td data-title="'country.label.country'|translate" filter="{ name: 'text'}" sortable="'name'">
-          {{country.name}}</td>
-        <td data-title="'country.label.url'|translate">
-          {{country.url}}</td>
-        <td data-title="'country.label.active'|translate" filter="{ active: 'text'}" sortable="'active'">
-          <span ng-if="country.active" class="glyphicon glyphicon-ok text-success"></span>
-          <span ng-if="!country.active" class="glyphicon glyphicon-remove text-danger"></span>
-        </td>
-        <td data-title="'country.label.last.sync'|translate" sortable="'lastSync'">
-          {{country.lastSync}}</td>
-        <td data-title="'global.label.action'|translate">
-          <a href="" class="glyphicon glyphicon-cloud-download text-success" ng-click="countryCtrl.sync(country)" uib-tooltip="{{'global.button.sync'|translate}}"></a>
-          <a href="" class="glyphicon glyphicon-trash text-danger" ng-click="countryCtrl.delete(country)" confirm="{{'global.confirm.delete'|translate}}"
-            uib-tooltip="{{'global.button.delete'|translate}}"></a>
-          <a href="" class="glyphicon glyphicon-pencil" ng-click="countryCtrl.edit(country)" uib-tooltip="{{'global.button.edit'|translate}}"></a>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <button class="btn btn-primary pull-right" translate="global.button.add" ng-click="countryCtrl.edit()"></button>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <span translate="country.title">
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <fieldset>
+                  <legend translate="global.label.filters">Filters</legend>
+
+                  <div class="row vertical-align">
+                    <div class="col-md-3">
+                      <label for="filter.id" translate="global.label.id">id</label>
+                      <input type="text" ng-model="countryCtrl.tableParams.filter()['id']" class="form-control" name="filter.id" autofocus="autofocus"
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <label for="filter.country" translate="country.label.country">country</label>
+                      <input type="text" ng-model="countryCtrl.tableParams.filter()['name']" class="form-control" name="filter.country" />
+                    </div>
+                    <div class="col-md-3">
+                      <label for="filter.active" translate="country.label.active">active</label>
+                      <input type="text" ng-model="countryCtrl.tableParams.filter()['active']" class="form-control" name="filter.active" />
+                    </div>
+                    <div class="col-md-3 light-pull-right">
+                      <button class="btn btn-primary" ng-click="countryCtrl.resetSearch()">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        <span>{{ 'global.button.reset'|translate }}</span>
+                      </button>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table ng-table="countryCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid">
+              <tr ng-repeat="country in $data track by country.id">
+                <td data-title="'global.label.id'|translate" sortable="'id'">
+                  {{country.id}}</td>
+                <td data-title="'country.label.country'|translate" sortable="'name'">
+                  {{country.name}}</td>
+                <td data-title="'country.label.url'|translate">
+                  {{country.url}}</td>
+                <td data-title="'country.label.active'|translate" sortable="'active'">
+                  <span ng-if="country.active" class="glyphicon glyphicon-ok text-success"></span>
+                  <span ng-if="!country.active" class="glyphicon glyphicon-remove text-danger"></span>
+                </td>
+                <td data-title="'country.label.last.sync'|translate" sortable="'lastSync'">
+                  {{country.lastSync}}</td>
+                <td data-title="'global.label.action'|translate">
+                  <a href="" class="glyphicon glyphicon-cloud-download text-success" ng-click="countryCtrl.sync(country)" uib-tooltip="{{'global.button.sync'|translate}}"></a>
+                  <a href="" class="glyphicon glyphicon-trash text-danger" ng-click="countryCtrl.delete(country)" confirm="{{'global.confirm.delete'|translate}}"
+                    uib-tooltip="{{'global.button.delete'|translate}}"></a>
+                  <a href="" class="glyphicon glyphicon-pencil" ng-click="countryCtrl.edit(country)" uib-tooltip="{{'global.button.edit'|translate}}"></a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-primary pull-right" translate="global.button.add" ng-click="countryCtrl.edit()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
