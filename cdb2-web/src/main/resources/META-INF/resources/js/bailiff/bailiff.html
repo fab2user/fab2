@@ -8,26 +8,65 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-2">
-            <div>
-              <label class="checkbox-inline">
-                <input type="checkbox" name="deleted" ng-model="bailiffCtrl.deleted" ng-click="bailiffCtrl.fetchBailiffs()"> {{ 'global.label.show.deleted'|translate }}
-              </label>
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <fieldset>
+                  <legend translate="global.label.filters">Filters</legend>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="filter.id" translate="bailiff.list.id">id</label>
+                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['id']" class="form-control" name="filter.id" autofocus="autofocus"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="filter.name" translate="bailiff.list.name">name</label>
+                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['name']" class="form-control" name="filter.name" />
+                    </div>
+                  </div>
+                  <div class="row top-1">
+                    <div class="col-md-6">
+                      <label for="filter.address" translate="bailiff.list.address">address</label>
+                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['address']" class="form-control" name="filter.address" />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="filter.municipality" translate="bailiff.list.municipality">municipality</label>
+                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['city']" class="form-control" name="filter.municipality" />
+                    </div>
+                  </div>
+                  <div class="row top-1">
+                    <div class="col-md-2">
+                      <div>
+                        <label class="checkbox-inline">
+                          <input type="checkbox" name="deleted" ng-model="bailiffCtrl.deleted" ng-click="bailiffCtrl.fetchBailiffs()"> {{ 'global.label.show.deleted'|translate }}
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-10 light-pull-right">
+                      <button class="btn btn-primary" ng-click="bailiffCtrl.resetSearch()">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        <span>{{ 'global.button.reset'|translate }}</span>
+                      </button>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <table ng-table="bailiffCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="true">
+            <table ng-table="bailiffCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="false">
               <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'selected-info': bailiff.id === bailiffCtrl.selectedBailiff.id}"
                 class="pointable">
-                <td data-title="'bailiff.list.id'|translate" filter="{ id: 'number'}" sortable="'id'" class="fit-id">
+                <td data-title="'bailiff.list.id'|translate" sortable="'id'" class="fit-id">
                   {{bailiff.id}}</td>
-                <td data-title="'bailiff.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">
+                <td data-title="'bailiff.list.name'|translate" sortable="'name'">
                   {{bailiff.name}}</td>
-                <td data-title="'bailiff.list.address'|translate" filter="{ address: 'text'}" sortable="'address'">
+                <td data-title="'bailiff.list.address'|translate" sortable="'address'">
                   {{bailiff.address}}</td>
-                <td data-title="'bailiff.list.municipality'|translate" filter="{ city: 'text'}" sortable="'city'">
+                <td data-title="'bailiff.list.municipality'|translate" sortable="'city'">
                   {{bailiff.city}}</td>
                 <td data-title="'global.label.action'|translate">
                   <a href="" class="glyphicon glyphicon-trash text-danger" ng-click="bailiffCtrl.delete(bailiff)" confirm="{{'global.confirm.delete'|translate}}"

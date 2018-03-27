@@ -37,7 +37,6 @@ public class BailiffCompetenceAreaController extends BaseController {
     @RequestMapping(value ="api/bailiff/{bailiffId}/competences", method = { GET })
     @ResponseStatus(value = OK)
     public List<BailiffCompetenceAreaCustomDTO> get(@PathVariable final Long bailiffId) throws Exception {
-
         return this.bcaService.getAllSimpleDTO(bailiffId);
     }
 

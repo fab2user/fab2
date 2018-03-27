@@ -53,6 +53,10 @@
       vm.total = area.municipalities.length;
     };
 
+    vm.resetSearch = function() {
+      vm.tableParams.filter({});
+    };
+
     function loadModal(selectedArea) {
       var modalInstance = $uibModal.open({
         templateUrl: '/js/geo-area/area-edit.html',

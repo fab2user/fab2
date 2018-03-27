@@ -4,12 +4,14 @@
   angular.module('cdb2').controller('BailiffController', BailiffController);
 
   BailiffController.$inject = [
+    '$scope',
     '$log',
     '$translate',
     '$uibModal',
     '$http',
     '$interval',
     '$rootScope',
+    'lodash',
     'FileSaver',
     'Blob',
     'NgTableParams',
@@ -22,12 +24,14 @@
   ];
 
   function BailiffController(
+    $scope,
     $log,
     $translate,
     $uibModal,
     $http,
     $interval,
     $rootScope,
+    lodash,
     FileSaver,
     Blob,
     NgTableParams,
@@ -151,6 +155,10 @@
         $interval.cancel(vm.polling);
         vm.polling = undefined;
       }
+    };
+
+    vm.resetSearch = function() {
+      vm.tableParams.filter({});
     };
 
     function loadModal(bailiff) {

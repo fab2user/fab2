@@ -49,5 +49,9 @@
         }
       );
     };
+
+    vm.resetSearch = function() {
+      vm.tableParams.filter({});
+    };
   }
 })();
