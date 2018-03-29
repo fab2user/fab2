@@ -118,13 +118,7 @@
     AuthService.deleteUserDataWithoutReload = function() {
       $sessionStorage[STORE.AUTHENTICATED] = false;
       delete $sessionStorage[STORE.USER];
-      $state.go(
-        'root.login',
-        {},
-        {
-          // reload: true
-        }
-      );
+      $state.go('root.login', {}, {});
     };
 
     return AuthService;

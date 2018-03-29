@@ -17,9 +17,7 @@
           PreviousState
         ).catch(function(err) {
           $log.error(err);
-          // vm.loginForm.password.$asyncValidators.badCredentials = false;
           vm.loginForm.password.$setValidity('badCredentials', false);
-          // vm.loginForm.$setPristine();
           return false;
         });
       }
