@@ -1,25 +1,36 @@
-(function () {
+(function() {
   'use strict';
 
-  angular
-    .module('cdb2')
-    .controller('LoginController', LoginController);
+  angular.module('cdb2').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['AuthService', 'PreviousState'];
+  LoginController.$inject = ['$log', 'AuthService', 'PreviousState'];
 
-  function LoginController(AuthService, PreviousState) {
+  function LoginController($log, AuthService, PreviousState) {
     var vm = this;
     vm.credentials = {};
 
-    vm.login = function () {
-      AuthService.login(vm.credentials.username, vm.credentials.password, PreviousState);
+    vm.login = function(valid) {
+      if (valid) {
+        AuthService.login(
+          vm.credentials.username,
+          vm.credentials.password,
+          PreviousState
+        ).catch(function(err) {
+          $log.error(err);
+          // vm.loginForm.password.$asyncValidators.badCredentials = false;
+          vm.loginForm.password.$setValidity('badCredentials', false);
+          // vm.loginForm.$setPristine();
+          return false;
+        });
+      }
     };
 
-    vm.logout = function(){
+    vm.resetCredentialsError = function() {
+      vm.loginForm.password.$setValidity('badCredentials', true);
+    };
+
+    vm.logout = function() {
       AuthService.logout();
-
     };
-
-
   }
 })();
