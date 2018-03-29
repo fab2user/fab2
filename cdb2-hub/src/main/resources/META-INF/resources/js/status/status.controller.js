@@ -7,6 +7,7 @@
     '$log',
     'NgTableParams',
     'lodash',
+    'moment',
     'StatusAPIService',
     'countryList',
     'statuses'
@@ -16,6 +17,7 @@
     $log,
     NgTableParams,
     lodash,
+    moment,
     StatusAPIService,
     countryList,
     statuses
@@ -77,9 +79,7 @@
       if (vm.filters.date) {
         delete vm.searchParams.dateBefore;
         delete vm.searchParams.dateAfter;
-        var formattedDate = vm.filters.date
-          .toJSON()
-          .substring(0, vm.filters.date.toJSON().indexOf('T'));
+        var formattedDate = moment(vm.filters.date).format('YYYY-MM-DD');
         if (vm.filters.ba === 'before') {
           vm.searchParams.dateBefore = formattedDate;
         } else {

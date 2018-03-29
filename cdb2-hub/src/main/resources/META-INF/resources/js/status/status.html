@@ -48,7 +48,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label for="status" translate="global.label.status">status</label>
                           <select ng-options="status for status in statusCtrl.filters.statuses" ng-model="statusCtrl.searchParams.status" class="form-control"
@@ -56,6 +56,17 @@
                             <option value="">{{'status.label.select.default.status'|translate}}</option>
                           </select>
                         </div>
+                      </div>
+                      <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary pull-right" ng-click="statusCtrl.newSearch()">
+                          <span class="glyphicon glyphicon-search"></span>
+                          <span translate="global.button.search"></span>
+                        </button>
+
+                        <button type="button" class="btn btn-default pull-right" ng-click="statusCtrl.clearSearch()">
+                          <i class="glyphicon glyphicon-remove-sign"></i>
+                          <span translate="global.button.clear.search"></span>
+                        </button>
                       </div>
                     </div>
                   </fieldset>
