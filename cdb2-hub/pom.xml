@@ -124,11 +124,6 @@
             <version>1.5.11</version>
         </dependency>
         <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>angular-ui-bootstrap</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>angular-ui-router</artifactId>
             <version>1.0.14</version>
@@ -167,11 +162,6 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>ng-lodash</artifactId>
             <version>0.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>angular-bootstrap</artifactId>
-            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.webjars.bower</groupId>
@@ -217,6 +207,21 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>angular-toggle-switch</artifactId>
             <version>1.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>momentjs</artifactId>
+            <version>2.21.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-moment</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-bootstrap</artifactId>
+            <version>2.5.0</version>
         </dependency>
     </dependencies>
     <build>

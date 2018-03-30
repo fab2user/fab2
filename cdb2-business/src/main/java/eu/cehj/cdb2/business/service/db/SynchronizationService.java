@@ -16,6 +16,8 @@ public interface SynchronizationService extends BaseService<Synchronization, Syn
 
     public List<SynchronizationDTO> getLastByCountry() throws Exception;
 
+    public Synchronization getLastByCountry(Long countryID) throws Exception;
+
     public Page<SynchronizationDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
 
 }

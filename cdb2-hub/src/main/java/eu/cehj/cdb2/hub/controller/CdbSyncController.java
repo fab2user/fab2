@@ -26,6 +26,6 @@ public class CdbSyncController extends BaseController{
         return this.pushDataService.process(countryCode);
         // As pushDataService is async, controller will simply return ok to inform it received a request and started to process it
         // After processing pushDataService, will update sync table
-        // In the meanwhile, front end will perform a polling. // TODO: develop the pollingback/front end, same as xml import.
+        // In the meanwhile, front end will perform a polling.
     }
 }

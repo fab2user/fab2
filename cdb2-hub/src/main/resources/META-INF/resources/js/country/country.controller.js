@@ -62,7 +62,7 @@
     vm.sync = function(country) {
       $log.info('Sync started');
       SyncService.sync(country).then(function(success) {
-        toastr.info($translate.instant('global.export.inprogress'));
+        success.data.countryName = success.data.country.name; //Copy country name in property expected status directive
         $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
         // start polling
         vm.startPolling(success.data.id);

@@ -3,17 +3,22 @@ package eu.cehj.cdb2.business.service.db.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import eu.cehj.cdb2.business.dao.CountryOfSyncRepository;
 import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
+import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.CountryOfSyncDTO;
 import eu.cehj.cdb2.common.dto.CountryOfSyncRefDTO;
 import eu.cehj.cdb2.entity.CountryOfSync;
+import eu.cehj.cdb2.entity.Synchronization;
 
 @Service
 public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, CountryOfSyncDTO, Long, CountryOfSyncRepository> implements CountryOfSyncService {
 
+    @Autowired
+    private SynchronizationService syncService;
 
     @Override
     public CountryOfSync populateEntityFromDTO(final CountryOfSyncDTO dto) throws Exception {
@@ -29,11 +34,13 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
 
     @Override
     public CountryOfSyncDTO populateDTOFromEntity(final CountryOfSync entity) throws Exception {
+        final Synchronization sync = this.syncService.getLastByCountry(entity.getId());
         final CountryOfSyncDTO dto = new CountryOfSyncDTO();
         dto.setName(entity.getName());
         dto.setActive(entity.isActive());
         dto.setId(entity.getId());
-        // dto.setLastSync(entity.getSynchronizations().); FIXME: add method to get last sync on entity
+        dto.setLastSync(sync.getEndDate());
+        dto.setLastSyncSuccess(sync.getStatus().equals(Synchronization.SyncStatus.OK) ? true: false);
         dto.setPassword(entity.getPassword());
         dto.setUser(entity.getUser());
         dto.setUrl(entity.getUrl());

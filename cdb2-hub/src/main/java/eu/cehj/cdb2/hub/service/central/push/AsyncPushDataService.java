@@ -185,6 +185,7 @@ public class AsyncPushDataService  implements PushDataService {
     public void sendToCDB(final Data data, final Synchronization sync) throws Exception {
         // FIXME: Always in error since we don't have any test server able to process the XML file for now
         sync.setStatus(SyncStatus.SENDING_TO_CDB);
+        sync.setMessage("Processing...");
         this.syncService.save(sync);
         final CdbPushMessage message = new CdbPushMessage();
         message.setData(data);
@@ -200,6 +201,7 @@ public class AsyncPushDataService  implements PushDataService {
                     new ParameterizedTypeReference<CdbResponse>() {
             });
             if (response.getStatusCode().is2xxSuccessful()){
+                sync.setMessage("Data export to CDB terminated successfully.");
                 sync.setStatus(SyncStatus.OK);
             }else {
                 // TODO: If CDB WS doesn't return failureDescription, generate error message according to failureCode, following mapping in user manual

@@ -31,6 +31,12 @@ public interface SynchronizationRepository extends JpaRepository<Synchronization
             "WHERE s2.id IS NULL", nativeQuery = true)
     public List<Synchronization> getLastForEachCountry()throws Exception;
 
+    @Query(value = "select s.* from sync s \n" +
+            "inner join( select country, max(end_date) as maxDate from  sync group by country) \n" +
+            "s2 on s.country = ?1 and s.country = s2.country and s.end_date = s2.maxDate;", nativeQuery = true)
+    public Synchronization getLastForCountry(Long countryId) throws Exception;
+
+
     @Override
     default public void customize(final QuerydslBindings bindings, final QSynchronization root) {
         bindings.bind(String.class).first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
