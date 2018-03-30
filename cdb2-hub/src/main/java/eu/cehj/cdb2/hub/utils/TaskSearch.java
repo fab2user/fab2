@@ -1,7 +1,9 @@
 package eu.cehj.cdb2.hub.utils;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,8 +26,13 @@ public class TaskSearch implements Serializable{
     public Date getDateAfter() {
         return this.dateAfter;
     }
+
     public void setDateAfter(final Date dateAfter) {
-        this.dateAfter = dateAfter;
+        // Small trick to make searches really after date parameter, instead of date parameter@00:00:00
+        final Calendar cal = new GregorianCalendar();
+        cal.setTime(dateAfter);
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        this.dateAfter = cal.getTime();
     }
     public Date getDateBefore() {
         return this.dateBefore;

@@ -124,7 +124,43 @@ a.glyphicon {
   text-align: right;
 }
 
-.table-bordered.data-grid > thead > tr > td,
-.table-bordered.data-grid > thead > tr > th {
+.table-bordered.data-grid>thead>tr>td,
+.table-bordered.data-grid>thead>tr>th {
   border-bottom-width: 1px;
+}
+
+.notification-success {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(138, 245, 191, 0.884);
+}
+
+.notification-processing {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(138, 211, 245, 0.884);
+}
+
+.notification-failure {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(248, 149, 149, 0.884);
+}
+
+.notification-title {
+  text-transform: uppercase;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.main-content {
+  margin-top: 2em;
 }

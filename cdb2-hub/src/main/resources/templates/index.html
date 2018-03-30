@@ -22,7 +22,7 @@
 		<toaster-container
 			toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
 		<div id="wrap"><span us-spinner="" key="spin-1"></span></div>
-		<div id="main" ui-view="content"></div>
+		<div id="main" ui-view="content" class="main-content"></div>
 		<div class="footer" data-ng-cloak="" ui-view="footer">
 
 		</div>
@@ -50,13 +50,12 @@
 		<script th:src="@{/webjars/angular-toastr/1.5.0/angular-toastr.js}"></script>
         <script th:src="@{/webjars/angular-toastr/1.5.0/angular-toastr.tpls.js}"></script>
         <link th:href="@{/webjars/angular-toastr/1.5.0/angular-toastr.css}" rel="stylesheet" />
-		<script th:src="@{/webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.js}"></script>
         <script th:src="@{/webjars/ng-table/1.0.0/dist/ng-table.js}"></script>
 		<link th:href="@{/webjars/ng-table/1.0.0/dist/ng-table.css}" rel="stylesheet" />
         <script th:src="@{/webjars/ng-lodash/0.4.0/build/ng-lodash.js}"></script>
-        <script th:src="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap.js}"></script>
-        <script th:src="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap-tpls.js}"></script>
-        <link th:href="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap-csp.css}" rel="stylesheet" />
+        <script th:src="@{/webjars/angular-bootstrap/2.5.0/ui-bootstrap.js}"></script>
+        <script th:src="@{/webjars/angular-bootstrap/2.5.0/ui-bootstrap-tpls.js}"></script>
+        <link th:href="@{/webjars/angular-bootstrap/2.5.0/ui-bootstrap-csp.css}" rel="stylesheet" />
         <script th:src="@{/webjars/angucomplete-alt/2.5.0/angucomplete-alt.js}"></script>
         <link th:href="@{/webjars/angucomplete-alt/2.5.0/angucomplete-alt.css}" rel="stylesheet" />
         <script th:src="@{/webjars/angular-confirm-modal/1.2.6/angular-confirm.js}"></script>
@@ -86,6 +85,7 @@
         <script src="/js/services/api/status.api.service.js"></script>
         <script src="/js/services/sync.service.js"></script>
         <script src="/js/status/status.controller.js"></script>
+        <script src="/js/common/notification_panel/notification.panel.directive.js"></script>
 	</div>
 </body>
 </html>

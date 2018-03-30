@@ -2,6 +2,8 @@ package eu.cehj.cdb2.common.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CountryOfSyncDTO extends BaseDTO{
 
     private static final long serialVersionUID = -6448266488847252561L;
@@ -12,7 +14,10 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private boolean active;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastSync;
+
+    private boolean lastSyncSuccess;
 
     private String user;
 
@@ -74,6 +79,14 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setCountryCode(final String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public boolean isLastSyncSuccess() {
+        return this.lastSyncSuccess;
+    }
+
+    public void setLastSyncSuccess(final boolean lastSyncSuccess) {
+        this.lastSyncSuccess = lastSyncSuccess;
     }
 
 }

@@ -68,4 +68,9 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
         return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 
+    @Override
+    public Synchronization getLastByCountry(final Long countryID) throws Exception {
+        return this.repository.getLastForCountry(countryID);
+    }
+
 }
