@@ -13,6 +13,7 @@ import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
 import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.CountryOfSyncDTO;
 import eu.cehj.cdb2.common.dto.CountryOfSyncRefDTO;
+import eu.cehj.cdb2.common.dto.SynchronizationDTO;
 import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.entity.Synchronization;
 
@@ -41,6 +42,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
     @Override
     public CountryOfSyncDTO populateDTOFromEntity(final CountryOfSync entity) throws Exception {
         final Synchronization sync = this.syncService.getLastByCountry(entity.getId());
+        final SynchronizationDTO syncDTO = this.syncService.populateDTOFromEntity(sync);
         final CountryOfSyncDTO dto = new CountryOfSyncDTO();
         dto.setName(entity.getName());
         dto.setActive(entity.isActive());
@@ -53,6 +55,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setDaysOfWeek(this.stringToIntArray(entity.getDaysOfWeek()));
         dto.setCountryCode(entity.getCountryCode());
         dto.setFrequency(entity.getFrequency());
+        dto.setLastSynchronization(syncDTO);
         return dto;
     }
 

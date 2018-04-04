@@ -172,3 +172,16 @@ a.glyphicon {
 .uib-timepicker a {
   outline: none !important;
 }
+
+.popover {
+  color: black;
+}
+
+.details-popover {
+  max-width: 600px;
+  /* width: 600px; */
+}
+
+.details-popover .col-md-4 {
+  font-weight: bold;
+}

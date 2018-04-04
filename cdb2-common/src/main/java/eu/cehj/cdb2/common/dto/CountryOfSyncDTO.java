@@ -31,6 +31,8 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private String frequency;
 
+    private SynchronizationDTO lastSynchronization;
+
     public String getName() {
         return this.name;
     }
@@ -109,6 +111,14 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setLastSyncStatus(final Synchronization.SyncStatus lastSyncStatus) {
         this.lastSyncStatus = lastSyncStatus;
+    }
+
+    public SynchronizationDTO getLastSynchronization() {
+        return this.lastSynchronization;
+    }
+
+    public void setLastSynchronization(final SynchronizationDTO lastSynchronization) {
+        this.lastSynchronization = lastSynchronization;
     }
 
 }
