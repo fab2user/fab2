@@ -25,6 +25,10 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private String countryCode;
 
+    private int[] daysOfWeek;
+
+    private String frequency;
+
     public String getName() {
         return this.name;
     }
@@ -87,6 +91,22 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setLastSyncSuccess(final boolean lastSyncSuccess) {
         this.lastSyncSuccess = lastSyncSuccess;
+    }
+
+    public int[] getDaysOfWeek() {
+        return this.daysOfWeek;
+    }
+
+    public void setDaysOfWeek(final int[] daysOfWeek) {
+        this.daysOfWeek = daysOfWeek;
+    }
+
+    public String getFrequency() {
+        return this.frequency;
+    }
+
+    public void setFrequency(final String frequency) {
+        this.frequency = frequency;
     }
 
 }

@@ -1,8 +1,10 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
     @Autowired
     private SynchronizationService syncService;
 
+    private final String CRON_SEPARATOR = ",";
+
     @Override
     public CountryOfSync populateEntityFromDTO(final CountryOfSyncDTO dto) throws Exception {
         final CountryOfSync entity = dto.getId() == null ? new CountryOfSync() : this.get(dto.getId());
@@ -29,6 +33,8 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         entity.setUser(dto.getUser());
         entity.setPassword(dto.getPassword());
         entity.setCountryCode(dto.getCountryCode());
+        entity.setDaysOfWeek(this.intArrayToString(dto.getDaysOfWeek()));
+        entity.setFrequency(dto.getFrequency());
         return entity;
     }
 
@@ -44,7 +50,9 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setPassword(entity.getPassword());
         dto.setUser(entity.getUser());
         dto.setUrl(entity.getUrl());
+        dto.setDaysOfWeek(this.stringToIntArray(entity.getDaysOfWeek()));
         dto.setCountryCode(entity.getCountryCode());
+        dto.setFrequency(entity.getFrequency());
         return dto;
     }
 
@@ -69,6 +77,26 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         return dto;
     }
 
+    private String intArrayToString(final int[] intArray) {
+        final String[]stArray = new String[intArray.length];
+        for (int ind = 0;ind<intArray.length;ind++) {
+            stArray[ind] = Integer.toString(intArray[ind]);
+        }
+        return Arrays.stream(stArray).collect(Collectors.joining(this.CRON_SEPARATOR));
+    }
+
+    private int[] stringToIntArray(final String st) {
+        if(StringUtils.isNotBlank(st)) {
+            final String[]strs = st.split(this.CRON_SEPARATOR);
+            final int[]ints = new int[strs.length];
+            for(int i = 0;i<ints.length;i++) {
+                ints[i] = Integer.parseInt(strs[i]);
+            }
+            return ints;
+        }else {
+            return new int[0];
+        }
+    }
 
 
 }

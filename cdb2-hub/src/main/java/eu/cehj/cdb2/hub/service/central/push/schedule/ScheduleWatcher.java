@@ -42,7 +42,7 @@ public class ScheduleWatcher {
         this.showSchedulerDetails();
         final List<CountryOfSync> coss = this.cosService.getAll();
         for (final CountryOfSync cos : coss) {
-            this.logger.debug(cos.getCountryCode() + " -> " + cos.getFrequency());
+            this.logger.debug(cos.getCountryCode() + " -> " + cos.getDaysOfWeek() + " | " + cos.getFrequency());
             this.compareWithScheduled(cos) ;
 
         }
@@ -89,7 +89,8 @@ public class ScheduleWatcher {
         // Remove leading 0 if present
         final String h = Long.toString(Long.parseLong(hm[0]));
         final String m = Long.toString(Long.parseLong(hm[1]));
-        return String.format("0 %s %s * * ?", m, h);
+        final String d = cos.getDaysOfWeek();
+        return String.format("0 %s %s ? * %s", m, h, d);
     }
 
     @SuppressWarnings("unchecked")

@@ -47,6 +47,9 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     @Column(name = "managed")
     private boolean managed;
 
+    @Column(name="days_of_week")
+    private String daysOfWeek;
+
     public String getName() {
         return this.name;
     }
@@ -115,6 +118,12 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
         this.managed = managed;
     }
 
+    public String getDaysOfWeek() {
+        return this.daysOfWeek;
+    }
 
+    public void setDaysOfWeek(final String daysOfWeek) {
+        this.daysOfWeek = daysOfWeek;
+    }
 
 }
