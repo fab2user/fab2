@@ -61,6 +61,7 @@
 
     vm.sync = function(country) {
       $log.info('Sync started');
+      country.lastSync = '';
       SyncService.sync(country).then(function(success) {
         success.data.countryName = success.data.country.name; //Copy country name in property expected status directive
         $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
@@ -95,6 +96,7 @@
       if (angular.isDefined(vm.polling)) {
         $interval.cancel(vm.polling);
         vm.polling = undefined;
+        fetchCountries();
       }
     };
 

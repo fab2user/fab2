@@ -4,6 +4,8 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import eu.cehj.cdb2.entity.Synchronization;
+
 public class CountryOfSyncDTO extends BaseDTO{
 
     private static final long serialVersionUID = -6448266488847252561L;
@@ -17,7 +19,7 @@ public class CountryOfSyncDTO extends BaseDTO{
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastSync;
 
-    private boolean lastSyncSuccess;
+    private Synchronization.SyncStatus lastSyncStatus;
 
     private String user;
 
@@ -85,14 +87,6 @@ public class CountryOfSyncDTO extends BaseDTO{
         this.countryCode = countryCode;
     }
 
-    public boolean isLastSyncSuccess() {
-        return this.lastSyncSuccess;
-    }
-
-    public void setLastSyncSuccess(final boolean lastSyncSuccess) {
-        this.lastSyncSuccess = lastSyncSuccess;
-    }
-
     public int[] getDaysOfWeek() {
         return this.daysOfWeek;
     }
@@ -107,6 +101,14 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setFrequency(final String frequency) {
         this.frequency = frequency;
+    }
+
+    public Synchronization.SyncStatus getLastSyncStatus() {
+        return this.lastSyncStatus;
+    }
+
+    public void setLastSyncStatus(final Synchronization.SyncStatus lastSyncStatus) {
+        this.lastSyncStatus = lastSyncStatus;
     }
 
 }

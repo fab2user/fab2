@@ -46,7 +46,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setActive(entity.isActive());
         dto.setId(entity.getId());
         dto.setLastSync(sync.getEndDate());
-        dto.setLastSyncSuccess(sync.getStatus().equals(Synchronization.SyncStatus.OK) ? true: false);
+        dto.setLastSyncStatus(sync.getStatus());
         dto.setPassword(entity.getPassword());
         dto.setUser(entity.getUser());
         dto.setUrl(entity.getUrl());
