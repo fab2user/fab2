@@ -67,13 +67,22 @@
           </div>
 
           <div class="form-group">
+            <label for="active" translate="country.field.schedule" class="col-md-3">active</label>
+            <div class="col-md-6">
+              <div ng-repeat="day in countryEditCtrl.dayOfWeek">
+                <input type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek" checklist-value="day.id"> {{ day.value|translate }}
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false"></div>
+            </div>
+          </div>
+          <div class="form-group">
             <label for="active" translate="global.label.active" class="col-md-3">active</label>
             <div class="col-md-9">
               <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">
             </div>
           </div>
-
-
           <div class="alert alert-danger" role="alert" ng-if="countryEditCtrl.errorsFromServer">
             <strong>{{countryEditCtrl.errorsFromServer}}</strong>
           </div>

@@ -124,8 +124,8 @@ a.glyphicon {
   text-align: right;
 }
 
-.table-bordered.data-grid>thead>tr>td,
-.table-bordered.data-grid>thead>tr>th {
+.table-bordered.data-grid > thead > tr > td,
+.table-bordered.data-grid > thead > tr > th {
   border-bottom-width: 1px;
 }
 
@@ -163,4 +163,12 @@ a.glyphicon {
 
 .main-content {
   margin-top: 2em;
+}
+
+.col-count {
+  column-count: 3;
+}
+
+.uib-timepicker a {
+  outline: none !important;
 }
