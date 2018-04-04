@@ -13,6 +13,7 @@
     'NgTableParams',
     'toastr',
     'CountryAPIService',
+    'StatusAPIService',
     'SyncService',
     'EVENT',
     'SERVER',
@@ -29,6 +30,7 @@
     NgTableParams,
     toastr,
     CountryAPIService,
+    StatusAPIService,
     SyncService,
     EVENT,
     SERVER,
@@ -36,6 +38,12 @@
   ) {
     var vm = this;
     fetchCountries();
+
+    vm.statusDetails = {
+      templateUrl: '/js/country/status.details.html',
+      title: $translate.instant('status.label.title'),
+      sync: vm.selectedCountry
+    };
 
     vm.edit = function(country) {
       var modalInstance = $uibModal.open({
@@ -61,6 +69,8 @@
 
     vm.sync = function(country) {
       $log.info('Sync started');
+      country.lastSync = '';
+      country.lastSyncStatus = '';
       SyncService.sync(country).then(function(success) {
         success.data.countryName = success.data.country.name; //Copy country name in property expected status directive
         $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
@@ -95,6 +105,7 @@
       if (angular.isDefined(vm.polling)) {
         $interval.cancel(vm.polling);
         vm.polling = undefined;
+        fetchCountries();
       }
     };
 

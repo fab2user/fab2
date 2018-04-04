@@ -32,8 +32,8 @@ public interface SynchronizationRepository extends JpaRepository<Synchronization
     public List<Synchronization> getLastForEachCountry()throws Exception;
 
     @Query(value = "select s.* from sync s \n" +
-            "inner join( select country, max(end_date) as maxDate from  sync group by country) \n" +
-            "s2 on s.country = ?1 and s.country = s2.country and s.end_date = s2.maxDate;", nativeQuery = true)
+            "inner join( select country, max(modified_on) as maxDate from  sync group by country) \n" +
+            "s2 on s.country = ?1 and s.country = s2.country and s.modified_on = s2.maxDate;", nativeQuery = true)
     public Synchronization getLastForCountry(Long countryId) throws Exception;
 
 

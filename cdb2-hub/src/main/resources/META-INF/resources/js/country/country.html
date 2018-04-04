@@ -54,10 +54,19 @@
                   <span ng-if="country.active" class="glyphicon glyphicon-ok text-success"></span>
                   <span ng-if="!country.active" class="glyphicon glyphicon-remove text-danger"></span>
                 </td>
-                <td data-title="'country.label.last.sync'|translate" sortable="'lastSync'" ng-class="country.lastSyncSuccess ? 'text-success': 'text-danger'">
-                  {{country.lastSync|amUtc|amLocal|amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
+                <td data-title="'country.label.last.sync'|translate" sortable="'lastSync'" ng-class="{'text-success': country.lastSyncStatus === 'OK', 'text-danger': country.lastSyncStatus === 'ERROR', 'text-warning': !country.lastSync}"
+                  ng-mouseover="countryCtrl.selectedCountry = country">
+                  <span ng-if="country.lastSync">{{country.lastSync|amUtc|amLocal|amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+                  <span ng-if="!country.lastSync" style="text-transform: uppercase;">{{'global.message.processing'|translate}}...</span>
+                  <span class="light-pull-right">
+                    <a href="" class="glyphicon glyphicon-eye-open text-primary light-pull-right" uib-popover-template="countryCtrl.statusDetails.templateUrl"
+                      popover-title="{{countryCtrl.statusDetails.title}}" popover-trigger="'mouseenter'" popover-placement="left"
+                      popover-animation="true" popover-class="details-popover"></a>
+                  </span>
+                </td>
                 <td data-title="'global.label.action'|translate" class="light-pull-right">
-                  <a href="" class="glyphicon glyphicon-cloud-download text-success" ng-click="countryCtrl.sync(country)" uib-tooltip="{{'global.button.sync'|translate}}"></a>
+                  <a href="" class="glyphicon glyphicon-cloud-download text-success" ng-click="countryCtrl.sync(country)" uib-tooltip="{{'global.button.sync'|translate}}"
+                    ng-if="country.lastSync"></a>
                   <a href="" class="glyphicon glyphicon-trash text-danger" ng-click="countryCtrl.delete(country)" confirm="{{'global.confirm.delete'|translate}}"
                     uib-tooltip="{{'global.button.delete'|translate}}"></a>
                   <a href="" class="glyphicon glyphicon-pencil" ng-click="countryCtrl.edit(country)" uib-tooltip="{{'global.button.edit'|translate}}"></a>
