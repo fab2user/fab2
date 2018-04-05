@@ -5,6 +5,7 @@
 
   StatusController.$inject = [
     '$log',
+    '$translate',
     'NgTableParams',
     'lodash',
     'moment',
@@ -15,6 +16,7 @@
 
   function StatusController(
     $log,
+    $translate,
     NgTableParams,
     lodash,
     moment,
@@ -28,6 +30,12 @@
       ba: 'after',
       countries: countryList,
       statuses: statuses
+    };
+
+    vm.statusDetails = {
+      templateUrl: '/js/country/status.details.html',
+      title: $translate.instant('status.label.title'),
+      sync: vm.selectedStatus
     };
 
     vm.searchParams = {};
