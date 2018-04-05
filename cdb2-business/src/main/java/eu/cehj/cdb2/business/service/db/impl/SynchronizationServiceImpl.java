@@ -28,6 +28,7 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
     public Synchronization populateEntityFromDTO(final SynchronizationDTO dto) throws Exception {
         final Synchronization entity = dto.getId() == null ? new Synchronization() : this.get(dto.getId());
         entity.setActive(dto.isActive());
+        entity.setStartDate(dto.getStartDate());
         entity.setEndDate(dto.getEndDate());
         final CountryOfSync country = this.countryRepository.getByName(dto.getCountryName());
         entity.setCountry(country);
@@ -41,6 +42,7 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
         dto.setId(entity.getId());
         dto.setActive(entity.isActive());
         dto.setCountryName(entity.getCountry().getName());
+        dto.setStartDate(entity.getStartDate());
         dto.setEndDate(entity.getEndDate());
         dto.setStatus(entity.getStatus().toString());
         dto.setMessage(entity.getMessage());
