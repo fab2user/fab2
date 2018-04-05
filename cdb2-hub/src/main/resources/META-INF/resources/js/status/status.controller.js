@@ -54,7 +54,7 @@
                 return k + ',' + sortParam[k];
               }
             }
-            return '';
+            return 'id,desc';
           };
           $log.debug('url', sort(params));
           return StatusAPIService.search(
