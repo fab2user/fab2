@@ -33,9 +33,8 @@
     };
 
     vm.statusDetails = {
-      templateUrl: '/js/country/status.details.html',
-      title: $translate.instant('status.label.title'),
-      sync: vm.selectedStatus
+      templateUrl: '/js/status/status.details.html',
+      title: $translate.instant('status.label.title')
     };
 
     vm.searchParams = {};

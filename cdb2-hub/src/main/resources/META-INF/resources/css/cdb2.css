@@ -179,9 +179,12 @@ a.glyphicon {
 
 .details-popover {
   max-width: 600px;
-  /* width: 600px; */
 }
 
 .details-popover .col-md-4 {
   font-weight: bold;
+}
+
+.icon-in-col {
+  width: 2%;
 }

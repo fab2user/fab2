@@ -41,8 +41,7 @@
 
     vm.statusDetails = {
       templateUrl: '/js/country/status.details.html',
-      title: $translate.instant('status.label.title'),
-      sync: vm.selectedCountry
+      title: $translate.instant('status.label.title')
     };
 
     vm.edit = function(country) {
