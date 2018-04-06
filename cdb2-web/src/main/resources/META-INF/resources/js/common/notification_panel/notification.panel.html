@@ -1,0 +1,10 @@
+<div class="container-fluid pointable" uib-popover="{{'notification.label.hide'|translate}}" popover-append-to-body popover-trigger="'mouseenter'"
+    popover-placement="top" ng-click="notifCtrl.hide()" ng-if="notifCtrl.visible">
+    <div class="row" ng-class="notifCtrl.style">
+        <div class="col-md-4 notification-title">{{notifCtrl.title}}</div>
+        <div class="col-md-7">{{notifCtrl.message}}</div>
+        <div class="col-md-1" ng-if="notifCtrl.spin">
+            <img src="/images/ajax-loader.gif " />
+        </div>
+    </div>
+</div>

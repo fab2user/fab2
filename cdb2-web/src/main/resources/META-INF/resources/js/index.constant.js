@@ -13,8 +13,11 @@
     })
     .constant('EVENT', {
       LOGGED_IN: 1,
-      XML_IMPORT: 'xml_import',
-      GEONAME_UPDATE: 'geoname_update'
+      XML_IMPORT: 'xml_import', // TODO: check if still relevant
+      GEONAME_UPDATE: 'geoname_update', // TODO: check if still relevant
+      GEONAME_IMPORT: 'GEONAME_IMPORT',
+      BAILIFF_IMPORT: 'BAILIFF_IMPORT',
+      BAILIFF_EXPORT: 'BAILIFF_EXPORT'
     })
     .constant('STATUS', {
       IN_PROGRESS: 'IN_PROGRESS',

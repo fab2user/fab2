@@ -67,11 +67,6 @@
       loadModal(vm.selectedBailiff);
     };
 
-    //TODO: Remove this method after testing
-    // vm.edit = function() {
-    //   loadModal(vm.selectedBailiff);
-    // };
-
     vm.delete = function(bailiff) {
       vm.selectedBailiff = bailiff;
       vm.delete();
