@@ -25,7 +25,9 @@ public class CDBTask extends BaseAuditedEntity<String> {
     }
 
     public static  enum  Type{
-        GEO_UPDATE
+        GEONAME_IMPORT,
+        BAILIFF_IMPORT,
+        BAILIFF_EXPORT
     }
 
     public CDBTask() {
