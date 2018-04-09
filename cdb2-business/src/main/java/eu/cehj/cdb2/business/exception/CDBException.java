@@ -8,4 +8,8 @@ public class CDBException extends Exception {
         super(message);
     }
 
+    public CDBException(final String message, final Exception e) {
+        super(message, e);
+    }
+
 }

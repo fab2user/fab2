@@ -44,6 +44,8 @@ public class GeoDataImportService implements DataImportService {
     @Transactional
     public void importData(final String fileName, final CDBTask task) throws Exception{
         this.task = task;
+        task.setStatus(CDBTask.Status.IN_PROGRESS);
+        this.taskService.save(task);
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(this.storageService.loadFile(fileName).getInputStream()))) {
 
             List<GeoDataStructure> dataStructures;

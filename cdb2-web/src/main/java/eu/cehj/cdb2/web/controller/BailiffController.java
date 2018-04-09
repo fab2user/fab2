@@ -29,12 +29,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import eu.cehj.cdb2.business.service.data.BailiffImportService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
+import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
 import eu.cehj.cdb2.common.service.StorageService;
-import eu.cehj.cdb2.common.service.task.TaskManager;
-import eu.cehj.cdb2.common.service.task.TaskStatus;
 import eu.cehj.cdb2.entity.Bailiff;
+import eu.cehj.cdb2.entity.CDBTask;
 import eu.cehj.cdb2.entity.QBailiff;
 import eu.cehj.cdb2.web.utils.Settings;
 
@@ -52,10 +52,10 @@ public class BailiffController extends BaseController {
     Settings settings;
 
     @Autowired
-    TaskManager taskManager;
+    StorageService storageService;
 
     @Autowired
-    StorageService storageService;
+    CDBTaskService cdbTaskService;
 
     @RequestMapping(
             method = {
@@ -111,8 +111,10 @@ public class BailiffController extends BaseController {
 
     @RequestMapping(method = { POST }, value="import")
     @ResponseStatus(value = HttpStatus.OK)
-    public TaskStatus importData(@RequestParam("file") final MultipartFile file) throws Exception{
-        final TaskStatus task = this.taskManager.createTask(TaskManager.Type.IMPORT_XLS);
+    public CDBTask importData(@RequestParam("file") final MultipartFile file) throws Exception{
+        final CDBTask task = new CDBTask(CDBTask.Type.BAILIFF_IMPORT);
+        task.setStatus(CDBTask.Status.STARTED);
+        this.cdbTaskService.save(task);
         this.storageService.store(file);
         this.bailiffImportService.importFile(file.getOriginalFilename(), this.settings.getCountryCode(), task);
         return task;

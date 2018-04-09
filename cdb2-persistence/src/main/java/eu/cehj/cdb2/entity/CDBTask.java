@@ -36,6 +36,13 @@ public class CDBTask extends BaseAuditedEntity<String> {
         this.setStatus(Status.STARTED);
     }
 
+    public CDBTask(final Type type) {
+        super();
+        this.type = type;
+        this.setStartDate(new Date());
+        this.setStatus(Status.STARTED);
+    }
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_date")
     private Date startDate;

@@ -3,7 +3,6 @@ package eu.cehj.cdb2.business.service.data;
 import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.List;
@@ -14,12 +13,14 @@ import java.util.stream.Collectors;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,14 @@ import org.springframework.transaction.annotation.Transactional;
 import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.AddressService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
+import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.business.utils.BailiffImportModel;
+import eu.cehj.cdb2.common.service.ResourceService;
 import eu.cehj.cdb2.common.service.StorageService;
-import eu.cehj.cdb2.common.service.task.TaskStatus;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
+import eu.cehj.cdb2.entity.CDBTask;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
@@ -53,31 +56,45 @@ public class BailiffImportService {
     @Autowired
     private StorageService storageService;
 
+    @Autowired
+    private ResourceService resourceService;
+
+    @Autowired
+    private CDBTaskService taskService;
+
     private final String[] cellTitles = {
             "ID", "Name", "Lang", "Address", "Postal Code", "Municipality", "Phone", "Fax", "Email", "Web Site"
     };
 
+    @Value("${bailiff.xls.file.tab}")
+    private String bailiffTabName;
+
     @Async
     @Transactional
-    public void importFile(final String fileName, final String countryCode, final TaskStatus task) throws Exception {
+    public void importFile(final String fileName, final String countryCode, final CDBTask task) throws Exception {
         try {
+            task.setStatus(CDBTask.Status.IN_PROGRESS);
+            this.taskService.save(task);
             final Resource file = this.storageService.loadFile(fileName);
             try (final Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
-                final Sheet sheet = workbook.getSheet("detail");
+                workbook.setMissingCellPolicy(MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                final Sheet sheet = workbook.getSheet(this.bailiffTabName);
                 final Iterator<Row> it = sheet.rowIterator();
                 it.next(); // We skip first row since it contains table's header
                 while (it.hasNext()) {
                     this.processBailiff(it.next(), this.getImportModel(countryCode));
                 }
-                task.setStatus(TaskStatus.Status.OK);
+                task.setStatus(CDBTask.Status.OK);
+                this.taskService.save(task);
             }
         } catch (final Exception e) {
-            task.setStatus(TaskStatus.Status.ERROR);
+            task.setStatus(CDBTask.Status.ERROR);
             String message = e.getMessage();
             if (isBlank(message)) {
                 message = "Unknown server error while processing xls import file.";
             }
             task.setMessage(message);
+            this.taskService.save(task);
             throw e;
         } finally {
             this.storageService.deleteFile(fileName);
@@ -163,13 +180,8 @@ public class BailiffImportService {
     }
 
     private BailiffImportModel getImportModel(final String countryCode) throws Exception {
-        final String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        final String path = rootPath + "xls_" + countryCode + ".properties";
-        try (FileInputStream fis = new FileInputStream(path)) {
-            final Properties xlsProps = new Properties();
-            xlsProps.load(fis);
-            return new BailiffImportModel(xlsProps);
-        }
+        final Properties properties = this.resourceService.loadProperties("xls_" + countryCode + ".properties", "./xls_" + countryCode + ".properties");
+        return new BailiffImportModel(properties);
     }
 
     private void processBailiff(final Row row, final BailiffImportModel importModel) throws Exception {
@@ -200,11 +212,12 @@ public class BailiffImportService {
             bailiff.setWebSite(webSite);
             return bailiff;
         } catch (final Exception e) {
-            throw new CDBException("Error when importing bailiff data from Excel file. Please check that the file is correct.");
+            throw new CDBException("Error when importing bailiff data from Excel file. Please check that the file is correct.", e);
         }
     }
 
     private Address populateAddress(final Row row, final BailiffImportModel importModel) throws Exception {
+        this.logger.debug("Processing row #" + row.getRowNum());
         Cell cell = row.getCell(importModel.getMunicipality());
         final String name = cell.getStringCellValue().trim();
         cell = row.getCell(importModel.getPostalCode());
