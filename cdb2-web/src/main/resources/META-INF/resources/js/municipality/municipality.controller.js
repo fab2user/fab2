@@ -40,15 +40,6 @@
 
     vm.importData = function() {
       $http({ method: 'GET', url: SERVER.API + '/municipality/import' });
-      // .then(
-      //   function(success) {
-      //     toastr.success($translate.instant('municipality.import.success'));
-      //   },
-      //   function(error) {
-      //     $log.error('error during import');
-      //     toastr.error($translate.instant('municipality.import.error'));
-      //   }
-      // );
     };
 
     vm.resetSearch = function() {

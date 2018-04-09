@@ -1,11 +1,6 @@
 package eu.cehj.cdb2.web.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -67,13 +62,13 @@ public class MunicipalityController extends BaseController {
         return this.municipalityService.getAllDTO();
     }
 
-    @RequestMapping(method = { GET }, value = "import")
-    @ResponseStatus(value = OK)
-    public void importData() throws Exception {
-        final InputStream is = this.getClass().getResourceAsStream("FR.txt");
-        final String fileContent = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
-        //  this.dataImportService.importData(fileContent);
-    }
+    //    @RequestMapping(method = { GET }, value = "import")
+    //    @ResponseStatus(value = OK)
+    //    public void importData() throws Exception {
+    //        final InputStream is = this.getClass().getResourceAsStream("FR.txt");
+    //        final String fileContent = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
+    //        //  this.dataImportService.importData(fileContent);
+    //    }
 
     @RequestMapping(method = RequestMethod.GET, value="search")
     @ResponseStatus(value = OK)
@@ -84,9 +79,8 @@ public class MunicipalityController extends BaseController {
 
     @RequestMapping(method = { POST }, value="update")
     @ResponseStatus(value = HttpStatus.OK)
-    //    public CompletableFuture<List<MunicipalityDTO>> upload(@RequestParam("file") final MultipartFile file) throws Exception{
     public CDBTaskDTO upload(@RequestParam("file") final MultipartFile file) throws Exception{
-        final CDBTask task = this.taskService.save(new CDBTask());
+        final CDBTask task = this.taskService.save(new CDBTask(CDBTask.Type.GEONAME_IMPORT));
         this.storageService.store(file);
         this.importService.importData(file.getOriginalFilename(), task);
         return this.taskService.getDTO(task.getId());

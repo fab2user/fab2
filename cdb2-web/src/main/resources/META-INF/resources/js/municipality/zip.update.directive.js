@@ -77,7 +77,7 @@
             vm.polling = $interval(
               function() {
                 $http
-                  .get(SERVER.API + '/task/geoname/' + taskId)
+                  .get(SERVER.API + '/task/' + taskId)
                   .then(function(success) {
                     // Refresh status on the screen
                     $rootScope.$broadcast(EVENT.GEONAME_IMPORT, success.data);
@@ -108,6 +108,4 @@
       ]
     };
   }
-  //FIXME: See how we manage server errors and end of process on the server (long polling ?).
-  // We may also have to create a dedicated table containing updates status, time of last execution, errors ...
 })();

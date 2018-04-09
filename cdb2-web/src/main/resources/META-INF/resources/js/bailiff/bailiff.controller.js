@@ -109,12 +109,12 @@
         })
         .then(function(success) {
           $log.debug('Update successfully submitted');
-          toastr.info($translate.instant('bailiff.import.inprogress'));
+          // toastr.info($translate.instant('bailiff.import.inprogress'));
           vm.importFile = null;
 
-          $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
+          $rootScope.$broadcast(EVENT.BAILIFF_IMPORT, success.data);
           // start polling
-          vm.startPolling(success.data.code);
+          vm.startPolling(success.data.id);
         })
         .finally(function() {
           vm.submitted = false;
@@ -135,7 +135,7 @@
               success.data.status === STATUS.OK ||
               success.data.status === STATUS.ERROR
             ) {
-              $rootScope.$broadcast(EVENT.XML_IMPORT, success.data);
+              $rootScope.$broadcast(EVENT.BAILIFF_IMPORT, success.data);
               vm.endPolling();
             }
           });
