@@ -44,8 +44,8 @@
             var formData = new FormData();
             formData.append('file', vm.file);
             formData.append('filetype', 'text');
-            $rootScope.$broadcast(EVENT.GEONAME_UPDATE, {
-              status: 'IN_PROGRESS'
+            $rootScope.$broadcast(EVENT.GEONAME_IMPORT, {
+              status: STATUS.IN_PROGRESS
             });
             $http
               .post(SERVER.API + '/municipality/update', formData, {
@@ -56,9 +56,6 @@
               })
               .then(function(success) {
                 $log.debug('Update successfully submitted');
-                toastr.success(
-                  $translate.instant('municipality.import.transmitted')
-                );
                 vm.file = null;
                 if (success.data.id) {
                   vm.startPolling(success.data.id);
@@ -80,10 +77,10 @@
             vm.polling = $interval(
               function() {
                 $http
-                  .get(SERVER.API + '/task/geoname/' + taskId)
+                  .get(SERVER.API + '/task/' + taskId)
                   .then(function(success) {
                     // Refresh status on the screen
-                    $rootScope.$broadcast(EVENT.GEONAME_UPDATE, success.data);
+                    $rootScope.$broadcast(EVENT.GEONAME_IMPORT, success.data);
                     if (
                       success.data.status === STATUS.OK ||
                       success.data.status === STATUS.ERROR
@@ -92,7 +89,7 @@
                     }
                   });
               },
-              6000,
+              60000,
               45
             );
           };
@@ -111,6 +108,4 @@
       ]
     };
   }
-  //FIXME: See how we manage server errors and end of process on the server (long polling ?).
-  // We may also have to create a dedicated table containing updates status, time of last execution, errors ...
 })();

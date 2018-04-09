@@ -2,6 +2,10 @@ package eu.cehj.cdb2.common.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import eu.cehj.cdb2.entity.Synchronization;
+
 public class CountryOfSyncDTO extends BaseDTO{
 
     private static final long serialVersionUID = -6448266488847252561L;
@@ -12,13 +16,22 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private boolean active;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastSync;
+
+    private Synchronization.SyncStatus lastSyncStatus;
 
     private String user;
 
     private String password;
 
     private String countryCode;
+
+    private int[] daysOfWeek;
+
+    private String frequency;
+
+    private SynchronizationDTO lastSynchronization;
 
     public String getName() {
         return this.name;
@@ -74,6 +87,38 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setCountryCode(final String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public int[] getDaysOfWeek() {
+        return this.daysOfWeek;
+    }
+
+    public void setDaysOfWeek(final int[] daysOfWeek) {
+        this.daysOfWeek = daysOfWeek;
+    }
+
+    public String getFrequency() {
+        return this.frequency;
+    }
+
+    public void setFrequency(final String frequency) {
+        this.frequency = frequency;
+    }
+
+    public Synchronization.SyncStatus getLastSyncStatus() {
+        return this.lastSyncStatus;
+    }
+
+    public void setLastSyncStatus(final Synchronization.SyncStatus lastSyncStatus) {
+        this.lastSyncStatus = lastSyncStatus;
+    }
+
+    public SynchronizationDTO getLastSynchronization() {
+        return this.lastSynchronization;
+    }
+
+    public void setLastSynchronization(final SynchronizationDTO lastSynchronization) {
+        this.lastSynchronization = lastSynchronization;
     }
 
 }

@@ -3,6 +3,8 @@ package eu.cehj.cdb2.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +39,7 @@ public class BailiffCompetenceAreaController extends BaseController {
     @RequestMapping(value ="api/bailiff/{bailiffId}/competences", method = { GET })
     @ResponseStatus(value = OK)
     public List<BailiffCompetenceAreaCustomDTO> get(@PathVariable final Long bailiffId) throws Exception {
+        final Resource res = new FileSystemResource("pop");
         return this.bcaService.getAllSimpleDTO(bailiffId);
     }
 

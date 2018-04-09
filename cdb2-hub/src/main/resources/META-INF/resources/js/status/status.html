@@ -48,7 +48,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label for="status" translate="global.label.status">status</label>
                           <select ng-options="status for status in statusCtrl.filters.statuses" ng-model="statusCtrl.searchParams.status" class="form-control"
@@ -56,6 +56,17 @@
                             <option value="">{{'status.label.select.default.status'|translate}}</option>
                           </select>
                         </div>
+                      </div>
+                      <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary pull-right" ng-click="statusCtrl.newSearch()">
+                          <span class="glyphicon glyphicon-search"></span>
+                          <span translate="global.button.search"></span>
+                        </button>
+
+                        <button type="button" class="btn btn-default pull-right" ng-click="statusCtrl.clearSearch()">
+                          <i class="glyphicon glyphicon-remove-sign"></i>
+                          <span translate="global.button.clear.search"></span>
+                        </button>
                       </div>
                     </div>
                   </fieldset>
@@ -69,8 +80,14 @@
                 <tr ng-repeat="row in $data track by row.id">
                   <td data-title="'global.label.id'|translate" class="col-md-3" sortable="'id'">{{row.id}}</td>
                   <td data-title="'global.label.country'|translate" class="col-md-2" sortable="'country'">{{row.countryName}}</td>
-                  <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                  <!-- <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|date:'yyyy-MM-dd HH:mm:ss'}}</td> -->
+                  <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|amUtc|amLocal|amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
                   <td data-title="'status.label.status'|translate" class="col-md-2" sortable="'status'">{{row.status}}</td>
+                  <td class="icon-in-col">
+                    <a href="" class="glyphicon glyphicon-eye-open text-primary light-pull-right" uib-popover-template="statusCtrl.statusDetails.templateUrl"
+                      popover-title="{{statusCtrl.statusDetails.title}}" popover-trigger="'mouseenter'" popover-placement="left"
+                      popover-animation="true" popover-class="details-popover"></a>
+                  </td>
                 </tr>
               </table>
             </div>

@@ -12,30 +12,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.common.dto.CDBTaskDTO;
-import eu.cehj.cdb2.common.service.task.TaskManager;
-import eu.cehj.cdb2.common.service.task.TaskStatus;
 
 @RestController
 @RequestMapping("api/task")
 public class TaskController extends BaseController {
 
     @Autowired
-    private TaskManager taskManager;
-
-    @Autowired
     private CDBTaskService taskService;
 
-    //TODO: remove this particular method and use CDBTask instead
-    @RequestMapping(method = GET, value = "{code}")
+    @RequestMapping(method = GET, value = "{id}")
     @ResponseStatus(value = OK)
-    public TaskStatus get(@PathVariable final String code) throws Exception {
-
-        return this.taskManager.getTask(code);
-    }
-
-    @RequestMapping(method = GET, value = "geoname/{id}")
-    @ResponseStatus(value = OK)
-    public CDBTaskDTO get(@PathVariable final Long id) throws Exception {
+    public CDBTaskDTO getTask(@PathVariable final Long id) throws Exception {
 
         return this.taskService.getDTO(id);
     }

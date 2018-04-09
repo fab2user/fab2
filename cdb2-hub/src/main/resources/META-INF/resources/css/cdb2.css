@@ -128,3 +128,63 @@ a.glyphicon {
 .table-bordered.data-grid > thead > tr > th {
   border-bottom-width: 1px;
 }
+
+.notification-success {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(138, 245, 191, 0.884);
+}
+
+.notification-processing {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(138, 211, 245, 0.884);
+}
+
+.notification-failure {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(248, 149, 149, 0.884);
+}
+
+.notification-title {
+  text-transform: uppercase;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.main-content {
+  margin-top: 2em;
+}
+
+.col-count {
+  column-count: 3;
+}
+
+.uib-timepicker a {
+  outline: none !important;
+}
+
+.popover {
+  color: black;
+}
+
+.details-popover {
+  max-width: 600px;
+}
+
+.details-popover .col-md-4 {
+  font-weight: bold;
+}
+
+.icon-in-col {
+  width: 2%;
+}

@@ -5,8 +5,10 @@
 
   StatusController.$inject = [
     '$log',
+    '$translate',
     'NgTableParams',
     'lodash',
+    'moment',
     'StatusAPIService',
     'countryList',
     'statuses'
@@ -14,8 +16,10 @@
 
   function StatusController(
     $log,
+    $translate,
     NgTableParams,
     lodash,
+    moment,
     StatusAPIService,
     countryList,
     statuses
@@ -26,6 +30,11 @@
       ba: 'after',
       countries: countryList,
       statuses: statuses
+    };
+
+    vm.statusDetails = {
+      templateUrl: '/js/status/status.details.html',
+      title: $translate.instant('status.label.title')
     };
 
     vm.searchParams = {};
@@ -45,7 +54,7 @@
                 return k + ',' + sortParam[k];
               }
             }
-            return '';
+            return 'id,desc';
           };
           $log.debug('url', sort(params));
           return StatusAPIService.search(
@@ -77,9 +86,7 @@
       if (vm.filters.date) {
         delete vm.searchParams.dateBefore;
         delete vm.searchParams.dateAfter;
-        var formattedDate = vm.filters.date
-          .toJSON()
-          .substring(0, vm.filters.date.toJSON().indexOf('T'));
+        var formattedDate = moment(vm.filters.date).format('YYYY-MM-DD');
         if (vm.filters.ba === 'before') {
           vm.searchParams.dateBefore = formattedDate;
         } else {

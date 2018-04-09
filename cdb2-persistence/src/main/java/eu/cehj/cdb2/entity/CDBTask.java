@@ -25,11 +25,20 @@ public class CDBTask extends BaseAuditedEntity<String> {
     }
 
     public static  enum  Type{
-        GEO_UPDATE
+        GEONAME_IMPORT,
+        BAILIFF_IMPORT,
+        BAILIFF_EXPORT
     }
 
     public CDBTask() {
         super();
+        this.setStartDate(new Date());
+        this.setStatus(Status.STARTED);
+    }
+
+    public CDBTask(final Type type) {
+        super();
+        this.type = type;
         this.setStartDate(new Date());
         this.setStatus(Status.STARTED);
     }

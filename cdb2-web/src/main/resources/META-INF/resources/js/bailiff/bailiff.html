@@ -82,7 +82,7 @@
             {{ bailiffCtrl.tableParams.total() }} {{ 'global.label.filtered'|translate }} / {{ bailiffCtrl.total }} {{ 'global.label.total'|translate}}
           </div>
           <div class="col-md-6 light-pull-right">
-            <button type="button" class="btn btn-primary" ngf-select ng-model="bailiffCtrl.importFile" name="importFile" ngf-pattern="'.xlsx'"
+            <button type="button" class="btn btn-primary" ngf-select ng-model="bailiffCtrl.importFile" name="importFile" ngf-pattern="'.xl*'"
               ngf-accept="'application/vnd.ms-excel'" ngf-min-size="100">
               <span class="glyphicon glyphicon-arrow-down"></span>
               <span translate="bailiff.button.import">import</span>

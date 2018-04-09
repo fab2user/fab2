@@ -11,55 +11,50 @@
 <title>CDB2</title>
 <meta name="description" content=""></meta>
 <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" />
 <link th:href="@{/css/cdb2.css}" rel="stylesheet" />
 </head>
 <body>
-	<div class="container">
+    <div class="container">
         <div id="head" ui-view="head"></div>
-		<div ui-view="navbar" data-ng-cloak=""></div>
-		<toaster-container
-			toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
-		<div id="wrap"><span us-spinner="" key="spin-1"></span></div>
-        
-		<div id="main" ui-view="content"></div>
-		<div class="footer" data-ng-cloak="" ui-view="footer">
+        <div ui-view="navbar" data-ng-cloak=""></div>
+        <toaster-container toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
+        <div id="wrap">
+            <span us-spinner="" key="spin-1"></span>
+        </div>
 
-		</div>
-		<!-- </div> -->
-		<div data-ng-view=""></div>
-		
-		<!-- IMPORTS -->
-		<!-- webjars -->
+        <div id="main" ui-view="content" class="main-content"></div>
+        <div class="footer" data-ng-cloak="" ui-view="footer"></div>
+        <!-- </div> -->
+        <div data-ng-view=""></div>
+
+        <!-- IMPORTS -->
+        <!-- webjars -->
 
 
-		<script th:src="@{/webjars/angularjs/1.4.10/angular.js}"></script>
-		<script th:src="@{/webjars/angularjs/1.4.10/angular-animate.js}"></script>
-		<script th:src="@{/webjars/angularjs/1.4.10/angular-touch.js}"></script>
-		<script th:src="@{/webjars/angularjs/1.4.10/angular-cookies.js}"></script>
-		<script th:src="@{/webjars/angularjs/1.4.10/angular-resource.js}"></script>
+        <script th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+        <script th:src="@{/webjars/angularjs/1.4.10/angular.js}"></script>
+        <script th:src="@{/webjars/angularjs/1.4.10/angular-animate.js}"></script>
+        <script th:src="@{/webjars/angularjs/1.4.10/angular-touch.js}"></script>
+        <script th:src="@{/webjars/angularjs/1.4.10/angular-cookies.js}"></script>
+        <script th:src="@{/webjars/angularjs/1.4.10/angular-resource.js}"></script>
         <script th:src="@{/webjars/angularjs/1.4.10/angular-messages.js}"></script>
         <script th:src="@{/webjars/spin.js/2.0.2/spin.js}"></script>
         <script th:src="@{/webjars/angular-spinner/0.6.2/angular-spinner.js}"></script>
         <script th:src="@{/webjars/angular-loading-spinner/0.0.3/angular-loading-spinner.js}"></script>
-		<script
-			th:src="@{/webjars/angular-ui-router/0.2.18/angular-ui-router.js}"></script>
-		<script	th:src="@{/webjars/angular-translate/2.13.1/angular-translate.js}"></script>
+        <script th:src="@{/webjars/angular-ui-router/0.2.18/angular-ui-router.js}"></script>
+        <script th:src="@{/webjars/angular-translate/2.13.1/angular-translate.js}"></script>
         <script th:src="@{/webjars/angular-translate-loader-url/2.13.1/angular-translate-loader-url.js}"></script>
-		<script	th:src="@{/webjars/angular-translate-storage-cookie/2.5.2/angular-translate-storage-cookie.js}"></script>
-		<script	th:src="@{/webjars/angular-translate-loader-static-files/2.13.1/angular-translate-loader-static-files.js}"></script>
+        <script th:src="@{/webjars/angular-translate-storage-cookie/2.5.2/angular-translate-storage-cookie.js}"></script>
+        <script th:src="@{/webjars/angular-translate-loader-static-files/2.13.1/angular-translate-loader-static-files.js}"></script>
 
-		<script th:src="@{/webjars/angular-toastr/1.5.0/angular-toastr.js}"></script>
+        <script th:src="@{/webjars/angular-toastr/1.5.0/angular-toastr.js}"></script>
         <script th:src="@{/webjars/angular-toastr/1.5.0/angular-toastr.tpls.js}"></script>
         <link th:href="@{/webjars/angular-toastr/1.5.0/angular-toastr.css}" rel="stylesheet" />
-		<script th:src="@{/webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.js}"></script>
-<!--         <script th:src="@{/webjars/ng-table/0.8.3/dist/ng-table.js}"></script> -->
-<!-- 		<link th:href="@{/webjars/ng-table/0.8.3/dist/ng-table.css}" rel="stylesheet" /> -->
         <script th:src="@{/webjars/ng-lodash/0.4.0/build/ng-lodash.js}"></script>
-        <script th:src="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap.js}"></script>
-        <script th:src="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap-tpls.js}"></script>
-        <link th:href="@{/webjars/angular-bootstrap/1.1.0/ui-bootstrap-csp.css}" rel="stylesheet" />
+        <script th:src="@{/webjars/angular-bootstrap/2.5.0/ui-bootstrap.js}"></script>
+        <script th:src="@{/webjars/angular-bootstrap/2.5.0/ui-bootstrap-tpls.js}"></script>
+        <link th:href="@{/webjars/angular-bootstrap/2.5.0/ui-bootstrap-csp.css}" rel="stylesheet" />
         <script th:src="@{/webjars/angucomplete-alt/2.5.0/angucomplete-alt.js}"></script>
         <link th:href="@{/webjars/angucomplete-alt/2.5.0/angucomplete-alt.css}" rel="stylesheet" />
         <script th:src="@{/webjars/ng-file-upload/12.2.13/ng-file-upload-shim.js}"></script>
@@ -69,22 +64,22 @@
         <script th:src="@{/webjars/angular-confirm-modal/1.2.6/angular-confirm.js}"></script>
         <script th:src="@{/webjars/ngstorage/0.3.11/ngStorage.js}"></script>
         <script th:src="@{/webjars/localforage/1.4.1/dist/localforage.js}"></script>
-        
-		<!-- angular application -->
-		<script src="/js/index.module.js"></script>
+
+        <!-- angular application -->
+        <script src="/js/index.module.js"></script>
         <script src="/js/index.run.js"></script>
-		<script src="/js/index.config.js"></script>
-		<script src="/js/index.route.js"></script>
+        <script src="/js/index.config.js"></script>
+        <script src="/js/index.route.js"></script>
         <script src="/js/index.constant.js"></script>
-		<script src="/js/root/navbar.controller.js"></script>
-		<script src="/js/root/footer.controller.js"></script>
+        <script src="/js/root/navbar.controller.js"></script>
+        <script src="/js/root/footer.controller.js"></script>
         <script src="/js/root/head.controller.js"></script>
-		<script src="/js/home/home.controller.js"></script>
-		<script src="/js/geo-area/geo-area.controller.js"></script>
+        <script src="/js/home/home.controller.js"></script>
+        <script src="/js/geo-area/geo-area.controller.js"></script>
         <script src="/js/geo-area/geo-area.detail.controller.js"></script>
         <script src="/js/geo-area/geo-area.api.service.js"></script>
-		<script src="/js/municipality/municipality.controller.js"></script>
-		<script src="/js/municipality/zip.update.directive.js"></script>
+        <script src="/js/municipality/municipality.controller.js"></script>
+        <script src="/js/municipality/zip.update.directive.js"></script>
         <script src="/js/municipality/municipality.api.service.js"></script>
         <script src="/js/bailiff/bailiff.controller.js"></script>
         <script src="/js/bailiff/competence.edit.controller.js"></script>
@@ -106,11 +101,12 @@
         <script src="/js/common/status/status.directive.js"></script>
         <script src="/js/common/status/status.service.js"></script>
         <script src="/js/common/status/status.api.service.js"></script>
-        
+        <script src="/js/common/notification_panel/notification.panel.directive.js"></script>
+
         <script src="/js/libs/angular-localForage.js"></script>
         <script src="/js/libs/ng-table.js"></script>
         <link href="/js/libs/ng-table.css" rel="stylesheet"></link>
         <link src="/js/libs/ng-table.css.map" rel="stylesheet"></link>
-	</div>
+    </div>
 </body>
 </html>

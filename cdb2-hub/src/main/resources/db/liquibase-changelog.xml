@@ -91,4 +91,9 @@
             <column name="managed" type="boolean" defaultValue="true"/>
         </addColumn>
     </changeSet>
+    <changeSet id="hub-12" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="days_of_week" type="varchar(30)"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
