@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.business.service.data;
+package eu.cehj.cdb2.web.service;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
