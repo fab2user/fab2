@@ -85,8 +85,10 @@
 
           <div class="form-group">
             <label for="language-ac" translate="bailiff.edit.language.accepted" class="col-md-3">language accepted</label>
-            <div ng-repeat="lang in bailiffEditCtrl.languages" class="col-md-9">
-              <input type="checkbox" checklist-model="bailiffEditCtrl.bailiff.languages" checklist-value="lang.id"> {{ lang.language }}
+            <div class="col-md-9">
+              <div ng-repeat="lang in bailiffEditCtrl.languages">
+                <input type="checkbox" checklist-model="bailiffEditCtrl.bailiff.languages" checklist-value="lang.id"> {{ lang.language }}
+              </div>
             </div>
           </div>
 
