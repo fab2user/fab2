@@ -41,21 +41,24 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
 
     @Override
     public CountryOfSyncDTO populateDTOFromEntity(final CountryOfSync entity) throws Exception {
-        final Synchronization sync = this.syncService.getLastByCountry(entity.getId());
-        final SynchronizationDTO syncDTO = this.syncService.populateDTOFromEntity(sync);
         final CountryOfSyncDTO dto = new CountryOfSyncDTO();
+        final Synchronization sync = this.syncService.getLastByCountry(entity.getId());
+        if(sync != null) {
+            final SynchronizationDTO syncDTO = this.syncService.populateDTOFromEntity(sync);
+            //            dto.setLastSync(sync.getEndDate());
+            //            dto.setLastSyncStatus(sync.getStatus());
+            dto.setLastSynchronization(syncDTO);
+        }
         dto.setName(entity.getName());
         dto.setActive(entity.isActive());
         dto.setId(entity.getId());
-        dto.setLastSync(sync.getEndDate());
-        dto.setLastSyncStatus(sync.getStatus());
         dto.setPassword(entity.getPassword());
         dto.setUser(entity.getUser());
         dto.setUrl(entity.getUrl());
         dto.setDaysOfWeek(this.stringToIntArray(entity.getDaysOfWeek()));
         dto.setCountryCode(entity.getCountryCode());
         dto.setFrequency(entity.getFrequency());
-        dto.setLastSynchronization(syncDTO);
+
         return dto;
     }
 

@@ -1,11 +1,5 @@
 package eu.cehj.cdb2.common.dto;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import eu.cehj.cdb2.entity.Synchronization;
-
 public class CountryOfSyncDTO extends BaseDTO{
 
     private static final long serialVersionUID = -6448266488847252561L;
@@ -16,10 +10,10 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private boolean active;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastSync;
-
-    private Synchronization.SyncStatus lastSyncStatus;
+    //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //    private Date lastSync;
+    //
+    //    private Synchronization.SyncStatus lastSyncStatus;
 
     private String user;
 
@@ -57,13 +51,13 @@ public class CountryOfSyncDTO extends BaseDTO{
         this.url = url;
     }
 
-    public Date getLastSync() {
-        return this.lastSync;
-    }
-
-    public void setLastSync(final Date lastSync) {
-        this.lastSync = lastSync;
-    }
+    //    public Date getLastSync() {
+    //        return this.lastSync;
+    //    }
+    //
+    //    public void setLastSync(final Date lastSync) {
+    //        this.lastSync = lastSync;
+    //    }
 
     public String getUser() {
         return this.user;
@@ -105,13 +99,13 @@ public class CountryOfSyncDTO extends BaseDTO{
         this.frequency = frequency;
     }
 
-    public Synchronization.SyncStatus getLastSyncStatus() {
-        return this.lastSyncStatus;
-    }
-
-    public void setLastSyncStatus(final Synchronization.SyncStatus lastSyncStatus) {
-        this.lastSyncStatus = lastSyncStatus;
-    }
+    //    public Synchronization.SyncStatus getLastSyncStatus() {
+    //        return this.lastSyncStatus;
+    //    }
+    //
+    //    public void setLastSyncStatus(final Synchronization.SyncStatus lastSyncStatus) {
+    //        this.lastSyncStatus = lastSyncStatus;
+    //    }
 
     public SynchronizationDTO getLastSynchronization() {
         return this.lastSynchronization;

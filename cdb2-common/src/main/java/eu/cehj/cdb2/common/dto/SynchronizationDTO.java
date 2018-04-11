@@ -2,10 +2,13 @@ package eu.cehj.cdb2.common.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class SynchronizationDTO extends BaseDTO{
 
     private static final long serialVersionUID = 7089475544349832137L;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endDate;
 
     private Date startDate;

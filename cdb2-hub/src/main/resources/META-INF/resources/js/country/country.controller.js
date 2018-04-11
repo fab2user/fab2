@@ -51,7 +51,7 @@
         windowClass: 'modal-md',
         backdrop: 'static',
         resolve: {
-          country: country
+          country: country || {}
         }
       });
       modalInstance.result.then(function() {
@@ -83,6 +83,7 @@
     vm.startPolling = function(taskId) {
       if (angular.isDefined(vm.polling)) return;
       vm.polling = $interval(
+        //TODO: move the function outsideand call it also straight after syn call
         function() {
           $http.get(SERVER.API + '/task/' + taskId).then(function(success) {
             // Refresh status on the screen
