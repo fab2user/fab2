@@ -38,16 +38,23 @@
     ];
 
     vm.modalInstance = $uibModalInstance;
-    var hm = country.frequency.split(':');
-    if (hm.length === 2) {
-      country.frequency = moment()
-        .set('hour', hm[0])
-        .set('minute', hm[1]);
-    }
+
     vm.country = country;
-    //Set active to true by default
-    if (!vm.country) {
+
+    if (!vm.country.id) {
+      //Set active to true by default
       vm.country = { active: true };
+      // Set a default frequency
+      vm.country.frequency = moment()
+        .set('hour', 0)
+        .set('minute', 0);
+    } else {
+      var hm = vm.country.frequency.split(':');
+      if (hm.length === 2) {
+        vm.country.frequency = moment()
+          .set('hour', hm[0])
+          .set('minute', hm[1]);
+      }
     }
 
     vm.save = function(isValid) {

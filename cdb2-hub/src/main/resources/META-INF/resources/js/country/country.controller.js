@@ -51,7 +51,7 @@
         windowClass: 'modal-md',
         backdrop: 'static',
         resolve: {
-          country: country
+          country: country || {}
         }
       });
       modalInstance.result.then(function() {
@@ -98,6 +98,7 @@
         50000,
         5
       );
+      fetchCountries();
     };
 
     vm.endPolling = function() {
