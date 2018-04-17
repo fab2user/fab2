@@ -10,6 +10,8 @@
     '$q',
     '$sessionStorage',
     '$state',
+    '$uibModal',
+    '$cookies',
     'SERVER',
     'STORE',
     'EVENT',
@@ -23,6 +25,8 @@
     $q,
     $sessionStorage,
     $state,
+    $uibModal,
+    $cookies,
     SERVER,
     STORE,
     EVENT,
@@ -42,24 +46,22 @@
         })
         .success(function(data) {
           if (data.name) {
-            $log.info('User ' + data.name + ' successfully authenticated !');
-            $sessionStorage[STORE.AUTHENTICATED] = true;
-            $sessionStorage[STORE.USER] = data.name;
-            $rootScope.$broadcast(EVENT.LOGGED_IN);
-
-            // Load and store application properties
-            SettingsService.loadSettings();
-
-            // Redirect user to where he came from unless he comes from root.login. In this case, redirect him arbitrarily to root.bailiff
-            var stateToGo = { name: 'root.bailiff', params: {} };
-            if (previousState.name && previousState.name !== 'root.login') {
-              stateToGo.name = previousState.name;
-              stateToGo.params = previousState.params;
+            if (!$cookies.get('fab-tos')) {
+              var modalTos = $uibModal.open({
+                templateUrl: '/js/home/tos.html',
+                controller: 'TosController as tosCtrl'
+              });
+              modalTos.result.then(
+                function() {
+                  next(data, previousState, deferred);
+                },
+                function() {
+                  deferred.reject('TOS not accepted');
+                }
+              );
+            } else {
+              next(data, previousState, deferred);
             }
-            $state.go(stateToGo.name, stateToGo.params, {
-              reload: true
-            });
-            deferred.resolve(true);
           } else {
             $sessionStorage[STORE.AUTHENTICATED] = false;
             deferred.reject('Bad credentials');
@@ -71,6 +73,26 @@
         });
       return deferred.promise;
     };
+
+    function next(data, previousState, deferred) {
+      $log.info('User ' + data.name + ' successfully authenticated !');
+      $sessionStorage[STORE.AUTHENTICATED] = true;
+      $sessionStorage[STORE.USER] = data.name;
+      $rootScope.$broadcast(EVENT.LOGGED_IN);
+
+      // Load and store application properties
+      SettingsService.loadSettings();
+      // Redirect user to where he came from unless he comes from root.login. In this case, redirect him arbitrarily to root.bailiff
+      var stateToGo = { name: 'root.bailiff', params: {} };
+      if (previousState.name && previousState.name !== 'root.login') {
+        stateToGo.name = previousState.name;
+        stateToGo.params = previousState.params;
+      }
+      $state.go(stateToGo.name, stateToGo.params, {
+        reload: true
+      });
+      deferred.resolve(true);
+    }
 
     AuthService.logout = function() {
       $http

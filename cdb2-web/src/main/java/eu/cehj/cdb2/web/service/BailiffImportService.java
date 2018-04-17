@@ -113,7 +113,7 @@ public class BailiffImportService {
 
                 final String[] bailiffValues = this.buildValues(bailiff);
                 this.writeRow(sheet, index, bailiffValues);
-                index ++;
+                index++;
             }
 
             final File currDir = new File(".");
@@ -192,7 +192,7 @@ public class BailiffImportService {
 
     }
 
-    private Bailiff populateBailiff(final Row row, final BailiffImportModel importModel)throws Exception {
+    private Bailiff populateBailiff(final Row row, final BailiffImportModel importModel) throws Exception {
         try {
             final Bailiff bailiff = new Bailiff();
             Cell cell = row.getCell(importModel.getName());

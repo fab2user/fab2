@@ -1,12 +1,16 @@
 package eu.cehj.cdb2.web.controller;
 
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -27,6 +31,7 @@ import static org.springframework.http.HttpStatus.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
@@ -131,6 +136,25 @@ public class BailiffController extends BaseController {
                 .contentLength(resource.contentLength())
                 .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
                 .body(resource);
+    }
+
+    @RequestMapping(method = { GET }, value="template")
+    public ResponseEntity<Resource> downloadTemplate() throws Exception{
+        Resource template = new FileSystemResource("./bailiff-template.xls");
+        if(template.exists() == false) {
+            template = new ClassPathResource("bailiff-template.xlsx");
+        }
+        if(template.exists() == true) {
+            try (InputStream is = template.getInputStream()) {
+                final byte[] ba = IOUtils.toByteArray(is);
+                final ByteArrayResource bar = new ByteArrayResource(ba);
+                return ResponseEntity.ok()
+                        .contentLength(template.contentLength())
+                        .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                        .body(bar);
+            }
+        }
+        throw new CDBException("Template not found");
     }
 
     @RequestMapping(method = GET, value = "/{id}")

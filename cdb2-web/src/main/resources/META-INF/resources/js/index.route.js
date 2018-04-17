@@ -1,9 +1,7 @@
-(function () {
+(function() {
   'use strict';
 
-  angular
-    .module('cdb2')
-    .config(routerConfig);
+  angular.module('cdb2').config(routerConfig);
 
   routerConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -12,7 +10,7 @@
       .state('root', {
         abstract: true,
         views: {
-          'head': {
+          head: {
             templateUrl: '/js/root/head.html',
             controller: 'HeadController as headCtrl'
           },
@@ -20,7 +18,7 @@
             templateUrl: '/js/root/navbar.html',
             controller: 'NavBarController as navCtrl'
           },
-          'footer': {
+          footer: {
             templateUrl: '/js/root/footer.html',
             controller: 'FooterController as footerCtrl'
           }
@@ -85,18 +83,21 @@
             controllerAs: 'loginCtrl'
           }
         },
-        resolve: { // Redirects user to where he came from before login state 
-          PreviousState: ['$state', function ($state) {
-            var currentStateData = {
-              name: $state.current.name,
-              params: $state.params
-            };
-            return currentStateData;
-          }]
+        resolve: {
+          // Redirects user to where he came from before login state
+          PreviousState: [
+            '$state',
+            function($state) {
+              var currentStateData = {
+                name: $state.current.name,
+                params: $state.params
+              };
+              return currentStateData;
+            }
+          ]
         }
       });
 
-    $urlRouterProvider.otherwise('/bailiff');
+    $urlRouterProvider.otherwise('/');
   }
-
 })();

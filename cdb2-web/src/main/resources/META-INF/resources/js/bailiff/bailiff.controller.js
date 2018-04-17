@@ -95,6 +95,15 @@
         });
     };
 
+    vm.importTemplate = function() {
+      $http
+        .get(SERVER.API + '/bailiff/template', { responseType: 'arraybuffer' })
+        .then(function(success) {
+          var blob = new Blob([success.data]);
+          FileSaver.saveAs(blob, 'bailiffs_import_template.xlsx');
+        });
+    };
+
     vm.sendImportFile = function() {
       $log.info('Upload called', vm.importFile);
       var formData = new FormData();
