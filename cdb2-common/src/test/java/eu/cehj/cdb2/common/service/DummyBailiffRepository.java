@@ -22,13 +22,13 @@ public class DummyBailiffRepository {
         final Address address = new Address();
         address.setId(1L);
         address.setCountry(country);
-        address.setAddress("2 rue de la soif");
+        address.setAddress1("2 rue de la soif");
         address.setMunicipality(municipality);
 
 
         final BailiffDTO dto = new BailiffDTO();
         dto.setId(1L);
-        dto.setAddress(address.getAddress());
+        dto.setAddress1(address.getAddress1());
         dto.setCity(address.getMunicipality().getName());
         dto.setEmail("roger@federer.com");
         dto.setName("Jean Keszky");

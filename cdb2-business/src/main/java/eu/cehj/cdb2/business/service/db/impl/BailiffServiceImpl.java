@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +25,10 @@ import eu.cehj.cdb2.entity.BailiffCompetenceArea;
 import eu.cehj.cdb2.entity.GeoArea;
 import eu.cehj.cdb2.entity.Language;
 import eu.cehj.cdb2.entity.Municipality;
+import eu.cehj.cdb2.entity.QLanguage;
 
 @Service
 public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Long, BailiffRepository> implements BailiffService {
-
-    @Autowired
-    private EntityManager em;
 
     @Autowired
     AddressRepository addressRepository;
@@ -79,7 +74,8 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         final Address address = entity.getAddress();
         if (address != null) {
             dto.setAddressId(address.getId());
-            dto.setAddress(address.getAddress());
+            dto.setAddress1(address.getAddress1());
+            dto.setAddress2(address.getAddress2());
             final Municipality municipality = address.getMunicipality();
             if (municipality != null) {
                 dto.setCity(municipality.getName());
@@ -110,11 +106,17 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
             final Language language = this.languageRepository.getOne(lang);
             entity.getLanguages().add(language);
         });
-        final Long idLangOfDetails = dto.getLangOfDetails();
+        //        final Long idLangOfDetails = dto.getLangOfDetails();
+        // Small cheat since I assumed we can have several lang of details TODO: If it's confirmed there can be only one, then modify entity accordingly
         entity.getLangOfDetails().clear();
-        if (idLangOfDetails != null) {
-            final Language lang = this.languageRepository.getOne(idLangOfDetails);
-            entity.getLangOfDetails().add(lang);
+        //        if (idLangOfDetails != null) {
+        //            final Language lang = this.languageRepository.getOne(idLangOfDetails);
+        //            entity.getLangOfDetails().add(lang);
+        //        }
+        // Set default lang of details to EN, as requested by client
+        final Language enLang =  this.languageRepository.findOne(QLanguage.language1.code.eq("EN"));
+        if(enLang != null) {
+            entity.getLangOfDetails().add(enLang);
         }
         Address address = null;
         if (dto.getAddressId() != null) {
@@ -124,18 +126,20 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
             }
         } else {
             address = new Address();
-            address.setAddress(dto.getAddress());
         }
+        address.setAddress1(dto.getAddress1());
+        address.setAddress2(dto.getAddress2());
         address.setMunicipality(municipality);
         this.addressRepository.save(address);
         entity.setAddress(address);
+        entity.setWebSite(dto.getWebSite());
 
         return entity;
     }
 
     @Override
     public List<BailiffDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
-        final Page<Bailiff> entities = this.repository.findAll(predicate, pageable);
+        //        final Page<Bailiff> entities = this.repository.findAll(predicate, pageable);
         //@formatter:off
         return this.repository.findAll(predicate, pageable).getContent()
                 .stream()
@@ -171,7 +175,8 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     public BailiffExportDTO populateExportDTOFromEntity(final Bailiff entity) throws Exception {
         final BailiffExportDTO dto = new BailiffExportDTO();
         if (entity.getAddress() != null) {
-            dto.setAddress(entity.getAddress().getAddress());
+            dto.setAddress1(entity.getAddress().getAddress1());
+            dto.setAddress2(entity.getAddress().getAddress2());
             if (entity.getAddress().getMunicipality() != null) {
                 dto.setMunicipality(entity.getAddress().getMunicipality().getName());
                 dto.setPostalCode(entity.getAddress().getMunicipality().getPostalCode());

@@ -188,4 +188,21 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
         <loadData tableName="competence" file="db/data/competence.csv"></loadData>
     </changeSet>
-   </databaseChangeLog>
+    <changeSet id="cdb-18" author="landry">
+        <comment>Create EN lang, since it has to be set as default for bailiffs' lang of detail</comment>
+        <sql>
+            INSERT INTO language (`code`, `language`, `created_by`, `created_on`) VALUES ('EN', 'English', 'System', NOW());
+        </sql>
+    </changeSet>
+    <changeSet id="cdb-19" author="landry">
+        <renameColumn tableName="address" oldColumnName="address" newColumnName="address_1" columnDataType="varchar(255)"></renameColumn>
+    </changeSet>
+    <changeSet id="cdb-20" author="landry">
+        <addColumn tableName="address">
+        <column name="address_2" type="varchar(255)" afterColumn="address_1"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="cdb-21" author="landry">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="address1" tableName="address" />
+    </changeSet>
+ </databaseChangeLog>

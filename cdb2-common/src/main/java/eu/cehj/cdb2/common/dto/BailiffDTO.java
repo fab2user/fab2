@@ -9,7 +9,8 @@ public class BailiffDTO extends BaseDTO{
     private static final long serialVersionUID = 6204512676632176957L;
 
     private String name;
-    private String address;
+    private String address1;
+    private String address2;
     private String postalCode;
     private String city;
     private String phone;
@@ -35,14 +36,6 @@ public class BailiffDTO extends BaseDTO{
 
     public void setName(final String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(final String address) {
-        this.address = address;
     }
 
     public String getPostalCode() {
@@ -123,6 +116,22 @@ public class BailiffDTO extends BaseDTO{
 
     public void setFax(final String fax) {
         this.fax = fax;
+    }
+
+    public String getAddress1() {
+        return this.address1;
+    }
+
+    public void setAddress1(final String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return this.address2;
+    }
+
+    public void setAddress2(final String address2) {
+        this.address2 = address2;
     }
 
 

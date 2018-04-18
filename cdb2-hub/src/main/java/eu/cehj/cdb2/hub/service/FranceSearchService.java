@@ -40,7 +40,8 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Sea
     private BailiffDTO convertEtudeToDTO(final Etude e) {
         final BailiffDTO dto = new BailiffDTO();
         dto.setName(e.getNom());
-        dto.setAddress(e.getAds1());
+        dto.setAddress1(e.getAds1());
+        dto.setAddress2(e.getAds2());
         dto.setPostalCode(e.getCp());
         dto.setCity(e.getVille());
         dto.setEmail(e.getEm1());
