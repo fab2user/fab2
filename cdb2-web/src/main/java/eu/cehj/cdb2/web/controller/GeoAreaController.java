@@ -1,11 +1,5 @@
 package eu.cehj.cdb2.web.controller;
 
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,8 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.querydsl.core.types.Predicate;
 
+import static org.springframework.http.HttpStatus.*;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 import eu.cehj.cdb2.business.service.db.GeoAreaService;
 import eu.cehj.cdb2.common.dto.GeoAreaDTO;
+import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
 import eu.cehj.cdb2.entity.GeoArea;
 
 @RestController
@@ -41,6 +40,12 @@ public class GeoAreaController extends BaseController {
     @ResponseStatus(value = OK)
     public List<GeoAreaDTO> get() throws Exception {
         return this.areaService.getAllDTO();
+    }
+
+    @RequestMapping(method = { GET }, value = "/simple")
+    @ResponseStatus(value = OK)
+    public List<GeoAreaSimpleDTO> getSimple() throws Exception {
+        return this.areaService.getAllSimpleDTO();
     }
 
     @RequestMapping(method = { POST })

@@ -188,4 +188,14 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
         <loadData tableName="competence" file="db/data/competence.csv"></loadData>
     </changeSet>
-   </databaseChangeLog>
+    <changeSet id="cdb-18" author="landry">
+        <sql>
+            SET FOREIGN_KEY_CHECKS=0;
+            TRUNCATE TABLE `instrument`;
+            TRUNCATE TABLE `competence`;
+            SET FOREIGN_KEY_CHECKS=1;
+        </sql>
+        <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
+        <loadData tableName="competence" file="db/data/competence.csv"></loadData>
+    </changeSet>
+</databaseChangeLog>

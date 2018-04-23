@@ -1,5 +1,7 @@
 package eu.cehj.cdb2.business.service.db;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public interface GeoAreaService extends BaseService<GeoArea, GeoAreaDTO, Long>{
     public GeoAreaDTO saveDTO(GeoAreaDTO dto) throws Exception;
 
     public GeoAreaSimpleDTO getSimpleDTO(Long id) throws Exception;
+
+    public List<GeoAreaSimpleDTO> getAllSimpleDTO() throws Exception;
 
     public Page<GeoAreaDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
 
