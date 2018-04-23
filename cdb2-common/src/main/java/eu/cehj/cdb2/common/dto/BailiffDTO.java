@@ -21,6 +21,12 @@ public class BailiffDTO extends BaseDTO{
     private String webSite;
     private String fax;
 
+    private List<GeoCompetenceDTO> geoCompetences; // FIXME: Remove if not used
+    private List<CompetenceDTO> competences;
+    private GeoAreaSimpleDTO geo;
+    private boolean toBeUpdated = false;
+
+
     public BailiffDTO() {
         super();
     }
@@ -123,6 +129,38 @@ public class BailiffDTO extends BaseDTO{
 
     public void setFax(final String fax) {
         this.fax = fax;
+    }
+
+    public List<GeoCompetenceDTO> getGeoCompetences() {
+        return this.geoCompetences;
+    }
+
+    public void setGeoCompetences(final List<GeoCompetenceDTO> geoCompetences) {
+        this.geoCompetences = geoCompetences;
+    }
+
+    public List<CompetenceDTO> getCompetences() {
+        return this.competences;
+    }
+
+    public void setCompetences(final List<CompetenceDTO> competences) {
+        this.competences = competences;
+    }
+
+    public GeoAreaSimpleDTO getGeo() {
+        return this.geo;
+    }
+
+    public void setGeo(final GeoAreaSimpleDTO geo) {
+        this.geo = geo;
+    }
+
+    public boolean isToBeUpdated() {
+        return this.toBeUpdated;
+    }
+
+    public void setToBeUpdated(final boolean toBeUpdated) {
+        this.toBeUpdated = toBeUpdated;
     }
 
 

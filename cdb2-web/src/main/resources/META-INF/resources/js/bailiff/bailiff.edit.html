@@ -1,16 +1,18 @@
 <div class="modal-content">
-  <div class="modal-header">
-    <button type="button" class="close" ng-click="bailiffEditCtrl.modalInstance.dismiss()">&times;</button>
-    <h4 class="modal-title">
-      <span translate="bailiff.edit.title">title</span>
-      <span>{{ bailiffEditCtrl.bailiff.name }}</span>
-    </h4>
-  </div>
+  <form class="form form-horizontal" role="form" name="bailiffEditCtrl.bailiffForm" novalidate>
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="bailiffEditCtrl.modalInstance.dismiss()">&times;</button>
+      <h4 class="modal-title">
+        <span translate="bailiff.edit.title">title</span>
+        <span>{{ bailiffEditCtrl.bailiff.name }}</span>
+      </h4>
+    </div>
 
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form form-horizontal" role="form" name="bailiffEditCtrl.bailiffForm" novalidate>
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-md-6">
+
 
           <div class="form-group" ng-if="bailiffEditCtrl.bailiff.id">
             <label for="id" translate="global.label.id" class="col-md-3">id</label>
@@ -53,7 +55,8 @@
             <div class="col-md-9">
               <div angucomplete-alt id="municipality" maxlength="50" pause="500" field-required="true" selected-object="bailiffEditCtrl.bailiff.municipality"
                 local-data="bailiffEditCtrl.cities" search-fields="name,postalCode" title-field="postalCode,name" minlength="2"
-                input-class="form-control form-control-small" match-class="highlight" input-name="municipality" initial-value="bailiffEditCtrl.bailiff.initialCity">
+                input-class="form-control form-control-small" match-class="highlight" input-name="municipality" initial-value="bailiffEditCtrl.bailiff.initialCity"
+                override-suggestions="true">
 
                 <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.municipality.$error">
                   <div ng-message="autocomplete-required" class="text-danger">{{"global.form.required"|translate}}</div>
@@ -95,59 +98,46 @@
           <div class="alert alert-danger" role="alert" ng-if="bailiffEditCtrl.errorsFromServer">
             <strong>{{bailiffEditCtrl.errorsFromServer}}</strong>
           </div>
-          <div class="row top-1">
-            <div class="col-md-12 light-pull-right">
-              <button class="btn btn-danger" type="button" ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()" confirm="{{'global.confirm.delete'|translate}}">
-                <span class="glyphicon glyphicon-trash"></span>
-                <span translate="global.button.delete"></span>
-              </button>
-              <button class="btn btn-primary" ng-click="bailiffEditCtrl.save(bailiffEditCtrl.bailiffForm.$valid)">
-                <span class="glyphicon glyphicon-floppy-disk"></span>
-                <span translate="global.button.save"></span>
-              </button>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="instrument" translate="bailiff.edit.instruments" class="col-md-3">instruments</label>
+            <div class="col-md-9">
+              <select name="instrument" id="instrument-select" class="form-control" ng-options="option as option.instrumentDescription for option in bailiffEditCtrl.competences track by option.id"
+                ng-model="bailiffEditCtrl.bailiff.competences" multiple size="5">
+              </select>
             </div>
           </div>
-        </form>
-      </div>
-      <div class="col-md-6" ng-if="bailiffEditCtrl.bailiff.id">
-        <div class="row">
-          <div class="col-md-12">
-            <table ng-table="bailiffEditCtrl.tableParams" class="table" show-filter="true">
-              <tr ng-repeat="competence in $data track by competence.id">
-                <td data-title="'bailiff.edit.competence'|translate" filter="{ 'competence.code': 'text'}" sortable="'competence.code'">
-                  {{competence.competence.code}}</td>
-                <td data-title="'bailiff.edit.instrument'|translate" filter="{ 'competence.instrument.code': 'text'}" sortable="'name'">
-                  {{competence.competence.instrument.code}}</td>
-                <td data-title="'bailiff.edit.areas'|translate" filter="{ areaNames: 'text'}" sortable="'areaNames'">
-                  {{competence.areaNames}}</td>
-                <td data-title="'global.label.action'|translate">
-                  <a href="" class="glyphicon glyphicon-trash text-danger" ng-click="bailiffEditCtrl.removeCompetence(competence)" confirm="{{'global.confirm.delete'|translate}}"
-                    uib-tooltip="{{'global.button.delete'|translate}}"></a>
-                  <a href="" class="glyphicon glyphicon-pencil" ng-click="bailiffEditCtrl.editCompetence(competence)" uib-tooltip="{{'global.button.edit'|translate}}"></a>
-                </td>
-              </tr>
-            </table>
+          <div class="form-group">
+            <label for="area" translate="bailiff.edit.areas" class="col-md-3">areas</label>
+            <div class="col-md-9">
+              <select name="area" id="area-select" class="form-control" ng-options="option as option.name for option in bailiffEditCtrl.areas track by option.id"
+                ng-model="bailiffEditCtrl.bailiff.geo"></select>
+            </div>
           </div>
         </div>
-        <div class="row top-1">
-          <div class="col-md-12">
-            <button type="button" class="btn btn-primary pull-right action-button" ng-click="bailiffEditCtrl.addCompetence()" ng-disabled="!bailiffEditCtrl.bailiff.id">
-              <span class="glyphicon glyphicon-plus-sign"></span>
-              <span translate="global.button.add"></span>
-            </button>
-          </div>
+
+
+      </div>
+
+    </div>
+    <div class="modal-footer ">
+      <div class="row ">
+        <div class="col-md-12 light-pull-right">
+          <button class="btn btn-danger" type="button" ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()" confirm="{{'global.confirm.delete'|translate}}">
+            <span class="glyphicon glyphicon-trash"></span>
+            <span translate="global.button.delete"></span>
+          </button>
+          <button class="btn btn-success" ng-click="bailiffEditCtrl.save(bailiffEditCtrl.bailiffForm.$valid)">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            <span translate="global.button.save"></span>
+          </button>
+          <a class="btn btn-primary action-button " ng-click="bailiffEditCtrl.modalInstance.close() ">
+            <span class="glyphicon glyphicon-remove-sign "></span>
+            <span translate="global.button.cancel "></span>
+          </a>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <div class="row">
-      <div class="col-md-12">
-        <a class="btn btn-primary pull-right action-button" ng-click="bailiffEditCtrl.modalInstance.close()">
-          <span class="glyphicon glyphicon-remove-sign"></span>
-          <span translate="global.button.close"></span>
-        </a>
-      </div>
-    </div>
-  </div>
+  </form>
 </div>
