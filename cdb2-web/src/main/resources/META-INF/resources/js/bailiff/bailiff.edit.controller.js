@@ -126,10 +126,6 @@
         lodash.isEqual(snapshotCompare.competences, bailiff.competences)
       );
       $log.info('geo eq: ', lodash.isEqual(snapshotCompare.geo, bailiff.geo));
-      // console.dir(snapshotCompare.competences);
-      // console.dir(bailiff.competences);
-      // console.dir(snapshotCompare.geo);
-      // console.dir(bailiff.geo);
       return bailiff;
     }
 

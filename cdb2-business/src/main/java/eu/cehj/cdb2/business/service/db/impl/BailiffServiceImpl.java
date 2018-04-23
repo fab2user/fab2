@@ -72,16 +72,18 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         // First remove old data
         this.bailiffCompetenceAreaService.delete(this.bailiffCompetenceAreaService.findAllForBailiffId(dto.getId()));
 
-        for(final CompetenceDTO competenceDTO: dto.getCompetences()) {
-            final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
-            final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
-            gas.setId(dto.getGeo().getId());
-            bca.setAreas(Arrays.asList(new GeoAreaSimpleDTO[] {gas}));
-            bca.setBailiff(dto);
-            final CompetenceDTO comp = new CompetenceDTO();
-            comp.setId(competenceDTO.getId());
-            bca.setCompetence(comp);
-            this.bailiffCompetenceAreaService.save(bca);
+        if(dto.getCompetences() != null) {
+            for(final CompetenceDTO competenceDTO: dto.getCompetences()) {
+                final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
+                final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
+                gas.setId(dto.getGeo().getId());
+                bca.setAreas(Arrays.asList(new GeoAreaSimpleDTO[] {gas}));
+                bca.setBailiff(dto);
+                final CompetenceDTO comp = new CompetenceDTO();
+                comp.setId(competenceDTO.getId());
+                bca.setCompetence(comp);
+                this.bailiffCompetenceAreaService.save(bca);
+            }
         }
     }
 
