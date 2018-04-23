@@ -125,15 +125,21 @@
             <label for="instrument" translate="bailiff.edit.instruments" class="col-md-3">instruments</label>
             <div class="col-md-9">
               <select name="instrument" id="instrument-select" class="form-control" ng-options="option as option.instrumentDescription for option in bailiffEditCtrl.competences track by option.id"
-                ng-model="bailiffEditCtrl.bailiff.competences" multiple size="5">
+                ng-model="bailiffEditCtrl.bailiff.competences" multiple size="5" ng-required="bailiffEditCtrl.bailiff.geo">
               </select>
+              <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.instrument.$error">
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+              </div>
             </div>
           </div>
           <div class="form-group">
             <label for="area" translate="bailiff.edit.areas" class="col-md-3">areas</label>
             <div class="col-md-9">
               <select name="area" id="area-select" class="form-control" ng-options="option as option.name for option in bailiffEditCtrl.areas track by option.id"
-                ng-model="bailiffEditCtrl.bailiff.geo"></select>
+                ng-model="bailiffEditCtrl.bailiff.geo" ng-required="bailiffEditCtrl.bailiff.competences"></select>
+              <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.area.$error">
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+              </div>
             </div>
           </div>
         </div>
