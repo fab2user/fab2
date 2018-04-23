@@ -7,7 +7,8 @@ public class BailiffImportModel {
     private int id;
     private int name;
     private int lang;
-    private int address;
+    private int address1;
+    private int address2;
     private int postalCode;
     private int municipality;
     private int phone;
@@ -19,7 +20,8 @@ public class BailiffImportModel {
         this.setId(Integer.parseInt(propertiesFile.getProperty("id")));
         this.setName(Integer.parseInt(propertiesFile.getProperty("name")));
         this.setLang(Integer.parseInt(propertiesFile.getProperty("lang")));
-        this.setAddress(Integer.parseInt(propertiesFile.getProperty("address")));
+        this.setAddress1(Integer.parseInt(propertiesFile.getProperty("address1")));
+        this.setAddress2(Integer.parseInt(propertiesFile.getProperty("address2")));
         this.setPostalCode(Integer.parseInt(propertiesFile.getProperty("postalCode")));
         this.setMunicipality(Integer.parseInt(propertiesFile.getProperty("municipality")));
         this.setPhone(Integer.parseInt(propertiesFile.getProperty("phone")));
@@ -50,14 +52,6 @@ public class BailiffImportModel {
 
     public void setLang(final int lang) {
         this.lang = lang;
-    }
-
-    public int getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(final int address) {
-        this.address = address;
     }
 
     public int getPostalCode() {
@@ -106,6 +100,22 @@ public class BailiffImportModel {
 
     public void setWebSite(final int webSite) {
         this.webSite = webSite;
+    }
+
+    public int getAddress1() {
+        return this.address1;
+    }
+
+    public void setAddress1(final int address1) {
+        this.address1 = address1;
+    }
+
+    public int getAddress2() {
+        return this.address2;
+    }
+
+    public void setAddress2(final int address2) {
+        this.address2 = address2;
     }
 
 

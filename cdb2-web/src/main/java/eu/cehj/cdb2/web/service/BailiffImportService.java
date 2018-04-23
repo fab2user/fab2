@@ -30,6 +30,7 @@ import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.AddressService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.db.CDBTaskService;
+import eu.cehj.cdb2.business.service.db.LanguageService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.business.utils.BailiffImportModel;
 import eu.cehj.cdb2.common.service.ResourceService;
@@ -37,6 +38,7 @@ import eu.cehj.cdb2.common.service.StorageService;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.CDBTask;
+import eu.cehj.cdb2.entity.Language;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
@@ -46,6 +48,9 @@ public class BailiffImportService {
 
     @Autowired
     private BailiffService bailiffService;
+
+    @Autowired
+    private LanguageService langService;
 
     @Autowired
     private MunicipalityService municipalityService;
@@ -69,12 +74,15 @@ public class BailiffImportService {
     @Value("${bailiff.xls.file.tab}")
     private String bailiffTabName;
 
+    private Language languageOfDetails;
+
     @Async
     @Transactional
     public void importFile(final String fileName, final String countryCode, final CDBTask task) throws Exception {
         try {
             task.setStatus(CDBTask.Status.IN_PROGRESS);
             this.taskService.save(task);
+            this.languageOfDetails = this.getDefaultLangOfDetails();
             final Resource file = this.storageService.loadFile(fileName);
             try (final Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
                 workbook.setMissingCellPolicy(MissingCellPolicy.CREATE_NULL_AS_BLANK);
@@ -99,6 +107,16 @@ public class BailiffImportService {
         } finally {
             this.storageService.deleteFile(fileName);
         }
+    }
+
+    /**
+     *
+     * As asked by the client, we set english as default lang. of details for all bailiffs.
+     * @return
+     * @throws Exception
+     */
+    private Language getDefaultLangOfDetails() throws Exception {
+        return this.langService.getLangByCode("EN");
     }
 
     @Transactional
@@ -135,7 +153,12 @@ public class BailiffImportService {
                 Optional
                 .of(bailiff)
                 .map(Bailiff::getAddress)
-                .map(Address::getAddress)
+                .map(Address::getAddress1)
+                .orElseGet(() -> ""),
+                Optional
+                .of(bailiff)
+                .map(Bailiff::getAddress)
+                .map(Address::getAddress2)
                 .orElseGet(() -> ""),
                 this.getLangsForBailiff(bailiff),
                 Optional
@@ -188,6 +211,7 @@ public class BailiffImportService {
         final Bailiff bailiff = this.populateBailiff(row, importModel);
         final Address address = this.populateAddress(row, importModel);
         bailiff.setAddress(address);
+        bailiff.getLangOfDetails().add(this.languageOfDetails);
         this.bailiffService.save(bailiff);
 
     }
@@ -230,8 +254,10 @@ public class BailiffImportService {
             municipality = this.municipalityService.save(municipality);
         }
         final Address address = new Address();
-        cell = row.getCell(importModel.getAddress());
-        address.setAddress(cell.getStringCellValue().trim());
+        cell = row.getCell(importModel.getAddress1());
+        address.setAddress1(cell.getStringCellValue().trim());
+        cell = row.getCell(importModel.getAddress2());
+        address.setAddress2(cell.getStringCellValue().trim());
         address.setMunicipality(municipality);
         return this.addressService.save(address);
     }

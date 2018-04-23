@@ -21,17 +21,19 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="language-detail" translate="bailiff.edit.language.detail" class="col-md-3">language of details</label>
             <div class="col-md-9">
               <select name="languageDetail" class="form-control" id="languageDetail" ng-model="bailiffEditCtrl.bailiff.langOfDetails" ng-options="langDetail.id*1 as langDetail.language for langDetail in bailiffEditCtrl.languages">
                 <option value=""></option>
               </select>
             </div>
-          </div>
+          </div> -->
 
           <div class="form-group">
-            <label for="name" translate="bailiff.edit.name" class="col-md-3">bailiff name</label>
+            <label for="name" class="col-md-3">
+              <span translate="bailiff.edit.name">name</span>*
+            </label>
             <div class="col-md-9">
               <input type="text" name="name" class="form-control" id="name" ng-model="bailiffEditCtrl.bailiff.name" required autofocus="autofocus">
               <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.name.$error">
@@ -41,17 +43,27 @@
           </div>
 
           <div class="form-group">
-            <label for="address" translate="bailiff.edit.address" class="col-md-3">address</label>
+            <label for="address1" class="col-md-3">
+              <span translate="bailiff.edit.address1">address</span>*</label>
             <div class="col-md-9">
-              <input type="text" name="address" class="form-control" id="address" ng-model="bailiffEditCtrl.bailiff.address" required autofocus="autofocus">
-              <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.address.$error">
+              <input type="text" name="address1" class="form-control" id="address1" ng-model="bailiffEditCtrl.bailiff.address1" required
+                autofocus="autofocus">
+              <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.address1.$error">
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="municipality" translate="bailiff.edit.municipality" class="col-md-3">city</label>
+            <label for="address2" translate="bailiff.edit.address2" class="col-md-3">address</label>
+            <div class="col-md-9">
+              <input type="text" name="address2" class="form-control" id="address2" ng-model="bailiffEditCtrl.bailiff.address2" autofocus="autofocus">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="municipality" class="col-md-3">
+              <span translate="bailiff.edit.municipality"></span>*</label>
             <div class="col-md-9">
               <div angucomplete-alt id="municipality" maxlength="50" pause="500" field-required="true" selected-object="bailiffEditCtrl.bailiff.municipality"
                 local-data="bailiffEditCtrl.cities" search-fields="name,postalCode" title-field="postalCode,name" minlength="2"
@@ -68,7 +80,7 @@
           <div class="form-group">
             <label for="phone" translate="bailiff.edit.phone" class="col-md-3">phone</label>
             <div class="col-md-9">
-              <input type="text" name="phone" class="form-control" id="phone" ng-model="bailiffEditCtrl.bailiff.phone" required autofocus="autofocus">
+              <input type="text" name="phone" class="form-control" id="phone" ng-model="bailiffEditCtrl.bailiff.phone" autofocus="autofocus">
               <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.phone.$error">
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
               </div>
@@ -78,7 +90,7 @@
           <div class="form-group">
             <label for="email" translate="bailiff.edit.email" class="col-md-3">email</label>
             <div class="col-md-9">
-              <input type="email" name="email" class="form-control" id="email" ng-model="bailiffEditCtrl.bailiff.email" required autofocus="autofocus">
+              <input type="email" name="email" class="form-control" id="email" ng-model="bailiffEditCtrl.bailiff.email" autofocus="autofocus">
               <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.email.$error">
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
                 <div ng-message="email" class="text-danger">{{"global.form.email"|translate}}</div>
@@ -87,11 +99,20 @@
           </div>
 
           <div class="form-group">
+            <label for="website" translate="bailiff.edit.website" class="col-md-3">website</label>
+            <div class="col-md-9">
+              <input type="text" name="website" class="form-control" id="website" ng-model="bailiffEditCtrl.bailiff.webSite" autofocus="autofocus">
+            </div>
+          </div>
+
+          <div class="form-group">
             <label for="language-ac" translate="bailiff.edit.language.accepted" class="col-md-3">language accepted</label>
             <div class="col-md-9">
-              <div ng-repeat="lang in bailiffEditCtrl.languages">
+              <select name="lang" id="lang" ng-model="bailiffEditCtrl.bailiff.languages" multiple size="3" class="form-control" ng-options="lg.id as lg.language  for lg in bailiffEditCtrl.languages">
+              </select>
+              <!-- <div ng-repeat="lang in bailiffEditCtrl.languages">
                 <input type="checkbox" checklist-model="bailiffEditCtrl.bailiff.languages" checklist-value="lang.id"> {{ lang.language }}
-              </div>
+              </div> -->
             </div>
           </div>
 
