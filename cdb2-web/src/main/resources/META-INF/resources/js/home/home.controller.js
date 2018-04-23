@@ -1,14 +1,13 @@
-(function () {
+(function() {
   'use strict';
 
-  angular
-    .module('cdb2')
-    .controller('HomeController', HomeController);
+  angular.module('cdb2').controller('HomeController', HomeController);
 
-  HomeController.$inject = [];
+  HomeController.$inject = ['$state', '$sessionStorage', 'STORE'];
 
-  function HomeController() {
-    var vm = this;
+  function HomeController($state, $sessionStorage, STORE) {
+    if ($sessionStorage[STORE.AUTHENTICATED] !== true) {
+      $state.go('root.login');
+    }
   }
-
 })();

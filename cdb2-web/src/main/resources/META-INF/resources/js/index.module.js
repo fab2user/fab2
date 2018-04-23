@@ -20,6 +20,7 @@
     'angular-confirm',
     'ngStorage',
     'LocalForageModule',
-    'angularSpinner'
+    'angularSpinner',
+    'angularMoment'
   ]);
 })();

@@ -16,6 +16,8 @@ public interface BailiffCompetenceAreaService extends BaseService<BailiffCompete
 
     public Iterable<BailiffCompetenceArea> findAllForGeoArea(GeoArea geoArea) throws Exception;
 
+    public Iterable<BailiffCompetenceArea> findAllForBailiffId(Long bailiffId) throws Exception;
+
     List<BailiffCompetenceAreaCustomDTO> getAllSimpleDTO(Long bailiffId) throws Exception;
 
 }

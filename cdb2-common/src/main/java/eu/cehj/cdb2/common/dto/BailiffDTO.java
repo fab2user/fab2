@@ -9,7 +9,8 @@ public class BailiffDTO extends BaseDTO{
     private static final long serialVersionUID = 6204512676632176957L;
 
     private String name;
-    private String address;
+    private String address1;
+    private String address2;
     private String postalCode;
     private String city;
     private String phone;
@@ -20,6 +21,12 @@ public class BailiffDTO extends BaseDTO{
     private Long langOfDetails;
     private String webSite;
     private String fax;
+
+    private List<GeoCompetenceDTO> geoCompetences; // FIXME: Remove if not used
+    private List<CompetenceDTO> competences;
+    private GeoAreaSimpleDTO geo;
+    private boolean toBeUpdated = false;
+
 
     public BailiffDTO() {
         super();
@@ -35,14 +42,6 @@ public class BailiffDTO extends BaseDTO{
 
     public void setName(final String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(final String address) {
-        this.address = address;
     }
 
     public String getPostalCode() {
@@ -125,6 +124,52 @@ public class BailiffDTO extends BaseDTO{
         this.fax = fax;
     }
 
+    public String getAddress1() {
+        return this.address1;
+    }
 
+    public void setAddress1(final String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return this.address2;
+    }
+
+    public void setAddress2(final String address2) {
+        this.address2 = address2;
+    }
+
+    public List<GeoCompetenceDTO> getGeoCompetences() {
+        return this.geoCompetences;
+    }
+
+    public void setGeoCompetences(final List<GeoCompetenceDTO> geoCompetences) {
+        this.geoCompetences = geoCompetences;
+    }
+
+    public List<CompetenceDTO> getCompetences() {
+        return this.competences;
+    }
+
+    public void setCompetences(final List<CompetenceDTO> competences) {
+        this.competences = competences;
+    }
+
+    public GeoAreaSimpleDTO getGeo() {
+        return this.geo;
+    }
+
+    public void setGeo(final GeoAreaSimpleDTO geo) {
+        this.geo = geo;
+    }
+
+    public boolean isToBeUpdated() {
+        return this.toBeUpdated;
+    }
+
+    public void setToBeUpdated(final boolean toBeUpdated) {
+        this.toBeUpdated = toBeUpdated;
+    }
 
 }

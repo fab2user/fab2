@@ -22,10 +22,6 @@
   ) {
     var vm = this;
 
-    $localForage.getItem('country').then(function(data) {
-      vm.country = data;
-    });
-
     loadCurrentUser();
 
     $scope.$on(EVENT.LOGGED_IN, function() {

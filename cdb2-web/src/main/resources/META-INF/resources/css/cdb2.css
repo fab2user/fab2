@@ -211,3 +211,8 @@ input[type='number']::-webkit-outer-spin-button {
 .icon-in-col {
   width: 2%;
 }
+
+.asterisk {
+  font-weight: 100;
+  text-align: right !important;
+}

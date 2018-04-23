@@ -6,7 +6,8 @@ public class BailiffExportDTO{
 
     private String name;
     private String lang;
-    private String address;
+    private String address1;
+    private String address2;
     private String postalCode;
     private String municipality;
     private String tel;
@@ -26,12 +27,6 @@ public class BailiffExportDTO{
     }
     public void setLang(final String lang) {
         this.lang = lang;
-    }
-    public String getAddress() {
-        return this.address;
-    }
-    public void setAddress(final String address) {
-        this.address = address;
     }
     public String getPostalCode() {
         return this.postalCode;
@@ -74,5 +69,17 @@ public class BailiffExportDTO{
     }
     public void setEmail(final String email) {
         this.email = email;
+    }
+    public String getAddress1() {
+        return this.address1;
+    }
+    public void setAddress1(final String address1) {
+        this.address1 = address1;
+    }
+    public String getAddress2() {
+        return this.address2;
+    }
+    public void setAddress2(final String address2) {
+        this.address2 = address2;
     }
 }

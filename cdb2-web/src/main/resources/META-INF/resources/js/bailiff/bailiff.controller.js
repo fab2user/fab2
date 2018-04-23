@@ -18,6 +18,9 @@
     'BailiffAPIService',
     'toastr',
     'MunicipalityAPIService',
+    'InstrumentAPIService',
+    'CompetenceForSelectAPIService',
+    'GeoAreaAPIService',
     'SERVER',
     'EVENT',
     'STATUS'
@@ -38,6 +41,9 @@
     BailiffAPIService,
     toastr,
     MunicipalityAPIService,
+    InstrumentAPIService,
+    CompetenceForSelectAPIService,
+    GeoAreaAPIService,
     SERVER,
     EVENT,
     STATUS
@@ -92,6 +98,15 @@
         .then(function(success) {
           var blob = new Blob([success.data]);
           FileSaver.saveAs(blob, 'export_bailiffs.xls');
+        });
+    };
+
+    vm.importTemplate = function() {
+      $http
+        .get(SERVER.API + '/bailiff/template', { responseType: 'arraybuffer' })
+        .then(function(success) {
+          var blob = new Blob([success.data]);
+          FileSaver.saveAs(blob, 'bailiffs_import_template.xlsx');
         });
     };
 
@@ -167,14 +182,21 @@
           cities: function() {
             return MunicipalityAPIService.getAll();
           },
+          // competences: function() {
+          //   //TODO: we can probably remove this in the new competence/instrument m.o.
+          //   //Only when edition, not when creation
+          //   if (bailiff.id) {
+          //     return BailiffAPIService.getCompetences({
+          //       id: bailiff.id,
+          //       collectionAction: 'competences'
+          //     });
+          //   }
+          // },
           competences: function() {
-            //Only when edition, not when creation
-            if (bailiff.id) {
-              return BailiffAPIService.getCompetences({
-                id: bailiff.id,
-                collectionAction: 'competences'
-              });
-            }
+            return CompetenceForSelectAPIService.getAll();
+          },
+          areas: function() {
+            return GeoAreaAPIService.getAllSimple();
           }
         }
       });

@@ -15,8 +15,11 @@ public class Address extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = 6631408359535998948L;
 
-    @Column(name = "address", nullable=false)
-    private String address;
+    @Column(name = "address_1", nullable=false)
+    private String address1;
+
+    @Column(name = "address_2")
+    private String address2;
 
     @ManyToOne
     @JoinColumn(name = "municipality")
@@ -25,14 +28,6 @@ public class Address extends BaseAuditedEntity<String> {
     @ManyToOne
     @JoinColumn(name = "country")
     private Country country;
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(final String address) {
-        this.address = address;
-    }
 
     public Municipality getMunicipality() {
         return this.municipality;
@@ -48,6 +43,22 @@ public class Address extends BaseAuditedEntity<String> {
 
     public void setCountry(final Country country) {
         this.country = country;
+    }
+
+    public String getAddress1() {
+        return this.address1;
+    }
+
+    public void setAddress1(final String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return this.address2;
+    }
+
+    public void setAddress2(final String address2) {
+        this.address2 = address2;
     }
 
 }

@@ -13,7 +13,6 @@
               <div class="panel-body">
                 <fieldset>
                   <legend translate="global.label.filters">Filters</legend>
-
                   <div class="row">
                     <div class="col-md-6">
                       <label for="filter.id" translate="bailiff.list.id">id</label>
@@ -26,11 +25,15 @@
                     </div>
                   </div>
                   <div class="row top-1">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                       <label for="filter.address" translate="bailiff.list.address">address</label>
-                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['address']" class="form-control" name="filter.address" />
+                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['address1']" class="form-control" name="filter.address" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-2">
+                      <label for="filter.zipcode" translate="bailiff.list.zipcode">zip</label>
+                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['postalCode']" class="form-control" name="filter.zipcode" />
+                    </div>
+                    <div class="col-md-5">
                       <label for="filter.municipality" translate="bailiff.list.municipality">municipality</label>
                       <input type="text" ng-model="bailiffCtrl.tableParams.filter()['city']" class="form-control" name="filter.municipality" />
                     </div>
@@ -65,7 +68,9 @@
                 <td data-title="'bailiff.list.name'|translate" sortable="'name'">
                   {{bailiff.name}}</td>
                 <td data-title="'bailiff.list.address'|translate" sortable="'address'">
-                  {{bailiff.address}}</td>
+                  {{bailiff.address1}}</td>
+                <td data-title="'bailiff.list.zipcode'|translate" sortable="'postalCode'">
+                  {{bailiff.postalCode}}</td>
                 <td data-title="'bailiff.list.municipality'|translate" sortable="'city'">
                   {{bailiff.city}}</td>
                 <td data-title="'global.label.action'|translate">
@@ -82,34 +87,40 @@
             {{ bailiffCtrl.tableParams.total() }} {{ 'global.label.filtered'|translate }} / {{ bailiffCtrl.total }} {{ 'global.label.total'|translate}}
           </div>
           <div class="col-md-6 light-pull-right">
-            <button type="button" class="btn btn-primary" ngf-select ng-model="bailiffCtrl.importFile" name="importFile" ngf-pattern="'.xl*'"
-              ngf-accept="'application/vnd.ms-excel'" ngf-min-size="100">
-              <span class="glyphicon glyphicon-arrow-down"></span>
-              <span translate="bailiff.button.import">import</span>
+            <button type="button" class="btn btn-success" ng-click="bailiffCtrl.importTemplate()">
+              <span class=" glyphicon glyphicon-save-file "></span>
+              <span translate="bailiff.button.template ">template</span>
             </button>
-            <button type="button" class="btn btn-primary" ng-click="bailiffCtrl.export()">
-              <span class="glyphicon glyphicon-arrow-up"></span>
-              <span translate="bailiff.button.export">export</span>
+            <button type="button " class="btn btn-primary " ngf-select ng-model="bailiffCtrl.importFile " name="importFile
+              " ngf-pattern=" '.xl*' " ngf-accept=" 'application/vnd.ms-excel' " ngf-min-size="100 ">
+              <span class="glyphicon glyphicon-arrow-down "></span>
+              <span translate="bailiff.button.import ">import</span>
             </button>
-            <button class="btn btn-primary" ng-click="bailiffCtrl.new()">
-              <span class="glyphicon glyphicon-plus-sign"></span>
-              <span translate="global.button.add">Add</span>
+            <button type="button " class="btn btn-primary " ng-click="bailiffCtrl.export() ">
+              <span class="glyphicon glyphicon-arrow-up "></span>
+              <span translate="bailiff.button.export ">export</span>
+            </button>
+            <button class="btn btn-primary " ng-click="bailiffCtrl.new() ">
+              <span class="glyphicon glyphicon-plus-sign "></span>
+              <span translate="global.button.add ">Add</span>
             </button>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6 top-1" ng-if="bailiffCtrl.importFile">
-            <div class="col-md-8">
-              <strong translate="global.text.upload.file.selected"></strong>: {{ bailiffCtrl.importFile.name }}</div>
-            <div class="col-md-2">
-              <button class="btn btn-primary" ng-click="bailiffCtrl.sendImportFile()">
-                <span class="glyphicon glyphicon-send"></span> {{ 'global.button.send'|translate }}</button>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-danger" ng-click="bailiffCtrl.cancelUpload()">
-                <span class="glyphicon glyphicon-remove-circle"></span>
-                <span translate="global.button.cancel"></span>
-              </button>
+        <div class="row ">
+          <div class="col-md-6 col-md-offset-5 top-1 " ng-if="bailiffCtrl.importFile ">
+            <div class="row ">
+              <div class="col-md-8 ">
+                <strong translate="global.text.upload.file.selected "></strong>: {{ bailiffCtrl.importFile.name }}</div>
+              <div class="col-md-2 ">
+                <button class="btn btn-primary " ng-click="bailiffCtrl.sendImportFile() ">
+                  <span class="glyphicon glyphicon-send "></span> {{ 'global.button.send'|translate }}</button>
+              </div>
+              <div class="col-md-2 ">
+                <button class="btn btn-danger " ng-click="bailiffCtrl.cancelUpload() ">
+                  <span class="glyphicon glyphicon-remove-circle "></span>
+                  <span translate="global.button.cancel "></span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

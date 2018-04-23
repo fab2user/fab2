@@ -3,9 +3,21 @@
 
   angular.module('cdb2').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', 'AuthService', 'PreviousState'];
+  LoginController.$inject = [
+    '$log',
+    '$translate',
+    'AuthService',
+    'PreviousState',
+    'toastr'
+  ];
 
-  function LoginController($log, AuthService, PreviousState) {
+  function LoginController(
+    $log,
+    $translate,
+    AuthService,
+    PreviousState,
+    toastr
+  ) {
     var vm = this;
     vm.credentials = {};
 
@@ -17,7 +29,11 @@
           PreviousState
         ).catch(function(err) {
           $log.error(err);
-          vm.loginForm.password.$setValidity('badCredentials', false);
+          if (err.indexOf('TOS') > -1) {
+            toastr.error($translate.instant('tos.error'));
+          } else {
+            vm.loginForm.password.$setValidity('badCredentials', false);
+          }
           return false;
         });
       }
