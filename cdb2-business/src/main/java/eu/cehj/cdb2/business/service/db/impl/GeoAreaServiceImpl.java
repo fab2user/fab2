@@ -157,4 +157,11 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
         return null;
     }
 
+    @Override
+    public List<GeoAreaSimpleDTO> getAllSimpleDTO() throws Exception {
+        return this.getAll().stream().map(entity ->{
+            return this.populateSimpleDTOFromEntity(entity);
+        }).collect(Collectors.toList());
+    }
+
 }

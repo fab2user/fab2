@@ -15,10 +15,12 @@
     'NgTableParams',
     'BailiffAPIService',
     'BailiffCompAreaAPIService',
+    'InstrumentAPIService',
     'LangAPIService',
     'bailiff',
     'cities',
-    'competences'
+    'competences',
+    'areas'
   ];
 
   function BailiffEditController(
@@ -31,15 +33,27 @@
     NgTableParams,
     BailiffAPIService,
     BailiffCompAreaAPIService,
+    InstrumentAPIService,
     LangAPIService,
     bailiff,
     cities,
-    competences
+    competences,
+    areas
   ) {
     var vm = this;
     vm.modalInstance = $uibModalInstance;
     vm.bailiff = bailiff;
+    // vm.instrumentsOpt = [];
     vm.competences = competences;
+
+    var snapshotCompare = bailiff.id
+      ? {
+          competences: bailiff.competences.slice(0),
+          geo: Object.assign({}, bailiff.geo)
+        }
+      : { competences: {}, geo: {} };
+
+    vm.areas = areas;
 
     LangAPIService.getAll().$promise.then(function(data) {
       vm.languages = data;
@@ -81,6 +95,7 @@
           .$promise.then(function(data) {
             vm.bailiff.id = data.id;
             toastr.success($translate.instant('global.toastr.save.success'));
+            vm.modalInstance.close();
           })
           .catch(function(err) {
             $log.error(err);
@@ -98,6 +113,23 @@
         bailiff.municipalityId = vm.bailiff.municipality.originalObject.id;
       }
       bailiff.municipality = vm.bailiff.municipality.originalObject.name;
+      if (
+        lodash.isEqual(snapshotCompare.competences, bailiff.competences) &&
+        lodash.isEqual(snapshotCompare.geo, bailiff.geo)
+      ) {
+        bailiff.toBeUpdated = false;
+      } else {
+        bailiff.toBeUpdated = true;
+      }
+      $log.info(
+        'comp eq: ',
+        lodash.isEqual(snapshotCompare.competences, bailiff.competences)
+      );
+      $log.info('geo eq: ', lodash.isEqual(snapshotCompare.geo, bailiff.geo));
+      // console.dir(snapshotCompare.competences);
+      // console.dir(bailiff.competences);
+      // console.dir(snapshotCompare.geo);
+      // console.dir(bailiff.geo);
       return bailiff;
     }
 
@@ -105,6 +137,14 @@
       BailiffCompAreaAPIService.getAllForBailiff({
         bailiffId: vm.bailiff.id
       }).$promise.then(function(success) {
+        var rs = lodash.map(success, function(comp) {
+          var fd = lodash.find(vm.competences, function(c) {
+            return c.instrumentId === comp.competence.instrument.id;
+          });
+          $log.info('Objet trouve: ', fd);
+          return fd;
+        });
+        // vm.instrumentsOpt = Object.assign({}, rs);
         //Build area names list, to be displayed in smart table
         var model = success;
         model = buildAreasList(model);

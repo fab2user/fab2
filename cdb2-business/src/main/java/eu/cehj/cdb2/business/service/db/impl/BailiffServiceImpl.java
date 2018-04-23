@@ -1,9 +1,11 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,17 @@ import eu.cehj.cdb2.business.dao.BailiffRepository;
 import eu.cehj.cdb2.business.dao.LanguageRepository;
 import eu.cehj.cdb2.business.dao.MunicipalityRepository;
 import eu.cehj.cdb2.business.exception.CDBException;
+import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
+import eu.cehj.cdb2.business.service.db.CompetenceService;
+import eu.cehj.cdb2.business.service.db.GeoAreaService;
+import eu.cehj.cdb2.common.dto.BailiffCompetenceAreaDTO;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
+import eu.cehj.cdb2.common.dto.CompetenceDTO;
 import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
+import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
+import eu.cehj.cdb2.common.dto.GeoCompetenceDTO;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.BailiffCompetenceArea;
@@ -39,11 +48,41 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     @Autowired
     LanguageRepository languageRepository;
 
+    @Autowired
+    BailiffCompetenceAreaService bailiffCompetenceAreaService;
+
+    @Autowired
+    CompetenceService competenceService;
+
+    @Autowired
+    GeoAreaService geoAreaService;
+
     @Override
     public BailiffDTO save(final BailiffDTO dto) throws Exception {
         final Bailiff bailiff = this.populateEntityFromDTO(dto);
-        this.repository.save(bailiff);
-        return this.populateDTOFromEntity(bailiff);
+        final Bailiff savedBailiff = this.repository.save(bailiff);
+        dto.setId(savedBailiff.getId());
+        if(dto.isToBeUpdated() == true) {
+            this.saveCompetences(dto);
+        }
+        return this.populateDTOFromEntity(savedBailiff);
+    }
+
+    private void saveCompetences(final BailiffDTO dto)throws Exception{
+        // First remove old data
+        this.bailiffCompetenceAreaService.delete(this.bailiffCompetenceAreaService.findAllForBailiffId(dto.getId()));
+
+        for(final CompetenceDTO competenceDTO: dto.getCompetences()) {
+            final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
+            final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
+            gas.setId(dto.getGeo().getId());
+            bca.setAreas(Arrays.asList(new GeoAreaSimpleDTO[] {gas}));
+            bca.setBailiff(dto);
+            final CompetenceDTO comp = new CompetenceDTO();
+            comp.setId(competenceDTO.getId());
+            bca.setCompetence(comp);
+            this.bailiffCompetenceAreaService.save(bca);
+        }
     }
 
     @Override
@@ -51,14 +90,19 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         final List<Bailiff> bailiffs = this.repository.findAll();
         final List<BailiffDTO> dtos = new ArrayList<BailiffDTO>(bailiffs.size());
         bailiffs.forEach(bailiff -> {
-            final BailiffDTO bailiffDTO = this.populateDTOFromEntity(bailiff);
+            BailiffDTO bailiffDTO = null;
+            try {
+                bailiffDTO = this.populateDTOFromEntity(bailiff);
+            } catch (final Exception e) {
+                this.logger.error(e.getMessage(),e);
+            }
             dtos.add(bailiffDTO);
         });
         return dtos;
     }
 
     @Override
-    public BailiffDTO populateDTOFromEntity(final Bailiff entity) {
+    public BailiffDTO populateDTOFromEntity(final Bailiff entity) throws Exception {
         final BailiffDTO dto = new BailiffDTO();
         dto.setName(entity.getName());
         dto.setId(entity.getId());
@@ -82,6 +126,30 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
                 dto.setPostalCode(municipality.getPostalCode());
                 dto.setMunicipalityId(municipality.getId());
             }
+        }
+        dto.setGeoCompetences( entity.getBailiffCompetenceAreas().stream().map(bca -> {
+            final GeoCompetenceDTO gc = new GeoCompetenceDTO();
+            gc.setId(bca.getId());
+            gc.setAreaId(bca.getAreas().get(0).getId());
+            gc.setBailiffCompetenceAreId(bca.getId());
+            gc.setBailiffId(entity.getId());
+            gc.setCompetenceId(bca.getCompetence().getId());
+            gc.setInstrumentId(bca.getCompetence().getInstrument().getId());
+            return gc;
+        }).collect(Collectors.toList()));
+
+        dto.setCompetences(entity.getBailiffCompetenceAreas().stream().map(bca -> {
+            try {
+                return this.competenceService.getDTO(bca.getCompetence().getId());
+            } catch (final Exception e) {
+                this.logger.error(e.getMessage(), e);
+            }
+            return null;
+        }).collect(Collectors.toList()));
+        if(CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas())){
+            final GeoArea area = entity.getBailiffCompetenceAreas().get(0).getAreas().get(0);
+            final GeoAreaSimpleDTO geoSimpleDTO = this.geoAreaService.getSimpleDTO(area.getId());
+            dto.setGeo(geoSimpleDTO);
         }
         return dto;
     }
@@ -139,15 +207,19 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 
     @Override
     public List<BailiffDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
-        //        final Page<Bailiff> entities = this.repository.findAll(predicate, pageable);
         //@formatter:off
         return this.repository.findAll(predicate, pageable).getContent()
                 .stream()
-                .map(b -> this.populateDTOFromEntity(b))
+                .map(b -> {
+                    try {
+                        return this.populateDTOFromEntity(b);
+                    } catch (final Exception e) {
+                        this.logger.error(e.getMessage(),e);
+                    }
+                    return null;
+                })
                 .collect(Collectors.toList());
         //@formatter:on
-        //        final Page<BailiffDTO> page = new PageImpl<>(dtos, pageable, entities.getTotalElements());
-        //        return page;
     }
 
     @Override
@@ -155,7 +227,13 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         final List<Bailiff> entities = this.repository.getAllBailiffsEvenDeleted();
         final List<BailiffDTO> dtos = new ArrayList<BailiffDTO>(entities.size());
         entities.forEach(entity -> {
-            final BailiffDTO dto = this.populateDTOFromEntity(entity);
+            BailiffDTO dto = null;
+            try {
+                dto = this.populateDTOFromEntity(entity);
+            } catch (final Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             dtos.add(dto);
         });
         return dtos;

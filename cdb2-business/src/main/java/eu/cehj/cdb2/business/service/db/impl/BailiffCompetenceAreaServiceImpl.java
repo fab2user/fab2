@@ -133,4 +133,13 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
         return this.repository.findAll(query);
     }
 
+    @Override
+    public Iterable<BailiffCompetenceArea> findAllForBailiffId(final Long bailiffId) throws Exception {
+        // If bailiff in creation, we don't have id yet
+        if(bailiffId == null) {
+            return new ArrayList <BailiffCompetenceArea>(0);
+        }
+        return this.repository.findAll(QBailiffCompetenceArea.bailiffCompetenceArea.bailiff.id.eq(bailiffId));
+    }
+
 }
