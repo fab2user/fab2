@@ -10,7 +10,9 @@ import eu.cehj.cdb2.web.config.BailiffImportConfig;
 @SpringBootApplication
 @EnableConfigurationProperties(BailiffImportConfig.class)
 public class Cdb2WebApplication extends WebMvcAutoConfiguration{
+
     public static void main(final String[] args) {
         SpringApplication.run(Cdb2WebApplication.class, args);
     }
+
 }

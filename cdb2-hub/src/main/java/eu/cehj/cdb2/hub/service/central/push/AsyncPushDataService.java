@@ -1,6 +1,7 @@
 package eu.cehj.cdb2.hub.service.central.push;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -37,6 +38,7 @@ import eu.cehj.cdb2.common.service.CdbPushMessage;
 import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.entity.Synchronization;
 import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
+import eu.cehj.cdb2.hub.service.RequestResponseLoggingInterceptor;
 import eu.cehj.cdb2.hub.utils.CdbResponse;
 import eu.cehj.cdb2.hub.utils.Settings;
 import eu.chj.cdb2.common.Body;
@@ -190,6 +192,7 @@ public class AsyncPushDataService  implements PushDataService {
         final CdbPushMessage message = new CdbPushMessage();
         message.setData(data);
         final RestTemplate restTemplate = this.builder.basicAuthorization(this.cdbUser, this.cdbPassword).build();
+        restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
 
         final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);
         final HttpHeaders headers = new HttpHeaders();
