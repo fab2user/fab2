@@ -8,9 +8,8 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -61,6 +60,9 @@ public class BailiffController extends BaseController {
 
     @Autowired
     CDBTaskService cdbTaskService;
+
+    @Value("${bailiff.import.template.file}")
+    Resource bailiffImportTemplate;
 
     @RequestMapping(
             method = {
@@ -140,16 +142,12 @@ public class BailiffController extends BaseController {
 
     @RequestMapping(method = { GET }, value="template")
     public ResponseEntity<Resource> downloadTemplate() throws Exception{
-        Resource template = new FileSystemResource("./bailiff-template.xls");
-        if(template.exists() == false) {
-            template = new ClassPathResource("bailiff-template.xlsx");
-        }
-        if(template.exists() == true) {
-            try (InputStream is = template.getInputStream()) {
+        if(this.bailiffImportTemplate.exists() == true) {
+            try (InputStream is = this.bailiffImportTemplate.getInputStream()) {
                 final byte[] ba = IOUtils.toByteArray(is);
                 final ByteArrayResource bar = new ByteArrayResource(ba);
                 return ResponseEntity.ok()
-                        .contentLength(template.contentLength())
+                        .contentLength(this.bailiffImportTemplate.contentLength())
                         .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
                         .body(bar);
             }
