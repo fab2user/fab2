@@ -1,0 +1,52 @@
+label {
+  width: 50%;
+  padding-right: 2em;
+  display: inline-block !important;
+}
+
+select {
+  width: 49%;
+}
+
+#fab-zipcode {
+  width: 49%;
+  display: inline-block !important;
+}
+
+.form-line {
+  margin-top: 1em;
+}
+
+.right {
+  text-align: right;
+}
+
+.zip {
+  margin-right: 1em;
+}
+
+#fab-results {
+  margin-top: 2em;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+#mapid {
+  height: 180px;
+}
+
+.map-container {
+  height: 180px;
+}
