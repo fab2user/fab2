@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,6 +55,7 @@ public class SearchController extends BaseController {
      */
     @RequestMapping(method = GET, value = "bailiff")
     @ResponseStatus(value = OK)
+    @CrossOrigin()
     public List<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable,
             @RequestParam(name = "country", required = true) final String countryCode,
             @RequestAttribute(name = "transformedReq", required = false) final MultiValueMap<String, String> transformedReq) throws Exception {

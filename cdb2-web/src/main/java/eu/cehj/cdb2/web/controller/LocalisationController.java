@@ -3,6 +3,9 @@ package eu.cehj.cdb2.web.controller;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,7 +16,6 @@ import static org.springframework.http.HttpStatus.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-import eu.cehj.cdb2.common.service.ResourceService;
 import pl.jalokim.propertiestojson.util.PropertiesToJsonParser;
 
 /**
@@ -27,12 +29,17 @@ import pl.jalokim.propertiestojson.util.PropertiesToJsonParser;
 public class LocalisationController extends BaseController {
 
     @Autowired
-    private ResourceService resourceService;
+    private ApplicationContext context;
+
+    @Value("${i18n.files.location}")
+    private String i18nFilesLocation;
 
     @RequestMapping(method = GET, value = "localisation", produces = "application/json")
     @ResponseStatus(value = OK)
     public @ResponseBody String getLocalisation(@RequestParam final String lang) throws Exception {
-        final Properties props = this.resourceService.loadProperties("i18n/" + lang + ".properties", "./i18n/" + lang + ".properties");
+        final Resource resource = this.context.getResource(String.format("%s/%s.properties", this.i18nFilesLocation, lang ));
+        final Properties props =   new Properties();
+        props.load(resource.getInputStream());
 
         final String json = PropertiesToJsonParser.parseToJson(props);
         return json;
