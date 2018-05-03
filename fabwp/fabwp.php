@@ -66,7 +66,7 @@ function setup_fields()
 {
     $fields = array(
         array(
-            'uid' => 'awp_text_field',
+            'uid' => 'awp_server_url',
             'label' => 'Search Web Service URL',
             'section' => 'our_first_section',
             'type' => 'text',
@@ -87,12 +87,14 @@ function setup_fields()
         //     'section' => 'our_first_section',
         //     'type' => 'number',
         // ),
-        // array(
-        //     'uid' => 'awp_textarea',
-        //     'label' => 'Sample Text Area',
-        //     'section' => 'our_first_section',
-        //     'type' => 'textarea',
-        // ),
+        array(
+            'uid' => 'awp_countries',
+            'label' => 'Available countries',
+            'section' => 'our_first_section',
+            'type' => 'textarea',
+            'placeholder' => 'FR - France',
+            'supplimental' => "Type one country per line.\nEvery line is in the format \"ISOcode - CountryName\".\nFor example for France it would be : FR - France",
+        ),
         // array(
         //     'uid' => 'awp_select',
         //     'label' => 'Sample Select Dropdown',
@@ -220,7 +222,16 @@ add_shortcode('cehj-fab-search', 'fab_search');
 
 function fab_search()
 {
-    echo '<input id="server_url" type="hidden" value="' . get_option('awp_text_field') . '"/>';
+    echo '<input id="server_url" type="hidden" value="' . get_option('awp_server_url') . '"/>';
+    $countries = explode("\n", get_option('awp_countries'));
+    $countries_array = array();
+    foreach ($countries as $country) {
+        $country_split = explode("-", $country);
+        $country_code = trim($country_split[0]);
+        $country_name = trim($country_split[1]);
+        $countries_array[$country_code] = $country_name;
+    }
+    ksort($countries_array);
     ?>
     <h2>FAB SEARCH</h2>
     <div id="fab-root">
@@ -229,9 +240,11 @@ function fab_search()
                 <div class="form-line">
                     <label for="country">Country</label>
                     <select name="country" id="fab-country">
-                        <option value="AT">Austria</option>
-                        <option value="BE">Belgium</option>
-                        <option value="FR">France</option>
+                    <?php
+foreach ($countries_array as $key => $value) {
+        echo '<option value="' . $key . '">' . $value . '</option>';
+    }
+    ?>
                     </select>
                 </div>
                 <div class="form-line">
@@ -254,9 +267,21 @@ function fab_search()
         var query = serverUrl + '?' + jQuery.param(params);
         jQuery.getJSON(query).done(function(data){
             jQuery("#fab-results").empty();
-            data.forEach(function(bailiff){
-                displayBailiff(bailiff);
-            })
+            if(data.length > 0){
+                data.forEach(function(bailiff){
+                    displayBailiff(bailiff);
+                })
+            }else{
+                jQuery("#fab-results").append(jQuery('<h3>No results found...</h3>'));
+            }
+        })
+        .fail(function(err){
+            jQuery("#fab-results").empty();
+            if(err && err.message){
+              jQuery("#fab-results").append(jQuery('<h3>Error during server request: ' + err.error + '</h3>'));
+            }else{
+                jQuery("#fab-results").append(jQuery('<h3>Error during server request: server may be offline...</h3>'));
+            }
         });
     });
     function displayBailiff(bailiff){
@@ -271,7 +296,6 @@ function fab_search()
         var city = jQuery('<span>' + bailiff.city + '</span>');
         var req = {format: "json", q: bailiff.address1 + ', ' + bailiff.address2 + ', ' + bailiff.postalCode + ', ' + bailiff.city + ', ' + jQuery("#fab-country").val()};
         jQuery.get(location.protocol + '//nominatim.openstreetmap.org/search?' + jQuery.param(req) , function(data){
-            console.log(data);
             if(data[0]){
                 var geoData = data[0];
                 var lat = geoData.lat;
@@ -280,7 +304,7 @@ function fab_search()
                 div.append('<div class="map-container" id="' + mapId + '"></div>');
                 var map = L.map(mapId).setView([lat, lon], 14);
                 L.tileLayer('http://{s}.tile.cloudmade.com/e7b61e61295a44a5b319ca0bd3150890/997/256/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery Â© <a href="http://cloudmade.com">CloudMade</a>',
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
                 maxZoom: 18
                 }).addTo(map);
                 var marker = L.marker([lat, lon]).addTo(map);
