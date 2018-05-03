@@ -35,7 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/js/**",
                 "/webjars/**",
                 "/public/**",
-                "/localisation"
+                "/localisation",
+                "/api/search/bailiff"
                 ).permitAll()
         .antMatchers("/api/**", "/user", "/logout").authenticated()
         .and()
