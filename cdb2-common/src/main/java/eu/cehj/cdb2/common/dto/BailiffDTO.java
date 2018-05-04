@@ -21,6 +21,7 @@ public class BailiffDTO extends BaseDTO{
     private Long langOfDetails;
     private String webSite;
     private String fax;
+    private String openHours;
 
     private List<GeoCompetenceDTO> geoCompetences; // FIXME: Remove if not used
     private List<CompetenceDTO> competences;
@@ -170,6 +171,14 @@ public class BailiffDTO extends BaseDTO{
 
     public void setToBeUpdated(final boolean toBeUpdated) {
         this.toBeUpdated = toBeUpdated;
+    }
+
+    public String getOpenHours() {
+        return this.openHours;
+    }
+
+    public void setOpenHours(final String openHours) {
+        this.openHours = openHours;
     }
 
 }

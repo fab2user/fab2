@@ -1,4 +1,4 @@
 .settings
 .~*
 *.xlsx
-**/.vscode/launch.json
+**/.vscode

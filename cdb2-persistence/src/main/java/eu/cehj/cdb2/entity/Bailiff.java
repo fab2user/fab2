@@ -56,6 +56,9 @@ public class Bailiff extends BaseAuditedEntity<String> {
     @Column(name = "web_site")
     private String webSite;
 
+    @Column(name = "open_hours")
+    private String openHours;
+
     @Column(name = "video_conference", nullable = false)
     private boolean videoConference;
 
@@ -125,6 +128,14 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     public void setVideoConference(final boolean videoConference) {
         this.videoConference = videoConference;
+    }
+
+    public String getOpenHours() {
+        return this.openHours;
+    }
+
+    public void setOpenHours(final String openHours) {
+        this.openHours = openHours;
     }
 
 }
