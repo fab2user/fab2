@@ -268,8 +268,10 @@ foreach ($countries_array as $key => $value) {
         jQuery.getJSON(query).done(function(data){
             jQuery("#fab-results").empty();
             if(data.length > 0){
+                var count = 1;
                 data.forEach(function(bailiff){
-                    displayBailiff(bailiff);
+                    displayBailiff(bailiff, count);
+                    count ++;
                 })
             }else{
                 jQuery("#fab-results").append(jQuery('<h3>No results found...</h3>'));
@@ -284,7 +286,7 @@ foreach ($countries_array as $key => $value) {
             }
         });
     });
-    function displayBailiff(bailiff){
+    function displayBailiff(bailiff, count){
         var div = jQuery('<div class="card">');
         var h = jQuery("<h4>" + bailiff.name + "</h4>");
         if(bailiff.address2 === null){
@@ -300,7 +302,7 @@ foreach ($countries_array as $key => $value) {
                 var geoData = data[0];
                 var lat = geoData.lat;
                 var lon = geoData.lon;
-                var mapId = 'map' + bailiff.id;
+                var mapId = 'map_' + count;
                 div.append('<div class="map-container" id="' + mapId + '"></div>');
                 var map = L.map(mapId).setView([lat, lon], 14);
                 L.tileLayer('http://{s}.tile.cloudmade.com/e7b61e61295a44a5b319ca0bd3150890/997/256/{z}/{x}/{y}.png', {
