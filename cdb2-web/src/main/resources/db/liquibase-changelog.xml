@@ -215,4 +215,9 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
     <changeSet id="cdb-22" author="landry">
         <addNotNullConstraint columnDataType="varchar(255)" columnName="address_1" tableName="address" />
     </changeSet>
+    <changeSet id="cdb-23" author="landry">
+        <addColumn tableName="bailiff">
+            <column name="open_hours" type="varchar(400)" afterColumn="web_site"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

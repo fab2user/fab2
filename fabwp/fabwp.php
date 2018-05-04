@@ -315,14 +315,20 @@ foreach ($countries_array as $key => $value) {
 
         div.append(h);
         div.append(adr1, adr2, zip,city);
-        if(bailiff.email){
-            div.append(jQuery('<div>email: ' + bailiff.email + '</div>'));
-        }
         if(bailiff.phone){
             div.append(jQuery('<div>phone: ' + bailiff.phone + '</div>'));
         }
         if(bailiff.fax){
             div.append(jQuery('<div>fax: ' + bailiff.fax + '</div>'));
+        }
+        if(bailiff.email){
+            div.append(jQuery('<div>email: <a href="mailto:' + bailiff.email + '">' + bailiff.email + '</a></div>'));
+        }
+        if(bailiff.webSite){
+            div.append(jQuery('<div>web site: <a href="//' + bailiff.webSite + '">' + bailiff.webSite + '</a></div>'));
+        }
+        if(bailiff.openHours){
+            div.append(jQuery('<div>open hours: ' + bailiff.openHours + '</div>'));
         }
         jQuery("#fab-results").append(div);
     }

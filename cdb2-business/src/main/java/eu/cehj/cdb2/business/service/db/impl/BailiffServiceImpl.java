@@ -112,6 +112,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         dto.setPhone(entity.getPhone());
         dto.setWebSite(entity.getWebSite());
         dto.setFax(entity.getFax());
+        dto.setOpenHours(entity.getOpenHours());
         entity.getLanguages().forEach(lang -> dto.getLanguages().add(lang.getId()));
         if (entity.getLangOfDetails().size() > 0) {
             dto.setLangOfDetails(entity.getLangOfDetails().get(0).getId());
@@ -203,7 +204,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         this.addressRepository.save(address);
         entity.setAddress(address);
         entity.setWebSite(dto.getWebSite());
-
+        entity.setOpenHours(dto.getOpenHours());
         return entity;
     }
 

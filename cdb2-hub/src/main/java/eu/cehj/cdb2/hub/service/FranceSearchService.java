@@ -48,7 +48,7 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Sea
         dto.setPhone(e.getTel());
         dto.setFax(e.getFax());
         dto.setWebSite(e.getWeb());
-        //TODO: Finish this stuff
+        dto.setOpenHours(e.getHor());
         return dto;
     }
 
