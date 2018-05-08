@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ import eu.cehj.cdb2.common.dto.CompetenceDTO;
 import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
 import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
 import eu.cehj.cdb2.common.dto.GeoCompetenceDTO;
+import eu.cehj.cdb2.common.dto.cdb.CDBResponse;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.BailiffCompetenceArea;
@@ -287,4 +289,16 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         return dto;
     }
 
+    @Override
+    public List<BailiffDTO> populateDTOsFromCDB(final CDBResponse cdbResponse) throws Exception{
+        if((cdbResponse.getCompetentBodies() == null) || (cdbResponse.getCompetentBodies().size() < 1)) {
+            return new ArrayList<>(0);
+        }
+        return cdbResponse.getCompetentBodies().stream().map(cb -> {
+            final BailiffDTO dto = new BailiffDTO();
+            dto.setName(StringUtils.defaultString(cb.getDetails().get(0).getName(), ""));
+            return dto;
+        }).collect(Collectors.toList());
+    }
 }
+

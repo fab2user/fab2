@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('hub').controller('CountryController', CountryController);
@@ -15,6 +15,7 @@
     'CountryAPIService',
     'StatusAPIService',
     'SyncService',
+    'ReferenceAPIService',
     'EVENT',
     'SERVER',
     'STATUS'
@@ -32,6 +33,7 @@
     CountryAPIService,
     StatusAPIService,
     SyncService,
+    ReferenceAPIService,
     EVENT,
     SERVER,
     STATUS
@@ -44,33 +46,41 @@
       title: $translate.instant('status.label.title')
     };
 
-    vm.edit = function(country) {
+    vm.edit = function (country) {
       var modalInstance = $uibModal.open({
         templateUrl: '/js/country/country.edit.html',
         controller: 'CountryEditController as countryEditCtrl',
         windowClass: 'modal-md',
         backdrop: 'static',
         resolve: {
-          country: country || {}
+          country: country || {},
+          reference: [
+            'ReferenceAPIService',
+            function (ReferenceAPIService) {
+              return ReferenceAPIService.get().$promise;
+            }
+          ]
         }
       });
-      modalInstance.result.then(function() {
+      modalInstance.result.then(function () {
         fetchCountries();
       });
     };
 
-    vm.delete = function(country) {
-      CountryAPIService.delete({ id: country.id }).$promise.then(function() {
+    vm.delete = function (country) {
+      CountryAPIService.delete({
+        id: country.id
+      }).$promise.then(function () {
         toastr.success($translate.instant('global.toastr.delete.success'));
         fetchCountries();
       });
     };
 
-    vm.sync = function(country) {
+    vm.sync = function (country) {
       $log.info('Sync started');
       country.lastSync = '';
       country.lastSyncStatus = '';
-      SyncService.sync(country).then(function(success) {
+      SyncService.sync(country).then(function (success) {
         success.data.countryName = success.data.country.name; //Copy country name in property expected status directive
         $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
         // start polling
@@ -80,11 +90,11 @@
 
     vm.polling = undefined;
 
-    vm.startPolling = function(taskId) {
+    vm.startPolling = function (taskId) {
       if (angular.isDefined(vm.polling)) return;
       vm.polling = $interval(
-        function() {
-          $http.get(SERVER.API + '/task/' + taskId).then(function(success) {
+        function () {
+          $http.get(SERVER.API + '/task/' + taskId).then(function (success) {
             // Refresh status on the screen
             $rootScope.$broadcast(EVENT.XML_EXPORT, success.data);
             if (
@@ -101,7 +111,7 @@
       fetchCountries();
     };
 
-    vm.endPolling = function() {
+    vm.endPolling = function () {
       if (angular.isDefined(vm.polling)) {
         $interval.cancel(vm.polling);
         vm.polling = undefined;
@@ -109,13 +119,15 @@
       }
     };
 
-    vm.resetSearch = function() {
+    vm.resetSearch = function () {
       vm.tableParams.filter({});
     };
 
     function fetchCountries() {
-      CountryAPIService.getAll().$promise.then(function(success) {
-        vm.tableParams = new NgTableParams({}, { dataset: success });
+      CountryAPIService.getAll().$promise.then(function (success) {
+        vm.tableParams = new NgTableParams({}, {
+          dataset: success
+        });
       });
     }
   }

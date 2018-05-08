@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.hub.service;
+package eu.cehj.cdb2.hub.service.search;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
@@ -15,7 +15,7 @@ import eu.cehj.cdb2.hub.service.soap.france.Etude;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInsee;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInseeResponse;
 
-public class FranceSearchService extends WebServiceGatewaySupport implements SearchService {
+public class FranceSearchService extends WebServiceGatewaySupport implements LocalWSSearchService {
 
     @Value("${cdb.france.soap.action}")
     private String soapAction;

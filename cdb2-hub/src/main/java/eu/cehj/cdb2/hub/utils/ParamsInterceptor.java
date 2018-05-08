@@ -22,6 +22,7 @@ public class ParamsInterceptor implements HandlerInterceptor {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
+    //FIXME: Looks like this class isn't used anymore. Remove it if not relevant.
     public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws Exception {
         final Enumeration<String> paramNames = request.getParameterNames();
         final MultiValueMap<String, String> transformedReq = new LinkedMultiValueMap<>();

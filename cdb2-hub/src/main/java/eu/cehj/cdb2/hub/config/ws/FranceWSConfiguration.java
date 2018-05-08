@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import eu.cehj.cdb2.hub.service.FranceSearchService;
+import eu.cehj.cdb2.hub.service.search.FranceSearchService;
 
 @Configuration
 public class FranceWSConfiguration {

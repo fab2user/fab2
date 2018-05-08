@@ -1,5 +1,7 @@
 package eu.cehj.cdb2.common.dto;
 
+import eu.cehj.cdb2.entity.CountryOfSync.SearchType;
+
 public class CountryOfSyncDTO extends BaseDTO{
 
     private static final long serialVersionUID = -6448266488847252561L;
@@ -26,6 +28,8 @@ public class CountryOfSyncDTO extends BaseDTO{
     private String frequency;
 
     private SynchronizationDTO lastSynchronization;
+
+    private SearchType searchType;
 
     public String getName() {
         return this.name;
@@ -113,6 +117,14 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setLastSynchronization(final SynchronizationDTO lastSynchronization) {
         this.lastSynchronization = lastSynchronization;
+    }
+
+    public SearchType getSearchType() {
+        return this.searchType;
+    }
+
+    public void setSearchType(final SearchType searchType) {
+        this.searchType = searchType;
     }
 
 }

@@ -36,6 +36,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         entity.setCountryCode(dto.getCountryCode());
         entity.setDaysOfWeek(this.intArrayToString(dto.getDaysOfWeek()));
         entity.setFrequency(dto.getFrequency());
+        entity.setSearchType(dto.getSearchType());
         return entity;
     }
 
@@ -58,7 +59,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setDaysOfWeek(this.stringToIntArray(entity.getDaysOfWeek()));
         dto.setCountryCode(entity.getCountryCode());
         dto.setFrequency(entity.getFrequency());
-
+        dto.setSearchType(entity.getSearchType());
         return dto;
     }
 

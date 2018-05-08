@@ -3,6 +3,7 @@ package eu.cehj.cdb2.hub.utils;
 /**
  *  Represents JSON response from CDB when sending national data.
  */
+// FIXME: Rename this class to emphasize that this is related to sync to CDB (and not query for bailiff data)
 public class CdbResponse {
 
     private String importStatus;
