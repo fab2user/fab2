@@ -11,6 +11,7 @@ import eu.cehj.cdb2.hub.utils.ParamsInterceptor;
 @Configuration
 @EnableWebMvc
 public class WebConfig  extends WebMvcConfigurerAdapter{
+
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");

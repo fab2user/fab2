@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.hub.service;
+package eu.cehj.cdb2.hub.service.search;
 
 import java.util.List;
 

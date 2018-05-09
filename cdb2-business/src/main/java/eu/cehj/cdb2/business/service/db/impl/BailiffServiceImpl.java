@@ -1,5 +1,7 @@
 package eu.cehj.cdb2.business.service.db.impl;
 
+import static org.apache.commons.lang3.StringUtils.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +30,8 @@ import eu.cehj.cdb2.common.dto.CompetenceDTO;
 import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
 import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
 import eu.cehj.cdb2.common.dto.GeoCompetenceDTO;
+import eu.cehj.cdb2.common.dto.cdb.CDBResponse;
+import eu.cehj.cdb2.common.dto.cdb.CompetentBodyDetail;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.BailiffCompetenceArea;
@@ -287,4 +291,30 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         return dto;
     }
 
+    @Override
+    public List<BailiffDTO> populateDTOsFromCDB(final CDBResponse cdbResponse) throws Exception{
+        if((cdbResponse.getCompetentBodies() == null) || (cdbResponse.getCompetentBodies().size() < 1)) {
+            return new ArrayList<>(0);
+        }
+        return cdbResponse.getCompetentBodies().stream().map(cb -> {
+            final BailiffDTO dto = new BailiffDTO();
+            if((cb.getDetails() != null) && (cb.getDetails().get(0)!=null)) {
+                final CompetentBodyDetail detail = cb.getDetails().get(0);
+                dto.setName( defaultString(detail.getName()));
+                dto.setAddress1(defaultString(detail.getAddress()));
+                dto.setPostalCode(defaultString(detail.getPostalCode()));
+                dto.setCity(defaultString(detail.getMunicipality()));
+                dto.setPhone(defaultString(detail.getTel()));
+                dto.setFax(defaultString(detail.getFax()));
+                final Boolean videoConference = detail.getVideoConference();
+                if(videoConference != null) {
+                    dto.setVideoConferenceAvailable(videoConference);
+                }
+                return dto;
+            }return null;
+        }).
+                filter(entry -> entry != null).
+                collect(Collectors.toList());
+    }
 }
+
