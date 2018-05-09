@@ -41,7 +41,6 @@ public class DefaultManagedSearchService extends ManagedSearchService {
         final ResponseEntity<List<BailiffDTO>> dtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<BailiffDTO>>() {
         });
-        this.logger.debug(dtos.toString());
         return dtos.getBody();
     }
 

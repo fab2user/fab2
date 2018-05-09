@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,9 @@ public class CDBSearchService implements SearchService {
     @Autowired
     private BailiffService bailiffService;
 
+    @Autowired
+    private RestTemplateBuilder builder;
+
     private static Logger logger = LoggerFactory.getLogger(CDBSearchService.class);
 
 
@@ -57,7 +61,8 @@ public class CDBSearchService implements SearchService {
             throw new CDBException(String.format("Service url is unknown for country code \"%s\".", countryCode));
         }
 
-        final RestTemplate restTemplate = new RestTemplate(); // For some reason, it won't work if I use RestTemplateBuilder to build restTemplate...
+        final RestTemplate restTemplate = this.builder.build();
+
         final MultiValueMap<String, String> headers =
                 new LinkedMultiValueMap<String, String>();
         headers.add("Content-Type", "application/json");

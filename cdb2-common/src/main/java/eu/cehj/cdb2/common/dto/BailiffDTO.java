@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.cehj.cdb2.entity.Address;
+
 public class BailiffDTO extends BaseDTO{
 
     private static final long serialVersionUID = 6204512676632176957L;
@@ -22,6 +23,7 @@ public class BailiffDTO extends BaseDTO{
     private String webSite;
     private String fax;
     private String openHours;
+    private boolean videoConferenceAvailable = false;
 
     private List<GeoCompetenceDTO> geoCompetences; // FIXME: Remove if not used
     private List<CompetenceDTO> competences;
@@ -179,6 +181,14 @@ public class BailiffDTO extends BaseDTO{
 
     public void setOpenHours(final String openHours) {
         this.openHours = openHours;
+    }
+
+    public boolean isVideoConferenceAvailable() {
+        return this.videoConferenceAvailable;
+    }
+
+    public void setVideoConferenceAvailable(final boolean videoConferenceAvailable) {
+        this.videoConferenceAvailable = videoConferenceAvailable;
     }
 
 }
