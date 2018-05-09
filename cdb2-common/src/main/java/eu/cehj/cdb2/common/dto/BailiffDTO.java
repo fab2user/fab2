@@ -24,7 +24,7 @@ public class BailiffDTO extends BaseDTO{
     private String fax;
     private String openHours;
     private boolean videoConferenceAvailable = false;
-
+    private String langDisplay; // used only for CDB for now but maybe relevant for other cases too
     private List<GeoCompetenceDTO> geoCompetences; // FIXME: Remove if not used
     private List<CompetenceDTO> competences;
     private GeoAreaSimpleDTO geo;
@@ -189,6 +189,14 @@ public class BailiffDTO extends BaseDTO{
 
     public void setVideoConferenceAvailable(final boolean videoConferenceAvailable) {
         this.videoConferenceAvailable = videoConferenceAvailable;
+    }
+
+    public String getLangDisplay() {
+        return this.langDisplay;
+    }
+
+    public void setLangDisplay(final String langDisplay) {
+        this.langDisplay = langDisplay;
     }
 
 }

@@ -300,12 +300,13 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
             final BailiffDTO dto = new BailiffDTO();
             if((cb.getDetails() != null) && (cb.getDetails().get(0)!=null)) {
                 final CompetentBodyDetail detail = cb.getDetails().get(0);
-                dto.setName( defaultString(detail.getName()));
-                dto.setAddress1(defaultString(detail.getAddress()));
-                dto.setPostalCode(defaultString(detail.getPostalCode()));
-                dto.setCity(defaultString(detail.getMunicipality()));
-                dto.setPhone(defaultString(detail.getTel()));
-                dto.setFax(defaultString(detail.getFax()));
+                dto.setName( defaultString(detail.getName(),null));
+                dto.setAddress1(defaultString(detail.getAddress(),null));
+                dto.setPostalCode(defaultString(detail.getPostalCode(),null));
+                dto.setCity(defaultString(detail.getMunicipality(),null));
+                dto.setPhone(defaultString(detail.getTel(),null));
+                dto.setFax(defaultString(detail.getFax(), null));
+                dto.setLangDisplay(defaultString(detail.getLang(), null));
                 final Boolean videoConference = detail.getVideoConference();
                 if(videoConference != null) {
                     dto.setVideoConferenceAvailable(videoConference);
