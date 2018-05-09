@@ -79,11 +79,11 @@
             <label for="active" translate="country.field.schedule" class="col-md-3">active</label>
             <div class="col-md-6">
               <div ng-repeat="day in countryEditCtrl.dayOfWeek">
-                <input type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek" checklist-value="day.id"> {{ day.value|translate }}
+                <input type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek" checklist-value="day.id" ng-disabled="!countryEditCtrl.country.active">{{ day.value|translate }}
               </div>
             </div>
             <div class="col-md-3">
-              <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false"></div>
+              <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false" ng-disabled="!countryEditCtrl.country.active"></div>
             </div>
           </div>
           <div class="form-group">

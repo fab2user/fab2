@@ -52,12 +52,15 @@ public class ScheduleWatcher {
     private void compareWithScheduled(final CountryOfSync cos) throws Exception {
         final boolean triggerPresent = this.scheduler.checkExists(this.generateTriggerKey(cos));
         if (!triggerPresent) {
-            this.logger.debug("Trigger for " + cos.getCountryCode() + " doesn't exist => create it");
-            final Trigger trigger = this.createTrigger(cos);
-            this.scheduler.scheduleJob(trigger);
+            this.logger.debug("Trigger unknown for country " + cos.getName());
+            if(cos.isActive()==true) {
+                this.logger.debug("Country is active: create relevant trigger !");
+                final Trigger trigger = this.createTrigger(cos);
+                this.scheduler.scheduleJob(trigger);
+            }
         } else {
             final Trigger trigger = this.scheduler.getTrigger(this.generateTriggerKey(cos));
-            if (!trigger.getDescription().equals(cos.getFrequency())) {
+            if (!trigger.getDescription().equals(cos.getFrequency()) || (cos.isActive() != true)) {
                 this.scheduler.unscheduleJob(trigger.getKey());
                 this.compareWithScheduled(cos);
             }
