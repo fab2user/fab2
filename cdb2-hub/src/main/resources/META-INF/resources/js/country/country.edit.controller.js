@@ -105,5 +105,19 @@
           });
       }
     };
+
+    vm.searchTypeChange = function () {
+      if (vm.country.searchType === 'CDB') {
+        vm.country.active = false;
+        vm.country.daysOfWeek = [];
+        setDefaultFrequency();
+      }
+    };
+
+    function setDefaultFrequency() {
+      vm.country.frequency = moment()
+        .set('hour', 0)
+        .set('minute', 0);
+    }
   }
 })();
