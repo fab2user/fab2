@@ -22,7 +22,7 @@ public class CdbSyncController extends BaseController{
 
     @RequestMapping(method = { GET }, value = "send")
     @ResponseStatus(value = OK)
-    public Synchronization startCDBSync(@RequestParam final String countryCode) throws Exception{
+    public Synchronization startCDBSync(@RequestParam final String countryCode) {
         return this.pushDataService.process(countryCode);
         // As pushDataService is async, controller will simply return ok to inform it received a request and started to process it
         // After processing pushDataService, will update sync table

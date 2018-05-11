@@ -1,6 +1,7 @@
 package eu.cehj.cdb2.business.service.data;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +27,7 @@ import eu.cehj.cdb2.entity.CDBTask.Status;
 @Scope("prototype")
 public class GeoDataImportService implements DataImportService {
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(GeoDataImportService.class);
 
     private CDBTask task;
 
@@ -42,7 +43,7 @@ public class GeoDataImportService implements DataImportService {
     @Override
     @Async
     @Transactional
-    public void importData(final String fileName, final CDBTask task) throws Exception{
+    public void importData(final String fileName, final CDBTask task) throws IOException {
         this.task = task;
         task.setStatus(CDBTask.Status.IN_PROGRESS);
         this.taskService.save(task);
@@ -53,14 +54,16 @@ public class GeoDataImportService implements DataImportService {
                 dataStructures = this.processLines(reader);
                 this.geoDataPersistenceService.persistData(dataStructures);
             } catch (final Exception e) {
-                this.logger.error(String.format("Geoname import with id #%d failed with error %s", task.getId(), e.getMessage()), e);
+                LOGGER.error(String.format("Geoname import with id #%d failed with error %s", task.getId(), e.getMessage()), e);
                 task.setEndDate(new Date());
                 task.setType(CDBTask.Type.GEONAME_IMPORT);
                 task.setStatus(Status.ERROR);
                 task.setMessage(e.getMessage());
                 this.taskService.save(task);
             }
-            this.logger.info(String.format("Geoname import with id #%d successful", task.getId()));
+            if(LOGGER.isInfoEnabled()) {
+                LOGGER.info(String.format("Geoname import with id #%d successful", task.getId()));
+            }
             task.setEndDate(new Date());
             task.setStatus(Status.OK);
             this.taskService.save(task);
@@ -69,7 +72,7 @@ public class GeoDataImportService implements DataImportService {
         }
     }
 
-    public List<GeoDataStructure> processLines(final BufferedReader reader) throws Exception {
+    public List<GeoDataStructure> processLines(final BufferedReader reader) {
         this.task.setStatus(Status.IN_PROGRESS);
         this.taskService.save(this.task);
         final List<GeoDataStructure> dataStructures = new ArrayList<>();
@@ -96,7 +99,9 @@ public class GeoDataImportService implements DataImportService {
         dataStructure.setMinorAreaCode(fields[8]);
         dataStructure.setxPos(fields[9]);
         dataStructure.setyPos(fields[10]);
-        this.logger.debug(dataStructure.toString());
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug(dataStructure.toString());
+        }
         return dataStructure;
     }
 

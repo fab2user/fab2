@@ -21,7 +21,7 @@ public class ReferenceController extends BaseController {
 
     @RequestMapping(method = GET)
     @ResponseStatus(value = OK)
-    public HubReferenceDTO get() throws Exception{
+    public HubReferenceDTO get(){
         return this.hubReferenceService.getReference();
     }
 }

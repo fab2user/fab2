@@ -14,7 +14,7 @@ import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
 @Service
 public class PushDataServiceLauncher{
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(PushDataServiceLauncher.class);
 
     @Autowired
     private CountryOfSyncService cosService;
@@ -25,13 +25,13 @@ public class PushDataServiceLauncher{
     @Autowired
     private PushDataService asyncPushDataService;
 
-    public CountryOfSync getCountryUrl(final String countryCode) throws Exception {
+    public CountryOfSync getCountryUrl(final String countryCode) {
         return this.cosService.getByCountryCode(countryCode);
 
     }
 
-    public Synchronization process(final String countryCode) throws Exception {
-        this.logger.debug("Starting CDB sync for country " + countryCode + "...");
+    public Synchronization process(final String countryCode) {
+        LOGGER.debug("Starting CDB sync for country " + countryCode + "...");
         final CountryOfSync cos = this.getCountryUrl(countryCode);
 
         Synchronization sync = new Synchronization();

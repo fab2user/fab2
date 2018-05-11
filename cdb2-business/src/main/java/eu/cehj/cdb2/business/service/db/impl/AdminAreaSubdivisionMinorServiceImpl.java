@@ -33,14 +33,12 @@ public class AdminAreaSubdivisionMinorServiceImpl extends BaseServiceImpl<AdminA
     }
 
     @Override
-    public AdminAreaSubdivisionMinor populateEntityFromDTO(final AdminAreaSubdivisionMinorDTO dto) throws Exception {
-        // TODO Auto-generated method stub
+    public AdminAreaSubdivisionMinor populateEntityFromDTO(final AdminAreaSubdivisionMinorDTO dto) {
         return null;
     }
 
     @Override
-    public AdminAreaSubdivisionMinorDTO populateDTOFromEntity(final AdminAreaSubdivisionMinor entity) throws Exception {
-        // TODO Auto-generated method stub
+    public AdminAreaSubdivisionMinorDTO populateDTOFromEntity(final AdminAreaSubdivisionMinor entity) {
         return null;
     }
 

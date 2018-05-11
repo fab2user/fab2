@@ -12,10 +12,11 @@ import eu.cehj.cdb2.entity.Municipality;
 @Service
 public interface MunicipalityService extends BaseService<Municipality, MunicipalityDTO, Long>, BaseGeoService<Municipality>, AdminAreaSubdivisionService {
 
+    @Override
     public MunicipalityDTO populateDTOFromEntity(Municipality municipality);
 
-    public Page<MunicipalityDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
+    public Page<MunicipalityDTO> findAll(Predicate predicate, Pageable pageable);
 
-    public Municipality getByPostalCodeAndName(String postalCode, String name) throws Exception;
+    public Municipality getByPostalCodeAndName(String postalCode, String name);
 
 }

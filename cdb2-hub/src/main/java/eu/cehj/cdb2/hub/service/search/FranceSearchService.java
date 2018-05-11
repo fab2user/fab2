@@ -21,7 +21,7 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Loc
     private String soapAction;
 
     @Override
-    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) throws Exception {
+    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params){
         final ListeEtudeByInsee req = new ListeEtudeByInsee();
         final String postalCode = params.getFirst("postalCode");
         if (isNotBlank(postalCode)) {
@@ -34,7 +34,7 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Loc
         final ListeEtudeByInseeResponse resp = (ListeEtudeByInseeResponse) this.getWebServiceTemplate().marshalSendAndReceive(req,
                 new SoapActionCallback(this.soapAction));
         final List<Etude> rawBailiffs = resp.getListeEtudeByInseeResult().getEtude();
-        return rawBailiffs.stream().map(e -> this.convertEtudeToDTO(e)).collect(Collectors.toList());
+        return rawBailiffs.stream().map(this::convertEtudeToDTO).collect(Collectors.toList());
     }
 
     private BailiffDTO convertEtudeToDTO(final Etude e) {

@@ -1,5 +1,6 @@
 package eu.cehj.cdb2.web.controller;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -46,6 +49,8 @@ import eu.cehj.cdb2.web.utils.Settings;
 @RequestMapping("api/bailiff")
 public class BailiffController extends BaseController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BailiffController.class);
+
     @Autowired
     BailiffService bailiffService;
 
@@ -69,15 +74,15 @@ public class BailiffController extends BaseController {
                     POST, PUT
             })
     @ResponseStatus(value = CREATED)
-    public BailiffDTO save(@RequestBody final BailiffDTO bailiffDTO) throws Exception {
+    public BailiffDTO save(@RequestBody final BailiffDTO bailiffDTO){
 
         return this.bailiffService.save(bailiffDTO);
     }
 
     @RequestMapping(method = GET)
     @ResponseStatus(value = OK)
-    public List<BailiffDTO> get(@RequestParam(required = false) final Boolean deleted) throws Exception {
-        if((deleted != null) && (deleted == true)) {
+    public List<BailiffDTO> get(@RequestParam(required = false) final Boolean deleted) {
+        if((deleted != null) && (deleted)) {
             return this.bailiffService.getAllEvenDeletedDTO();
         }
         return this.bailiffService.getAllDTO();
@@ -88,7 +93,7 @@ public class BailiffController extends BaseController {
      */
     @RequestMapping(method = GET, value = "all")
     @ResponseStatus(value = OK)
-    public List<BailiffExportDTO> getAllForExport() throws Exception {
+    public List<BailiffExportDTO> getAllForExport() {
         return this.bailiffService.getAllForExport();
     }
 
@@ -103,7 +108,7 @@ public class BailiffController extends BaseController {
 
     @RequestMapping(method = GET, value = "search")
     @ResponseStatus(value = OK)
-    public List<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable) throws Exception {
+    public List<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable){
         // Because we return only active bailiffs, we have to tweak the search from the http request, in order to add deleted filter
         final QBailiff bailiff = QBailiff.bailiff;
         final Predicate tweakedPredicate = (bailiff.deleted.isFalse().or(bailiff.deleted.isNull())).and(predicate);
@@ -112,52 +117,69 @@ public class BailiffController extends BaseController {
 
     @RequestMapping(method = DELETE, value = "/{id}")
     @ResponseStatus(value = NO_CONTENT)
-    public void delete(@PathVariable() final Long id) throws Exception {
+    public void delete(@PathVariable() final Long id){
         this.bailiffService.delete(id);
     }
 
     @RequestMapping(method = { POST }, value="import")
     @ResponseStatus(value = HttpStatus.OK)
-    public CDBTask importData(@RequestParam("file") final MultipartFile file) throws Exception{
+    public CDBTask importData(@RequestParam("file") final MultipartFile file){
         final CDBTask task = new CDBTask(CDBTask.Type.BAILIFF_IMPORT);
         task.setStatus(CDBTask.Status.STARTED);
         this.cdbTaskService.save(task);
-        this.storageService.store(file);
-        this.bailiffImportService.importFile(file.getOriginalFilename(), this.settings.getCountryCode(), task);
+        try {
+            this.storageService.store(file);
+            this.bailiffImportService.importFile(file.getOriginalFilename(), this.settings.getCountryCode(), task);
+        } catch (final IOException e) {
+            LOGGER.error(e.getMessage(),e);
+            throw new CDBException(e.getMessage(),e);
+        }
         return task;
     }
 
     @RequestMapping(method = { GET }, value="export")
-    public ResponseEntity<Resource> exportData() throws Exception{
+    public ResponseEntity<Resource> exportData(){
         //TODO: For now I assume export can only be issued locally, hence we don't need to provide any country code argument. If it appears that Hub can request xls export as well, it will need to be changed.
-        final String exportFilePath = this.bailiffImportService.export(this.settings.getCountryCode());
-        final Path path = Paths.get(exportFilePath);
-        final ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-        this.logger.debug("headers : " + resource.getFilename());
-        return ResponseEntity.ok()
-                .contentLength(resource.contentLength())
-                .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-                .body(resource);
+        try {
+            final String exportFilePath = this.bailiffImportService.export(this.settings.getCountryCode());
+            final Path path = Paths.get(exportFilePath);
+            final ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+            LOGGER.debug("headers : " + resource.getFilename());
+            return ResponseEntity.ok()
+                    .contentLength(resource.contentLength())
+                    .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                    .body(resource);
+        } catch (final IOException e) {
+            LOGGER.error(e.getMessage(), e);
+            throw new CDBException(e.getMessage(),e);
+        }
     }
 
     @RequestMapping(method = { GET }, value="template")
-    public ResponseEntity<Resource> downloadTemplate() throws Exception{
-        if(this.bailiffImportTemplate.exists() == true) {
-            try (InputStream is = this.bailiffImportTemplate.getInputStream()) {
-                final byte[] ba = IOUtils.toByteArray(is);
-                final ByteArrayResource bar = new ByteArrayResource(ba);
-                return ResponseEntity.ok()
-                        .contentLength(this.bailiffImportTemplate.contentLength())
-                        .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-                        .body(bar);
+    public ResponseEntity<Resource> downloadTemplate(){
+        try {
+            if(this.bailiffImportTemplate.exists()) {
+                try (InputStream is = this.bailiffImportTemplate.getInputStream()) {
+                    final byte[] ba = IOUtils.toByteArray(is);
+                    final ByteArrayResource bar = new ByteArrayResource(ba);
+                    return ResponseEntity.ok()
+                            .contentLength(this.bailiffImportTemplate.contentLength())
+                            .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                            .body(bar);
+                }
+            }else {
+                throw new CDBException("Import template not found");
             }
+        } catch (final IOException e) {
+            LOGGER.error(e.getMessage(),e);
+            throw new CDBException(e.getMessage(),e);
         }
-        throw new CDBException("Template not found");
+
     }
 
     @RequestMapping(method = GET, value = "/{id}")
     @ResponseStatus(value = OK)
-    public BailiffDTO getById(@PathVariable final Long id) throws Exception {
+    public BailiffDTO getById(@PathVariable final Long id) {
         return this.bailiffService.getDTO(id);
     }
 

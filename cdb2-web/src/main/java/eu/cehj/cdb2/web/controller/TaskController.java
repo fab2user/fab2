@@ -22,7 +22,7 @@ public class TaskController extends BaseController {
 
     @RequestMapping(method = GET, value = "{id}")
     @ResponseStatus(value = OK)
-    public CDBTaskDTO getTask(@PathVariable final Long id) throws Exception {
+    public CDBTaskDTO getTask(@PathVariable final Long id) {
 
         return this.taskService.getDTO(id);
     }

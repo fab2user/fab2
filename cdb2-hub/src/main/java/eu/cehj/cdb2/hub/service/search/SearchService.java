@@ -8,5 +8,5 @@ import eu.cehj.cdb2.common.dto.BailiffDTO;
 
 public interface SearchService {
 
-    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) throws Exception;
+    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params);
 }

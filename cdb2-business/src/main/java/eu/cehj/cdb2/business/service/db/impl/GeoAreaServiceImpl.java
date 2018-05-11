@@ -34,7 +34,7 @@ import eu.cehj.cdb2.entity.QMunicipality;
 @Service
 public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Long, GeoAreaRepository> implements GeoAreaService {
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(GeoAreaServiceImpl.class);
 
     @Autowired
     private MunicipalityService municipalityService;
@@ -43,12 +43,12 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
     private BailiffCompetenceAreaService bailiffCompetenceAreaService;
 
     @Override
-    public List<GeoAreaDTO> getAllDTO() throws Exception {
+    public List<GeoAreaDTO> getAllDTO() {
 
         final List<GeoArea> areas = this.repository.findAll();
 
-        this.logger.warn("areas found: " + areas.size());
-        return areas.stream().map(area -> this.populateDTOFromEntity(area)).collect(Collectors.toList());
+        LOGGER.debug("areas found: " + areas.size());
+        return areas.stream().map(this::populateDTOFromEntity).collect(Collectors.toList());
     }
 
     @Override
@@ -75,33 +75,33 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
         // We first remove all municipalities related to area, in order to only bind the ones transmitted by dto
         area.getMunicipalities().stream().forEach(city -> {
             city.setGeoArea(null);
-            try {
-                this.municipalityService.save(city);
-            } catch (final Exception e) {
-                this.logger.error(e.getMessage(), e);
-            }
+            //            try {
+            this.municipalityService.save(city);
+            //            } catch (final Exception e) {
+            //                LOGGER.error(e.getMessage(), e);
+            //            }
         });
 
         area.setMunicipalities(new ArrayList<Municipality>());
         this.repository.save(area);
         final Iterator<MunicipalityDTO> it = dto.getMunicipalities().iterator();
         while (it.hasNext()) {
-            try {
-                final Municipality municipality = this.municipalityService.get(it.next().getId());
-                if (municipality != null) {
-                    municipality.setGeoArea(area);
-                    this.municipalityService.save(municipality);
-                }
-            } catch (final Exception e) {
-                this.logger.error(e.getMessage(), e);
+            //            try {
+            final Municipality municipality = this.municipalityService.get(it.next().getId());
+            if (municipality != null) {
+                municipality.setGeoArea(area);
+                this.municipalityService.save(municipality);
             }
+            //            } catch (final Exception e) {
+            //                LOGGER.error(e.getMessage(), e);
+            //            }
         }
 
         return dto;
     }
 
     @Override
-    public GeoAreaDTO saveDTO(final GeoAreaDTO dto) throws Exception {
+    public GeoAreaDTO saveDTO(final GeoAreaDTO dto) {
         return this.populateEntity(dto);
     }
 
@@ -111,7 +111,7 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
 
     @Override
     @Transactional
-    public void delete(final Long id) throws Exception {
+    public void delete(final Long id) {
 
         //We first have to check that this area isn't bound to a bailiff
         final Iterable<BailiffCompetenceArea> bcas = this.bailiffCompetenceAreaService.findAllForGeoArea(this.get(id));
@@ -128,7 +128,7 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
     }
 
     @Override
-    public GeoAreaSimpleDTO getSimpleDTO(final Long id) throws Exception {
+    public GeoAreaSimpleDTO getSimpleDTO(final Long id) {
         final GeoArea entity = this.get(id);
         return this.populateSimpleDTOFromEntity(entity);
     }
@@ -141,7 +141,7 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
     }
 
     @Override
-    public Page<GeoAreaDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+    public Page<GeoAreaDTO> findAll(final Predicate predicate, final Pageable pageable)  {
         final Page<GeoArea> entities = this.repository.findAll(predicate, pageable);
         final List<GeoAreaDTO> dtos = new ArrayList<>();
         final Iterator<GeoArea> it = entities.iterator();
@@ -152,16 +152,15 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
     }
 
     @Override
-    public GeoArea populateEntityFromDTO(final GeoAreaDTO dto) throws Exception {
-        // TODO Auto-generated method stub
+    public GeoArea populateEntityFromDTO(final GeoAreaDTO dto) {
         return null;
     }
 
     @Override
-    public List<GeoAreaSimpleDTO> getAllSimpleDTO() throws Exception {
-        return this.getAll().stream().map(entity ->{
-            return this.populateSimpleDTOFromEntity(entity);
-        }).collect(Collectors.toList());
+    public List<GeoAreaSimpleDTO> getAllSimpleDTO() {
+        return this.getAll().stream().map(
+                this::populateSimpleDTOFromEntity
+                ).collect(Collectors.toList());
     }
 
 }

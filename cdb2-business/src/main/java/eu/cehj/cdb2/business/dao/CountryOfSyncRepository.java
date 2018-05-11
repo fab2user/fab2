@@ -10,7 +10,7 @@ import eu.cehj.cdb2.entity.CountryOfSync;
 @RepositoryRestResource
 public interface CountryOfSyncRepository extends JpaRepository<CountryOfSync, Long>, QueryDslPredicateExecutor<CountryOfSync> {
 
-    public CountryOfSync getByName(String countryName) throws Exception;
+    public CountryOfSync getByName(String countryName);
 
-    public CountryOfSync getByCountryCode(String countryCode) throws Exception;
+    public CountryOfSync getByCountryCode(String countryCode);
 }

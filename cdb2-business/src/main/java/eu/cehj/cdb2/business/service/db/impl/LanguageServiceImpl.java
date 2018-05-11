@@ -12,7 +12,7 @@ import eu.cehj.cdb2.entity.QLanguage;
 public class LanguageServiceImpl extends BaseServiceImpl<Language, LanguageDTO, Long, LanguageRepository> implements LanguageService {
 
     @Override
-    public Language getLangByCode(final String code) throws Exception {
+    public Language getLangByCode(final String code) {
         return this.repository.findOne(QLanguage.language1.code.eq(code));
     }
 

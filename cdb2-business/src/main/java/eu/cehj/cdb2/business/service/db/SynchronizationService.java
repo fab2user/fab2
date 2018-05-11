@@ -14,10 +14,10 @@ import eu.cehj.cdb2.entity.Synchronization;
 @Service
 public interface SynchronizationService extends BaseService<Synchronization, SynchronizationDTO, Long> {
 
-    public List<SynchronizationDTO> getLastByCountry() throws Exception;
+    public List<SynchronizationDTO> getLastByCountry();
 
-    public Synchronization getLastByCountry(Long countryID) throws Exception;
+    public Synchronization getLastByCountry(Long countryID);
 
-    public Page<SynchronizationDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
+    public Page<SynchronizationDTO> findAll(Predicate predicate, Pageable pageable);
 
 }

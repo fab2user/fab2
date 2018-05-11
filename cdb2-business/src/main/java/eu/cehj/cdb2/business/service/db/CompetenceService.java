@@ -11,8 +11,8 @@ import eu.cehj.cdb2.entity.Competence;
 @Service
 public interface CompetenceService extends BaseService<Competence, CompetenceDTO, Long>{
 
-    public List<CompetenceDTO> getAllDTOForInstrument(Long instrumentId) throws Exception;
+    public List<CompetenceDTO> getAllDTOForInstrument(Long instrumentId);
 
-    public SimpleCompetenceDTO getSimpleDTO(Long competenceId)throws Exception;
+    public SimpleCompetenceDTO getSimpleDTO(Long competenceId);
 
 }

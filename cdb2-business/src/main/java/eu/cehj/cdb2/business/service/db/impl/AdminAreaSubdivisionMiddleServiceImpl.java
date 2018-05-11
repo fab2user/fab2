@@ -32,14 +32,14 @@ public class AdminAreaSubdivisionMiddleServiceImpl extends BaseServiceImpl<Admin
     }
 
     @Override
-    public AdminAreaSubdivisionMiddle populateEntityFromDTO(final AdminAreaSubdivisionMiddleDTO dto) throws Exception {
-        // TODO Auto-generated method stub
+    public AdminAreaSubdivisionMiddle populateEntityFromDTO(final AdminAreaSubdivisionMiddleDTO dto) {
+        // We don't want to return anything here
         return null;
     }
 
     @Override
-    public AdminAreaSubdivisionMiddleDTO populateDTOFromEntity(final AdminAreaSubdivisionMiddle entity) throws Exception {
-        // TODO Auto-generated method stub
+    public AdminAreaSubdivisionMiddleDTO populateDTOFromEntity(final AdminAreaSubdivisionMiddle entity) {
+        // We don't want to return anything here
         return null;
     }
 

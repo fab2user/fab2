@@ -1,7 +1,10 @@
 package eu.cehj.cdb2.web.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +24,7 @@ import static org.springframework.http.HttpStatus.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.data.DataImportService;
 import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
@@ -33,6 +37,8 @@ import eu.cehj.cdb2.entity.Municipality;
 @RestController
 @RequestMapping("api/municipality")
 public class MunicipalityController extends BaseController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalityController.class);
 
     @Autowired
     MunicipalityService municipalityService;
@@ -51,38 +57,35 @@ public class MunicipalityController extends BaseController {
 
     @RequestMapping(method = { POST, PUT })
     @ResponseStatus(value = CREATED)
-    public MunicipalityDTO save(@RequestBody final MunicipalityDTO municipalityDTO) throws Exception {
+    public MunicipalityDTO save(@RequestBody final MunicipalityDTO municipalityDTO) {
 
         return this.municipalityService.save(municipalityDTO);
     }
 
     @RequestMapping(method = { GET })
     @ResponseStatus(value = OK)
-    public List<MunicipalityDTO> get() throws Exception {
+    public List<MunicipalityDTO> get() {
         return this.municipalityService.getAllDTO();
     }
-
-    //    @RequestMapping(method = { GET }, value = "import")
-    //    @ResponseStatus(value = OK)
-    //    public void importData() throws Exception {
-    //        final InputStream is = this.getClass().getResourceAsStream("FR.txt");
-    //        final String fileContent = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
-    //        //  this.dataImportService.importData(fileContent);
-    //    }
 
     @RequestMapping(method = RequestMethod.GET, value="search")
     @ResponseStatus(value = OK)
     public Page<MunicipalityDTO> search(
-            @QuerydslPredicate(root = Municipality.class) final Predicate predicate, final Pageable pageable) throws Exception {
+            @QuerydslPredicate(root = Municipality.class) final Predicate predicate, final Pageable pageable) {
         return this.municipalityService.findAll(predicate, pageable);
     }
 
     @RequestMapping(method = { POST }, value="update")
     @ResponseStatus(value = HttpStatus.OK)
-    public CDBTaskDTO upload(@RequestParam("file") final MultipartFile file) throws Exception{
+    public CDBTaskDTO upload(@RequestParam("file") final MultipartFile file){
         final CDBTask task = this.taskService.save(new CDBTask(CDBTask.Type.GEONAME_IMPORT));
-        this.storageService.store(file);
-        this.importService.importData(file.getOriginalFilename(), task);
+        try {
+            this.storageService.store(file);
+            this.importService.importData(file.getOriginalFilename(), task);
+        } catch (final IOException e) {
+            LOGGER.error(e.getMessage(),e);
+            throw new CDBException(e.getMessage(),e);
+        }
         return this.taskService.getDTO(task.getId());
     }
 

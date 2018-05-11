@@ -12,12 +12,12 @@ import eu.cehj.cdb2.entity.GeoArea;
 @Service
 public interface BailiffCompetenceAreaService extends BaseService<BailiffCompetenceArea, BailiffCompetenceAreaDTO, Long> {
 
-    public List<BailiffCompetenceAreaDTO> getAllDTO(Long bailiffId) throws Exception;
+    public List<BailiffCompetenceAreaDTO> getAllDTO(Long bailiffId);
 
-    public Iterable<BailiffCompetenceArea> findAllForGeoArea(GeoArea geoArea) throws Exception;
+    public Iterable<BailiffCompetenceArea> findAllForGeoArea(GeoArea geoArea);
 
-    public Iterable<BailiffCompetenceArea> findAllForBailiffId(Long bailiffId) throws Exception;
+    public Iterable<BailiffCompetenceArea> findAllForBailiffId(Long bailiffId);
 
-    List<BailiffCompetenceAreaCustomDTO> getAllSimpleDTO(Long bailiffId) throws Exception;
+    List<BailiffCompetenceAreaCustomDTO> getAllSimpleDTO(Long bailiffId);
 
 }

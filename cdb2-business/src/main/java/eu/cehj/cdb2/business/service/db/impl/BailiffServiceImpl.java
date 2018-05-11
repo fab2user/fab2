@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -61,18 +63,20 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     @Autowired
     GeoAreaService geoAreaService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BailiffServiceImpl.class);
+
     @Override
-    public BailiffDTO save(final BailiffDTO dto) throws Exception {
+    public BailiffDTO save(final BailiffDTO dto) {
         final Bailiff bailiff = this.populateEntityFromDTO(dto);
         final Bailiff savedBailiff = this.repository.save(bailiff);
         dto.setId(savedBailiff.getId());
-        if(dto.isToBeUpdated() == true) {
+        if(dto.isToBeUpdated()) {
             this.saveCompetences(dto);
         }
         return this.populateDTOFromEntity(savedBailiff);
     }
 
-    private void saveCompetences(final BailiffDTO dto)throws Exception{
+    private void saveCompetences(final BailiffDTO dto){
         // First remove old data
         this.bailiffCompetenceAreaService.delete(this.bailiffCompetenceAreaService.findAllForBailiffId(dto.getId()));
 
@@ -81,7 +85,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
                 final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
                 final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
                 gas.setId(dto.getGeo().getId());
-                bca.setAreas(Arrays.asList(new GeoAreaSimpleDTO[] {gas}));
+                bca.setAreas(Arrays.asList(gas));
                 bca.setBailiff(dto);
                 final CompetenceDTO comp = new CompetenceDTO();
                 comp.setId(competenceDTO.getId());
@@ -92,15 +96,15 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public List<BailiffDTO> getAllDTO() throws Exception {
+    public List<BailiffDTO> getAllDTO() {
         final List<Bailiff> bailiffs = this.repository.findAll();
-        final List<BailiffDTO> dtos = new ArrayList<BailiffDTO>(bailiffs.size());
+        final List<BailiffDTO> dtos = new ArrayList<>(bailiffs.size());
         bailiffs.forEach(bailiff -> {
             BailiffDTO bailiffDTO = null;
             try {
                 bailiffDTO = this.populateDTOFromEntity(bailiff);
             } catch (final Exception e) {
-                this.logger.error(e.getMessage(),e);
+                LOGGER.error(e.getMessage(),e);
             }
             dtos.add(bailiffDTO);
         });
@@ -108,7 +112,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public BailiffDTO populateDTOFromEntity(final Bailiff entity) throws Exception {
+    public BailiffDTO populateDTOFromEntity(final Bailiff entity) {
         final BailiffDTO dto = new BailiffDTO();
         dto.setName(entity.getName());
         dto.setId(entity.getId());
@@ -118,7 +122,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         dto.setFax(entity.getFax());
         dto.setOpenHours(entity.getOpenHours());
         entity.getLanguages().forEach(lang -> dto.getLanguages().add(lang.getId()));
-        if (entity.getLangOfDetails().size() > 0) {
+        if (!entity.getLangOfDetails().isEmpty()) {
             dto.setLangOfDetails(entity.getLangOfDetails().get(0).getId());
         }
 
@@ -149,7 +153,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
             try {
                 return this.competenceService.getDTO(bca.getCompetence().getId());
             } catch (final Exception e) {
-                this.logger.error(e.getMessage(), e);
+                LOGGER.error(e.getMessage(), e);
             }
             return null;
         }).collect(Collectors.toList()));
@@ -162,7 +166,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public Bailiff populateEntityFromDTO(final BailiffDTO dto) throws Exception {
+    public Bailiff populateEntityFromDTO(final BailiffDTO dto) {
         final Bailiff entity = dto.getId() == null ? new Bailiff() : this.get(dto.getId());
         if (dto.getMunicipalityId() == null) {
             throw new CDBException("Municipality can not be null");
@@ -181,13 +185,8 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
             final Language language = this.languageRepository.getOne(lang);
             entity.getLanguages().add(language);
         });
-        //        final Long idLangOfDetails = dto.getLangOfDetails();
         // Small cheat since I assumed we can have several lang of details TODO: If it's confirmed there can be only one, then modify entity accordingly
         entity.getLangOfDetails().clear();
-        //        if (idLangOfDetails != null) {
-        //            final Language lang = this.languageRepository.getOne(idLangOfDetails);
-        //            entity.getLangOfDetails().add(lang);
-        //        }
         // Set default lang of details to EN, as requested by client
         final Language enLang =  this.languageRepository.findOne(QLanguage.language1.code.eq("EN"));
         if(enLang != null) {
@@ -213,7 +212,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public List<BailiffDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+    public List<BailiffDTO> findAll(final Predicate predicate, final Pageable pageable) {
         //@formatter:off
         return this.repository.findAll(predicate, pageable).getContent()
                 .stream()
@@ -221,7 +220,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
                     try {
                         return this.populateDTOFromEntity(b);
                     } catch (final Exception e) {
-                        this.logger.error(e.getMessage(),e);
+                        LOGGER.error(e.getMessage(),e);
                     }
                     return null;
                 })
@@ -230,16 +229,15 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public List<BailiffDTO> getAllEvenDeletedDTO() throws Exception {
+    public List<BailiffDTO> getAllEvenDeletedDTO() {
         final List<Bailiff> entities = this.repository.getAllBailiffsEvenDeleted();
-        final List<BailiffDTO> dtos = new ArrayList<BailiffDTO>(entities.size());
+        final List<BailiffDTO> dtos = new ArrayList<>(entities.size());
         entities.forEach(entity -> {
             BailiffDTO dto = null;
             try {
                 dto = this.populateDTOFromEntity(entity);
             } catch (final Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                LOGGER.error(e.getMessage(), e);
             }
             dtos.add(dto);
         });
@@ -247,7 +245,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public List<BailiffExportDTO> getAllForExport() throws Exception {
+    public List<BailiffExportDTO> getAllForExport() {
         final List<Bailiff> entities = this.repository.findAll();
         final List<BailiffExportDTO> dtos = new ArrayList<>(entities.size());
         for (final Bailiff entity : entities) {
@@ -257,7 +255,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public BailiffExportDTO populateExportDTOFromEntity(final Bailiff entity) throws Exception {
+    public BailiffExportDTO populateExportDTOFromEntity(final Bailiff entity){
         final BailiffExportDTO dto = new BailiffExportDTO();
         if (entity.getAddress() != null) {
             dto.setAddress1(entity.getAddress().getAddress1());
@@ -268,7 +266,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
             }
         }
         dto.setFax(entity.getFax());
-        if (entity.getLanguages().size() > 0) {
+        if (!entity.getLanguages().isEmpty()) {
             dto.setLang(entity.getLanguages().get(0).getLanguage());
         }
 
@@ -292,8 +290,8 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     @Override
-    public List<BailiffDTO> populateDTOsFromCDB(final CDBResponse cdbResponse) throws Exception{
-        if((cdbResponse.getCompetentBodies() == null) || (cdbResponse.getCompetentBodies().size() < 1)) {
+    public List<BailiffDTO> populateDTOsFromCDB(final CDBResponse cdbResponse){
+        if((cdbResponse.getCompetentBodies() == null) || (cdbResponse.getCompetentBodies().isEmpty())) {
             return new ArrayList<>(0);
         }
         return cdbResponse.getCompetentBodies().stream().map(cb -> {

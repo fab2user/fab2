@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.List;
@@ -43,7 +44,7 @@ import eu.cehj.cdb2.web.config.BailiffImportConfig;
 @Service
 public class BailiffImportService {
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(BailiffImportService.class);
 
     @Autowired
     private BailiffService bailiffService;
@@ -63,7 +64,7 @@ public class BailiffImportService {
     @Autowired
     private CDBTaskService taskService;
 
-    private final String[] cellTitles = {
+    private static final String[] cellTitles = {
             "Name", "Lang", "Address 1", "Address 2", "Postal Code", "City", "Phone", "Fax", "Email", "Web Site"
     };
 
@@ -76,7 +77,7 @@ public class BailiffImportService {
     private Language languageOfDetails;
 
     @Async
-    public void importFile(final String fileName, final String countryCode, final CDBTask task) throws Exception {
+    public void importFile(final String fileName, final String countryCode, final CDBTask task) throws IOException{
         try {
             task.setStatus(CDBTask.Status.IN_PROGRESS);
             this.taskService.save(task);
@@ -96,8 +97,7 @@ public class BailiffImportService {
                 task.setStatus(CDBTask.Status.OK);
                 this.taskService.save(task);
             }
-        } catch (final Exception e) {
-            //            final CDBTask persistedTask = this.taskService.get(task.getId());
+        } catch (final IOException e) {
             task.setStatus(CDBTask.Status.ERROR);
             String message = e.getMessage();
             if (isBlank(message)) {
@@ -117,12 +117,12 @@ public class BailiffImportService {
      * @return
      * @throws Exception
      */
-    private Language getDefaultLangOfDetails() throws Exception {
+    private Language getDefaultLangOfDetails() {
         return this.langService.getLangByCode("EN");
     }
 
     @Transactional
-    public String export(final String countryCode) throws Exception {
+    public String export(final String countryCode) throws IOException {
         try (final Workbook workbook = new XSSFWorkbook()) {
             final Sheet sheet = workbook.createSheet("Bailiffs");
             this.writeHeaders(sheet);
@@ -151,7 +151,7 @@ public class BailiffImportService {
         //@formatter:off
         return new String[] {
                 defaultIfBlank(bailiff.getName(), ""),
-                bailiff.getLanguages().stream().map(lang -> lang.getLanguage()).collect(Collectors.joining(", ")),
+                bailiff.getLanguages().stream().map(Language::getLanguage).collect(Collectors.joining(", ")),
                 Optional
                 .of(bailiff)
                 .map(Bailiff::getAddress)
@@ -190,16 +190,16 @@ public class BailiffImportService {
         }
     }
 
-    private Row writeHeaders(final Sheet sheet) throws Exception {
+    private Row writeHeaders(final Sheet sheet){
         final Row row = sheet.createRow(0);
-        for (int ind = 0; ind < this.cellTitles.length; ind++) {
+        for (int ind = 0; ind < cellTitles.length; ind++) {
             final Cell cell = row.createCell(ind, CellType.STRING);
-            cell.setCellValue(this.cellTitles[ind]);
+            cell.setCellValue(cellTitles[ind]);
         }
         return row;
     }
 
-    private void processBailiff(final Row row) throws Exception {
+    private void processBailiff(final Row row){
         final Bailiff bailiff = this.populateBailiff(row);
         final Address address = this.populateAddress(row);
         bailiff.setAddress(address);
@@ -208,7 +208,7 @@ public class BailiffImportService {
 
     }
 
-    private Bailiff populateBailiff(final Row row) throws Exception {
+    private Bailiff populateBailiff(final Row row) {
         try {
             final Bailiff bailiff = new Bailiff();
             Cell cell = row.getCell(this.bailiffImportConfig.getName());
@@ -232,8 +232,8 @@ public class BailiffImportService {
         }
     }
 
-    private Address populateAddress(final Row row) throws Exception {
-        this.logger.debug("Processing row #" + row.getRowNum());
+    private Address populateAddress(final Row row) {
+        LOGGER.debug("Processing row #" + row.getRowNum());
         Cell cell = row.getCell(this.bailiffImportConfig.getMunicipality());
         final String name = this.getCellValue(cell);
         cell = row.getCell(this.bailiffImportConfig.getPostalCode());
@@ -255,17 +255,16 @@ public class BailiffImportService {
     }
 
     // LibreOffice treats cell as numeric if content is number: hence this method which processes correctly the cell in both cases
-    private String getCellValue(final Cell cell) throws Exception{
+    private String getCellValue(final Cell cell){
         try {
-            final String value = cell.getStringCellValue().trim();
-            return value;
-        }catch(final Throwable t) {
+            return cell.getStringCellValue().trim();
+        }catch(final Exception e) {
             try {
                 final double numericValue = cell.getNumericCellValue();
                 final DecimalFormat decimalFormat = new DecimalFormat("#.##");
                 return decimalFormat.format(numericValue);
-            }catch(final Throwable th) {
-                this.logger.error(th.getMessage(), t);
+            }catch(final Exception ex) {
+                LOGGER.error(ex.getMessage(), e);
             }
         }
         return "";

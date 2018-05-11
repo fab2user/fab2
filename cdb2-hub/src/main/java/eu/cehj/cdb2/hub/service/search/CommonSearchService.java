@@ -2,7 +2,6 @@ package eu.cehj.cdb2.hub.service.search;
 
 import java.util.List;
 
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +20,21 @@ import eu.cehj.cdb2.entity.CountryOfSync.SearchType;
 public class CommonSearchService implements SearchService, BeanFactoryAware {
 
     private BeanFactory beanFactory;
-    private SearchService searchService;
     @Autowired
     private CountryOfSyncService cosService;
 
     @Override
-    public void setBeanFactory(final BeanFactory beanFactory) throws BeansException {
+    public void setBeanFactory(final BeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
 
     @Override
-    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) throws Exception {
-        this.searchService = (SearchService)this.beanFactory.getBean(this.identifySearch(countryCode));
-        return this.searchService.sendQuery(countryCode, params);
+    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) {
+        final SearchService searchService = (SearchService)this.beanFactory.getBean(this.identifySearch(countryCode));
+        return searchService.sendQuery(countryCode, params);
     }
 
-    private String identifySearch(final String countryCode) throws Exception{
+    private String identifySearch(final String countryCode) {
 
         final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
         if(cos == null) {
