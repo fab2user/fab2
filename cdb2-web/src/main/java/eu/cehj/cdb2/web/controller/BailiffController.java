@@ -1,5 +1,6 @@
 package eu.cehj.cdb2.web.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -97,9 +98,10 @@ public class BailiffController extends BaseController {
         return this.bailiffService.getAllForExport();
     }
 
+    // We may need this again in a near future : I keep it !
     //    @RequestMapping(method = GET, value = "search")
     //    @ResponseStatus(value = OK)
-    //    public Page<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable) throws Exception {
+    //    public Page<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable) {
     //        // Because we return only active bailiffs, we have to tweak the search from the http request, in order to add deleted filter
     //        final QBailiff bailiff = QBailiff.bailiff;
     //        final Predicate tweakedPredicate = (bailiff.deleted.isFalse().or(bailiff.deleted.isNull())).and(predicate);
@@ -130,7 +132,7 @@ public class BailiffController extends BaseController {
         try {
             this.storageService.store(file);
             this.bailiffImportService.importFile(file.getOriginalFilename(), this.settings.getCountryCode(), task);
-        } catch (final IOException e) {
+        } catch (final Exception e) {
             LOGGER.error(e.getMessage(),e);
             throw new CDBException(e.getMessage(),e);
         }
@@ -168,7 +170,7 @@ public class BailiffController extends BaseController {
                             .body(bar);
                 }
             }else {
-                throw new CDBException("Import template not found");
+                throw new FileNotFoundException("Bailiff import template file could not be found.");
             }
         } catch (final IOException e) {
             LOGGER.error(e.getMessage(),e);

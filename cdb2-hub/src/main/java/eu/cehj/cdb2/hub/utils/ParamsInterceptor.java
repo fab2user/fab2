@@ -22,7 +22,7 @@ public class ParamsInterceptor implements HandlerInterceptor {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    //FIXME: Looks like this class isn't used anymore. Remove it if not relevant.
+    // Looks like this class isn't currently used. However I keep it in case we need it to deal with more complex querydsl predicates.
     public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws Exception {
         final Enumeration<String> paramNames = request.getParameterNames();
         final MultiValueMap<String, String> transformedReq = new LinkedMultiValueMap<>();
@@ -31,7 +31,7 @@ public class ParamsInterceptor implements HandlerInterceptor {
             this.logger.debug(key);
             for(final String value:request.getParameterValues(key)) {
                 this.logger.debug(value);
-                transformedReq.put(key,Arrays.asList( new String[] {value}));
+                transformedReq.put(key,Arrays.asList( value));
             }
         }
         request.setAttribute("transformedReq", transformedReq);

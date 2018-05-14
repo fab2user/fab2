@@ -52,7 +52,6 @@ public class SearchController extends BaseController {
      * @param postalCode
      * @param transformedReq Added by {@link ParamsInterceptor}. Internal use.
      * @return {@link List} object containing search results
-     * @throws Exception
      */
     @RequestMapping(method = GET, value = "bailiff")
     @ResponseStatus(value = OK)

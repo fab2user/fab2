@@ -73,30 +73,20 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
             this.populateAreaFromDTO(area, dto);
         }
         // We first remove all municipalities related to area, in order to only bind the ones transmitted by dto
-        area.getMunicipalities().stream().forEach(city -> {
+        for(final Municipality city: area.getMunicipalities()) {
             city.setGeoArea(null);
-            //            try {
             this.municipalityService.save(city);
-            //            } catch (final Exception e) {
-            //                LOGGER.error(e.getMessage(), e);
-            //            }
-        });
+        }
 
         area.setMunicipalities(new ArrayList<Municipality>());
         this.repository.save(area);
-        final Iterator<MunicipalityDTO> it = dto.getMunicipalities().iterator();
-        while (it.hasNext()) {
-            //            try {
-            final Municipality municipality = this.municipalityService.get(it.next().getId());
+        for(final MunicipalityDTO cityDTO: dto.getMunicipalities()) {
+            final Municipality municipality = this.municipalityService.get(cityDTO.getId());
             if (municipality != null) {
                 municipality.setGeoArea(area);
                 this.municipalityService.save(municipality);
             }
-            //            } catch (final Exception e) {
-            //                LOGGER.error(e.getMessage(), e);
-            //            }
         }
-
         return dto;
     }
 

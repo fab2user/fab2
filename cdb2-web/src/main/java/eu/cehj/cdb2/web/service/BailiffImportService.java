@@ -17,6 +17,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,13 +78,14 @@ public class BailiffImportService {
     private Language languageOfDetails;
 
     @Async
-    public void importFile(final String fileName, final String countryCode, final CDBTask task) throws IOException{
+    public void importFile(final String fileName, final String countryCode, final CDBTask task) throws Exception{
         try {
             task.setStatus(CDBTask.Status.IN_PROGRESS);
             this.taskService.save(task);
             this.languageOfDetails = this.getDefaultLangOfDetails();
             final Resource file = this.storageService.loadFile(fileName);
-            try (final Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
+
+            try (final Workbook workbook = WorkbookFactory.create(file.getInputStream())) {
                 workbook.setMissingCellPolicy(MissingCellPolicy.CREATE_NULL_AS_BLANK);
                 final Sheet sheet = workbook.getSheet(this.bailiffTabName);
                 if(sheet == null) {
@@ -97,7 +99,7 @@ public class BailiffImportService {
                 task.setStatus(CDBTask.Status.OK);
                 this.taskService.save(task);
             }
-        } catch (final IOException e) {
+        } catch (final Exception e) { //Catch Exception because we'll handle all exceptions the same way
             task.setStatus(CDBTask.Status.ERROR);
             String message = e.getMessage();
             if (isBlank(message)) {
@@ -106,7 +108,7 @@ public class BailiffImportService {
             task.setMessage(message);
             this.taskService.save(task);
             throw e;
-        } finally {
+        }finally {
             this.storageService.deleteFile(fileName);
         }
     }

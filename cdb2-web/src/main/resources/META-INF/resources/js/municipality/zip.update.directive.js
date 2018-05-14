@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('cdb2').directive('zipUpdate', zipUpdate);
@@ -12,6 +12,8 @@
     'EVENT',
     'STATUS'
   ];
+
+  // FIXME: Inform user when he selects wrong file (ie file type, size)
 
   function zipUpdate(
     $log,
@@ -29,10 +31,10 @@
       templateUrl: '/js/municipality/zip-update.html',
       controller: [
         '$rootScope',
-        function($rootScope) {
+        function ($rootScope) {
           var vm = this;
           vm.submitted = false;
-          vm.upload = function() {
+          vm.upload = function () {
             if (!vm.file) {
               vm.form.file.$setValidity('empty', false);
               return;
@@ -54,31 +56,31 @@
                   'Content-Type': undefined
                 }
               })
-              .then(function(success) {
+              .then(function (success) {
                 $log.debug('Update successfully submitted');
                 vm.file = null;
                 if (success.data.id) {
                   vm.startPolling(success.data.id);
                 }
               })
-              .catch(function(err) {
+              .catch(function (err) {
                 $log.error(err);
                 vm.errorsFromServer = $translate.instant(err.data.message);
               })
-              .finally(function() {
+              .finally(function () {
                 vm.submitted = false;
               });
           };
 
           vm.polling = undefined;
 
-          vm.startPolling = function(taskId) {
+          vm.startPolling = function (taskId) {
             if (angular.isDefined(vm.polling)) return;
             vm.polling = $interval(
-              function() {
+              function () {
                 $http
                   .get(SERVER.API + '/task/' + taskId)
-                  .then(function(success) {
+                  .then(function (success) {
                     // Refresh status on the screen
                     $rootScope.$broadcast(EVENT.GEONAME_IMPORT, success.data);
                     if (
@@ -94,14 +96,14 @@
             );
           };
 
-          vm.endPolling = function() {
+          vm.endPolling = function () {
             if (angular.isDefined(vm.polling)) {
               $interval.cancel(vm.polling);
               vm.polling = undefined;
             }
           };
 
-          vm.removeFile = function() {
+          vm.removeFile = function () {
             delete vm.file;
           };
         }
