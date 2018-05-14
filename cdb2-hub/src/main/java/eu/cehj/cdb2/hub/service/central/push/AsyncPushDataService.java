@@ -25,6 +25,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -112,9 +114,16 @@ public class AsyncPushDataService implements PushDataService {
         final String bailiffsUrl = cos.getUrl() + "/" + this.settings.getBailiffsUrl();
         final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(bailiffsUrl);
         LOGGER.info("Push Service - Sending request to " + bailiffsUrl);
-        final ResponseEntity<List<BailiffExportDTO>> entities = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<BailiffExportDTO>>() {
-        });
+        ResponseEntity<List<BailiffExportDTO>> entities = null;
+        try {
+            entities = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.GET, null,
+                    new ParameterizedTypeReference<List<BailiffExportDTO>>() {
+            });
+        } catch (final RestClientException e) {
+            if(e.getClass() == ResourceAccessException.class) {
+                throw new CDBException(String.format("Serveur %s cant not be reached. Please try again later.", bailiffsUrl), e);
+            }
+        }
         if(LOGGER.isDebugEnabled()) {
             LOGGER.debug(entities.toString());
         }

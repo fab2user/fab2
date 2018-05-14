@@ -31,7 +31,9 @@ public class PushDataServiceLauncher{
     }
 
     public Synchronization process(final String countryCode) {
-        LOGGER.debug("Starting CDB sync for country " + countryCode + "...");
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug(String.format("Starting CDB sync for country %s...", countryCode));
+        }
         final CountryOfSync cos = this.getCountryUrl(countryCode);
 
         Synchronization sync = new Synchronization();

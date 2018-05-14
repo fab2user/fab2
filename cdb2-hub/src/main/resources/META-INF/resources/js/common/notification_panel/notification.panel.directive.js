@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -16,13 +16,14 @@
       restrict: 'E',
       controllerAs: 'notifCtrl',
       templateUrl: '/js/common/notification_panel/notification.panel.html',
-      controller: function($scope) {
+      controller: function ($scope) {
         var vm = this;
         vm.visible = false;
         vm.title = $translate.instant('status.notification.title');
         vm.spin = true;
         vm.message = $translate.instant('status.notification.message.started');
-        $scope.$on(EVENT.XML_EXPORT, function($event, statusObj) {
+        $scope.$on(EVENT.XML_EXPORT, function ($event, statusObj) {
+          vm.spin = true;
           vm.visible = true;
           vm.country = statusObj.countryName;
           vm.status = statusObj.status;
@@ -41,7 +42,7 @@
           }
         });
 
-        vm.hide = function() {
+        vm.hide = function () {
           vm.visible = false;
         };
       }
