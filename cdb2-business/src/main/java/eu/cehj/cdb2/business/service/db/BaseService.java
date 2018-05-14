@@ -8,28 +8,28 @@ import eu.cehj.cdb2.entity.BaseEntity;
 
 public interface BaseService<T extends BaseEntity, U extends BaseDTO,  ID extends Serializable> {
 
-    public T save(T entity) throws Exception;
+    public T save(T entity);
 
-    public T get(ID id) throws Exception;
+    public T get(ID id);
 
-    public List<T> getAll() throws Exception;
+    public List<T> getAll();
 
-    public List<U> getAllDTO() throws Exception;
+    public List<U> getAllDTO();
 
-    public void delete(ID id) throws Exception;
+    public void delete(ID id);
 
-    public void delete(Iterable<T> entities) throws Exception;
+    public void delete(Iterable<T> entities);
 
-    public void physicalDelete(ID id) throws Exception;
+    public void physicalDelete(ID id);
 
-    public void physicalDelete(Iterable<T> entities) throws Exception;
+    public void physicalDelete(Iterable<T> entities);
 
-    public U save(U dto) throws Exception;
+    public U save(U dto);
 
-    public U getDTO(ID id) throws Exception;
+    public U getDTO(ID id);
 
-    public T populateEntityFromDTO(final U dto) throws Exception;
+    public T populateEntityFromDTO(final U dto);
 
-    public U populateDTOFromEntity(final T entity) throws Exception;
+    public U populateDTOFromEntity(final T entity);
 
 }

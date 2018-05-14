@@ -27,26 +27,26 @@ public class CountryOfSyncController extends BaseController {
 
     @RequestMapping(method = { GET })
     @ResponseStatus(value = OK)
-    public List<CountryOfSyncDTO> get() throws Exception {
+    public List<CountryOfSyncDTO> get() {
         return this.countryOfSyncService.getAllDTO();
     }
 
     @RequestMapping(method = { GET }, value = "refs")
     @ResponseStatus(value = OK)
-    public List<CountryOfSyncRefDTO> getRefs() throws Exception {
+    public List<CountryOfSyncRefDTO> getRefs() {
         return this.countryOfSyncService.getAllRefDTO();
     }
 
     @RequestMapping(method = { POST })
     @ResponseStatus(value = CREATED)
-    public CountryOfSyncDTO save(@RequestBody final CountryOfSyncDTO dto) throws Exception {
+    public CountryOfSyncDTO save(@RequestBody final CountryOfSyncDTO dto){
         return this.countryOfSyncService.save(dto);
     }
 
 
     @RequestMapping(method = { DELETE }, value = "/{id}")
     @ResponseStatus(value = NO_CONTENT)
-    public void delete(@PathVariable final Long id) throws Exception {
+    public void delete(@PathVariable final Long id) {
         this.countryOfSyncService.delete(id);
     }
 

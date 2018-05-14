@@ -8,6 +8,7 @@ import eu.cehj.cdb2.entity.Instrument;
 @Service
 public interface InstrumentService extends BaseService<Instrument, InstrumentDTO, Long>{
 
-    public InstrumentDTO populateDTOFromEntity(Instrument instrument) throws Exception;
+    //    @Override
+    //    public InstrumentDTO populateDTOFromEntity(Instrument instrument);
 
 }

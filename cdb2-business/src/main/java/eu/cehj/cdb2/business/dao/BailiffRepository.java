@@ -30,7 +30,7 @@ public interface BailiffRepository extends JpaRepository<Bailiff, Long>, QueryDs
     }
 
     @Query("SELECT b FROM Bailiff b WHERE b.deleted = true or b.deleted = false or b.deleted is null")
-    public List<Bailiff> getAllBailiffsEvenDeleted()throws Exception;
+    public List<Bailiff> getAllBailiffsEvenDeleted();
 
     @Override
     @Query("SELECT b FROM Bailiff b where b.deleted = false or b.deleted is null")

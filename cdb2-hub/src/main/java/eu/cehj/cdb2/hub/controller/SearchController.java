@@ -52,16 +52,14 @@ public class SearchController extends BaseController {
      * @param postalCode
      * @param transformedReq Added by {@link ParamsInterceptor}. Internal use.
      * @return {@link List} object containing search results
-     * @throws Exception
      */
     @RequestMapping(method = GET, value = "bailiff")
     @ResponseStatus(value = OK)
     @CrossOrigin()
     public Iterable<BailiffDTO> search(@QuerydslPredicate(root = Bailiff.class) final Predicate predicate, final Pageable pageable,
             @RequestParam(name = "country", required = true) final String countryCode,
-            @RequestAttribute(name = "transformedReq", required = false) final MultiValueMap<String, String> transformedReq) throws Exception {
+            @RequestAttribute(name = "transformedReq", required = false) final MultiValueMap<String, String> transformedReq) {
 
-        // FIXME: Instead of calling directly SearchInterfaceService, get correct service from  a factory, by passing it country code
         return  this.searchService.sendQuery(countryCode, transformedReq);
     }
 

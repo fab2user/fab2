@@ -11,14 +11,14 @@ import eu.cehj.cdb2.entity.Address;
 public class AddressServiceImpl extends BaseServiceImpl<Address, AddressDTO, Long, AddressRepository> implements AddressService {
 
     @Override
-    public Address populateEntityFromDTO(final AddressDTO dto) throws Exception {
-        // TODO Auto-generated method stub
+    public Address populateEntityFromDTO(final AddressDTO dto) {
+        // We don't want to return anything here
         return null;
     }
 
     @Override
-    public AddressDTO populateDTOFromEntity(final Address entity) throws Exception {
-        // TODO Auto-generated method stub
+    public AddressDTO populateDTOFromEntity(final Address entity) {
+        // We don't want to return anything here
         return null;
     }
 

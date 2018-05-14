@@ -22,19 +22,19 @@ import eu.cehj.cdb2.entity.Synchronization;
 @RepositoryRestResource
 public interface SynchronizationRepository extends JpaRepository<Synchronization, Long>, QueryDslPredicateExecutor<Synchronization>, QuerydslBinderCustomizer<QSynchronization> {
 
-    public Synchronization getByCountryOrderByEndDateDesc(Long countryId) throws Exception;
+    public Synchronization getByCountryOrderByEndDateDesc(Long countryId) ;
 
     @Query(value = "SELECT s1.*\n" +
             "FROM sync s1\n" +
             "LEFT JOIN sync s2\n" +
             "ON (s1.country = s2.country AND s1.id < s2.id)\n" +
             "WHERE s2.id IS NULL", nativeQuery = true)
-    public List<Synchronization> getLastForEachCountry()throws Exception;
+    public List<Synchronization> getLastForEachCountry();
 
     @Query(value = "select s.* from sync s \n" +
             "inner join( select country, max(modified_on) as maxDate from  sync group by country) \n" +
             "s2 on s.country = ?1 and s.country = s2.country and s.modified_on = s2.maxDate;", nativeQuery = true)
-    public Synchronization getLastForCountry(Long countryId) throws Exception;
+    public Synchronization getLastForCountry(Long countryId);
 
 
     @Override

@@ -25,7 +25,7 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
     private CountryOfSyncRepository countryRepository;
 
     @Override
-    public Synchronization populateEntityFromDTO(final SynchronizationDTO dto) throws Exception {
+    public Synchronization populateEntityFromDTO(final SynchronizationDTO dto) {
         final Synchronization entity = dto.getId() == null ? new Synchronization() : this.get(dto.getId());
         entity.setActive(dto.isActive());
         entity.setStartDate(dto.getStartDate());
@@ -37,7 +37,7 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
     }
 
     @Override
-    public SynchronizationDTO populateDTOFromEntity(final Synchronization entity) throws Exception {
+    public SynchronizationDTO populateDTOFromEntity(final Synchronization entity) {
         final SynchronizationDTO dto = new SynchronizationDTO();
         dto.setId(entity.getId());
         dto.setActive(entity.isActive());
@@ -50,7 +50,7 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
     }
 
     @Override
-    public List<SynchronizationDTO>getLastByCountry() throws Exception {
+    public List<SynchronizationDTO>getLastByCountry() {
         final List<Synchronization> entities =  this.repository.getLastForEachCountry();
         final List<SynchronizationDTO> dtos = new ArrayList<>(entities.size());
         for(final Synchronization entity: entities) {
@@ -61,7 +61,7 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
     }
 
     @Override
-    public Page<SynchronizationDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+    public Page<SynchronizationDTO> findAll(final Predicate predicate, final Pageable pageable)  {
         final Page<Synchronization> entities = this.repository.findAll(predicate, pageable);
         final List<SynchronizationDTO> dtos = new ArrayList<>();
         for(final Synchronization entity: entities) {
@@ -71,7 +71,7 @@ public class SynchronizationServiceImpl extends BaseServiceImpl<Synchronization,
     }
 
     @Override
-    public Synchronization getLastByCountry(final Long countryID) throws Exception {
+    public Synchronization getLastByCountry(final Long countryID) {
         return this.repository.getLastForCountry(countryID);
     }
 

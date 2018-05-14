@@ -20,9 +20,7 @@ public class SettingsController extends BaseController {
 
     @RequestMapping( method = GET)
     @ResponseStatus(value = OK)
-    public Settings getSettings() throws Exception {
-
-        //        return this.settingsService.getSettings();
+    public Settings getSettings() {
         return this.settings;
     }
 

@@ -44,9 +44,10 @@
           <div class="form-group">
             <label for="url" translate="country.field.url" class="col-md-3">url</label>
             <div class="col-md-9">
-              <input type="url" name="url" class="form-control" id="url" ng-model="countryEditCtrl.country.url" autofocus="autofocus">
+              <input type="url" name="url" class="form-control" id="url" ng-model="countryEditCtrl.country.url" autofocus="autofocus" ng-required="countryEditCtrl.country.active">
               <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.url.$error">
                 <div ng-message="url" class="text-danger">{{"global.form.url"|translate}}</div>
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
               </div>
             </div>
           </div>

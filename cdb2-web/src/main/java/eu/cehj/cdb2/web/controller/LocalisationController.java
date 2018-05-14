@@ -1,7 +1,10 @@
 package eu.cehj.cdb2.web.controller;
 
+import java.io.IOException;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +19,7 @@ import static org.springframework.http.HttpStatus.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import eu.cehj.cdb2.business.exception.CDBException;
 import pl.jalokim.propertiestojson.util.PropertiesToJsonParser;
 
 /**
@@ -28,6 +32,8 @@ import pl.jalokim.propertiestojson.util.PropertiesToJsonParser;
 @RequestMapping()
 public class LocalisationController extends BaseController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(LocalisationController.class);
+
     @Autowired
     private ApplicationContext context;
 
@@ -36,12 +42,16 @@ public class LocalisationController extends BaseController {
 
     @RequestMapping(method = GET, value = "localisation", produces = "application/json")
     @ResponseStatus(value = OK)
-    public @ResponseBody String getLocalisation(@RequestParam final String lang) throws Exception {
+    public @ResponseBody String getLocalisation(@RequestParam final String lang) {
         final Resource resource = this.context.getResource(String.format("%s/%s.properties", this.i18nFilesLocation, lang ));
         final Properties props =   new Properties();
-        props.load(resource.getInputStream());
+        try {
+            props.load(resource.getInputStream());
+        } catch (final IOException e) {
+            LOGGER.error(e.getMessage(),e);
+            throw new CDBException(e.getMessage(),e);
+        }
 
-        final String json = PropertiesToJsonParser.parseToJson(props);
-        return json;
+        return PropertiesToJsonParser.parseToJson(props);
     }
 }

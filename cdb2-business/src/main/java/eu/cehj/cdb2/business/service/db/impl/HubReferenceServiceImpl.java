@@ -13,7 +13,7 @@ import eu.cehj.cdb2.entity.CountryOfSync.SearchType;
 public class HubReferenceServiceImpl implements HubReferenceService {
 
     @Override
-    public HubReferenceDTO getReference() throws Exception {
+    public HubReferenceDTO getReference() {
         final HubReferenceDTO dto = new HubReferenceDTO();
         final List<String> searchTypes = new ArrayList<>();
         for (final SearchType searchType : SearchType.values()) {

@@ -25,6 +25,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -52,12 +54,12 @@ import eu.chj.cdb2.common.Municipality;
 import eu.chj.cdb2.common.ObjectFactory;
 
 @Service
-public class AsyncPushDataService  implements PushDataService {
+public class AsyncPushDataService implements PushDataService {
 
     @Autowired
     private SynchronizationService syncService;
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncPushDataService.class);
 
     @Autowired
     private RestTemplateBuilder builder;
@@ -76,24 +78,12 @@ public class AsyncPushDataService  implements PushDataService {
 
     @Async
     @Override
-    public void process(final CountryOfSync cos, final Synchronization sync) throws Exception {
+    public void process(final CountryOfSync cos, final Synchronization sync)  {
         try {
             final ExecutorService executor = Executors.newWorkStealingPool();
-            final Callable<Data> taskBailiff = () -> {
-                try {
-                    return this.processBailiffs(cos);
-                } catch (final InterruptedException e) {
-                    throw new IllegalStateException("task interrupted", e);
-                }
-            };
-            final Callable<Data> taskArea = () -> {
-                try {
-                    return this.processAreas(cos);
-                } catch (final InterruptedException e) {
-                    throw new IllegalStateException("task interrupted", e);
-                }
-            };
-            final List<Callable<Data>> callables = new ArrayList<Callable<Data>>();
+            final Callable<Data> taskBailiff = () ->  this.processBailiffs(cos);
+            final Callable<Data> taskArea = () -> this.processAreas(cos);
+            final List<Callable<Data>> callables = new ArrayList<>();
             callables.add(taskBailiff);
             callables.add(taskArea);
 
@@ -118,16 +108,25 @@ public class AsyncPushDataService  implements PushDataService {
     }
 
     @Override
-    public Data processBailiffs(final CountryOfSync cos) throws Exception {
+    public Data processBailiffs(final CountryOfSync cos) {
 
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
         final String bailiffsUrl = cos.getUrl() + "/" + this.settings.getBailiffsUrl();
         final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(bailiffsUrl);
-        this.logger.info("Push Service - Sending request to " + bailiffsUrl);
-        final ResponseEntity<List<BailiffExportDTO>> entities = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<BailiffExportDTO>>() {
-        });
-        this.logger.debug(entities.toString());
+        LOGGER.info("Push Service - Sending request to " + bailiffsUrl);
+        ResponseEntity<List<BailiffExportDTO>> entities = null;
+        try {
+            entities = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.GET, null,
+                    new ParameterizedTypeReference<List<BailiffExportDTO>>() {
+            });
+        } catch (final RestClientException e) {
+            if(e.getClass() == ResourceAccessException.class) {
+                throw new CDBException(String.format("Serveur %s cant not be reached. Please try again later.", bailiffsUrl), e);
+            }
+        }
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug(entities.toString());
+        }
         final List<BailiffExportDTO> dtos = entities.getBody();
         final Data data = new Data();
         final ObjectFactory factory = new ObjectFactory();
@@ -163,17 +162,19 @@ public class AsyncPushDataService  implements PushDataService {
     }
 
     @Override
-    public Data processAreas(final CountryOfSync cos) throws Exception {
+    public Data processAreas(final CountryOfSync cos) {
         // TODO: If needed, create a new geoArea service returning only data needed by CDB
         final Data data = new Data();
         final String areasUrl = cos.getUrl() + "/" + this.settings.getAreasUrl();
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
         final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(areasUrl);
-        this.logger.info("Push Service - Sending request to " + areasUrl);
+        LOGGER.info("Push Service - Sending request to " + areasUrl);
         final ResponseEntity<List<GeoAreaDTO>> respDtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<GeoAreaDTO>>() {
         });
-        this.logger.debug(respDtos.toString());
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug(respDtos.toString());
+        }
         final List<GeoAreaDTO> dtos = respDtos.getBody();
         for (final GeoAreaDTO dto : dtos) {
             final GeoArea geoArea = this.buildGeoArea(dto);
@@ -184,7 +185,7 @@ public class AsyncPushDataService  implements PushDataService {
     }
 
     @Override
-    public void sendToCDB(final Data data, final Synchronization sync) throws Exception {
+    public void sendToCDB(final Data data, final Synchronization sync) {
         // FIXME: Always in error since we don't have any test server able to process the XML file for now
         sync.setStatus(SyncStatus.SENDING_TO_CDB);
         sync.setMessage("Processing...");
@@ -197,7 +198,7 @@ public class AsyncPushDataService  implements PushDataService {
         final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
-        final HttpEntity<CdbPushMessage> entity = new HttpEntity<CdbPushMessage>(message, headers);
+        final HttpEntity<CdbPushMessage> entity = new HttpEntity<>(message, headers);
 
         try {
             final ResponseEntity<CdbResponse> response = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.POST, entity,
@@ -218,7 +219,7 @@ public class AsyncPushDataService  implements PushDataService {
         }
     }
 
-    public GeoArea buildGeoArea(final GeoAreaDTO dto) throws Exception {
+    public GeoArea buildGeoArea(final GeoAreaDTO dto){
         final GeoArea geoArea = new GeoArea();
         geoArea.setId(Long.toString(dto.getId()));
         for (final MunicipalityDTO municipalityDTO : dto.getMunicipalities()) {

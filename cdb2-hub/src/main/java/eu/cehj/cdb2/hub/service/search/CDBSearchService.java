@@ -4,8 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -43,11 +41,9 @@ public class CDBSearchService implements SearchService {
     @Autowired
     private RestTemplateBuilder builder;
 
-    private static Logger logger = LoggerFactory.getLogger(CDBSearchService.class);
-
 
     @Override
-    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) throws Exception {
+    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) {
         final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
         if(cos == null) {
             throw new CDBException(String.format("Country code not found \"%s\".", countryCode));
@@ -64,14 +60,14 @@ public class CDBSearchService implements SearchService {
         final RestTemplate restTemplate = this.builder.build();
 
         final MultiValueMap<String, String> headers =
-                new LinkedMultiValueMap<String, String>();
+                new LinkedMultiValueMap<>();
         headers.add("Content-Type", "application/json");
         final Map<String,String> query = new LinkedHashMap<>();
         query.put("country", countryCode);
         query.put("courtPostalCode", params.getFirst("postalCode"));
         query.put("instrument", this.instrument);
         query.put("competenceType", this.competenceType);
-        final HttpEntity<Map<String, String>> request = new HttpEntity<Map<String,String>>(query, headers);
+        final HttpEntity<Map<String, String>> request = new HttpEntity<>(query, headers);
         final ResponseEntity<CDBResponse> response = restTemplate
                 .exchange(url, HttpMethod.POST, request, CDBResponse.class);
 

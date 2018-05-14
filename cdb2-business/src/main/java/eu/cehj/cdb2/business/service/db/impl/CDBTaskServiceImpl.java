@@ -16,15 +16,14 @@ public class CDBTaskServiceImpl extends BaseServiceImpl<CDBTask, CDBTaskDTO, Lon
     private ModelMapper mapper;
 
     @Override
-    public CDBTask populateEntityFromDTO(final CDBTaskDTO dto) throws Exception {
+    public CDBTask populateEntityFromDTO(final CDBTaskDTO dto) {
         final CDBTask entity = dto.getId() == null ? new CDBTask() : this.get(dto.getId());
         this.mapper.map(dto, entity);
         return entity;
     }
 
     @Override
-    public CDBTaskDTO populateDTOFromEntity(final CDBTask entity) throws Exception {
-        final CDBTaskDTO dto = this.mapper.map(entity, CDBTaskDTO.class);
-        return dto;
+    public CDBTaskDTO populateDTOFromEntity(final CDBTask entity) {
+        return this.mapper.map(entity, CDBTaskDTO.class);
     }
 }

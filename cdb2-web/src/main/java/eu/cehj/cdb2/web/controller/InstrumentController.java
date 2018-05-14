@@ -24,17 +24,8 @@ public class InstrumentController extends BaseController {
 
     @RequestMapping(method = { GET })
     @ResponseStatus(value = OK)
-    public List<InstrumentDTO> get() throws Exception {
+    public List<InstrumentDTO> get(){
         return this.instrumentService.getAllDTO();
     }
-
-    //    // TODO: Following method should replace
-    //    @RequestMapping(method = { GET })
-    //    @ResponseStatus(value = OK)
-    //    public List<InstrumentDetailedDTO> getAllDetailed() throws Exception {
-    //        return this.instrumentService.getAllDetailedDTO();
-    //    }
-
-
 
 }

@@ -10,6 +10,6 @@ import eu.cehj.cdb2.common.dto.HubReferenceDTO;
  */
 public interface HubReferenceService{
 
-    public HubReferenceDTO getReference()throws Exception;
+    public HubReferenceDTO getReference();
 
 }

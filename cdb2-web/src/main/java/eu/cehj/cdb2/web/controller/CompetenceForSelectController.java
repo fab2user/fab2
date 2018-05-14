@@ -26,7 +26,7 @@ public class CompetenceForSelectController extends BaseController {
 
     @RequestMapping(value="api/competenceForSelect", method = { GET })
     @ResponseStatus(value = OK)
-    public List<CompetenceForSelectDTO> get() throws Exception {
+    public List<CompetenceForSelectDTO> get() {
         return this.competenceForSelectService.getCompetencesForSelect();
     }
 

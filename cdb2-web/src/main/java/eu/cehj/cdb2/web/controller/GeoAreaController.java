@@ -2,8 +2,6 @@ package eu.cehj.cdb2.web.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,39 +29,37 @@ import eu.cehj.cdb2.entity.GeoArea;
 @RequestMapping("api/geo-area")
 public class GeoAreaController extends BaseController {
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     GeoAreaService areaService;
 
     @RequestMapping(method = { GET })
     @ResponseStatus(value = OK)
-    public List<GeoAreaDTO> get() throws Exception {
+    public List<GeoAreaDTO> get() {
         return this.areaService.getAllDTO();
     }
 
     @RequestMapping(method = { GET }, value = "/simple")
     @ResponseStatus(value = OK)
-    public List<GeoAreaSimpleDTO> getSimple() throws Exception {
+    public List<GeoAreaSimpleDTO> getSimple(){
         return this.areaService.getAllSimpleDTO();
     }
 
     @RequestMapping(method = { POST })
     @ResponseStatus(value = OK)
-    public GeoAreaDTO save(@RequestBody final GeoAreaDTO dto) throws Exception {
+    public GeoAreaDTO save(@RequestBody final GeoAreaDTO dto){
         return this.areaService.saveDTO(dto);
     }
 
     @RequestMapping( method = DELETE, value = "/{id}" )
     @ResponseStatus(value = NO_CONTENT)
-    public void delete(final Model model, @PathVariable(value = "id") final Long id) throws Exception {
+    public void delete(final Model model, @PathVariable(value = "id") final Long id) {
         this.areaService.delete(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value="search")
     @ResponseStatus(value = OK)
     public Page<GeoAreaDTO> search(
-            @QuerydslPredicate(root = GeoArea.class) final Predicate predicate, final Pageable pageable) throws Exception {
+            @QuerydslPredicate(root = GeoArea.class) final Predicate predicate, final Pageable pageable){
         return this.areaService.findAll(predicate, pageable);
     }
 }
