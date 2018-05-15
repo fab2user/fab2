@@ -54,14 +54,14 @@ public class ScheduleWatcher {
         final boolean triggerPresent = this.scheduler.checkExists(this.generateTriggerKey(cos));
         if (!triggerPresent) {
             LOGGER.debug("Trigger unknown for country " + cos.getName());
-            if(cos.isActive()==true) {
+            if(cos.isActive()) {
                 LOGGER.debug("Country is active: create relevant trigger !");
                 final Trigger trigger = this.createTrigger(cos);
                 this.scheduler.scheduleJob(trigger);
             }
         } else {
             final Trigger trigger = this.scheduler.getTrigger(this.generateTriggerKey(cos));
-            if (!trigger.getDescription().equals(cos.getFrequency()) || (cos.isActive() != true)) {
+            if (!trigger.getDescription().equals(cos.getFrequency()) || !cos.isActive()) {
                 this.scheduler.unscheduleJob(trigger.getKey());
                 this.compareWithScheduled(cos);
             }
@@ -104,11 +104,11 @@ public class ScheduleWatcher {
 
                 final String jobName = jobKey.getName();
                 final String jobGroup = jobKey.getGroup();
-                LOGGER.debug("[jobName] : " + jobName + " [groupName] : " + jobGroup);
+                LOGGER.debug("[jobName] : {} - [groupName] : {}", jobName, jobGroup);
                 //get job's triggers
                 final List<Trigger> triggers = (List<Trigger>) this.scheduler.getTriggersOfJob(jobKey);
                 for (final Trigger trigger : triggers) {
-                    LOGGER.debug(trigger.getKey().toString() + " -> " + trigger.getNextFireTime());
+                    LOGGER.debug("{} -> {}",trigger.getKey(), trigger.getNextFireTime());
                 }
 
             }

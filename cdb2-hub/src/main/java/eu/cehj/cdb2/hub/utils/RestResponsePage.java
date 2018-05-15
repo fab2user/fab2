@@ -39,7 +39,7 @@ public class RestResponsePage<T> extends PageImpl<T> {
     }
 
     public PageImpl<T> pageImpl() {
-        return new PageImpl<T>(this.getContent(), new PageRequest(this.getNumber(),
+        return new PageImpl<>(this.getContent(), new PageRequest(this.getNumber(),
                 this.getSize(), this.getSort()), this.getTotalElements());
     }
 

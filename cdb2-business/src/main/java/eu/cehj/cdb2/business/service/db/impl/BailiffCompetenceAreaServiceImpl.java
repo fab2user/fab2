@@ -61,8 +61,7 @@ public class BailiffCompetenceAreaServiceImpl extends BaseServiceImpl<BailiffCom
 
         final Competence competence = this.competenceService.get(dto.getCompetence().getId());
         final List<GeoArea> existingAreas = entity.getAreas();
-        // FIXME
-        existingAreas.removeAll(existingAreas);
+        existingAreas.clear();
         for( final GeoAreaSimpleDTO areaDTO: dto.getAreas()) {
             entity.getAreas().add(this.areaService.get(areaDTO.getId()));
         }

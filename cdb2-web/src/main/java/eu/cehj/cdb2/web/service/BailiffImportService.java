@@ -78,7 +78,7 @@ public class BailiffImportService {
     private Language languageOfDetails;
 
     @Async
-    public void importFile(final String fileName, final String countryCode, final CDBTask task) throws Exception{
+    public void importFile(final String fileName, final String countryCode, final CDBTask task) throws IOException{
         try {
             task.setStatus(CDBTask.Status.IN_PROGRESS);
             this.taskService.save(task);
@@ -107,7 +107,7 @@ public class BailiffImportService {
             }
             task.setMessage(message);
             this.taskService.save(task);
-            throw e;
+            throw new CDBException(message, e);
         }finally {
             this.storageService.deleteFile(fileName);
         }

@@ -113,7 +113,7 @@ public class AsyncPushDataService implements PushDataService {
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
         final String bailiffsUrl = cos.getUrl() + "/" + this.settings.getBailiffsUrl();
         final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(bailiffsUrl);
-        LOGGER.info("Push Service - Sending request to " + bailiffsUrl);
+        LOGGER.info("Push Service - Sending request to {}", bailiffsUrl);
         ResponseEntity<List<BailiffExportDTO>> entities = null;
         try {
             entities = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.GET, null,
@@ -121,13 +121,13 @@ public class AsyncPushDataService implements PushDataService {
             });
         } catch (final RestClientException e) {
             if(e.getClass() == ResourceAccessException.class) {
-                throw new CDBException(String.format("Serveur %s cant not be reached. Please try again later.", bailiffsUrl), e);
+                throw new CDBException(String.format("Serveur %s can not be reached. Please try again later.", bailiffsUrl), e);
             }
         }
-        if(LOGGER.isDebugEnabled()) {
-            LOGGER.debug(entities.toString());
+        List<BailiffExportDTO> dtos = new ArrayList<>();
+        if(entities != null) {
+            dtos = entities.getBody();
         }
-        final List<BailiffExportDTO> dtos = entities.getBody();
         final Data data = new Data();
         final ObjectFactory factory = new ObjectFactory();
         for (final BailiffExportDTO dto : dtos) {
@@ -168,7 +168,7 @@ public class AsyncPushDataService implements PushDataService {
         final String areasUrl = cos.getUrl() + "/" + this.settings.getAreasUrl();
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
         final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(areasUrl);
-        LOGGER.info("Push Service - Sending request to " + areasUrl);
+        LOGGER.info("Push Service - Sending request to {}", areasUrl);
         final ResponseEntity<List<GeoAreaDTO>> respDtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<GeoAreaDTO>>() {
         });

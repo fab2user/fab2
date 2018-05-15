@@ -15,7 +15,6 @@ public class CountryOfSyncDTO extends BaseDTO{
     //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     //    private Date lastSync;
     //
-    //    private Synchronization.SyncStatus lastSyncStatus;
 
     private String user;
 
@@ -54,14 +53,6 @@ public class CountryOfSyncDTO extends BaseDTO{
     public void setUrl(final String url) {
         this.url = url;
     }
-
-    //    public Date getLastSync() {
-    //        return this.lastSync;
-    //    }
-    //
-    //    public void setLastSync(final Date lastSync) {
-    //        this.lastSync = lastSync;
-    //    }
 
     public String getUser() {
         return this.user;
@@ -102,14 +93,6 @@ public class CountryOfSyncDTO extends BaseDTO{
     public void setFrequency(final String frequency) {
         this.frequency = frequency;
     }
-
-    //    public Synchronization.SyncStatus getLastSyncStatus() {
-    //        return this.lastSyncStatus;
-    //    }
-    //
-    //    public void setLastSyncStatus(final Synchronization.SyncStatus lastSyncStatus) {
-    //        this.lastSyncStatus = lastSyncStatus;
-    //    }
 
     public SynchronizationDTO getLastSynchronization() {
         return this.lastSynchronization;

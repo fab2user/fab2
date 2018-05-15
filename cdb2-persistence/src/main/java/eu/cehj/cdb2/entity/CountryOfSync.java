@@ -21,7 +21,7 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = 929915752303090598L;
 
-    public static enum SearchType{
+    public enum SearchType{
         MANAGED,LOCAL_WS,CDB
     }
 

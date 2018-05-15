@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -312,7 +313,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
                 return dto;
             }return null;
         }).
-                filter(entry -> entry != null).
+                filter(Objects::nonNull).
                 collect(Collectors.toList());
     }
 }
