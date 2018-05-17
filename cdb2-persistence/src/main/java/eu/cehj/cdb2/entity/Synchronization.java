@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "sync")
 public class Synchronization extends BaseAuditedEntity<String> {
 
-    public static  enum  SyncStatus{
+    public enum  SyncStatus{
         OK,
         ERROR,
         PENDING,

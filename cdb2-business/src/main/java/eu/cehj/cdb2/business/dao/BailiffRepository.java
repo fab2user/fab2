@@ -19,7 +19,7 @@ import eu.cehj.cdb2.entity.QBailiff;
 public interface BailiffRepository extends JpaRepository<Bailiff, Long>, QueryDslPredicateExecutor<Bailiff>, QuerydslBinderCustomizer<QBailiff> {
 
     @Override
-    default public void customize(final QuerydslBindings bindings, final QBailiff root) {
+    public default void customize(final QuerydslBindings bindings, final QBailiff root) {
         bindings.bind(String.class).first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
         // Allow use of alias city instead of ugly address.municipality.name
         bindings.bind(QBailiff.bailiff.address.municipality.name).as("city").first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
@@ -30,7 +30,7 @@ public interface BailiffRepository extends JpaRepository<Bailiff, Long>, QueryDs
     }
 
     @Query("SELECT b FROM Bailiff b WHERE b.deleted = true or b.deleted = false or b.deleted is null")
-    public List<Bailiff> getAllBailiffsEvenDeleted()throws Exception;
+    public List<Bailiff> getAllBailiffsEvenDeleted();
 
     @Override
     @Query("SELECT b FROM Bailiff b where b.deleted = false or b.deleted is null")

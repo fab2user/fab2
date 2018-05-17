@@ -16,7 +16,7 @@ public class CDBTask extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = 6342766955575124252L;
 
-    public static  enum  Status{
+    public enum  Status{
         OK,
         STARTED,
         ERROR,
@@ -24,7 +24,7 @@ public class CDBTask extends BaseAuditedEntity<String> {
         IN_PROGRESS
     }
 
-    public static  enum  Type{
+    public enum  Type{
         GEONAME_IMPORT,
         BAILIFF_IMPORT,
         BAILIFF_EXPORT

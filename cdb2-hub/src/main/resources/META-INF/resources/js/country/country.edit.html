@@ -44,11 +44,11 @@
           <div class="form-group">
             <label for="url" translate="country.field.url" class="col-md-3">url</label>
             <div class="col-md-9">
-              <input type="text" name="url" class="form-control" id="url" ng-model="countryEditCtrl.country.url" autofocus="autofocus">
-              <!-- FIXME: custom rule to validate url format (http://...) -->
-              <!-- <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.name.$error">
+              <input type="url" name="url" class="form-control" id="url" ng-model="countryEditCtrl.country.url" autofocus="autofocus" ng-required="countryEditCtrl.country.active">
+              <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.url.$error">
+                <div ng-message="url" class="text-danger">{{"global.form.url"|translate}}</div>
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
-              </div> -->
+              </div>
             </div>
           </div>
 
@@ -67,17 +67,27 @@
           </div>
 
           <div class="form-group">
+            <label for="searchtype" translate="country.field.search.type" class="col-md-3">search type</label>
+            <div class="col-md-9">
+              <select name="searchtype" class="form-control" id="searchtype" ng-model="countryEditCtrl.country.searchType" ng-options="searchType | translate for searchType in countryEditCtrl.searchTypes"
+                autofocus="autofocus" ng-change="countryEditCtrl.searchTypeChange()">
+                <option value="">{{'status.label.select.default.searchtype'|translate}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" ng-disabled="!countryEditCtrl.country.active" ng-hide="countryEditCtrl.country.searchType==='CDB'">
             <label for="active" translate="country.field.schedule" class="col-md-3">active</label>
             <div class="col-md-6">
               <div ng-repeat="day in countryEditCtrl.dayOfWeek">
-                <input type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek" checklist-value="day.id"> {{ day.value|translate }}
+                <input type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek" checklist-value="day.id">{{ day.value|translate }}
               </div>
             </div>
             <div class="col-md-3">
               <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false"></div>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
             <label for="active" translate="global.label.active" class="col-md-3">active</label>
             <div class="col-md-9">
               <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">

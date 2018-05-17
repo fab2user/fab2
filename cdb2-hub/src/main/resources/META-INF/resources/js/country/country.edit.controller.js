@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -12,7 +12,8 @@
     'moment',
     'toastr',
     'CountryAPIService',
-    'country'
+    'country',
+    'reference'
   ];
 
   function CountryEditController(
@@ -22,28 +23,52 @@
     moment,
     toastr,
     CountryAPIService,
-    country
+    country,
+    reference
   ) {
     var vm = this;
 
     // Making week start on Sunday, in accordance with Spring Scheduler...
-    vm.dayOfWeek = [
-      { id: 2, value: 'global.day.mon' },
-      { id: 3, value: 'global.day.tue' },
-      { id: 4, value: 'global.day.wed' },
-      { id: 5, value: 'global.day.thu' },
-      { id: 6, value: 'global.day.fri' },
-      { id: 7, value: 'global.day.sat' },
-      { id: 1, value: 'global.day.sun' }
+    vm.dayOfWeek = [{
+        id: 2,
+        value: 'global.day.mon'
+      },
+      {
+        id: 3,
+        value: 'global.day.tue'
+      },
+      {
+        id: 4,
+        value: 'global.day.wed'
+      },
+      {
+        id: 5,
+        value: 'global.day.thu'
+      },
+      {
+        id: 6,
+        value: 'global.day.fri'
+      },
+      {
+        id: 7,
+        value: 'global.day.sat'
+      },
+      {
+        id: 1,
+        value: 'global.day.sun'
+      }
     ];
 
     vm.modalInstance = $uibModalInstance;
 
     vm.country = country;
+    vm.searchTypes = reference.searchTypes;
 
     if (!vm.country.id) {
       //Set active to true by default
-      vm.country = { active: true };
+      vm.country = {
+        active: true
+      };
       // Set a default frequency
       vm.country.frequency = moment()
         .set('hour', 0)
@@ -57,7 +82,7 @@
       }
     }
 
-    vm.save = function(isValid) {
+    vm.save = function (isValid) {
       vm.errorsFromServer = null;
       if (isValid) {
         vm.submitted = true;
@@ -67,18 +92,32 @@
         }
 
         CountryAPIService.save({}, vm.country)
-          .$promise.then(function() {
+          .$promise.then(function () {
             $uibModalInstance.close('save');
             toastr.success($translate.instant('global.toastr.save.success'));
           })
-          .catch(function(err) {
+          .catch(function (err) {
             $log.error(err);
             vm.errorsFromServer = $translate.instant(err.data.message);
           })
-          .finally(function() {
+          .finally(function () {
             vm.submitted = false;
           });
       }
     };
+
+    vm.searchTypeChange = function () {
+      if (vm.country.searchType === 'CDB') {
+        vm.country.active = false;
+        vm.country.daysOfWeek = [];
+        setDefaultFrequency();
+      }
+    };
+
+    function setDefaultFrequency() {
+      vm.country.frequency = moment()
+        .set('hour', 0)
+        .set('minute', 0);
+    }
   }
 })();

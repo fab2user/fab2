@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,6 +20,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class CountryOfSync extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = 929915752303090598L;
+
+    public enum SearchType{
+        MANAGED,LOCAL_WS,CDB
+    }
 
     @Column(name = "name", nullable=false)
     private String name;
@@ -44,11 +50,12 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     @Column(name = "frequency", nullable = false, length = 5)
     private String frequency;
 
-    @Column(name = "managed")
-    private boolean managed;
-
     @Column(name="days_of_week")
     private String daysOfWeek;
+
+    @Column(name="search_type")
+    @Enumerated(EnumType.STRING)
+    private SearchType searchType;
 
     public String getName() {
         return this.name;
@@ -110,20 +117,20 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
         this.frequency = frequency;
     }
 
-    public boolean isManaged() {
-        return this.managed;
-    }
-
-    public void setManaged(final boolean managed) {
-        this.managed = managed;
-    }
-
     public String getDaysOfWeek() {
         return this.daysOfWeek;
     }
 
     public void setDaysOfWeek(final String daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
+    }
+
+    public SearchType getSearchType() {
+        return this.searchType;
+    }
+
+    public void setSearchType(final SearchType searchType) {
+        this.searchType = searchType;
     }
 
 }

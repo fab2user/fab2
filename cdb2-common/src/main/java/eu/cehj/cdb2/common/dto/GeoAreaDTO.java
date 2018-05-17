@@ -8,7 +8,7 @@ public class GeoAreaDTO extends BaseDTO{
     private static final long serialVersionUID = -6905423455133856283L;
 
     private String name;
-    private List<MunicipalityDTO> municipalities = new ArrayList<MunicipalityDTO>();
+    private List<MunicipalityDTO> municipalities = new ArrayList<>();
     private String zipCodes = "";
 
     public GeoAreaDTO() {

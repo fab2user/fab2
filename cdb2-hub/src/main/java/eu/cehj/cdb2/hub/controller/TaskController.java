@@ -31,13 +31,13 @@ public class TaskController extends BaseController {
 
     @RequestMapping(method = GET, value = "{taskId}")
     @ResponseStatus(value = OK)
-    public SynchronizationDTO get(@PathVariable final Long taskId) throws Exception{
+    public SynchronizationDTO get(@PathVariable final Long taskId){
         return this.syncService.getDTO(taskId);
     }
 
     @RequestMapping(method = GET)
     @ResponseStatus(value = OK)
-    public Page<SynchronizationDTO> get(final TaskSearch search, final Pageable pageable) throws Exception{
+    public Page<SynchronizationDTO> get(final TaskSearch search, final Pageable pageable){
         // Here we can't use standard querydsl/springboot web query parameters handling because of the date before/after stuff...
         final BooleanBuilder where = new BooleanBuilder();
         if(search.getDateBefore() != null) {
@@ -59,13 +59,13 @@ public class TaskController extends BaseController {
 
     @RequestMapping(method = GET, value = "last")
     @ResponseStatus(value = OK)
-    public List<SynchronizationDTO> getLastTasks() throws Exception{
+    public List<SynchronizationDTO> getLastTasks(){
         return this.syncService.getLastByCountry();
     }
 
     @RequestMapping(method = GET, value = "status")
     @ResponseStatus(value = OK)
-    public SyncStatus[] getAllStatus() throws Exception{
+    public SyncStatus[] getAllStatus(){
         return SyncStatus.values();
     }
 

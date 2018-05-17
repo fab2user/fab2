@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.hub.service;
+package eu.cehj.cdb2.hub.service.search;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
@@ -15,13 +15,13 @@ import eu.cehj.cdb2.hub.service.soap.france.Etude;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInsee;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInseeResponse;
 
-public class FranceSearchService extends WebServiceGatewaySupport implements SearchService {
+public class FranceSearchService extends WebServiceGatewaySupport implements LocalWSSearchService {
 
     @Value("${cdb.france.soap.action}")
     private String soapAction;
 
     @Override
-    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) throws Exception {
+    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params){
         final ListeEtudeByInsee req = new ListeEtudeByInsee();
         final String postalCode = params.getFirst("postalCode");
         if (isNotBlank(postalCode)) {
@@ -34,7 +34,7 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Sea
         final ListeEtudeByInseeResponse resp = (ListeEtudeByInseeResponse) this.getWebServiceTemplate().marshalSendAndReceive(req,
                 new SoapActionCallback(this.soapAction));
         final List<Etude> rawBailiffs = resp.getListeEtudeByInseeResult().getEtude();
-        return rawBailiffs.stream().map(e -> this.convertEtudeToDTO(e)).collect(Collectors.toList());
+        return rawBailiffs.stream().map(this::convertEtudeToDTO).collect(Collectors.toList());
     }
 
     private BailiffDTO convertEtudeToDTO(final Etude e) {
@@ -48,7 +48,7 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Sea
         dto.setPhone(e.getTel());
         dto.setFax(e.getFax());
         dto.setWebSite(e.getWeb());
-        //TODO: Finish this stuff
+        dto.setOpenHours(e.getHor());
         return dto;
     }
 

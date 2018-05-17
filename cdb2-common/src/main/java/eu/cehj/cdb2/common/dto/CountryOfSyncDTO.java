@@ -1,5 +1,7 @@
 package eu.cehj.cdb2.common.dto;
 
+import eu.cehj.cdb2.entity.CountryOfSync.SearchType;
+
 public class CountryOfSyncDTO extends BaseDTO{
 
     private static final long serialVersionUID = -6448266488847252561L;
@@ -13,7 +15,6 @@ public class CountryOfSyncDTO extends BaseDTO{
     //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     //    private Date lastSync;
     //
-    //    private Synchronization.SyncStatus lastSyncStatus;
 
     private String user;
 
@@ -26,6 +27,8 @@ public class CountryOfSyncDTO extends BaseDTO{
     private String frequency;
 
     private SynchronizationDTO lastSynchronization;
+
+    private SearchType searchType;
 
     public String getName() {
         return this.name;
@@ -50,14 +53,6 @@ public class CountryOfSyncDTO extends BaseDTO{
     public void setUrl(final String url) {
         this.url = url;
     }
-
-    //    public Date getLastSync() {
-    //        return this.lastSync;
-    //    }
-    //
-    //    public void setLastSync(final Date lastSync) {
-    //        this.lastSync = lastSync;
-    //    }
 
     public String getUser() {
         return this.user;
@@ -99,20 +94,20 @@ public class CountryOfSyncDTO extends BaseDTO{
         this.frequency = frequency;
     }
 
-    //    public Synchronization.SyncStatus getLastSyncStatus() {
-    //        return this.lastSyncStatus;
-    //    }
-    //
-    //    public void setLastSyncStatus(final Synchronization.SyncStatus lastSyncStatus) {
-    //        this.lastSyncStatus = lastSyncStatus;
-    //    }
-
     public SynchronizationDTO getLastSynchronization() {
         return this.lastSynchronization;
     }
 
     public void setLastSynchronization(final SynchronizationDTO lastSynchronization) {
         this.lastSynchronization = lastSynchronization;
+    }
+
+    public SearchType getSearchType() {
+        return this.searchType;
+    }
+
+    public void setSearchType(final SearchType searchType) {
+        this.searchType = searchType;
     }
 
 }

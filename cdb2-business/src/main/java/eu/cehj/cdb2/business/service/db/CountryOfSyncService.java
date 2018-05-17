@@ -11,8 +11,8 @@ import eu.cehj.cdb2.entity.CountryOfSync;
 @Service
 public interface CountryOfSyncService extends BaseService<CountryOfSync, CountryOfSyncDTO, Long> {
 
-    public CountryOfSync getByCountryCode(String countryCode)throws Exception;
+    public CountryOfSync getByCountryCode(String countryCode);
 
-    public List<CountryOfSyncRefDTO> getAllRefDTO() throws Exception;
+    public List<CountryOfSyncRefDTO> getAllRefDTO();
 
 }

@@ -23,10 +23,10 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
     @Autowired
     private SynchronizationService syncService;
 
-    private final String CRON_SEPARATOR = ",";
+    private static final String CRON_SEPARATOR = ",";
 
     @Override
-    public CountryOfSync populateEntityFromDTO(final CountryOfSyncDTO dto) throws Exception {
+    public CountryOfSync populateEntityFromDTO(final CountryOfSyncDTO dto) {
         final CountryOfSync entity = dto.getId() == null ? new CountryOfSync() : this.get(dto.getId());
         entity.setActive(dto.isActive());
         entity.setName(dto.getName());
@@ -34,19 +34,20 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         entity.setUser(dto.getUser());
         entity.setPassword(dto.getPassword());
         entity.setCountryCode(dto.getCountryCode());
-        entity.setDaysOfWeek(this.intArrayToString(dto.getDaysOfWeek()));
+        if(dto.getDaysOfWeek() != null) {
+            entity.setDaysOfWeek(this.intArrayToString(dto.getDaysOfWeek()));
+        }
         entity.setFrequency(dto.getFrequency());
+        entity.setSearchType(dto.getSearchType());
         return entity;
     }
 
     @Override
-    public CountryOfSyncDTO populateDTOFromEntity(final CountryOfSync entity) throws Exception {
+    public CountryOfSyncDTO populateDTOFromEntity(final CountryOfSync entity){
         final CountryOfSyncDTO dto = new CountryOfSyncDTO();
         final Synchronization sync = this.syncService.getLastByCountry(entity.getId());
         if(sync != null) {
             final SynchronizationDTO syncDTO = this.syncService.populateDTOFromEntity(sync);
-            //            dto.setLastSync(sync.getEndDate());
-            //            dto.setLastSyncStatus(sync.getStatus());
             dto.setLastSynchronization(syncDTO);
         }
         dto.setName(entity.getName());
@@ -58,20 +59,20 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setDaysOfWeek(this.stringToIntArray(entity.getDaysOfWeek()));
         dto.setCountryCode(entity.getCountryCode());
         dto.setFrequency(entity.getFrequency());
-
+        dto.setSearchType(entity.getSearchType());
         return dto;
     }
 
     @Override
-    public CountryOfSync getByCountryCode(final String countryCode) throws Exception {
+    public CountryOfSync getByCountryCode(final String countryCode) {
         return this.repository.getByCountryCode(countryCode);
     }
 
     @Override
-    public List<CountryOfSyncRefDTO> getAllRefDTO() throws Exception {
+    public List<CountryOfSyncRefDTO> getAllRefDTO(){
         return this.getAll()
                 .stream()
-                .map(entity -> this.populateRefDTOFromEntity(entity))
+                .map(this::populateRefDTOFromEntity)
                 .collect(Collectors.toList());
     }
 
@@ -88,12 +89,12 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         for (int ind = 0;ind<intArray.length;ind++) {
             stArray[ind] = Integer.toString(intArray[ind]);
         }
-        return Arrays.stream(stArray).collect(Collectors.joining(this.CRON_SEPARATOR));
+        return Arrays.stream(stArray).collect(Collectors.joining(CRON_SEPARATOR));
     }
 
     private int[] stringToIntArray(final String st) {
         if(StringUtils.isNotBlank(st)) {
-            final String[]strs = st.split(this.CRON_SEPARATOR);
+            final String[]strs = st.split(CRON_SEPARATOR);
             final int[]ints = new int[strs.length];
             for(int i = 0;i<ints.length;i++) {
                 ints[i] = Integer.parseInt(strs[i]);

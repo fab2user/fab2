@@ -30,7 +30,7 @@ import eu.cehj.cdb2.hub.service.central.push.schedule.CDBJob;
 @Configuration
 public class QuartzConfig {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(QuartzConfig.class);
 
     @Value("${cdb.job.key}")
     private String cdbJobKey;
@@ -41,7 +41,7 @@ public class QuartzConfig {
     @Bean
     public SpringBeanJobFactory springBeanJobFactory() {
         final AutoWiringSpringBeanJobFactory jobFactory = new AutoWiringSpringBeanJobFactory();
-        this.logger.debug("Configuring Job factory");
+        LOGGER.debug("Configuring Job factory");
         jobFactory.setApplicationContext(this.applicationContext);
         return jobFactory;
     }
@@ -52,12 +52,12 @@ public class QuartzConfig {
         final StdSchedulerFactory factory = new StdSchedulerFactory();
         factory.initialize(new ClassPathResource("quartz.properties").getInputStream());
 
-        this.logger.debug("Getting a handle to the Scheduler");
+        LOGGER.debug("Getting a handle to the Scheduler");
         final Scheduler scheduler = factory.getScheduler();
         scheduler.setJobFactory(this.springBeanJobFactory());
         // CDB job is immutable, but we'll create dynamically as much triggers as countries for which we need sync
         scheduler.addJob(job, true);
-        this.logger.debug("Starting Scheduler threads");
+        LOGGER.debug("Starting Scheduler threads");
         scheduler.start();
         return scheduler;
     }

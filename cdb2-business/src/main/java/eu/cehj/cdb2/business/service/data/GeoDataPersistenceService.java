@@ -28,7 +28,8 @@ public class GeoDataPersistenceService implements DataPersistenceService {
     @Autowired
     AdminAreaSubdivisionMiddleService  adminAreaSubdivisionMiddleService;
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GeoDataPersistenceService.class);
 
     @Override
     @Transactional
@@ -39,7 +40,7 @@ public class GeoDataPersistenceService implements DataPersistenceService {
             this.adminAreaSubdivisionMiddleService.updateAreaFromStructure(geoStructure, helper);
             this.adminAreaSubdivisionMinorService.updateAreaFromStructure(geoStructure, helper);
             this.municipalityService.updateAreaFromStructure(geoStructure, helper);
-            this.logger.debug("Area processed: " + geoStructure.toString());
+            LOGGER.debug("Area processed: " + geoStructure.toString());
         });
     }
 }

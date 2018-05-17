@@ -96,4 +96,10 @@
             <column name="days_of_week" type="varchar(30)"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="hub-15" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="search_type" type="varchar(30)"></column>
+        </addColumn>
+        <dropColumn tableName="country_sync" columnName="managed"/>
+    </changeSet>
 </databaseChangeLog>

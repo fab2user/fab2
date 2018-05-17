@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.hub.service;
+package eu.cehj.cdb2.hub.service.search;
 
 import java.util.List;
 
@@ -34,14 +34,13 @@ public class DefaultManagedSearchService extends ManagedSearchService {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) throws Exception {
+    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) {
         final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
         final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(cos.getUrl() + "/" + this.settings.getSearchUrl()).queryParams(params);
         final ResponseEntity<List<BailiffDTO>> dtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<BailiffDTO>>() {
         });
-        this.logger.debug(dtos.toString());
         return dtos.getBody();
     }
 

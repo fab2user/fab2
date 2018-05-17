@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -28,11 +25,8 @@ import eu.cehj.cdb2.entity.Municipality;
 @Service
 public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, MunicipalityDTO, Long, MunicipalityRepository> implements MunicipalityService {
 
-    @Autowired
-    private EntityManager em;
-
     @Override
-    public MunicipalityDTO save(final MunicipalityDTO municipalityDTO) throws Exception {
+    public MunicipalityDTO save(final MunicipalityDTO municipalityDTO) {
         Municipality entity = municipalityDTO.getId() == null ? new Municipality() : this.get(municipalityDTO.getId());
 
         BeanUtils.copyProperties(municipalityDTO, entity);
@@ -43,7 +37,7 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Munic
     }
 
     @Override
-    public List<MunicipalityDTO> getAllDTO() throws Exception {
+    public List<MunicipalityDTO> getAllDTO() {
 
         final List<Municipality> municipalities = this.repository.findAllByOrderByPostalCode();
         final List<MunicipalityDTO> municipalityDTOs = new ArrayList<>(municipalities.size());
@@ -70,7 +64,7 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Munic
     }
 
     @Override
-    public Page<MunicipalityDTO> findAll(final Predicate predicate, final Pageable pageable) throws Exception {
+    public Page<MunicipalityDTO> findAll(final Predicate predicate, final Pageable pageable) {
         final Page<Municipality> entities = this.repository.findAll(predicate, pageable);
         final List<MunicipalityDTO> dtos = new ArrayList<>();
         final Iterator<Municipality> it = entities.iterator();
@@ -122,13 +116,12 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Munic
     }
 
     @Override
-    public Municipality populateEntityFromDTO(final MunicipalityDTO dto) throws Exception {
-        // TODO Auto-generated method stub
+    public Municipality populateEntityFromDTO(final MunicipalityDTO dto)  {
         return null;
     }
 
     @Override
-    public Municipality getByPostalCodeAndName(final String postalCode, final String name) throws Exception {
+    public Municipality getByPostalCodeAndName(final String postalCode, final String name) {
         return this.repository.getByPostalCodeAndName(postalCode, name);
     }
 

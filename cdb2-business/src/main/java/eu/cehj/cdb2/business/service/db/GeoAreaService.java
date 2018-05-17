@@ -15,12 +15,12 @@ import eu.cehj.cdb2.entity.GeoArea;
 @Service
 public interface GeoAreaService extends BaseService<GeoArea, GeoAreaDTO, Long>{
 
-    public GeoAreaDTO saveDTO(GeoAreaDTO dto) throws Exception;
+    public GeoAreaDTO saveDTO(GeoAreaDTO dto);
 
-    public GeoAreaSimpleDTO getSimpleDTO(Long id) throws Exception;
+    public GeoAreaSimpleDTO getSimpleDTO(Long id);
 
-    public List<GeoAreaSimpleDTO> getAllSimpleDTO() throws Exception;
+    public List<GeoAreaSimpleDTO> getAllSimpleDTO();
 
-    public Page<GeoAreaDTO> findAll(Predicate predicate, Pageable pageable) throws Exception;
+    public Page<GeoAreaDTO> findAll(Predicate predicate, Pageable pageable);
 
 }

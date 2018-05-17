@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.TriggerKey;
 import org.quartz.impl.matchers.GroupMatcher;
@@ -23,7 +24,7 @@ import eu.cehj.cdb2.entity.CountryOfSync;
 @Service
 public class ScheduleWatcher {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(ScheduleWatcher.class);
 
     @Value("${cdb.job.key}")
     private String cdbJobKey;
@@ -38,26 +39,29 @@ public class ScheduleWatcher {
     Scheduler scheduler;
 
     @Scheduled(fixedDelayString = "${cdb.job.watcher.schedule.millis}")
-    public void watch() throws Exception {
+    public void watch() throws SchedulerException{
         this.showSchedulerDetails();
         final List<CountryOfSync> coss = this.cosService.getAll();
         for (final CountryOfSync cos : coss) {
-            this.logger.debug(cos.getCountryCode() + " -> " + cos.getDaysOfWeek() + " | " + cos.getFrequency());
+            LOGGER.debug(cos.getCountryCode() + " -> " + cos.getDaysOfWeek() + " | " + cos.getFrequency());
             this.compareWithScheduled(cos) ;
 
         }
 
     }
 
-    private void compareWithScheduled(final CountryOfSync cos) throws Exception {
+    private void compareWithScheduled(final CountryOfSync cos) throws SchedulerException{
         final boolean triggerPresent = this.scheduler.checkExists(this.generateTriggerKey(cos));
         if (!triggerPresent) {
-            this.logger.debug("Trigger for " + cos.getCountryCode() + " doesn't exist => create it");
-            final Trigger trigger = this.createTrigger(cos);
-            this.scheduler.scheduleJob(trigger);
+            LOGGER.debug("Trigger unknown for country " + cos.getName());
+            if(cos.isActive()) {
+                LOGGER.debug("Country is active: create relevant trigger !");
+                final Trigger trigger = this.createTrigger(cos);
+                this.scheduler.scheduleJob(trigger);
+            }
         } else {
             final Trigger trigger = this.scheduler.getTrigger(this.generateTriggerKey(cos));
-            if (!trigger.getDescription().equals(cos.getFrequency())) {
+            if (!trigger.getDescription().equals(cos.getFrequency()) || !cos.isActive()) {
                 this.scheduler.unscheduleJob(trigger.getKey());
                 this.compareWithScheduled(cos);
             }
@@ -66,8 +70,7 @@ public class ScheduleWatcher {
     }
 
     private TriggerKey generateTriggerKey(final CountryOfSync cos) {
-        final TriggerKey triggerKey = TriggerKey.triggerKey(cos.getCountryCode() + "-" + cos.getId(), this.cdbJobGroup);
-        return triggerKey;
+        return TriggerKey.triggerKey(cos.getCountryCode() + "-" + cos.getId(), this.cdbJobGroup);
     }
 
     private Trigger createTrigger(final CountryOfSync cos) {
@@ -80,7 +83,7 @@ public class ScheduleWatcher {
                 .withDescription(cos.getFrequency())
                 .build();
 
-        this.logger.debug("Trigger created, with key: " + trigger.getKey().toString());
+        LOGGER.debug("Trigger created, with key: " + trigger.getKey().toString());
         return trigger;
     }
 
@@ -94,23 +97,23 @@ public class ScheduleWatcher {
     }
 
     @SuppressWarnings("unchecked")
-    private void showSchedulerDetails() throws Exception {
+    private void showSchedulerDetails() throws SchedulerException{
         for (final String groupName : this.scheduler.getJobGroupNames()) {
 
             for (final JobKey jobKey : this.scheduler.getJobKeys(GroupMatcher.jobGroupEquals(groupName))) {
 
                 final String jobName = jobKey.getName();
                 final String jobGroup = jobKey.getGroup();
-                this.logger.debug("[jobName] : " + jobName + " [groupName] : " + jobGroup);
+                LOGGER.debug("[jobName] : {} - [groupName] : {}", jobName, jobGroup);
                 //get job's triggers
                 final List<Trigger> triggers = (List<Trigger>) this.scheduler.getTriggersOfJob(jobKey);
                 for (final Trigger trigger : triggers) {
-                    this.logger.debug(trigger.getKey().toString() + " -> " + trigger.getNextFireTime());
+                    LOGGER.debug("{} -> {}",trigger.getKey(), trigger.getNextFireTime());
                 }
 
             }
 
         }
-        this.logger.debug("==============================================================================");
+        LOGGER.debug("==============================================================================");
     }
 }

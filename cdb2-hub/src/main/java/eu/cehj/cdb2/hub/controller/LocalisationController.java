@@ -1,5 +1,6 @@
 package eu.cehj.cdb2.hub.controller;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,11 @@ public class LocalisationController extends BaseController{
 
     @RequestMapping(method = GET, value = "localisation", produces = "application/json")
     @ResponseStatus(value = OK)
-    public @ResponseBody String getLocalisation(@RequestParam final String lang) throws Exception {
+    public @ResponseBody String getLocalisation(@RequestParam final String lang) throws IOException {
         final Resource resource = this.context.getResource(String.format("%s/%s.properties", this.i18nFilesLocation, lang ));
         final Properties props =   new Properties();
         props.load(resource.getInputStream());
 
-        final String json = PropertiesToJsonParser.parseToJson(props);
-        return json;
+        return PropertiesToJsonParser.parseToJson(props);
     }
 }
