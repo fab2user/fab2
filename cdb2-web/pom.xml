@@ -3,9 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>eu.cehj</groupId>
     <artifactId>cdb2-web</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>cdb2-web</name>
@@ -14,10 +12,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <!-- <groupId>org.springframework.boot</groupId> -->
-        <!-- <artifactId>spring-boot-starter-parent</artifactId> -->
-        <!-- <version>1.5.9.RELEASE</version> -->
+        <version>${project.release}</version>
     </parent>
 
     <properties>
