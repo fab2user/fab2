@@ -3,6 +3,7 @@ package eu.cehj.cdb2.business.service.data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,8 +15,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.CDBTaskService;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.common.service.StorageService;
 import eu.cehj.cdb2.entity.CDBTask;
 import eu.cehj.cdb2.entity.CDBTask.Status;
@@ -47,7 +48,7 @@ public class GeoDataImportService implements DataImportService {
         this.task = task;
         task.setStatus(CDBTask.Status.IN_PROGRESS);
         this.taskService.save(task);
-        try (final BufferedReader reader = new BufferedReader(new InputStreamReader(this.storageService.loadFile(fileName).getInputStream()))) {
+        try (final BufferedReader reader = new BufferedReader(new InputStreamReader(this.storageService.loadFile(fileName).getInputStream(),StandardCharsets.UTF_8))) {
 
             List<GeoDataStructure> dataStructures;
             try {
@@ -73,7 +74,8 @@ public class GeoDataImportService implements DataImportService {
         }
     }
 
-    private void processError(final CDBTask task, final String errorMessage, final Exception e) {
+    @Override
+    public void processError(final CDBTask task, final String errorMessage, final Exception e) {
         LOGGER.error(errorMessage);
         task.setEndDate(new Date());
         task.setType(CDBTask.Type.GEONAME_IMPORT);

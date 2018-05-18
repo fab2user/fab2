@@ -64,7 +64,12 @@
                 }
               })
               .catch(function (err) {
+                // As we got an error from server and we display it in the component, we don't need to display it also in notif panel
+                // It's relevant to display server error in the component in this case because user is focused on the component, and not in the top of the page
                 $log.error(err);
+                $rootScope.$broadcast(EVENT.GEONAME_IMPORT, {
+                  status: STATUS.CANCEL
+                });
                 vm.errorsFromServer = $translate.instant(err.data.message);
               })
               .finally(function () {

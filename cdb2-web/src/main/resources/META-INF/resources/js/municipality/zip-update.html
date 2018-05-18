@@ -31,7 +31,7 @@
                     <div ng-message="empty" class="text-danger">{{"municipality.error.file.required"|translate}}</div>
                     <div ng-message="maxSize" class="text-danger">{{"municipality.error.file.max.size"|translate}}</div>
                 </div>
-                <div class="alert alert-danger" role="alert" ng-if="zipCtrl.errorsFromServer">
+                <div uib-alert class="alert alert-danger" role="alert" ng-if="zipCtrl.errorsFromServer" close="zipCtrl.errorsFromServer=undef">
                     <strong>{{ zipCtrl.errorsFromServer }}</strong>
                 </div>
             </div>

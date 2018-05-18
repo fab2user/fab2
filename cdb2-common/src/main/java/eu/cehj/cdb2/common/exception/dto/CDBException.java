@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.business.exception;
+package eu.cehj.cdb2.common.exception.dto;
 
 public class CDBException extends RuntimeException {
 
