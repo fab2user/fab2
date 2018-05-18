@@ -5,7 +5,7 @@
 
     <groupId>eu.cehj</groupId>
     <artifactId>cdb2-parent</artifactId>
-    <version>${project.release}</version>
+    <version>0.4</version>
     <packaging>pom</packaging>
 
     <name>cdb2-parent</name>
@@ -19,7 +19,6 @@
         <mysql.version>5.1.45</mysql.version>
         <querydsl.version>4.1.3</querydsl.version>
         <springboot.version>1.5.9.RELEASE</springboot.version>
-        <project.release>0.4</project.release>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
