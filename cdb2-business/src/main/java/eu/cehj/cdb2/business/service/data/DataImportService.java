@@ -11,4 +11,6 @@ public interface DataImportService {
 
     public void importData(String fileName, CDBTask task) throws IOException;
 
+    public void processError(CDBTask task, String errorMessage, Exception e);
+
 }

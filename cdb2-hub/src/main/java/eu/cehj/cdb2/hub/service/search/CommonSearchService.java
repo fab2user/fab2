@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
-import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.entity.CountryOfSync.SearchType;
 

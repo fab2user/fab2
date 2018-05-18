@@ -1,6 +1,5 @@
 package eu.cehj.cdb2.web.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,7 +23,6 @@ import static org.springframework.http.HttpStatus.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.data.DataImportService;
 import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
@@ -83,9 +81,9 @@ public class MunicipalityController extends BaseController {
         try {
             this.storageService.store(file);
             this.importService.importData(file.getOriginalFilename(), task);
-        } catch (final IOException e) {
+        } catch (final Exception e) {
             LOGGER.error(e.getMessage(),e);
-            throw new CDBException(e.getMessage(),e);
+            this.importService.processError(task, String.format("Error occured while processing data: %s", e.getMessage()), e);
         }
         return this.taskService.getDTO(task.getId());
     }

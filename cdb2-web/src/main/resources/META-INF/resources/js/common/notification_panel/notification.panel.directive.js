@@ -41,6 +41,7 @@
           vm.visible = false;
         };
 
+        // Here we have to add a STATUS.CANCEL which is to be fired when a process has been canceled and we don't want to show a message in notif panel
         vm.processEvent = function (statusObj) {
           vm.spin = true;
           vm.visible = true;
@@ -56,6 +57,10 @@
               vm.style = 'notification-failure';
               vm.spin = false;
               vm.message = statusObj.message;
+              break;
+            case STATUS.CANCEL:
+              vm.spin = false;
+              vm.visible = false;
               break;
             default:
               vm.message = $translate.instant('monitoring.message.processing');

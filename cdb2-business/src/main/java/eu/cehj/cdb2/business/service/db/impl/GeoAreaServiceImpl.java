@@ -19,13 +19,13 @@ import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAUpdateClause;
 
 import eu.cehj.cdb2.business.dao.GeoAreaRepository;
-import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.BailiffCompetenceAreaService;
 import eu.cehj.cdb2.business.service.db.GeoAreaService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
 import eu.cehj.cdb2.common.dto.GeoAreaDTO;
 import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.entity.BailiffCompetenceArea;
 import eu.cehj.cdb2.entity.GeoArea;
 import eu.cehj.cdb2.entity.Municipality;
@@ -47,7 +47,7 @@ public class GeoAreaServiceImpl extends BaseServiceImpl<GeoArea, GeoAreaDTO, Lon
 
         final List<GeoArea> areas = this.repository.findAll();
 
-        LOGGER.debug("areas found: " + areas.size());
+        LOGGER.debug("areas found: {}", areas.size());
         return areas.stream().map(this::populateDTOFromEntity).collect(Collectors.toList());
     }
 

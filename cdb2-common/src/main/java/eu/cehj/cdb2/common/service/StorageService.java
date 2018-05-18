@@ -29,9 +29,9 @@ public class StorageService {
             Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
         }catch(final FileAlreadyExistsException e) {
             final String fileName = file.getOriginalFilename();
-            LOGGER.warn(String.format("File '%s' already exists: deleting it", fileName));
+            LOGGER.warn("File '{}' already exists: deleting it", fileName);
             this.deleteFile(fileName);
-            throw e;
+            throw new eu.cehj.cdb2.common.exception.dto.CDBException("A remaining old file prevented the process to complete. Please try again.");
         }
     }
 

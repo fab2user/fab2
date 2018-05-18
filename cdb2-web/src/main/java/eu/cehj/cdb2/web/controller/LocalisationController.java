@@ -19,7 +19,7 @@ import static org.springframework.http.HttpStatus.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-import eu.cehj.cdb2.business.exception.CDBException;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
 import pl.jalokim.propertiestojson.util.PropertiesToJsonParser;
 
 /**
