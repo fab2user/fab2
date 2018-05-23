@@ -7,6 +7,8 @@
     '$http',
     '$translate',
     '$interval',
+    '$location',
+    '$anchorScroll',
     'toastr',
     'SERVER',
     'EVENT',
@@ -20,6 +22,8 @@
     $http,
     $translate,
     $interval,
+    $location,
+    $anchorScroll,
     toastr,
     SERVER,
     EVENT,
@@ -30,11 +34,13 @@
       controllerAs: 'zipCtrl',
       templateUrl: '/js/municipality/zip-update.html',
       controller: [
-        '$rootScope',
-        function ($rootScope) {
+        '$rootScope', '$scope',
+        function ($rootScope, $scope) {
           var vm = this;
           vm.submitted = false;
+          vm.uploadVisible = true;
           vm.upload = function () {
+            vm.closeErrorNotification();
             if (!vm.file) {
               vm.form.file.$setValidity('empty', false);
               return;
@@ -61,10 +67,17 @@
                 vm.file = null;
                 if (success.data.id) {
                   vm.startPolling(success.data.id);
+                  $location.hash('page-header');
+                  $anchorScroll();
                 }
               })
               .catch(function (err) {
+                // As we got an error from server and we display it in the component, we don't need to display it also in notif panel
+                // It's relevant to display server error in the component in this case because user is focused on the component, and not in the top of the page
                 $log.error(err);
+                $rootScope.$broadcast(EVENT.GEONAME_IMPORT, {
+                  status: STATUS.CANCEL
+                });
                 vm.errorsFromServer = $translate.instant(err.data.message);
               })
               .finally(function () {
@@ -105,6 +118,14 @@
 
           vm.removeFile = function () {
             delete vm.file;
+          };
+
+          $scope.$on(EVENT.GEONAME_IMPORT, function ($event, statusObj) {
+            vm.uploadVisible = !(statusObj.status === STATUS.IN_PROGRESS);
+          });
+
+          vm.closeErrorNotification = function () {
+            vm.errorsFromServer = undefined;
           };
         }
       ]

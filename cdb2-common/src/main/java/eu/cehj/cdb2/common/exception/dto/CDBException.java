@@ -1,4 +1,4 @@
-package eu.cehj.cdb2.business.exception;
+package eu.cehj.cdb2.common.exception.dto;
 
 public class CDBException extends RuntimeException {
 
@@ -6,7 +6,7 @@ public class CDBException extends RuntimeException {
 
     private String messageCode;
 
-    // FIXME: Find a way to identify a message code
+    // TODO: Find a way to identify a message code
     public CDBException(final String message) {
         super(message);
     }

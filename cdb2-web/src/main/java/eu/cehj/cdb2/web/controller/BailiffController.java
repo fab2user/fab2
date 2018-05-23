@@ -34,11 +34,11 @@ import static org.springframework.http.HttpStatus.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.common.service.StorageService;
 import eu.cehj.cdb2.entity.Bailiff;
 import eu.cehj.cdb2.entity.CDBTask;
@@ -146,7 +146,7 @@ public class BailiffController extends BaseController {
             final String exportFilePath = this.bailiffImportService.export(this.settings.getCountryCode());
             final Path path = Paths.get(exportFilePath);
             final ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-            LOGGER.debug("headers : " + resource.getFilename());
+            LOGGER.debug("headers : {}", resource.getFilename());
             return ResponseEntity.ok()
                     .contentLength(resource.contentLength())
                     .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))

@@ -28,12 +28,12 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.cehj.cdb2.business.exception.CDBException;
 import eu.cehj.cdb2.business.service.db.AddressService;
 import eu.cehj.cdb2.business.service.db.BailiffService;
 import eu.cehj.cdb2.business.service.db.CDBTaskService;
 import eu.cehj.cdb2.business.service.db.LanguageService;
 import eu.cehj.cdb2.business.service.db.MunicipalityService;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.common.service.StorageService;
 import eu.cehj.cdb2.entity.Address;
 import eu.cehj.cdb2.entity.Bailiff;

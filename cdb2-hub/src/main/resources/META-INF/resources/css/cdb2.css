@@ -124,8 +124,8 @@ a.glyphicon {
   text-align: right;
 }
 
-.table-bordered.data-grid > thead > tr > td,
-.table-bordered.data-grid > thead > tr > th {
+.table-bordered.data-grid>thead>tr>td,
+.table-bordered.data-grid>thead>tr>th {
   border-bottom-width: 1px;
 }
 
@@ -187,4 +187,12 @@ a.glyphicon {
 
 .icon-in-col {
   width: 2%;
+}
+
+.brand-image {
+  height: 4em;
+}
+
+.navbar-custom-menu {
+  margin-left: 10em !important;
 }

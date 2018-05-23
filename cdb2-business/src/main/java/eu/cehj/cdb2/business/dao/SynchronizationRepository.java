@@ -38,7 +38,7 @@ public interface SynchronizationRepository extends JpaRepository<Synchronization
 
 
     @Override
-    default public void customize(final QuerydslBindings bindings, final QSynchronization root) {
+    default void customize(final QuerydslBindings bindings, final QSynchronization root) {
         bindings.bind(String.class).first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
         final Calendar calStart = new GregorianCalendar(1900,0,1);
         final Date startDate = new Date(calStart.getTimeInMillis());
@@ -46,11 +46,6 @@ public interface SynchronizationRepository extends JpaRepository<Synchronization
         final Date endDate = new Date(calEnd.getTimeInMillis());
         bindings.bind(QSynchronization.synchronization.startDate).as("dateBefore").first((final DateTimePath<Date> path, final Date value) -> path.between(startDate, value));
         bindings.bind(QSynchronization.synchronization.endDate).as("dateAfter").first((final DateTimePath<Date> path, final Date value) -> path.between(value, endDate));
-
-        //            // Allow use of alias city instead of ugly address.municipality.name
-        //            bindings.bind(QBailiff.bailiff.address.municipality.name).as("city").first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
-        //            //FIXME: Filter by competence works only when when alone or associated with city, but breaks with bailiff.name...
-        //            bindings.bind(QBailiff.bailiff.bailiffCompetenceAreas.any().competence.code).as("competence").first((final StringPath path, final String value) -> path.containsIgnoreCase(value));
 
     }
 }

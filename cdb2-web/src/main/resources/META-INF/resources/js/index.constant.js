@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -22,6 +22,7 @@
     .constant('STATUS', {
       IN_PROGRESS: 'IN_PROGRESS',
       OK: 'OK',
-      ERROR: 'ERROR'
+      ERROR: 'ERROR',
+      CANCEL: 'CANCEL'
     });
 })();
