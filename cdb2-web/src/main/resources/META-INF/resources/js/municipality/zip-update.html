@@ -10,7 +10,7 @@
                     <span ng-if="zipCtrl.file">{{ 'municipality.import.file' | translate }}:</span>
                     <span>{{ zipCtrl.file.name }}</span>
                     <div class="btn btn-default" ngf-select ng-model="zipCtrl.file" name="file" ngf-pattern="'.txt'" ngf-accept="'text/*'" ngf-min-size="100"
-                        ngf-max-size="30MB" ngf-validate="{size: {min: 10, max: '30MB'}">
+                        ngf-max-size="30MB" ngf-validate="{size: {min: 10, max: '30MB'}" ng-disabled="!zipCtrl.uploadVisible">
                         <span class="glyphicon glyphicon-folder-open"></span>
                         <span translate="global.form.select.file"></span>
                     </div>
@@ -31,7 +31,7 @@
                     <div ng-message="empty" class="text-danger">{{"municipality.error.file.required"|translate}}</div>
                     <div ng-message="maxSize" class="text-danger">{{"municipality.error.file.max.size"|translate}}</div>
                 </div>
-                <div uib-alert class="alert alert-danger" role="alert" ng-if="zipCtrl.errorsFromServer" close="zipCtrl.errorsFromServer=undef">
+                <div uib-alert class="alert alert-danger" role="alert" ng-if="zipCtrl.errorsFromServer" close="zipCtrl.closeErrorNotification()">
                     <strong>{{ zipCtrl.errorsFromServer }}</strong>
                 </div>
             </div>
