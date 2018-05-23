@@ -32,12 +32,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--         <dependency> -->
-<!--             <groupId>org.jvnet.jaxb2.maven2</groupId> -->
-<!--             <artifactId>maven-jaxb2-plugin</artifactId> -->
-<!--             <version>0.13.3</version> -->
-<!--         </dependency> -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -48,7 +42,6 @@
             <version>1.9.13</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -71,38 +64,6 @@
                     <packageName>eu.chj.cdb2.common</packageName>
                 </configuration>
             </plugin>
-            <!-- <plugin> -->
-            <!-- <groupId>org.apache.cxf</groupId> -->
-            <!-- <artifactId>cxf-xjc-plugin</artifactId> -->
-            <!-- <version>3.2.1</version> -->
-            <!-- <configuration> -->
-            <!-- <extensions> -->
-            <!-- <extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:3.2.1</extension> -->
-            <!-- </extensions> -->
-            <!-- </configuration> -->
-            <!-- <executions> -->
-            <!-- <execution> -->
-            <!-- <id>generate-sources</id> -->
-            <!-- <phase>generate-sources</phase> -->
-            <!-- <goals> -->
-            <!-- <goal>xsdtojava</goal> -->
-            <!-- </goals> -->
-            <!-- <configuration> -->
-            <!-- <sourceRoot>${project.basedir}/target/generated-sources/java</sourceRoot> -->
-            <!-- <xsdOptions> -->
-            <!-- <xsdOption> -->
-            <!-- <extensionArgs> -->
-            <!-- <arg>-encoding</arg> -->
-            <!-- <arg>UTF-8</arg> -->
-            <!-- </extensionArgs> -->
-            <!-- <xsd>${basedir}/src/main/resources/xml/court_database.xsd</xsd> -->
-            <!-- <packagename>eu.chj.cdb2.common</packagename> -->
-            <!-- </xsdOption> -->
-            <!-- </xsdOptions> -->
-            <!-- </configuration> -->
-            <!-- </execution> -->
-            <!-- </executions> -->
-            <!-- </plugin> -->
         </plugins>
     </build>
 </project>

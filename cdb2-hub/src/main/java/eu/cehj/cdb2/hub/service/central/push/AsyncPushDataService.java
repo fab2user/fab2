@@ -41,7 +41,7 @@ import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.entity.Synchronization;
 import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
 import eu.cehj.cdb2.hub.service.RequestResponseLoggingInterceptor;
-import eu.cehj.cdb2.hub.utils.CdbResponse;
+import eu.cehj.cdb2.hub.utils.GlobalCdbSyncResponse;
 import eu.cehj.cdb2.hub.utils.Settings;
 import eu.chj.cdb2.common.Body;
 import eu.chj.cdb2.common.Body.Competences;
@@ -186,7 +186,7 @@ public class AsyncPushDataService implements PushDataService {
 
     @Override
     public void sendToCDB(final Data data, final Synchronization sync) {
-        // FIXME: Always in error since we don't have any test server able to process the XML file for now
+        // Always in error since we don't have any test server able to process the XML file for now
         sync.setStatus(SyncStatus.SENDING_TO_CDB);
         sync.setMessage("Processing...");
         this.syncService.save(sync);
@@ -201,8 +201,8 @@ public class AsyncPushDataService implements PushDataService {
         final HttpEntity<CdbPushMessage> entity = new HttpEntity<>(message, headers);
 
         try {
-            final ResponseEntity<CdbResponse> response = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.POST, entity,
-                    new ParameterizedTypeReference<CdbResponse>() {
+            final ResponseEntity<GlobalCdbSyncResponse> response = restTemplate.exchange(uriComponentsBuilderBailiff.build().encode().toUri(), HttpMethod.POST, entity,
+                    new ParameterizedTypeReference<GlobalCdbSyncResponse>() {
             });
             if (response.getStatusCode().is2xxSuccessful()){
                 sync.setMessage("Data export to CDB terminated successfully.");

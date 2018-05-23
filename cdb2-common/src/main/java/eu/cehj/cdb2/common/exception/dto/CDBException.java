@@ -6,7 +6,7 @@ public class CDBException extends RuntimeException {
 
     private String messageCode;
 
-    // FIXME: Find a way to identify a message code
+    // TODO: Find a way to identify a message code
     public CDBException(final String message) {
         super(message);
     }

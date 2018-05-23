@@ -75,7 +75,7 @@ public class MunicipalityController extends BaseController {
 
     @RequestMapping(method = { POST }, value="update")
     @ResponseStatus(value = HttpStatus.OK)
-    // FIXME: Inform user when he wants to import non supported file format (currently system just silently refuses to process the file)
+    // TODO: Inform user when he wants to import non supported file format (currently system just silently refuses to process the file)
     public CDBTaskDTO upload(@RequestParam("file") final MultipartFile file){
         final CDBTask task = this.taskService.save(new CDBTask(CDBTask.Type.GEONAME_IMPORT));
         try {

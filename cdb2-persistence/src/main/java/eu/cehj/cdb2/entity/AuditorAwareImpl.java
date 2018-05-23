@@ -5,7 +5,7 @@ import org.springframework.data.domain.AuditorAware;
 public class AuditorAwareImpl implements AuditorAware<String> {
     @Override
     public String getCurrentAuditor() {
-        // TODO replace with user retrieved by Spring Security when implemented
+        // FIXME replace with user retrieved by Spring Security when implemented
         return "Landry Soules";
     }
 }

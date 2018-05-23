@@ -31,7 +31,6 @@ import eu.cehj.cdb2.common.dto.BailiffExportDTO;
 import eu.cehj.cdb2.common.dto.CompetenceDTO;
 import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
 import eu.cehj.cdb2.common.dto.GeoAreaSimpleDTO;
-import eu.cehj.cdb2.common.dto.GeoCompetenceDTO;
 import eu.cehj.cdb2.common.dto.cdb.CDBResponse;
 import eu.cehj.cdb2.common.dto.cdb.CompetentBodyDetail;
 import eu.cehj.cdb2.common.exception.dto.CDBException;
@@ -139,16 +138,6 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
                 dto.setMunicipalityId(municipality.getId());
             }
         }
-        dto.setGeoCompetences( entity.getBailiffCompetenceAreas().stream().map(bca -> {
-            final GeoCompetenceDTO gc = new GeoCompetenceDTO();
-            gc.setId(bca.getId());
-            gc.setAreaId(bca.getAreas().get(0).getId());
-            gc.setBailiffCompetenceAreId(bca.getId());
-            gc.setBailiffId(entity.getId());
-            gc.setCompetenceId(bca.getCompetence().getId());
-            gc.setInstrumentId(bca.getCompetence().getInstrument().getId());
-            return gc;
-        }).collect(Collectors.toList()));
 
         dto.setCompetences(entity.getBailiffCompetenceAreas().stream().map(bca -> {
             try {
