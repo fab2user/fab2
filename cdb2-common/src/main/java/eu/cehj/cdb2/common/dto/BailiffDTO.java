@@ -25,7 +25,6 @@ public class BailiffDTO extends BaseDTO{
     private String openHours;
     private boolean videoConferenceAvailable = false;
     private String langDisplay; // used only for CDB for now but maybe relevant for other cases too
-    private List<GeoCompetenceDTO> geoCompetences; // FIXME: Remove if not used
     private List<CompetenceDTO> competences;
     private GeoAreaSimpleDTO geo;
     private boolean toBeUpdated = false;
@@ -141,14 +140,6 @@ public class BailiffDTO extends BaseDTO{
 
     public void setAddress2(final String address2) {
         this.address2 = address2;
-    }
-
-    public List<GeoCompetenceDTO> getGeoCompetences() {
-        return this.geoCompetences;
-    }
-
-    public void setGeoCompetences(final List<GeoCompetenceDTO> geoCompetences) {
-        this.geoCompetences = geoCompetences;
     }
 
     public List<CompetenceDTO> getCompetences() {
