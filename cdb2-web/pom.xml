@@ -12,7 +12,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>0.5</version>
+        <version>0.6</version>
     </parent>
 
     <properties>
@@ -24,17 +24,17 @@
 
     <dependencies>
         <dependency>
-            <version>0.5</version>
+            <version>0.6</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-business</artifactId>
         </dependency>
         <dependency>
-            <version>0.5</version>
+            <version>0.6</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
         <dependency>
-            <version>0.5</version>
+            <version>0.6</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-common</artifactId>
         </dependency>
