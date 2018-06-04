@@ -13,7 +13,6 @@
         <java.version>1.8</java.version>
         <skipTests>true</skipTests>
         <cxf.version>3.2.3</cxf.version>
-        <start-class>eu.cehj.cdb2.Cdb2HubWebApplication</start-class>
     </properties>
     <artifactId>cdb2-hub</artifactId>
     <packaging>jar</packaging>
