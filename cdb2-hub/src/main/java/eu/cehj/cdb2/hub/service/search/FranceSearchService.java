@@ -5,23 +5,34 @@ import static org.apache.commons.lang3.StringUtils.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.MultiValueMap;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
+import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
 import eu.cehj.cdb2.common.dto.BailiffDTO;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
+import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.hub.service.soap.france.Etude;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInsee;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInseeResponse;
 
 public class FranceSearchService extends WebServiceGatewaySupport implements LocalWSSearchService {
 
-    @Value("${cdb.france.soap.action}")
-    private String soapAction;
+    @Autowired
+    CountryOfSyncService cosService;
 
     @Override
     public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params){
+        final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
+        if(cos == null) {
+            throw new CDBException(String.format("Unkown country code \"%s\"", countryCode));
+        }
+        final String soapAction = cos.getUrl();
+        if(soapAction == null) {
+            throw new CDBException("Web Service request impossible without Web Service Action URL.");
+        }
         final ListeEtudeByInsee req = new ListeEtudeByInsee();
         final String postalCode = params.getFirst("postalCode");
         if (isNotBlank(postalCode)) {
@@ -32,7 +43,7 @@ public class FranceSearchService extends WebServiceGatewaySupport implements Loc
             req.setNom(name);
         }
         final ListeEtudeByInseeResponse resp = (ListeEtudeByInseeResponse) this.getWebServiceTemplate().marshalSendAndReceive(req,
-                new SoapActionCallback(this.soapAction));
+                new SoapActionCallback(soapAction));
         final List<Etude> rawBailiffs = resp.getListeEtudeByInseeResult().getEtude();
         return rawBailiffs.stream().map(this::convertEtudeToDTO).collect(Collectors.toList());
     }

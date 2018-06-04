@@ -4,7 +4,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>0.5</version>
+        <version>0.6</version>
     </parent>
 
     <properties>
@@ -18,17 +18,17 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <version>0.5</version>
+            <version>0.6</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
         <dependency>
-            <version>0.5</version>
+            <version>0.6</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-business</artifactId>
         </dependency>
         <dependency>
-            <version>0.5</version>
+            <version>0.6</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-common</artifactId>
         </dependency>
@@ -238,7 +238,7 @@
                 <version>${cxf.version}</version>
                 <executions>
                     <execution>
-                        <id>generate-sources</id>
+                        <id>generate-sources-france</id>
                         <phase>generate-sources</phase>
                         <configuration>
                             <sourceRoot>${project.build.directory}/generated-sources/src/main/java</sourceRoot>
@@ -248,6 +248,25 @@
                                     <extraargs>
                                         <extraarg>-p</extraarg>
                                         <extraarg>http://euro.huissier-justice.fr=eu.cehj.cdb2.hub.service.soap.france</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                            </wsdlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-sources-belgium</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceRoot>${project.build.directory}/generated-sources/src/main/java</sourceRoot>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>${project.basedir}/src/main/resources/wsdl/belgium/belgium.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>https://www.nkcn-cia.be=eu.cehj.cdb2.hub.service.soap.belgium</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>

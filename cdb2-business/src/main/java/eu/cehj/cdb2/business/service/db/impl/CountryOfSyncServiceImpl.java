@@ -14,6 +14,7 @@ import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.CountryOfSyncDTO;
 import eu.cehj.cdb2.common.dto.CountryOfSyncRefDTO;
 import eu.cehj.cdb2.common.dto.SynchronizationDTO;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.entity.Synchronization;
 
@@ -105,5 +106,19 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         }
     }
 
+    @Override
+    public CountryOfSyncDTO save(final CountryOfSyncDTO dto) {
+        final CountryOfSync entity = this.populateEntityFromDTO(dto);
+        // FIXME: to finalize (return type of validateEntity, error messages, front end validation)
+        if(!this.validateEntity(entity)) {
+            throw new CDBException("Error during record validation");
+        }
+        this.repository.save(entity);
+        return this.populateDTOFromEntity(entity);
+    }
+
+    private boolean validateEntity(final CountryOfSync entity) {
+        return true;
+    }
 
 }

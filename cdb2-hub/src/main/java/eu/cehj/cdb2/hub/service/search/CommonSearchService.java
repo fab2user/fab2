@@ -44,11 +44,14 @@ public class CommonSearchService implements SearchService, BeanFactoryAware {
         if(cos.getSearchType() == SearchType.CDB) {
             return "cdbSearchService";
         }else {
-            // TODO: Pass to a default local webservice service, which will call the relevant country service
-            if ("FR".equals(countryCode)) {
-                return "franceSearchService";
-            } else {
-                return "defaultManagedSearchService";
+            switch (countryCode) {
+                case "FR":
+                    return "franceSearchService";
+                case "BE":
+                    return "belgiumSearchService";
+
+                default:
+                    return "defaultManagedSearchService";
             }
         }
     }
