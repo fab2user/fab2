@@ -76,15 +76,16 @@
             </div>
           </div>
 
-          <div class="form-group" ng-disabled="!countryEditCtrl.country.active" ng-hide="countryEditCtrl.country.searchType==='CDB'">
+          <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
             <label for="active" translate="country.field.schedule" class="col-md-3">active</label>
             <div class="col-md-6">
               <div ng-repeat="day in countryEditCtrl.dayOfWeek">
-                <input type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek" checklist-value="day.id">{{ day.value|translate }}
+                <input ng-disabled="!countryEditCtrl.country.active" type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek"
+                  checklist-value="day.id">{{ day.value|translate }}
               </div>
             </div>
             <div class="col-md-3">
-              <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false"></div>
+              <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false" ng-disabled="!countryEditCtrl.country.active"></div>
             </div>
           </div>
           <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">

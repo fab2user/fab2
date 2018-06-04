@@ -75,6 +75,7 @@ public class ScheduleWatcher {
 
     private Trigger createTrigger(final CountryOfSync cos) {
 
+        // FIXME: A cron task '0 0 0 ? * ' is invalid and throws an error : check that at least one day is selected when a country is saved with active flag.
         final Trigger trigger = newTrigger()
                 .forJob(this.cdbJobKey)
                 .usingJobData("countryCode", cos.getCountryCode())
