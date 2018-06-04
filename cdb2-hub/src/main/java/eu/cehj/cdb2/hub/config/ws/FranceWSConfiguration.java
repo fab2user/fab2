@@ -10,7 +10,7 @@ import eu.cehj.cdb2.hub.service.search.FranceSearchService;
 public class FranceWSConfiguration {
 
     @Bean
-    public Jaxb2Marshaller marshaller() {
+    public Jaxb2Marshaller marshallerFrance() {
         final Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         // this package must match the package in the <generatePackage> specified in
         // pom.xml
@@ -19,11 +19,11 @@ public class FranceWSConfiguration {
     }
 
     @Bean
-    public FranceSearchService franceSearchService(final Jaxb2Marshaller marshaller) {
+    public FranceSearchService franceSearchService() {
         final FranceSearchService service = new FranceSearchService();
         service.setDefaultUri("http://euro.huissier-justice.fr/annuaire.asmx");
-        service.setMarshaller(marshaller);
-        service.setUnmarshaller(marshaller);
+        service.setMarshaller(this.marshallerFrance());
+        service.setUnmarshaller(this.marshallerFrance());
         return service;
     }
 }

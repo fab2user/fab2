@@ -1,18 +1,15 @@
 package eu.cehj.cdb2.hub.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import eu.cehj.cdb2.hub.service.search.FranceSearchService;
 
 
 @RestController
 @RequestMapping("api/test")
 public class TestController extends BaseController {
 
-    @Autowired
-    FranceSearchService searchService;
+    //    @Autowired
+    //    FranceSearchService searchService;
 
     //    @RequestMapping(method = GET)
     //    @ResponseStatus(value = OK)
