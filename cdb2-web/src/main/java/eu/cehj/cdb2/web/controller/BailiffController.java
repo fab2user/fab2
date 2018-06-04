@@ -160,6 +160,7 @@ public class BailiffController extends BaseController {
     @RequestMapping(method = { GET }, value="template")
     public ResponseEntity<Resource> downloadTemplate(){
         try {
+            LOGGER.info("Template file to be served: \"{}\"", this.bailiffImportTemplate.getDescription());
             if(this.bailiffImportTemplate.exists()) {
                 try (InputStream is = this.bailiffImportTemplate.getInputStream()) {
                     final byte[] ba = IOUtils.toByteArray(is);
