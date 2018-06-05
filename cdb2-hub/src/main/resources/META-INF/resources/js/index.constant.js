@@ -4,8 +4,8 @@
   angular
     .module('hub')
     .constant('SERVER', {
-      ROOT: 'http://localhost:8181',
-      API: 'http://localhost:8181/api'
+      ROOT: '',
+      API: 'api'
     })
     .constant('STORE', {
       USER: 'hub_connected_user',
