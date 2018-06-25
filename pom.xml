@@ -4,7 +4,7 @@
 
     <groupId>eu.cehj</groupId>
     <artifactId>cdb2-parent</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
 
     <name>cdb2-parent</name>
@@ -40,7 +40,7 @@
     </ciManagement>
     <scm>
         <developerConnection>scm:git:https://bitbucket.org/nowina/cdb2.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>1.0.2</tag>
     </scm>
 
 
