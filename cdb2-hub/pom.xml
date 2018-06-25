@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <properties>
@@ -19,17 +18,17 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-business</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-common</artifactId>
         </dependency>
