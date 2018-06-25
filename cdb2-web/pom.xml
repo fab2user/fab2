@@ -332,7 +332,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/db</directory>
-                                    <includes>liquibase-changelog.xml</includes>
+                                    <includes>
+                                        <include>liquibase-changelog.xml</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -348,7 +350,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/db/data</directory>
-                                    <includes>*.csv</includes>
+                                    <includes>
+                                       <include>*.csv</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>

@@ -308,7 +308,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/config</directory>
-                                    <includes>security.xml</includes>
+                                    <includes>
+                                        <include>security.xml</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -324,7 +326,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/i18n</directory>
-                                    <includes>*.properties</includes>
+                                    <includes>
+                                        <include>*.properties</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -340,7 +344,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources</directory>
-                                    <includes>application*.properties</includes>
+                                    <includes>
+                                        <include>application*.properties</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -356,7 +362,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/db</directory>
-                                    <includes>liquibase-changelog.xml</includes>
+                                    <includes>
+                                        <include>liquibase-changelog.xml</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
