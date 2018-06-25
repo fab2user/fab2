@@ -40,7 +40,8 @@
         <url>http://forge.nowina.local/jenkins/</url>
     </ciManagement>
     <scm>
-        <!-- TODO -->
+        <developerConnection>scm:git:https://bitbucket.org:nowina/cdb2.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
 
