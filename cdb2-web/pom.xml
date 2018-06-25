@@ -260,7 +260,7 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/config</directory>
-                                    <includes>security.xml</includes>
+                                    <include>security.xml</include>
                                 </resource>
                             </resources>
                         </configuration>
