@@ -5,7 +5,7 @@
 
     <groupId>eu.cehj</groupId>
     <artifactId>cdb2-parent</artifactId>
-    <version>0.6</version>
+    <version>0.6.1</version>
     <packaging>pom</packaging>
 
     <name>cdb2-parent</name>
@@ -40,7 +40,8 @@
         <url>http://forge.nowina.local/jenkins/</url>
     </ciManagement>
     <scm>
-        <!-- TODO -->
+        <developerConnection>scm:git:https://bitbucket.org:nowina/cdb2.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
 
