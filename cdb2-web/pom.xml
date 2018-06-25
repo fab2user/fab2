@@ -259,7 +259,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/config</directory>
-                                    <include>security.xml</include>
+                                    <includes>
+                                        <include>security.xml</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -275,7 +277,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/i18n</directory>
-                                    <includes>*.properties</includes>
+                                    <includes>
+                                        <include>*.properties</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -310,7 +314,9 @@
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources</directory>
-                                    <includes>application*.properties</includes>
+                                    <includes>
+                                        <include>application*.properties</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
