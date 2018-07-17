@@ -314,6 +314,9 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     private String addPrefixIfNeeded(final String nationalId) {
+        if(isBlank(nationalId)) {
+            return null;
+        }
         if(isNotBlank(this.nationalIdPrefix) && !nationalId.startsWith(this.nationalIdPrefix)) {
             return this.nationalIdPrefix + nationalId;
         }
@@ -321,6 +324,9 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     }
 
     private String removePrefixIfNeeded(final String nationalId) {
+        if(isBlank(nationalId)) {
+            return null;
+        }
         if(isNotBlank(this.nationalIdPrefix) && nationalId.startsWith(this.nationalIdPrefix)) {
             return nationalId.substring(this.nationalIdPrefix.length());
         }

@@ -49,15 +49,13 @@
     vm.competences = competences;
     vm.nationalIdPrefix = nationalIdPrefix;
 
-    var snapshotCompare = bailiff.id ?
-      {
-        competences: bailiff.competences.slice(0),
-        geo: Object.assign({}, bailiff.geo)
-      } :
-      {
-        competences: {},
-        geo: {}
-      };
+    var snapshotCompare = bailiff.id ? {
+      competences: bailiff.competences.slice(0),
+      geo: Object.assign({}, bailiff.geo)
+    } : {
+      competences: {},
+      geo: {}
+    };
 
     vm.areas = areas;
 
@@ -77,6 +75,17 @@
       if (idx < 0 && checked) {
         vm.bailiff.languages.push(value);
       }
+    };
+
+    vm.delete = function () {
+      BailiffAPIService.delete({
+        id: vm.bailiff.id
+      }).$promise.then(
+        function () {
+          toastr.success($translate.instant('global.toastr.delete.success'));
+          vm.modalInstance.close();
+        }
+      );
     };
 
     // Only purpose of initialCity is to display correct municipality in angucomplete when editing existing bailiff
