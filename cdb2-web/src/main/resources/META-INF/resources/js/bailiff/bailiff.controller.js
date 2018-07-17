@@ -86,7 +86,6 @@
       vm.delete();
     };
 
-    // Don't remove : it's used in bailiff edit !
     vm.delete = function () {
       BailiffAPIService.delete({
         id: vm.selectedBailiff.id
