@@ -65,6 +65,9 @@ public class Bailiff extends BaseAuditedEntity<String> {
     @Column(name = "video_conference", nullable = false)
     private boolean videoConference;
 
+    @Column(name = "comments")
+    private String comments;
+
     public String getName() {
         return this.name;
     }
@@ -147,6 +150,14 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     public void setNationalId(final String nationalId) {
         this.nationalId = nationalId;
+    }
+
+    public String getComments() {
+        return this.comments;
+    }
+
+    public void setComments(final String comments) {
+        this.comments = comments;
     }
 
 }
