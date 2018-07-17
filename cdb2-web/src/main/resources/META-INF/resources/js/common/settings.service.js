@@ -5,14 +5,18 @@
     .module('cdb2')
     .factory('SettingsService', SettingsService);
 
-    SettingsService.$inject = ['$localForage', 'SettingsAPIService'];
+  SettingsService.$inject = ['$localForage', 'SettingsAPIService'];
+
   function SettingsService($localForage, SettingsAPIService) {
     var SettingsService = {};
 
     SettingsService.loadSettings = function () {
 
-      SettingsAPIService.get({}).$promise.then(function(data){
+      SettingsAPIService.get({}).$promise.then(function (data) {
         $localForage.setItem('country', data.country);
+        if (data.nationalIdPrefix) {
+          $localForage.setItem('nationalIdPrefix', data.nationalIdPrefix);
+        }
       });
     };
 

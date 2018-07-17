@@ -10,6 +10,8 @@ public class BailiffDTO extends BaseDTO{
     private static final long serialVersionUID = 6204512676632176957L;
 
     private String name;
+    private String nationalIdPrefix;
+    private String nationalId;
     private String address1;
     private String address2;
     private String postalCode;
@@ -188,6 +190,22 @@ public class BailiffDTO extends BaseDTO{
 
     public void setLangDisplay(final String langDisplay) {
         this.langDisplay = langDisplay;
+    }
+
+    public String getNationalId() {
+        return this.nationalId;
+    }
+
+    public void setNationalId(final String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public String getNationalIdPrefix() {
+        return this.nationalIdPrefix;
+    }
+
+    public void setNationalIdPrefix(final String nationalIdPrefix) {
+        this.nationalIdPrefix = nationalIdPrefix;
     }
 
 }
