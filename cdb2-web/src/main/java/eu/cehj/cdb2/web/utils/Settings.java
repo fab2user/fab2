@@ -19,6 +19,9 @@ public class Settings implements Serializable{
     @Value("${country.code}")
     private String countryCode;
 
+    @Value("${national.id.prefix}")
+    private String nationalIdPrefix;
+
     public String getCountry() {
         return this.country;
     }
@@ -33,5 +36,13 @@ public class Settings implements Serializable{
 
     public void setCountryCode(final String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public String getNationalIdPrefix() {
+        return this.nationalIdPrefix;
+    }
+
+    public void setNationalIdPrefix(final String nationalIdPrefix) {
+        this.nationalIdPrefix = nationalIdPrefix;
     }
 }
