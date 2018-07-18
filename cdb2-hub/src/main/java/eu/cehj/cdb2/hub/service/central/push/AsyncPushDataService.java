@@ -136,7 +136,8 @@ public class AsyncPushDataService implements PushDataService {
             final Details details = new Details();
             final Detail detail = new Detail();
             detail.setName(dto.getName());
-            detail.setAddress(dto.getAddress1() + " " + dto.getAddress2());
+            detail.setAddress(dto.getAddress1() +
+                    " " + dto.getAddress2());
             detail.setEmail(dto.getEmail());
             detail.setFax(dto.getFax());
             detail.setTel(dto.getTel());

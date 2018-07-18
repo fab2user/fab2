@@ -32,6 +32,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         entity.setActive(dto.isActive());
         entity.setName(dto.getName());
         entity.setUrl(dto.getUrl());
+        entity.setBailiffsUrl(dto.getBailiffsUrl());
         entity.setUser(dto.getUser());
         entity.setPassword(dto.getPassword());
         entity.setCountryCode(dto.getCountryCode());
@@ -57,6 +58,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setPassword(entity.getPassword());
         dto.setUser(entity.getUser());
         dto.setUrl(entity.getUrl());
+        dto.setBailiffsUrl(entity.getBailiffsUrl());
         dto.setDaysOfWeek(this.stringToIntArray(entity.getDaysOfWeek()));
         dto.setCountryCode(entity.getCountryCode());
         dto.setFrequency(entity.getFrequency());

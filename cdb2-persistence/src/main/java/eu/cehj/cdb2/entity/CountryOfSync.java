@@ -28,8 +28,17 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     @Column(name = "name", nullable=false)
     private String name;
 
+    /**
+     * URL used for search requests
+     */
     @Column(name = "url")
     private String url;
+
+    /**
+     * URL used to fetch all bailiffs (used only for local web services)
+     */
+    @Column(name = "bailiffs_url")
+    private String bailiffsUrl;
 
     @Column(name = "active")
     private boolean active = true;
@@ -131,6 +140,14 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
 
     public void setSearchType(final SearchType searchType) {
         this.searchType = searchType;
+    }
+
+    public String getBailiffsUrl() {
+        return this.bailiffsUrl;
+    }
+
+    public void setBailiffsUrl(final String bailiffsUrl) {
+        this.bailiffsUrl = bailiffsUrl;
     }
 
 }

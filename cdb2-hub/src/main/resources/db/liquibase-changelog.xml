@@ -102,4 +102,12 @@
         </addColumn>
         <dropColumn tableName="country_sync" columnName="managed"/>
     </changeSet>
+    <changeSet id="hub-16" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="bailiffs_url" type="varchar(50)" afterColumn="url"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="hub-17" author="landry">
+        <modifyDataType tableName="sync" columnName="message" newDataType="varchar(1000)"></modifyDataType>
+    </changeSet>
 </databaseChangeLog>

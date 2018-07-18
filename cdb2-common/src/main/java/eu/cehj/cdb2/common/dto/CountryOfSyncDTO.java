@@ -10,6 +10,8 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private String url;
 
+    private String bailiffsUrl;
+
     private boolean active;
 
     //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -108,6 +110,14 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setSearchType(final SearchType searchType) {
         this.searchType = searchType;
+    }
+
+    public String getBailiffsUrl() {
+        return this.bailiffsUrl;
+    }
+
+    public void setBailiffsUrl(final String bailiffsUrl) {
+        this.bailiffsUrl = bailiffsUrl;
     }
 
 }
