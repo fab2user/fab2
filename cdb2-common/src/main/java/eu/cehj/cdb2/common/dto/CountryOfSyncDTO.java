@@ -10,7 +10,7 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private String url;
 
-    private String bailiffsUrl;
+    private String fetchUrl;
 
     private boolean active;
 
@@ -112,12 +112,12 @@ public class CountryOfSyncDTO extends BaseDTO{
         this.searchType = searchType;
     }
 
-    public String getBailiffsUrl() {
-        return this.bailiffsUrl;
+    public String getFetchUrl() {
+        return this.fetchUrl;
     }
 
-    public void setBailiffsUrl(final String bailiffsUrl) {
-        this.bailiffsUrl = bailiffsUrl;
+    public void setFetchUrl(final String fetchUrl) {
+        this.fetchUrl = fetchUrl;
     }
 
 }

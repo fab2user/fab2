@@ -35,10 +35,10 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     private String url;
 
     /**
-     * URL used to fetch all bailiffs (used only for local web services)
+     * URLL used to fetch all bailiffs from web service. If null, url property is used.
      */
-    @Column(name = "bailiffs_url")
-    private String bailiffsUrl;
+    @Column(name = "fetch_url")
+    private String fetchUrl;
 
     @Column(name = "active")
     private boolean active = true;
@@ -142,12 +142,12 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
         this.searchType = searchType;
     }
 
-    public String getBailiffsUrl() {
-        return this.bailiffsUrl;
+    public String getFetchUrl() {
+        return this.fetchUrl;
     }
 
-    public void setBailiffsUrl(final String bailiffsUrl) {
-        this.bailiffsUrl = bailiffsUrl;
+    public void setFetchUrl(final String fetchUrl) {
+        this.fetchUrl = fetchUrl;
     }
 
 }

@@ -1,203 +1,206 @@
-<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://e-justice.europa.eu/cdb" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://e-justice.europa.eu/cdb" version="299">
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://e-justice.europa.eu/cdb" attributeFormDefault="unqualified" elementFormDefault="qualified"
+    targetNamespace="http://e-justice.europa.eu/cdb" version="299">
 
-  <xs:element name="data" type="tns:data"/>
+    <xs:element name="data" type="tns:data" />
 
-  <xs:complexType name="physicalPerson">
-    <xs:complexContent>
-      <xs:extension base="tns:body">
+    <xs:complexType name="physicalPerson">
+        <xs:complexContent>
+            <xs:extension base="tns:body">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="type" type="xs:string" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="body">
         <xs:sequence>
-          <xs:element minOccurs="0" name="type" type="xs:string"/>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="country" type="xs:string" />
+            <xs:element minOccurs="0" name="details">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="detail" type="tns:detail" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="competences">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="competence" type="tns:competence" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="relations">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="relation" type="tns:relation" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
+    </xs:complexType>
 
-  <xs:complexType name="body">
-    <xs:sequence>
-      <xs:element name="id" type="xs:string"/>
-      <xs:element name="country" type="xs:string"/>
-      <xs:element minOccurs="0" name="details">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="detail" type="tns:detail"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element minOccurs="0" name="competences">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="competence" type="tns:competence"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element minOccurs="0" name="relations">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="relation" type="tns:relation"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="detail">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="competence" type="xs:string"/>
-      <xs:element minOccurs="0" name="instrument" type="xs:string"/>
-      <xs:element name="name" type="xs:string"/>
-      <xs:element name="lang" type="xs:string"/>
-      <xs:element minOccurs="0" name="address" type="xs:string"/>
-      <xs:element minOccurs="0" name="postalCode" type="xs:string"/>
-      <xs:element minOccurs="0" name="municipality" type="xs:string"/>
-      <xs:element minOccurs="0" name="postalAddress" type="xs:string"/>
-      <xs:element minOccurs="0" name="postalAddressPostalCode" type="xs:string"/>
-      <xs:element minOccurs="0" name="postalAddressMunicipality" type="xs:string"/>
-      <xs:element minOccurs="0" name="tel" type="xs:string"/>
-      <xs:element minOccurs="0" name="fax" type="xs:string"/>
-      <xs:element minOccurs="0" name="email" type="xs:string"/>
-      <xs:element minOccurs="0" name="web" type="xs:string"/>
-      <xs:element minOccurs="0" name="videoConference" type="xs:boolean"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="comment" type="xs:string"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="acceptedLanguage" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="competence">
-    <xs:sequence>
-      <xs:element name="instrument" type="xs:string"/>
-      <xs:element name="type" type="xs:string"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="geoAreaId" type="xs:IDREF"/>
-      <xs:element minOccurs="0" name="minAmount" type="xs:decimal"/>
-      <xs:element minOccurs="0" name="maxAmount" type="xs:decimal"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="geoArea">
-    <xs:sequence>
-      <xs:element name="id" type="xs:ID"/>
-      <xs:choice maxOccurs="unbounded" minOccurs="0">
-        <xs:element name="municipality" type="tns:municipality"/>
-        <xs:element name="street" type="tns:street"/>
-        <xs:element name="address" type="tns:address"/>
-      </xs:choice>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="municipality">
-    <xs:complexContent>
-      <xs:extension base="tns:geoElement">
+    <xs:complexType name="detail">
         <xs:sequence>
-          <xs:element name="name" type="xs:string"/>
-          <xs:element minOccurs="0" name="postalCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="competence" type="xs:string" />
+            <xs:element minOccurs="0" name="instrument" type="xs:string" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="lang" type="xs:string" />
+            <xs:element minOccurs="0" name="address" type="xs:string" />
+            <xs:element minOccurs="0" name="postalCode" type="xs:string" />
+            <xs:element minOccurs="0" name="municipality" type="xs:string" />
+            <xs:element minOccurs="0" name="postalAddress" type="xs:string" />
+            <xs:element minOccurs="0" name="postalAddressPostalCode" type="xs:string" />
+            <xs:element minOccurs="0" name="postalAddressMunicipality" type="xs:string" />
+            <xs:element minOccurs="0" name="tel" type="xs:string" />
+            <xs:element minOccurs="0" name="fax" type="xs:string" />
+            <xs:element minOccurs="0" name="email" type="xs:string" />
+            <xs:element minOccurs="0" name="web" type="xs:string" />
+            <xs:element minOccurs="0" name="videoConference" type="xs:boolean" />
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="comment" type="xs:string" />
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="acceptedLanguage" type="xs:string" />
         </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
+    </xs:complexType>
 
-  <xs:complexType name="geoElement">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="geoNameId" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="street">
-    <xs:complexContent>
-      <xs:extension base="tns:geoElement">
+    <xs:complexType name="competence">
         <xs:sequence>
-          <xs:element name="name" type="xs:string"/>
-          <xs:element name="city" type="xs:string"/>
-          <xs:element minOccurs="0" name="postalCode" type="xs:string"/>
+            <xs:element name="instrument" type="xs:string" />
+            <xs:element name="type" type="xs:string" />
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="geoAreaId" type="xs:IDREF" />
+            <xs:element minOccurs="0" name="minAmount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="maxAmount" type="xs:decimal" />
         </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
+    </xs:complexType>
 
-  <xs:complexType name="address">
-    <xs:complexContent>
-      <xs:extension base="tns:geoElement">
+    <xs:complexType name="geoArea">
         <xs:sequence>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="number" type="xs:string"/>
-          <xs:element name="street" type="xs:string"/>
-          <xs:element minOccurs="0" name="postalCode" type="xs:string"/>
-          <xs:element name="city" type="xs:string"/>
-          <xs:element minOccurs="0" name="rangeFrom" type="xs:string"/>
-          <xs:element minOccurs="0" name="rangeTo" type="xs:string"/>
-          <xs:element minOccurs="0" name="limitRangeToOddNumbers" type="xs:boolean"/>
-          <xs:element minOccurs="0" name="limitRangeToEvenNumbers" type="xs:boolean"/>
+            <xs:element name="id" type="xs:ID" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="municipality" type="tns:municipality" />
+                <xs:element name="street" type="tns:street" />
+                <xs:element name="address" type="tns:address" />
+            </xs:choice>
         </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
+    </xs:complexType>
 
-  <xs:complexType name="relation">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="type" type="xs:string"/>
-      <xs:element minOccurs="0" name="instrument" type="xs:string"/>
-      <xs:element minOccurs="0" name="competence" type="xs:string"/>
-      <xs:element name="relatedId" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
+    <xs:complexType name="municipality">
+        <xs:complexContent>
+            <xs:extension base="tns:geoElement">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string" />
+                    <xs:element minOccurs="0" name="postalCode" type="xs:string" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
 
-  <xs:complexType name="data">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="instrument" type="tns:instrument"/>
-      <xs:choice maxOccurs="unbounded" minOccurs="0">
-        <xs:element name="court" type="tns:court"/>
-        <xs:element name="physicalPerson" type="tns:physicalPerson"/>
-      </xs:choice>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="geoArea" type="tns:geoArea"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="instrument">
-    <xs:sequence>
-      <xs:element name="code" type="xs:string"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="fieldOfLaw" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="court">
-    <xs:complexContent>
-      <xs:extension base="tns:body">
+    <xs:complexType name="geoElement">
         <xs:sequence>
-          <xs:element minOccurs="0" name="authCode" type="xs:string"/>
-          <xs:element minOccurs="0" name="ecliCode" type="xs:string"/>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="courtType" type="xs:string"/>
-          <xs:element minOccurs="0" name="opMetadata" type="tns:opMetadata"/>
-          <xs:element minOccurs="0" name="authorityTable" type="tns:authorityTable"/>
-          <xs:element minOccurs="0" name="eCodexParameters">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element maxOccurs="unbounded" minOccurs="0" name="eCodexParameter" type="tns:eCodexParameter"/>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-          <xs:element minOccurs="0" name="includedInAuthorityTable" type="xs:boolean"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="geoNameId" type="xs:string" />
         </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
+    </xs:complexType>
 
-  <xs:complexType name="opMetadata">
-    <xs:sequence>
-      <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="skip"/>
-    </xs:sequence>
-  </xs:complexType>
+    <xs:complexType name="street">
+        <xs:complexContent>
+            <xs:extension base="tns:geoElement">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string" />
+                    <xs:element name="city" type="xs:string" />
+                    <xs:element minOccurs="0" name="postalCode" type="xs:string" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
 
-  <xs:complexType name="authorityTable">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="dateStartUse" type="xs:date"/>
-      <xs:element minOccurs="0" name="dateEndUse" type="xs:date"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="predecessor" type="xs:string"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="successor" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
+    <xs:complexType name="address">
+        <xs:complexContent>
+            <xs:extension base="tns:geoElement">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="number" type="xs:string" />
+                    <xs:element name="street" type="xs:string" />
+                    <xs:element minOccurs="0" name="postalCode" type="xs:string" />
+                    <xs:element name="city" type="xs:string" />
+                    <xs:element minOccurs="0" name="rangeFrom" type="xs:string" />
+                    <xs:element minOccurs="0" name="rangeTo" type="xs:string" />
+                    <xs:element minOccurs="0" name="limitRangeToOddNumbers" type="xs:boolean" />
+                    <xs:element minOccurs="0" name="limitRangeToEvenNumbers" type="xs:boolean" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
 
-  <xs:complexType name="eCodexParameter">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="instrument" type="xs:string"/>
-      <xs:element name="eCodexElectronicAddress" type="xs:string"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="acceptedLanguage" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
+    <xs:complexType name="relation">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="type" type="xs:string" />
+            <xs:element minOccurs="0" name="instrument" type="xs:string" />
+            <xs:element minOccurs="0" name="competence" type="xs:string" />
+            <xs:element name="relatedId" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="data">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="instrument" type="tns:instrument" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="court" type="tns:court" />
+                <xs:element name="physicalPerson" type="tns:physicalPerson" />
+            </xs:choice>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="geoArea" type="tns:geoArea" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="instrument">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string" />
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="fieldOfLaw" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="court">
+        <xs:complexContent>
+            <xs:extension base="tns:body">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="authCode" type="xs:string" />
+                    <xs:element minOccurs="0" name="ecliCode" type="xs:string" />
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="courtType" type="xs:string" />
+                    <xs:element minOccurs="0" name="opMetadata" type="tns:opMetadata" />
+                    <xs:element minOccurs="0" name="authorityTable" type="tns:authorityTable" />
+                    <xs:element minOccurs="0" name="eCodexParameters">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="eCodexParameter" type="tns:eCodexParameter" />
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="includedInAuthorityTable" type="xs:boolean" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="opMetadata">
+        <xs:sequence>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="skip" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="authorityTable">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="dateStartUse" type="xs:date" />
+            <xs:element minOccurs="0" name="dateEndUse" type="xs:date" />
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="predecessor" type="xs:string" />
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="successor" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="eCodexParameter">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="instrument" type="xs:string" />
+            <xs:element name="eCodexElectronicAddress" type="xs:string" />
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="acceptedLanguage" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>

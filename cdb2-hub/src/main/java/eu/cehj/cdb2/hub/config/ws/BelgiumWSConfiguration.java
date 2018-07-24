@@ -14,6 +14,7 @@ public class BelgiumWSConfiguration {
         final Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         // this package must match the package in the <generatePackage> specified in
         // pom.xml
+        // FIXME: Put into properties
         marshaller.setContextPath("https.www_nkcn_cia");
 
         return marshaller;
@@ -22,6 +23,7 @@ public class BelgiumWSConfiguration {
     @Bean
     public BelgiumSearchService belgiumSearchService() {
         final BelgiumSearchService service = new BelgiumSearchService();
+        // FIXME: Put into properties
         service.setDefaultUri("https://www.nkcn-cia.be/LnxNKCNGDWHDJConsult/GDWHDJConsult.svc");
         service.setMarshaller(this.marshaller());
         service.setUnmarshaller(this.marshaller());

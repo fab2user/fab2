@@ -39,12 +39,16 @@ public class BelgiumSearchService extends WebServiceGatewaySupport implements Lo
         }
         //FIXME: soapAction is not the URL of the service !!! => configure it in COS (preferable rename existing bailiffs_url)
         //        final String soapAction = cos.getUrl();
-        final String soapAction = "https://www.nkcn-cia.be/IGDWHDJConsult/fCIA_GetOffices";
+        final String soapAction = cos.getUrl();
         if (soapAction == null) {
             throw new CDBException("Web Service request impossible without Web Service Action URL.");
         }
+        String soapActionFetch = cos.getFetchUrl();
+        if(soapActionFetch == null) {
+            soapActionFetch = soapAction;
+        }
         if(params.isEmpty()) {
-            return this.sendFetchQuery(soapAction);
+            return this.sendFetchQuery(soapActionFetch);
         }
         else {
             return this.sendSearchQuery(soapAction, params);

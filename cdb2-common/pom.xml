@@ -62,6 +62,7 @@
                     </sources>
                     <!-- The package of your generated sources -->
                     <packageName>eu.chj.cdb2.common</packageName>
+                    <xjbSources><xjbSource>${basedir}/src/main/resources/xml/court_database.xjb</xjbSource></xjbSources>
                 </configuration>
             </plugin>
         </plugins>
