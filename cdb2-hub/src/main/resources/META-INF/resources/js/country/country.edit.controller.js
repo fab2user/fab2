@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -9,27 +9,32 @@
     '$uibModalInstance',
     '$translate',
     '$log',
+    'lodash',
     'moment',
     'toastr',
     'CountryAPIService',
     'country',
-    'reference'
+    'reference',
+    'competences'
   ];
 
   function CountryEditController(
     $uibModalInstance,
     $translate,
     $log,
+    lodash,
     moment,
     toastr,
     CountryAPIService,
     country,
-    reference
+    reference,
+    competences
   ) {
     var vm = this;
 
     // Making week start on Sunday, in accordance with Spring Scheduler...
-    vm.dayOfWeek = [{
+    vm.dayOfWeek = [
+      {
         id: 2,
         value: 'global.day.mon'
       },
@@ -63,6 +68,8 @@
 
     vm.country = country;
     vm.searchTypes = reference.searchTypes;
+    vm.competences = competences.competences;
+    vm.instruments = competences.instruments;
 
     if (!vm.country.id) {
       //Set active to true by default
@@ -82,7 +89,7 @@
       }
     }
 
-    vm.save = function (isValid) {
+    vm.save = function(isValid) {
       vm.errorsFromServer = null;
       if (isValid) {
         vm.submitted = true;
@@ -91,22 +98,26 @@
           vm.country.frequency = moment(vm.country.frequency).format('HH:mm');
         }
 
+        vm.country.batchDataUpdates = prepareCompetences(
+          vm.country.batchDataUpdates
+        );
+
         CountryAPIService.save({}, vm.country)
-          .$promise.then(function () {
+          .$promise.then(function() {
             $uibModalInstance.close('save');
             toastr.success($translate.instant('global.toastr.save.success'));
           })
-          .catch(function (err) {
+          .catch(function(err) {
             $log.error(err);
             vm.errorsFromServer = $translate.instant(err.data.message);
           })
-          .finally(function () {
+          .finally(function() {
             vm.submitted = false;
           });
       }
     };
 
-    vm.searchTypeChange = function () {
+    vm.searchTypeChange = function() {
       if (vm.country.searchType === 'CDB') {
         vm.country.active = false;
         vm.country.daysOfWeek = [];
@@ -114,10 +125,36 @@
       }
     };
 
+    vm.addCompetence = function() {
+      var batchDataUpdate = {
+        id: null,
+        field: 'COMPETENCE',
+        value: '',
+        countryOfSyncId: vm.country.id
+      };
+      vm.country.batchDataUpdates.push(batchDataUpdate);
+    };
+
+    vm.removeBatchUpdate = function(index) {
+      vm.country.batchDataUpdates.splice(index, 1);
+    };
+
     function setDefaultFrequency() {
       vm.country.frequency = moment()
         .set('hour', 0)
         .set('minute', 0);
+    }
+
+    function prepareCompetences(batchDataUpdates) {
+      return lodash.map(batchDataUpdates, function(bdu) {
+        if (bdu.field !== 'COMPETENCE') {
+          return bdu;
+        }
+        if (bdu.competence && bdu.instrument) {
+          bdu.value = bdu.competence + '|' + bdu.instrument;
+        }
+        return bdu;
+      });
     }
   }
 })();

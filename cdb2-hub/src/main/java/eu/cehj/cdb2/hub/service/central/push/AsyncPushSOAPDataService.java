@@ -26,8 +26,6 @@ import eu.chj.cdb2.common.ObjectFactory;
 @Service
 public class AsyncPushSOAPDataService extends AsyncPushDataService {
 
-    private SearchService searchService;
-
     @Autowired
     private BatchUpdater batchUpdater;
 
@@ -38,8 +36,8 @@ public class AsyncPushSOAPDataService extends AsyncPushDataService {
 
     @Override
     public Data processBailiffs(final CountryOfSync cos) {
-        this.searchService = this.searchServiceFactory.getSearchService(cos);
-        final List<BailiffDTO> dtos = this.searchService.sendQuery(cos.getCountryCode(), new LinkedMultiValueMap<>());
+        final SearchService searchService = this.searchServiceFactory.getSearchService(cos);
+        final List<BailiffDTO> dtos = searchService.sendQuery(cos.getCountryCode(), new LinkedMultiValueMap<>());
         final ObjectFactory factory = new ObjectFactory();
         final Data data = factory.createData();
 

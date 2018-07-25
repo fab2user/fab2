@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import eu.cehj.cdb2.business.dao.CountryOfSyncRepository;
+import eu.cehj.cdb2.business.service.db.BatchDataUpdateService;
 import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
 import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.CountryOfSyncDTO;
@@ -23,6 +24,9 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
 
     @Autowired
     private SynchronizationService syncService;
+
+    @Autowired
+    private BatchDataUpdateService batchDataUpdateService;
 
     private static final String CRON_SEPARATOR = ",";
 
@@ -63,6 +67,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setCountryCode(entity.getCountryCode());
         dto.setFrequency(entity.getFrequency());
         dto.setSearchType(entity.getSearchType());
+        dto.setBatchDataUpdates(this.batchDataUpdateService.getDTOsByCountry(entity.getId()));
         return dto;
     }
 
@@ -115,6 +120,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         if(!this.validateEntity(entity)) {
             throw new CDBException("Error during record validation");
         }
+        this.batchDataUpdateService.save(dto.getBatchDataUpdates(), dto.getId());
         this.repository.save(entity);
         return this.populateDTOFromEntity(entity);
     }

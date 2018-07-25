@@ -27,17 +27,19 @@ public class BatchUpdater {
     @Autowired
     private ObjectFactory objectFactory;
 
+    private static final String COMPETENCE = "COMPETENCE";
+
     public List<Detail> updateDetail(final CountryOfSync cos) {
         final List<BatchDataUpdate> updates = this.batchDataUpdateService.getByCountry(cos.getId());
         return updates
                 .stream()
-                .filter(update -> !"COMPETENCE".equals(update.getField()))
+                .filter(update -> !COMPETENCE.equals(update.getField()))
                 .map(this::createSOAPDetail)
                 .collect(Collectors.toList());
     }
 
     public Detail createSOAPDetail(final BatchDataUpdate update) {
-        if (update.getField().equals("COMPETENCE")) {
+        if (update.getField().equals(COMPETENCE)) {
             throw new CDBException("This update cant not be used for detail field");
         }
         final Detail detail= this.objectFactory.createDetail();
@@ -56,13 +58,13 @@ public class BatchUpdater {
         final List<BatchDataUpdate> updates = this.batchDataUpdateService.getByCountry(cos.getId());
         return updates
                 .stream()
-                .filter(update -> "COMPETENCE".equals(update.getField()))
+                .filter(update -> COMPETENCE.equals(update.getField()))
                 .map(this::createSOAPCompetence)
                 .collect(Collectors.toList());
     }
 
     public Competence createSOAPCompetence(final BatchDataUpdate update) {
-        if (!update.getField().equals("COMPETENCE")) {
+        if (!update.getField().equals(COMPETENCE)) {
             throw new CDBException("This update cant not be used for competence field");
         }
         final Competence competence = this.objectFactory.createCompetence();

@@ -11,4 +11,8 @@ import eu.cehj.cdb2.entity.BatchDataUpdate;
 public interface BatchDataUpdateService extends BaseService<BatchDataUpdate, BatchDataUpdateDTO, Long> {
 
     public List<BatchDataUpdate> getByCountry(long countryId);
+
+    public List<BatchDataUpdateDTO> getDTOsByCountry(long countryId);
+
+    public List<BatchDataUpdate> save(List<BatchDataUpdateDTO> bduDTOs, Long countryOfSyncId);
 }

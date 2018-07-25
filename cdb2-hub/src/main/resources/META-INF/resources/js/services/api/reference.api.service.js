@@ -7,7 +7,7 @@
 
   function ReferenceAPIService($resource, SERVER) {
     return $resource(
-      SERVER.API + '/reference',
+      SERVER.API + '/reference/:action',
       {},
       {
         get: {}
