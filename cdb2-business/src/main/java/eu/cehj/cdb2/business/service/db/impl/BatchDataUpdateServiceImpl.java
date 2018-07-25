@@ -3,6 +3,8 @@ package eu.cehj.cdb2.business.service.db.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +56,11 @@ public class BatchDataUpdateServiceImpl extends BaseServiceImpl<BatchDataUpdate,
     }
 
     @Override
+    @Transactional
     public List<BatchDataUpdate> save(final List<BatchDataUpdateDTO> bduDTOs, final Long countryOfSyncId) {
-        final List<BatchDataUpdate>bdus =  this.getByCountry(countryOfSyncId);
+        List<BatchDataUpdate>bdus =  this.getByCountry(countryOfSyncId);
         this.physicalDelete(bdus);
+        bdus =  this.getByCountry(countryOfSyncId);
 
         return bduDTOs
                 .stream()
