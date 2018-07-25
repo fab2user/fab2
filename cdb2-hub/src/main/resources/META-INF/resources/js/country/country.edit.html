@@ -12,90 +12,126 @@
 
     <div class="modal-body">
       <div class="row">
-        <div class="col-md-12">
-
-          <div class="form-group">
-            <label for="id" translate="global.label.id" class="col-md-3">id</label>
-            <div class="col-md-9">
-              <input type="text" name="id" class="form-control" id="id" ng-model="countryEditCtrl.country.id" disabled>
+        <div class="col-md-6">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="id" translate="global.label.id" class="col-md-3">id</label>
+              <div class="col-md-9">
+                <input type="text" name="id" class="form-control" id="id" ng-model="countryEditCtrl.country.id" disabled>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="name" translate="global.label.name" class="col-md-3">country name</label>
-            <div class="col-md-9">
-              <input type="text" name="name" class="form-control" id="name" ng-model="countryEditCtrl.country.name" required autofocus="autofocus">
-              <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.name.$error">
-                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+            <div class="form-group">
+              <label for="name" translate="global.label.name" class="col-md-3">country name</label>
+              <div class="col-md-9">
+                <input type="text" name="name" class="form-control" id="name" ng-model="countryEditCtrl.country.name" required autofocus="autofocus">
+                <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.name.$error">
+                  <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" translate="global.label.code" class="col-md-3">country code</label>
+              <div class="col-md-9">
+                <input type="text" name="code" class="form-control" id="name" ng-model="countryEditCtrl.country.countryCode" required autofocus="autofocus">
+                <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.code.$error">
+                  <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="url" translate="country.field.url" class="col-md-3">url</label>
+              <div class="col-md-9">
+                <input type="url" name="url" class="form-control" id="url" ng-model="countryEditCtrl.country.url" autofocus="autofocus" ng-required="countryEditCtrl.country.active">
+                <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.url.$error">
+                  <div ng-message="url" class="text-danger">{{"global.form.url"|translate}}</div>
+                  <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fetchurl" translate="country.field.fetchurl" class="col-md-3">fetch url</label>
+              <div class="col-md-9">
+                <input type="fetchurl" name="fetchurl" class="form-control" id="fetchurl" ng-model="countryEditCtrl.country.fetchUrl" autofocus="autofocus">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="user" translate="country.field.user" class="col-md-3">user</label>
+              <div class="col-md-9">
+                <input type="text" name="user" class="form-control" id="user" ng-model="countryEditCtrl.country.user" autofocus="autofocus">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" translate="country.field.password" class="col-md-3">password</label>
+              <div class="col-md-9">
+                <input type="text" name="password" class="form-control" id="password" ng-model="countryEditCtrl.country.password" autofocus="autofocus">
               </div>
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="name" translate="global.label.code" class="col-md-3">country code</label>
-            <div class="col-md-9">
-              <input type="text" name="code" class="form-control" id="name" ng-model="countryEditCtrl.country.countryCode" required autofocus="autofocus">
-              <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.code.$error">
-                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="searchtype" translate="country.field.search.type" class="col-md-3">search type</label>
+              <div class="col-md-9">
+                <select name="searchtype" class="form-control" id="searchtype" ng-model="countryEditCtrl.country.searchType" ng-options="searchType | translate for searchType in countryEditCtrl.searchTypes"
+                  autofocus="autofocus" ng-change="countryEditCtrl.searchTypeChange()">
+                  <option value="">{{'status.label.select.default.searchtype'|translate}}</option>
+                </select>
               </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="url" translate="country.field.url" class="col-md-3">url</label>
-            <div class="col-md-9">
-              <input type="url" name="url" class="form-control" id="url" ng-model="countryEditCtrl.country.url" autofocus="autofocus" ng-required="countryEditCtrl.country.active">
-              <div ng-if="countryEditCtrl.countryForm.$submitted" ng-messages="countryEditCtrl.countryForm.url.$error">
-                <div ng-message="url" class="text-danger">{{"global.form.url"|translate}}</div>
-                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+            <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
+              <label for="active" translate="country.field.schedule" class="col-md-3">active</label>
+              <div class="col-md-6">
+                <div ng-repeat="day in countryEditCtrl.dayOfWeek">
+                  <input ng-disabled="!countryEditCtrl.country.active" type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek"
+                    checklist-value="day.id">{{ day.value|translate }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false" ng-disabled="!countryEditCtrl.country.active"></div>
               </div>
             </div>
-          </div>
-
-          <div class="form-group">
-            <label for="user" translate="country.field.user" class="col-md-3">user</label>
-            <div class="col-md-9">
-              <input type="text" name="user" class="form-control" id="user" ng-model="countryEditCtrl.country.user" autofocus="autofocus">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="password" translate="country.field.password" class="col-md-3">password</label>
-            <div class="col-md-9">
-              <input type="text" name="password" class="form-control" id="password" ng-model="countryEditCtrl.country.password" autofocus="autofocus">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="searchtype" translate="country.field.search.type" class="col-md-3">search type</label>
-            <div class="col-md-9">
-              <select name="searchtype" class="form-control" id="searchtype" ng-model="countryEditCtrl.country.searchType" ng-options="searchType | translate for searchType in countryEditCtrl.searchTypes"
-                autofocus="autofocus" ng-change="countryEditCtrl.searchTypeChange()">
-                <option value="">{{'status.label.select.default.searchtype'|translate}}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
-            <label for="active" translate="country.field.schedule" class="col-md-3">active</label>
-            <div class="col-md-6">
-              <div ng-repeat="day in countryEditCtrl.dayOfWeek">
-                <input ng-disabled="!countryEditCtrl.country.active" type="checkbox" checklist-model="countryEditCtrl.country.daysOfWeek"
-                  checklist-value="day.id">{{ day.value|translate }}
+            <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
+              <label for="active" translate="global.label.active" class="col-md-3">active</label>
+              <div class="col-md-9">
+                <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">
               </div>
             </div>
-            <div class="col-md-3">
-              <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false" ng-disabled="!countryEditCtrl.country.active"></div>
+
+            <div class="form-group" ng-repeat="bdu in countryEditCtrl.country.batchDataUpdates track by $index">
+              <label for="bdu[$index]" class="col-md-3">{{bdu.field|translate}}</label>
+              <div class="col-md-8" ng-if="bdu.field !== 'COMPETENCE'">
+                <input type="text" name="bdu[$index]" class="form-control" id="bdu[$index]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].value"
+                  autofocus="autofocus">
+              </div>
+              <div class="col-md-4" ng-if="bdu.field === 'COMPETENCE'">
+                <select name="bdu[bdu.id]" class="form-control" id="bdu[bdu.id]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].competence"
+                  ng-options="comp for comp in countryEditCtrl.competences" autofocus="autofocus">
+                  <option value="">{{bdu.value.split('|')[0]}}</option>
+                </select>
+              </div>
+              <div class="col-md-4" ng-if="bdu.field === 'COMPETENCE'">
+                <select name="bdu[bdu.id]" class="form-control" id="bdu[bdu.id]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].instrument"
+                  ng-options="comp for comp in countryEditCtrl.instruments" autofocus="autofocus">
+                  <option value="">{{bdu.value.split('|')[1]}}</option>
+                </select>
+              </div>
+              <div class="col-md-1">
+                <span class="glyphicon glyphicon-remove-sign text-danger pointable" ng-click="countryEditCtrl.removeBatchUpdate($index)"></span>
+              </div>
             </div>
-          </div>
-          <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
-            <label for="active" translate="global.label.active" class="col-md-3">active</label>
-            <div class="col-md-9">
-              <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">
+
+
+            <div class="alert alert-danger" role="alert" ng-if="countryEditCtrl.errorsFromServer">
+              <strong>{{countryEditCtrl.errorsFromServer}}</strong>
             </div>
-          </div>
-          <div class="alert alert-danger" role="alert" ng-if="countryEditCtrl.errorsFromServer">
-            <strong>{{countryEditCtrl.errorsFromServer}}</strong>
           </div>
         </div>
       </div>
@@ -116,6 +152,11 @@
           <button class="btn btn-primary pull-right action-button">
             <span class="glyphicon glyphicon-floppy-disk"></span>
             <span translate="global.button.save"></span>
+          </button>
+
+          <button type="button" class="btn btn-success pull-right" ng-click="countryEditCtrl.addCompetence()">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+            <span translate="country.button.add.competence"></span>
           </button>
         </div>
       </div>

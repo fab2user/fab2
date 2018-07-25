@@ -1,5 +1,8 @@
 package eu.cehj.cdb2.common.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import eu.cehj.cdb2.entity.CountryOfSync.SearchType;
 
 public class CountryOfSyncDTO extends BaseDTO{
@@ -9,6 +12,8 @@ public class CountryOfSyncDTO extends BaseDTO{
     private String name;
 
     private String url;
+
+    private String fetchUrl;
 
     private boolean active;
 
@@ -29,6 +34,8 @@ public class CountryOfSyncDTO extends BaseDTO{
     private SynchronizationDTO lastSynchronization;
 
     private SearchType searchType;
+
+    private List<BatchDataUpdateDTO> batchDataUpdates = new ArrayList<>();
 
     public String getName() {
         return this.name;
@@ -108,6 +115,22 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setSearchType(final SearchType searchType) {
         this.searchType = searchType;
+    }
+
+    public String getFetchUrl() {
+        return this.fetchUrl;
+    }
+
+    public void setFetchUrl(final String fetchUrl) {
+        this.fetchUrl = fetchUrl;
+    }
+
+    public List<BatchDataUpdateDTO> getBatchDataUpdates() {
+        return this.batchDataUpdates;
+    }
+
+    public void setBatchDataUpdates(final List<BatchDataUpdateDTO> batchDataUpdates) {
+        this.batchDataUpdates = batchDataUpdates;
     }
 
 }

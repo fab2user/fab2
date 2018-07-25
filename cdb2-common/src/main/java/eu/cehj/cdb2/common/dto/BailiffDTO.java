@@ -217,4 +217,13 @@ public class BailiffDTO extends BaseDTO{
         this.comments = comments;
     }
 
+    @Override
+    public String toString() {
+        return "BailiffDTO [name=" + this.name + ", nationalIdPrefix=" + this.nationalIdPrefix + ", nationalId=" + this.nationalId + ", address1=" + this.address1 + ", address2=" + this.address2
+                + ", postalCode=" + this.postalCode + ", city=" + this.city + ", phone=" + this.phone + ", email=" + this.email + ", addressId=" + this.addressId + ", municipalityId=" + this.municipalityId
+                + ", languages=" + this.languages + ", langOfDetails=" + this.langOfDetails + ", webSite=" + this.webSite + ", fax=" + this.fax + ", openHours=" + this.openHours
+                + ", videoConferenceAvailable=" + this.videoConferenceAvailable + ", comments=" + this.comments + ", langDisplay=" + this.langDisplay + ", competences=" + this.competences + ", geo="
+                + this.geo + ", toBeUpdated=" + this.toBeUpdated + "]";
+    }
+
 }
