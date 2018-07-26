@@ -120,7 +120,9 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         if(!this.validateEntity(entity)) {
             throw new CDBException("Error during record validation");
         }
-        this.batchDataUpdateService.save(dto.getBatchDataUpdates(), dto.getId());
+        if(!dto.getBatchDataUpdates().isEmpty()) {
+            this.batchDataUpdateService.save(dto.getBatchDataUpdates(), dto.getId());
+        }
         this.repository.save(entity);
         return this.populateDTOFromEntity(entity);
     }
