@@ -267,6 +267,24 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>external-config-logging</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/config/log</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources/log</directory>
+                                    <includes>
+                                        <include>log-config.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>external-config-i18n</id>
                         <phase>install</phase>
                         <goals>
