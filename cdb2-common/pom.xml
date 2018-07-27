@@ -11,7 +11,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
 
     <properties>
@@ -23,7 +23,7 @@
 
     <dependencies>
         <dependency>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
@@ -62,6 +62,7 @@
                     </sources>
                     <!-- The package of your generated sources -->
                     <packageName>eu.chj.cdb2.common</packageName>
+                    <xjbSources><xjbSource>${basedir}/src/main/resources/xml/court_database.xjb</xjbSource></xjbSources>
                 </configuration>
             </plugin>
         </plugins>

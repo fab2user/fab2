@@ -20,6 +20,9 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     private static final long serialVersionUID = -7834873765738494098L;
 
+    @Column(name = "nationalId")
+    private String nationalId;
+
     @Column(name = "name", nullable=false)
     private String name;
 
@@ -61,6 +64,9 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     @Column(name = "video_conference", nullable = false)
     private boolean videoConference;
+
+    @Column(name = "comments")
+    private String comments;
 
     public String getName() {
         return this.name;
@@ -136,6 +142,22 @@ public class Bailiff extends BaseAuditedEntity<String> {
 
     public void setOpenHours(final String openHours) {
         this.openHours = openHours;
+    }
+
+    public String getNationalId() {
+        return this.nationalId;
+    }
+
+    public void setNationalId(final String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public String getComments() {
+        return this.comments;
+    }
+
+    public void setComments(final String comments) {
+        this.comments = comments;
     }
 
 }

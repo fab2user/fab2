@@ -27,6 +27,7 @@ public class StorageService {
     public void store(final MultipartFile file) throws IOException {
         try (InputStream is = file.getInputStream()) {
             Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+            LOGGER.info("Copying uploaded file content to {}", this.rootLocation.resolve(file.getOriginalFilename()).toString());
         }catch(final FileAlreadyExistsException e) {
             final String fileName = file.getOriginalFilename();
             LOGGER.warn("File '{}' already exists: deleting it", fileName);

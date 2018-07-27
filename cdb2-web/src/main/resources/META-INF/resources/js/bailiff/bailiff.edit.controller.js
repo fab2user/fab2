@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -20,7 +20,8 @@
     'bailiff',
     'cities',
     'competences',
-    'areas'
+    'areas',
+    'nationalIdPrefix'
   ];
 
   function BailiffEditController(
@@ -38,32 +39,35 @@
     bailiff,
     cities,
     competences,
-    areas
+    areas,
+    nationalIdPrefix
   ) {
     var vm = this;
     vm.modalInstance = $uibModalInstance;
     vm.bailiff = bailiff;
     // vm.instrumentsOpt = [];
     vm.competences = competences;
+    vm.nationalIdPrefix = nationalIdPrefix;
 
-    var snapshotCompare = bailiff.id
-      ? {
-          competences: bailiff.competences.slice(0),
-          geo: Object.assign({}, bailiff.geo)
-        }
-      : { competences: {}, geo: {} };
+    var snapshotCompare = bailiff.id ? {
+      competences: bailiff.competences.slice(0),
+      geo: Object.assign({}, bailiff.geo)
+    } : {
+      competences: {},
+      geo: {}
+    };
 
     vm.areas = areas;
 
-    LangAPIService.getAll().$promise.then(function(data) {
+    LangAPIService.getAll().$promise.then(function (data) {
       vm.languages = data;
     });
 
-    vm.getLanguages = function() {
+    vm.getLanguages = function () {
       return vm.bailiff.languages;
     };
 
-    vm.check = function(value, checked) {
+    vm.check = function (value, checked) {
       var idx = vm.bailiff.languages.indexOf(value);
       if (idx >= 0 && !checked) {
         vm.bailiff.languages.splice(idx, 1);
@@ -71,6 +75,17 @@
       if (idx < 0 && checked) {
         vm.bailiff.languages.push(value);
       }
+    };
+
+    vm.delete = function () {
+      BailiffAPIService.delete({
+        id: vm.bailiff.id
+      }).$promise.then(
+        function () {
+          toastr.success($translate.instant('global.toastr.delete.success'));
+          vm.modalInstance.close();
+        }
+      );
     };
 
     // Only purpose of initialCity is to display correct municipality in angucomplete when editing existing bailiff
@@ -85,23 +100,23 @@
       loadBailiffCompArea();
     }
 
-    vm.save = function(isValid) {
+    vm.save = function (isValid) {
       vm.errorsFromServer = null;
       if (isValid) {
         vm.submitted = true;
         var serializedBailiff = serializeBailiff();
 
         BailiffAPIService.save({}, serializedBailiff)
-          .$promise.then(function(data) {
+          .$promise.then(function (data) {
             vm.bailiff.id = data.id;
             toastr.success($translate.instant('global.toastr.save.success'));
             vm.modalInstance.close();
           })
-          .catch(function(err) {
+          .catch(function (err) {
             $log.error(err);
             vm.errorsFromServer = $translate.instant(err.data.message);
           })
-          .finally(function() {
+          .finally(function () {
             vm.submitted = false;
           });
       }
@@ -132,9 +147,9 @@
     function loadBailiffCompArea() {
       BailiffCompAreaAPIService.getAllForBailiff({
         bailiffId: vm.bailiff.id
-      }).$promise.then(function(success) {
-        var rs = lodash.map(success, function(comp) {
-          var fd = lodash.find(vm.competences, function(c) {
+      }).$promise.then(function (success) {
+        var rs = lodash.map(success, function (comp) {
+          var fd = lodash.find(vm.competences, function (c) {
             return c.instrumentId === comp.competence.instrument.id;
           });
           $log.info('Objet trouve: ', fd);
@@ -144,47 +159,44 @@
         //Build area names list, to be displayed in smart table
         var model = success;
         model = buildAreasList(model);
-        vm.tableParams = new NgTableParams(
-          {},
-          {
-            dataset: model
-          }
-        );
+        vm.tableParams = new NgTableParams({}, {
+          dataset: model
+        });
       });
     }
 
-    vm.addCompetence = function() {
+    vm.addCompetence = function () {
       newEdit({
         areas: []
       });
     };
 
-    vm.editCompetence = function(competence) {
+    vm.editCompetence = function (competence) {
       newEdit(competence);
     };
 
-    vm.removeCompetence = function(competence) {
+    vm.removeCompetence = function (competence) {
       vm.errorsFromServer = null;
       vm.submitted = true;
 
       BailiffCompAreaAPIService.delete({
-        id: competence.id
-      })
-        .$promise.then(function() {
+          id: competence.id
+        })
+        .$promise.then(function () {
           loadBailiffCompArea();
           toastr.success($translate.instant('global.toastr.delete.success'));
         })
-        .catch(function(err) {
+        .catch(function (err) {
           $log.error(err);
           vm.errorsFromServer = $translate.instant(err.data.message);
         })
-        .finally(function() {
+        .finally(function () {
           vm.submitted = false;
         });
     };
 
     function buildAreasList(model) {
-      return lodash.map(model, function(record) {
+      return lodash.map(model, function (record) {
         var areaNames = lodash.map(record.areas, 'name');
         record.areaNames = areaNames.join(', ');
         return record;
@@ -203,7 +215,7 @@
         }
       });
 
-      modalInstance.result.then(function() {
+      modalInstance.result.then(function () {
         loadBailiffCompArea();
       });
     }

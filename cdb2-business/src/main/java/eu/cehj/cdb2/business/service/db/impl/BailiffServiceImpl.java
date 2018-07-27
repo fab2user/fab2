@@ -12,6 +12,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +63,9 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 
     @Autowired
     GeoAreaService geoAreaService;
+
+    @Value("${national.id.prefix}")
+    String nationalIdPrefix;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BailiffServiceImpl.class);
 
@@ -115,12 +119,15 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     public BailiffDTO populateDTOFromEntity(final Bailiff entity) {
         final BailiffDTO dto = new BailiffDTO();
         dto.setName(entity.getName());
+        dto.setNationalIdPrefix(this.nationalIdPrefix);
+        dto.setNationalId(this.removePrefixIfNeeded(entity.getNationalId()) );
         dto.setId(entity.getId());
         dto.setEmail(entity.getEmail());
         dto.setPhone(entity.getPhone());
         dto.setWebSite(entity.getWebSite());
         dto.setFax(entity.getFax());
         dto.setOpenHours(entity.getOpenHours());
+        dto.setComments(entity.getComments());
         entity.getLanguages().forEach(lang -> dto.getLanguages().add(lang.getId()));
         if (!entity.getLangOfDetails().isEmpty()) {
             dto.setLangOfDetails(entity.getLangOfDetails().get(0).getId());
@@ -167,6 +174,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         }
 
         entity.setId(dto.getId());
+        entity.setNationalId(this.addPrefixIfNeeded(dto.getNationalId()));
         entity.setName(dto.getName());
         entity.setPhone(dto.getPhone());
         entity.setEmail(dto.getEmail());
@@ -198,6 +206,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         entity.setAddress(address);
         entity.setWebSite(dto.getWebSite());
         entity.setOpenHours(dto.getOpenHours());
+        entity.setComments(dto.getComments());
         return entity;
     }
 
@@ -304,6 +313,26 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
         }).
                 filter(Objects::nonNull).
                 collect(Collectors.toList());
+    }
+
+    private String addPrefixIfNeeded(final String nationalId) {
+        if(isBlank(nationalId)) {
+            return null;
+        }
+        if(isNotBlank(this.nationalIdPrefix) && !nationalId.startsWith(this.nationalIdPrefix)) {
+            return this.nationalIdPrefix + nationalId;
+        }
+        return nationalId;
+    }
+
+    private String removePrefixIfNeeded(final String nationalId) {
+        if(isBlank(nationalId)) {
+            return null;
+        }
+        if(isNotBlank(this.nationalIdPrefix) && nationalId.startsWith(this.nationalIdPrefix)) {
+            return nationalId.substring(this.nationalIdPrefix.length());
+        }
+        return nationalId;
     }
 }
 

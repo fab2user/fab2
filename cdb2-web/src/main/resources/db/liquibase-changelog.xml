@@ -220,4 +220,14 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             <column name="open_hours" type="varchar(400)" afterColumn="web_site"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="cdb-24" author="landry">
+        <addColumn tableName="bailiff">
+            <column name="national_id" type="varchar(20)" afterColumn="id"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="cdb-25" author="landry">
+        <addColumn tableName="bailiff">
+            <column name="comments" type="varchar(1000)"></column>
+        </addColumn>
+    </changeSet>    
 </databaseChangeLog>

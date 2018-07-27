@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import eu.cehj.cdb2.business.dao.CountryOfSyncRepository;
+import eu.cehj.cdb2.business.service.db.BatchDataUpdateService;
 import eu.cehj.cdb2.business.service.db.CountryOfSyncService;
 import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.CountryOfSyncDTO;
@@ -24,6 +25,9 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
     @Autowired
     private SynchronizationService syncService;
 
+    @Autowired
+    private BatchDataUpdateService batchDataUpdateService;
+
     private static final String CRON_SEPARATOR = ",";
 
     @Override
@@ -32,6 +36,7 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         entity.setActive(dto.isActive());
         entity.setName(dto.getName());
         entity.setUrl(dto.getUrl());
+        entity.setFetchUrl(dto.getFetchUrl());
         entity.setUser(dto.getUser());
         entity.setPassword(dto.getPassword());
         entity.setCountryCode(dto.getCountryCode());
@@ -57,10 +62,12 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setPassword(entity.getPassword());
         dto.setUser(entity.getUser());
         dto.setUrl(entity.getUrl());
+        dto.setFetchUrl(entity.getFetchUrl());
         dto.setDaysOfWeek(this.stringToIntArray(entity.getDaysOfWeek()));
         dto.setCountryCode(entity.getCountryCode());
         dto.setFrequency(entity.getFrequency());
         dto.setSearchType(entity.getSearchType());
+        dto.setBatchDataUpdates(this.batchDataUpdateService.getDTOsByCountry(entity.getId()));
         return dto;
     }
 
@@ -112,6 +119,9 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         // FIXME: to finalize (return type of validateEntity, error messages, front end validation)
         if(!this.validateEntity(entity)) {
             throw new CDBException("Error during record validation");
+        }
+        if(!dto.getBatchDataUpdates().isEmpty()) {
+            this.batchDataUpdateService.save(dto.getBatchDataUpdates(), dto.getId());
         }
         this.repository.save(entity);
         return this.populateDTOFromEntity(entity);

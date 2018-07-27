@@ -23,11 +23,16 @@ public class PushDataServiceLauncher{
     private SynchronizationService syncService;
 
     @Autowired
-    private PushDataService asyncPushDataService;
+    private PushDataServiceFactory pushDataServiceFactory;
+
+    private PushDataService pushDataService;
 
     public CountryOfSync getCountryUrl(final String countryCode) {
         return this.cosService.getByCountryCode(countryCode);
+    }
 
+    public PushDataService getPushDataService(final CountryOfSync cos) {
+        return this.pushDataServiceFactory.getPushDataService(cos);
     }
 
     public Synchronization process(final String countryCode) {
@@ -35,12 +40,12 @@ public class PushDataServiceLauncher{
             LOGGER.debug(String.format("Starting CDB sync for country %s...", countryCode));
         }
         final CountryOfSync cos = this.getCountryUrl(countryCode);
-
+        this.pushDataService = this.getPushDataService(cos);
         Synchronization sync = new Synchronization();
         sync.setCountry(cos);
         sync.setStatus(SyncStatus.IN_PROGRESS);
         sync = this.syncService.save(sync);
-        this.asyncPushDataService.process(cos, sync);
+        this.pushDataService.process(cos, sync);
         return sync;
     }
 

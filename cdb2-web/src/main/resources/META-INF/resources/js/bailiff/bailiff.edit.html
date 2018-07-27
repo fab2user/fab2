@@ -21,11 +21,22 @@
             </div>
           </div>
 
-          <!-- <div class="form-group">
-            <label for="language-detail" translate="bailiff.edit.language.detail" class="col-md-3">language of details</label>
+          <div class="form-group" ng-if="bailiffEditCtrl.nationalIdPrefix">
+            <label for="id" translate="global.label.national.id" class="col-md-3">national id</label>
             <div class="col-md-9">
-              <select name="languageDetail" class="form-control" id="languageDetail" ng-model="bailiffEditCtrl.bailiff.langOfDetails" ng-options="langDetail.id*1 as langDetail.language for langDetail in bailiffEditCtrl.languages">
-                <option value=""></option>
+              <div class="input-group">
+                <div class="input-group-addon">{{bailiffEditCtrl.nationalIdPrefix}}</div>
+                <input name="nationalId" class="form-control" id="nationalId" ng-model="bailiffEditCtrl.bailiff.nationalId" autofocus="autofocus">
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="form-group ">
+            <label for="language-detail " translate="bailiff.edit.language.detail " class="col-md-3 ">language of details</label>
+            <div class="col-md-9 ">
+              <select name="languageDetail " class="form-control " id="languageDetail " ng-model="bailiffEditCtrl.bailiff.langOfDetails
+            " ng-options="langDetail.id*1 as langDetail.language for langDetail in bailiffEditCtrl.languages ">
+                <option value=" "></option>
               </select>
             </div>
           </div> -->
@@ -65,7 +76,7 @@
             <label for="municipality" class="col-md-3">
               <span translate="bailiff.edit.municipality"></span>*</label>
             <div class="col-md-9">
-              <div angucomplete-alt id="municipality" maxlength="50" pause="500" field-required="true" selected-object="bailiffEditCtrl.bailiff.municipality"
+              <div angucomplete-alt id="municipality" maxlength="50" pause="500" field-required="true" selected-object="bailiffEditCtrl.bailiff.municipality "
                 local-data="bailiffEditCtrl.cities" search-fields="name,postalCode" title-field="postalCode,name" minlength="2"
                 input-class="form-control form-control-small" match-class="highlight" input-name="municipality" initial-value="bailiffEditCtrl.bailiff.initialCity"
                 override-suggestions="true">
@@ -108,10 +119,10 @@
           <div class="form-group">
             <label for="language-ac" translate="bailiff.edit.language.accepted" class="col-md-3">language accepted</label>
             <div class="col-md-9">
-              <select name="lang" id="lang" ng-model="bailiffEditCtrl.bailiff.languages" multiple size="3" class="form-control" ng-options="lg.id as lg.language  for lg in bailiffEditCtrl.languages">
+              <select name="lang" id="lang" ng-model="bailiffEditCtrl.bailiff.languages" multiple size="3" class="form-control" ng-options="lg.id as lg.language for lg in bailiffEditCtrl.languages">
               </select>
-              <!-- <div ng-repeat="lang in bailiffEditCtrl.languages">
-                <input type="checkbox" checklist-model="bailiffEditCtrl.bailiff.languages" checklist-value="lang.id"> {{ lang.language }}
+              <!-- <div ng-repeat="lang in bailiffEditCtrl.languages ">
+                <input type="checkbox " checklist-model="bailiffEditCtrl.bailiff.languages " checklist-value="lang.id "> {{ lang.language }}
               </div> -->
             </div>
           </div>
@@ -121,6 +132,13 @@
           </div>
         </div>
         <div class="col-md-6">
+          <div class="form-group">
+            <label for="comments" translate="bailiff.edit.comments" class="col-md-3">comments</label>
+            <div class="col-md-9">
+              <textarea name="comments" id="comments" class="form-control" ng-model="bailiffEditCtrl.bailiff.comments">
+              </textarea>
+            </div>
+          </div>
           <div class="form-group">
             <label for="instrument" translate="bailiff.edit.instruments" class="col-md-3">instruments</label>
             <div class="col-md-9">
@@ -137,7 +155,7 @@
             <div class="col-md-9">
               <select name="area" id="area-select" class="form-control" ng-options="option as option.name for option in bailiffEditCtrl.areas track by option.id"
                 ng-model="bailiffEditCtrl.bailiff.geo" ng-required="bailiffEditCtrl.bailiff.competences"></select>
-              <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.area.$error">
+              <div ng-if="bailiffEditCtrl.bailiffForm.$submitted " ng-messages="bailiffEditCtrl.bailiffForm.area.$error">
                 <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
               </div>
             </div>
@@ -148,10 +166,10 @@
       </div>
 
     </div>
-    <div class="modal-footer ">
-      <div class="row ">
+    <div class="modal-footer">
+      <div class="row">
         <div class="col-md-12 light-pull-right">
-          <button class="btn btn-danger" type="button" ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()" confirm="{{'global.confirm.delete'|translate}}">
+          <button class="btn btn-danger" type="button" ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()" confirm="{{ 'global.confirm.delete'|translate}}">
             <span class="glyphicon glyphicon-trash"></span>
             <span translate="global.button.delete"></span>
           </button>
@@ -159,9 +177,9 @@
             <span class="glyphicon glyphicon-floppy-disk"></span>
             <span translate="global.button.save"></span>
           </button>
-          <a class="btn btn-primary action-button " ng-click="bailiffEditCtrl.modalInstance.close() ">
-            <span class="glyphicon glyphicon-remove-sign "></span>
-            <span translate="global.button.cancel "></span>
+          <a class="btn btn-primary action-button" ng-click="bailiffEditCtrl.modalInstance.close()">
+            <span class="glyphicon glyphicon-remove-sign"></span>
+            <span translate="global.button.cancel"></span>
           </a>
         </div>
       </div>

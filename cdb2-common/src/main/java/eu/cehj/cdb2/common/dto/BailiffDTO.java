@@ -10,6 +10,8 @@ public class BailiffDTO extends BaseDTO{
     private static final long serialVersionUID = 6204512676632176957L;
 
     private String name;
+    private String nationalIdPrefix;
+    private String nationalId;
     private String address1;
     private String address2;
     private String postalCode;
@@ -24,6 +26,7 @@ public class BailiffDTO extends BaseDTO{
     private String fax;
     private String openHours;
     private boolean videoConferenceAvailable = false;
+    private String comments;
     private String langDisplay; // used only for CDB for now but maybe relevant for other cases too
     private List<CompetenceDTO> competences;
     private GeoAreaSimpleDTO geo;
@@ -188,6 +191,39 @@ public class BailiffDTO extends BaseDTO{
 
     public void setLangDisplay(final String langDisplay) {
         this.langDisplay = langDisplay;
+    }
+
+    public String getNationalId() {
+        return this.nationalId;
+    }
+
+    public void setNationalId(final String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public String getNationalIdPrefix() {
+        return this.nationalIdPrefix;
+    }
+
+    public void setNationalIdPrefix(final String nationalIdPrefix) {
+        this.nationalIdPrefix = nationalIdPrefix;
+    }
+
+    public String getComments() {
+        return this.comments;
+    }
+
+    public void setComments(final String comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "BailiffDTO [name=" + this.name + ", nationalIdPrefix=" + this.nationalIdPrefix + ", nationalId=" + this.nationalId + ", address1=" + this.address1 + ", address2=" + this.address2
+                + ", postalCode=" + this.postalCode + ", city=" + this.city + ", phone=" + this.phone + ", email=" + this.email + ", addressId=" + this.addressId + ", municipalityId=" + this.municipalityId
+                + ", languages=" + this.languages + ", langOfDetails=" + this.langOfDetails + ", webSite=" + this.webSite + ", fax=" + this.fax + ", openHours=" + this.openHours
+                + ", videoConferenceAvailable=" + this.videoConferenceAvailable + ", comments=" + this.comments + ", langDisplay=" + this.langDisplay + ", competences=" + this.competences + ", geo="
+                + this.geo + ", toBeUpdated=" + this.toBeUpdated + "]";
     }
 
 }

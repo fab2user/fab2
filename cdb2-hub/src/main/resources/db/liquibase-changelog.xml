@@ -102,4 +102,41 @@
         </addColumn>
         <dropColumn tableName="country_sync" columnName="managed"/>
     </changeSet>
+    <changeSet id="hub-16" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="bailiffs_url" type="varchar(50)" afterColumn="url"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="hub-17" author="landry">
+        <modifyDataType tableName="sync" columnName="message" newDataType="varchar(1000)"></modifyDataType>
+    </changeSet>
+    <changeSet id="hub-18" author="landry">
+        <dropColumn tableName="country_sync" columnName="bailiffs_url"/>
+    </changeSet>
+    <changeSet id="hub-19" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="fetch_url" type="varchar(255)" afterColumn="url"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="hub-20" author="landry">
+         <createTable tableName="batch_data_update">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="field" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="value" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="country" type="bigint">
+                <constraints nullable="false" foreignKeyName="FK_batch_update_country" referencedTableName="country_sync" referencedColumnNames="id" />
+            </column>
+            <column name="deleted" type="bit" defaultValueBoolean="false" />
+            <column name="created_by" type="varchar(255)"></column>
+            <column name="created_on" type="datetime"></column>
+            <column name="modified_by" type="varchar(255)"></column>
+            <column name="modified_on" type="datetime"></column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

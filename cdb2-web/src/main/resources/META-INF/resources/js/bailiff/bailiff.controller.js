@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('cdb2').controller('BailiffController', BailiffController);
@@ -11,6 +11,7 @@
     '$http',
     '$interval',
     '$rootScope',
+    '$localForage',
     'lodash',
     'FileSaver',
     'Blob',
@@ -21,6 +22,7 @@
     'InstrumentAPIService',
     'CompetenceForSelectAPIService',
     'GeoAreaAPIService',
+    'SettingsAPIService',
     'SERVER',
     'EVENT',
     'STATUS'
@@ -34,6 +36,7 @@
     $http,
     $interval,
     $rootScope,
+    $localForage,
     lodash,
     FileSaver,
     Blob,
@@ -44,6 +47,7 @@
     InstrumentAPIService,
     CompetenceForSelectAPIService,
     GeoAreaAPIService,
+    SettingsAPIService,
     SERVER,
     EVENT,
     STATUS
@@ -52,65 +56,74 @@
     vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
     vm.selectedBailiff = {};
 
-    vm.fetchBailiffs = function() {
-      BailiffAPIService.getAll({ deleted: vm.deleted }).$promise.then(function(
+    vm.fetchBailiffs = function () {
+      BailiffAPIService.getAll({
+        deleted: vm.deleted
+      }).$promise.then(function (
         data
       ) {
         vm.total = data.length;
-        vm.tableParams = new NgTableParams({}, { dataset: data });
+        vm.tableParams = new NgTableParams({}, {
+          dataset: data
+        });
       });
     };
 
     vm.fetchBailiffs();
     vm.title = $translate.instant('bailiff.list.municipality');
 
-    vm.new = function() {
+    vm.new = function () {
       loadModal({});
     };
 
-    vm.edit = function(bailiff) {
+    vm.edit = function (bailiff) {
       vm.selectedBailiff = bailiff;
       loadModal(vm.selectedBailiff);
     };
 
-    vm.delete = function(bailiff) {
+    vm.delete = function (bailiff) {
       vm.selectedBailiff = bailiff;
       vm.delete();
     };
 
-    // Don't remove : it's used in bailiff edit !
-    vm.delete = function() {
-      BailiffAPIService.delete({ id: vm.selectedBailiff.id }).$promise.then(
-        function() {
+    vm.delete = function () {
+      BailiffAPIService.delete({
+        id: vm.selectedBailiff.id
+      }).$promise.then(
+        function () {
           toastr.success($translate.instant('global.toastr.delete.success'));
           vm.fetchBailiffs();
         }
       );
     };
 
-    vm.cancelUpload = function() {
+    vm.cancelUpload = function () {
       vm.importFile = null;
     };
 
-    vm.export = function() {
+    vm.export = function () {
       $http
-        .get(SERVER.API + '/bailiff/export', { responseType: 'arraybuffer' })
-        .then(function(success) {
+        .get(SERVER.API + '/bailiff/export', {
+          responseType: 'arraybuffer'
+        })
+        .then(function (success) {
           var blob = new Blob([success.data]);
           FileSaver.saveAs(blob, 'export_bailiffs.xls');
         });
     };
 
-    vm.importTemplate = function() {
+    vm.importTemplate = function () {
       $http
-        .get(SERVER.API + '/bailiff/template', { responseType: 'arraybuffer' })
-        .then(function(success) {
+        .get(SERVER.API + '/bailiff/template', {
+          responseType: 'arraybuffer'
+        })
+        .then(function (success) {
           var blob = new Blob([success.data]);
           FileSaver.saveAs(blob, 'bailiffs_import_template.xlsx');
         });
     };
 
-    vm.sendImportFile = function() {
+    vm.sendImportFile = function () {
       $log.info('Upload called', vm.importFile);
       var formData = new FormData();
       formData.append('file', vm.importFile);
@@ -122,7 +135,7 @@
             'Content-Type': undefined
           }
         })
-        .then(function(success) {
+        .then(function (success) {
           $log.debug('Update successfully submitted');
           // toastr.info($translate.instant('bailiff.import.inprogress'));
           vm.importFile = null;
@@ -131,18 +144,18 @@
           // start polling
           vm.startPolling(success.data.id);
         })
-        .finally(function() {
+        .finally(function () {
           vm.submitted = false;
         });
     };
 
     vm.polling = undefined;
 
-    vm.startPolling = function(taskCode) {
+    vm.startPolling = function (taskCode) {
       if (angular.isDefined(vm.polling)) return;
       vm.polling = $interval(
-        function() {
-          $http.get(SERVER.API + '/task/' + taskCode).then(function(success) {
+        function () {
+          $http.get(SERVER.API + '/task/' + taskCode).then(function (success) {
             if (success.data.status === STATUS.OK) {
               vm.fetchBailiffs();
             }
@@ -160,14 +173,14 @@
       );
     };
 
-    vm.endPolling = function() {
+    vm.endPolling = function () {
       if (angular.isDefined(vm.polling)) {
         $interval.cancel(vm.polling);
         vm.polling = undefined;
       }
     };
 
-    vm.resetSearch = function() {
+    vm.resetSearch = function () {
       vm.tableParams.filter({});
     };
 
@@ -179,7 +192,8 @@
         backdrop: 'static',
         resolve: {
           bailiff: bailiff,
-          cities: function() {
+          nationalIdPrefix: $localForage.getItem('nationalIdPrefix'),
+          cities: function () {
             return MunicipalityAPIService.getAll();
           },
           // competences: function() {
@@ -192,16 +206,16 @@
           //     });
           //   }
           // },
-          competences: function() {
+          competences: function () {
             return CompetenceForSelectAPIService.getAll();
           },
-          areas: function() {
+          areas: function () {
             return GeoAreaAPIService.getAllSimple();
           }
         }
       });
 
-      modalInstance.result.then(function() {
+      modalInstance.result.then(function () {
         vm.fetchBailiffs();
       });
     }

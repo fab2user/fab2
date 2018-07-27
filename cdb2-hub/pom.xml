@@ -3,7 +3,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
 
     <properties>
@@ -18,17 +18,17 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-business</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-common</artifactId>
         </dependency>
@@ -310,6 +310,24 @@
                                     <directory>${basedir}/src/main/resources/config</directory>
                                     <includes>
                                         <include>security.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>external-config-logging</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/config/log</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources/log</directory>
+                                    <includes>
+                                        <include>log-config.xml</include>
                                     </includes>
                                 </resource>
                             </resources>
