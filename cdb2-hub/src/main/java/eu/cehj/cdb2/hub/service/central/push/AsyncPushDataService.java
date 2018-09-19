@@ -9,6 +9,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import javax.xml.bind.JAXBElement;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
+import eu.cehj.cdb2.common.dto.CompetenceExportDTO;
 import eu.cehj.cdb2.common.dto.GeoAreaDTO;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.common.exception.dto.CDBException;
@@ -38,8 +41,10 @@ import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
 import eu.cehj.cdb2.hub.service.RequestResponseLoggingInterceptor;
 import eu.cehj.cdb2.hub.utils.GlobalCdbSyncResponse;
 import eu.cehj.cdb2.hub.utils.Settings;
-import eu.chj.cdb2.common.Body;
+import eu.chj.cdb2.common.Body.Competences;
 import eu.chj.cdb2.common.Body.Details;
+import eu.chj.cdb2.common.Competence;
+import eu.chj.cdb2.common.Court;
 import eu.chj.cdb2.common.Data;
 import eu.chj.cdb2.common.Detail;
 import eu.chj.cdb2.common.GeoArea;
@@ -82,10 +87,10 @@ public class AsyncPushDataService implements PushDataService {
 
             final List<Future<Data>> finishedData = executor.invokeAll(callables);
             final Data dataToSend = finishedData.get(0).get();
-            //            final Data areasData = finishedData.get(1).get();
-            //            for (final GeoArea area : areasData.getGeoArea()) {
-            //                dataToSend.getGeoArea().add(area);
-            //            }
+                        final Data areasData = finishedData.get(1).get();
+                        for (final GeoArea area : areasData.getGeoAreas()) {
+                            dataToSend.getGeoAreas().add(area);
+                        }
             this.sendToCDB(dataToSend, sync);
         } catch (final Exception e) {
             sync.setStatus(SyncStatus.ERROR);
@@ -125,33 +130,34 @@ public class AsyncPushDataService implements PushDataService {
         final Data data = new Data();
         final ObjectFactory factory = new ObjectFactory();
         for (final BailiffExportDTO dto : dtos) {
-            final Body body = new Body();
-            body.setCountry(cos.getCountryCode());
+            final Court court = new Court();
+            court.setId(dto.getNationalId());
+            court.setCountry(cos.getCountryCode());
             final Details details = new Details();
             final Detail detail = new Detail();
             detail.setName(dto.getName());
             detail.setAddress(dto.getAddress1() +
                     " " + dto.getAddress2());
-            detail.setEmail(dto.getEmail());
-            detail.setFax(dto.getFax());
-            detail.setTel(dto.getTel());
-            detail.setPostalCode(dto.getPostalCode());
-            detail.setMunicipality(dto.getMunicipality());
-            //            details.getDetail().add(detail);
-            //            body.setDetails(details);
-            //            data.getCourtOrPhysicalPerson().add(body);
-            //            final Competences competences = new Competences();
-            //            for (final CompetenceExportDTO competenceDTO : dto.getCompetences()) {
-            //                final Competence competence = new Competence();
-            //                final GeoArea area = new GeoArea();
-            //                area.setId(competenceDTO.getGeoAreaId());
-            //                final JAXBElement<Object> areaId = factory.createCompetenceGeoAreaId(area);
-            //                competence.setInstrument(competenceDTO.getInstrument());
-            //                competence.setType(competenceDTO.getType());
-            //                competence.getGeoAreaId().add(areaId);
-            //                competences.getCompetence().add(competence);
-            //            }
-            //            body.setCompetences(competences);
+			detail.setEmail(dto.getEmail());
+			detail.setFax(dto.getFax());
+			detail.setTel(dto.getTel());
+			detail.setPostalCode(dto.getPostalCode());
+			detail.setMunicipality(dto.getMunicipality());
+			details.getDetails().add(detail);
+			court.setDetails(details);
+			data.getCourtsAndPhysicalPersons().add(court);
+			final Competences competences = new Competences();
+			for (final CompetenceExportDTO competenceDTO : dto.getCompetences()) {
+				final Competence competence = new Competence();
+				final GeoArea area = new GeoArea();
+				area.setId(competenceDTO.getGeoAreaId());
+				final JAXBElement<Object> areaId = factory.createCompetenceGeoAreaId(area);
+				competence.setInstrument(competenceDTO.getInstrument());
+				competence.setType(competenceDTO.getType());
+				competence.getGeoAreaIds().add(areaId);
+				competences.getCompetences().add(competence);
+			}
+			court.setCompetences(competences);
         }
         return data;
     }
@@ -160,21 +166,21 @@ public class AsyncPushDataService implements PushDataService {
     public Data processAreas(final CountryOfSync cos) {
         // TODO: If needed, create a new geoArea service returning only data needed by CDB
         final Data data = new Data();
-        //        final String areasUrl = cos.getUrl() + "/" + this.settings.getAreasUrl();
-        //        final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
-        //        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(areasUrl);
-        //        LOGGER.info("Push Service - Sending request to {}", areasUrl);
-        //        final ResponseEntity<List<GeoAreaDTO>> respDtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
-        //                new ParameterizedTypeReference<List<GeoAreaDTO>>() {
-        //        });
-        //        if(LOGGER.isDebugEnabled()) {
-        //            LOGGER.debug(respDtos.toString());
-        //        }
-        //        final List<GeoAreaDTO> dtos = respDtos.getBody();
-        //        for (final GeoAreaDTO dto : dtos) {
-        //            final GeoArea geoArea = this.buildGeoArea(dto);
-        //            data.getGeoArea().add(geoArea);
-        //        }
+                final String areasUrl = cos.getUrl() + "/" + this.settings.getAreasUrl();
+                final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
+                final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(areasUrl);
+                LOGGER.info("Push Service - Sending request to {}", areasUrl);
+                final ResponseEntity<List<GeoAreaDTO>> respDtos = restTemplate.exchange(uriComponentsBuilder.build().encode().toUri(), HttpMethod.GET, null,
+                        new ParameterizedTypeReference<List<GeoAreaDTO>>() {
+                });
+                if(LOGGER.isDebugEnabled()) {
+                    LOGGER.debug(respDtos.toString());
+                }
+                final List<GeoAreaDTO> dtos = respDtos.getBody();
+                for (final GeoAreaDTO dto : dtos) {
+                    final GeoArea geoArea = this.buildGeoArea(dto);
+                    data.getGeoAreas().add(geoArea);
+                }
         return data;
 
     }
@@ -222,7 +228,7 @@ public class AsyncPushDataService implements PushDataService {
             final Municipality municipality = new Municipality();
             municipality.setName(municipalityDTO.getName());
             municipality.setPostalCode(municipalityDTO.getPostalCode());
-            //            geoArea.getMunicipalityOrStreetOrAddress().add(municipality);
+            geoArea.getMunicipalitiesAndStreetsAndAddresses().add(municipality);
         }
 
         return geoArea;
