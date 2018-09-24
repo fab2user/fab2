@@ -23,6 +23,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.InterceptingClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
@@ -54,7 +56,9 @@ import eu.chj.cdb2.common.ObjectFactory;
 @Service
 public class AsyncPushDataService implements PushDataService {
 
-    @Autowired
+    private static final String GEOAREA_PREFIX = "GEOAREABAIL";
+
+	@Autowired
     private SynchronizationService syncService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AsyncPushDataService.class);
@@ -136,21 +140,22 @@ public class AsyncPushDataService implements PushDataService {
             final Details details = new Details();
             final Detail detail = new Detail();
             detail.setName(dto.getName());
-            detail.setAddress(dto.getAddress1() +
-                    " " + dto.getAddress2());
+            detail.setLang(StringUtils.defaultIfBlank(dto.getLang(), "en"));
+            detail.setAddress((dto.getAddress1() + " " + StringUtils.defaultString(dto.getAddress2(), "")).trim());
 			detail.setEmail(dto.getEmail());
 			detail.setFax(dto.getFax());
 			detail.setTel(dto.getTel());
 			detail.setPostalCode(dto.getPostalCode());
 			detail.setMunicipality(dto.getMunicipality());
 			details.getDetails().add(detail);
+			
 			court.setDetails(details);
 			data.getCourtsAndPhysicalPersons().add(court);
 			final Competences competences = new Competences();
 			for (final CompetenceExportDTO competenceDTO : dto.getCompetences()) {
 				final Competence competence = new Competence();
 				final GeoArea area = new GeoArea();
-				area.setId(competenceDTO.getGeoAreaId());
+				area.setId(GEOAREA_PREFIX + competenceDTO.getGeoAreaId());
 				final JAXBElement<Object> areaId = factory.createCompetenceGeoAreaId(area);
 				competence.setInstrument(competenceDTO.getInstrument());
 				competence.setType(competenceDTO.getType());
@@ -193,9 +198,17 @@ public class AsyncPushDataService implements PushDataService {
             sync.setMessage("Processing...");
             this.syncService.save(sync);
 
+            
             final RestTemplate restTemplate = this.builder.basicAuthorization(this.cdbUser, this.cdbPassword).build();
-            restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
+            
+            // Requires to avoid error during authentication.
+            // It is important to set this value before setting any interceptor , because getRequestFactory will wrap it if anay interceptors is defined.
+//            SimpleClientHttpRequestFactory httpRequestFactory = (SimpleClientHttpRequestFactory)restTemplate.getRequestFactory();
+//            httpRequestFactory.setOutputStreaming(false);
 
+            restTemplate.getInterceptors().add(new RequestResponseLoggingInterceptor());
+            
+            
             final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);
             final HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_XML);
@@ -223,7 +236,7 @@ public class AsyncPushDataService implements PushDataService {
 
     public GeoArea buildGeoArea(final GeoAreaDTO dto){
         final GeoArea geoArea = new GeoArea();
-        geoArea.setId(Long.toString(dto.getId()));
+        geoArea.setId(GEOAREA_PREFIX + dto.getId());  // TODO change this to skip space anand other thing.
         for (final MunicipalityDTO municipalityDTO : dto.getMunicipalities()) {
             final Municipality municipality = new Municipality();
             municipality.setName(municipalityDTO.getName());

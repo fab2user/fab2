@@ -55,9 +55,7 @@ public class AsyncPushSOAPDataService extends AsyncPushDataService {
                 final Details details = new Details();
                 final Detail detail = new Detail();
                 detail.setName(dto.getName());
-                if (dto.getLangDisplay() != null) {
-                	detail.setLang(StringUtils.defaultIfBlank(dto.getLangDisplay(), "N/A"));
-                }
+                detail.setLang(StringUtils.defaultIfBlank(dto.getLangDisplay(), "en"));
                 detail.setAddress((dto.getAddress1() + " " + StringUtils.defaultString(dto.getAddress2(), "")).trim());
                 detail.setEmail(dto.getEmail());
                 detail.setFax(dto.getFax());
