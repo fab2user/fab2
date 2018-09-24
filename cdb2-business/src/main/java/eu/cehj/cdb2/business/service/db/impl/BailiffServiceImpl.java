@@ -256,6 +256,8 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
     @Override
     public BailiffExportDTO populateExportDTOFromEntity(final Bailiff entity){
         final BailiffExportDTO dto = new BailiffExportDTO();
+        dto.setId(entity.getId());
+        dto.setNationalId(entity.getNationalId());
         if (entity.getAddress() != null) {
             dto.setAddress1(entity.getAddress().getAddress1());
             dto.setAddress2(entity.getAddress().getAddress2());

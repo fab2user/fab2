@@ -85,6 +85,7 @@ public class BelgiumSearchService extends WebServiceGatewaySupport implements Lo
 
     private BailiffDTO convertOfficeToDTO(final Office office) {
         final BailiffDTO dto = new BailiffDTO();
+        dto.setId(Long.valueOf(office.getOfficeId()));
         dto.setName(office.getOfficeName());
         dto.setAddress1(String.format("%s %s", office.getAddressStreetNmbr(), office.getAddressStreet()));
         dto.setPostalCode(office.getAddressZipCd());

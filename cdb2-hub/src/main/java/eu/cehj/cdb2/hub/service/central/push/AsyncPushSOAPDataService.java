@@ -43,17 +43,19 @@ public class AsyncPushSOAPDataService extends AsyncPushDataService {
 
         try {
             for (final BailiffDTO dto : dtos) {
-                final Court body = factory.createCourt();
-                if(dto.getId()!=null) {
-                    body.setId(Long.toString(dto.getId()));
+                final Court court = factory.createCourt();
+                if(dto.getNationalId()!=null) {
+                	court.setId(StringUtils.defaultString(dto.getNationalIdPrefix()) + dto.getNationalId());
+                } else if (dto.getId() != null) {
+                    court.setId(StringUtils.defaultString(dto.getNationalIdPrefix()) + Long.toString(dto.getId()));
                 }else {
-                    body.setId("N/A");
+                    court.setId("N/A");
                 }
-                body.setCountry(cos.getCountryCode());
+                court.setCountry(cos.getCountryCode());
                 final Details details = new Details();
                 final Detail detail = new Detail();
                 detail.setName(dto.getName());
-                detail.setLang(StringUtils.defaultIfBlank(dto.getLangDisplay(), "N/A"));
+                detail.setLang(StringUtils.defaultIfBlank(dto.getLangDisplay(), "en"));
                 detail.setAddress((dto.getAddress1() + " " + StringUtils.defaultString(dto.getAddress2(), "")).trim());
                 detail.setEmail(dto.getEmail());
                 detail.setFax(dto.getFax());
@@ -61,7 +63,7 @@ public class AsyncPushSOAPDataService extends AsyncPushDataService {
                 detail.setPostalCode(dto.getPostalCode());
                 detail.setMunicipality(dto.getCity());
                 details.getDetails().add(detail);
-                body.setDetails(details);
+                court.setDetails(details);
 
                 final Competences competences = factory.createBodyCompetences();
 
@@ -78,8 +80,8 @@ public class AsyncPushSOAPDataService extends AsyncPushDataService {
                     competences.getCompetences().add(comp);
                 }
 
-                body.setCompetences(competences);
-                data.getCourtsAndPhysicalPersons().add(body);
+                court.setCompetences(competences);
+                data.getCourtsAndPhysicalPersons().add(court);
             }
         } catch (final Exception e) {
             LOGGER.error(e.getMessage(), e);

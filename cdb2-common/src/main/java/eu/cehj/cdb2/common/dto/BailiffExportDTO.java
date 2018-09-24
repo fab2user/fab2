@@ -4,7 +4,9 @@ import java.util.List;
 
 public class BailiffExportDTO{
 
-    private String name;
+	private Long id;
+	private String nationalId;
+	private String name;
     private String lang;
     private String address1;
     private String address2;
@@ -16,6 +18,12 @@ public class BailiffExportDTO{
     private boolean videoConference;
     private List<CompetenceExportDTO> competences;
 
+    public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
     public String getName() {
         return this.name;
     }
@@ -82,4 +90,10 @@ public class BailiffExportDTO{
     public void setAddress2(final String address2) {
         this.address2 = address2;
     }
+	public String getNationalId() {
+		return nationalId;
+	}
+	public void setNationalId(String nationalId) {
+		this.nationalId = nationalId;
+	}
 }
