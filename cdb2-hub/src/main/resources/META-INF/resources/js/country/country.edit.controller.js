@@ -80,14 +80,22 @@
       vm.country.frequency = moment()
         .set('hour', 0)
         .set('minute', 0);
-    } else {
-      var hm = vm.country.frequency.split(':');
-      if (hm.length === 2) {
+    } else{
+      if(!vm.country.frequency){
         vm.country.frequency = moment()
-          .set('hour', hm[0])
-          .set('minute', hm[1]);
+        .set('hour', 0)
+        .set('minute', 0);
+      }
+      else {
+        var hm = vm.country.frequency.split(':');
+        if (hm.length === 2) {
+          vm.country.frequency = moment()
+            .set('hour', hm[0])
+            .set('minute', hm[1]);
+        }
       }
     }
+   
 
     vm.save = function(isValid) {
       vm.errorsFromServer = null;

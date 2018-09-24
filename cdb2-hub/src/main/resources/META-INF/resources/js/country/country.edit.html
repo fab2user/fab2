@@ -72,6 +72,20 @@
                 <input type="text" name="password" class="form-control" id="password" ng-model="countryEditCtrl.country.password" autofocus="autofocus">
               </div>
             </div>
+
+            <div class="form-group">
+              <label for="cdbUser" translate="country.field.cdbuser" class="col-md-3">CDB user</label>
+              <div class="col-md-9">
+                <input type="text" name="cdbUser" class="form-control" id="cdbUser" ng-model="countryEditCtrl.country.cdbUser" autofocus="autofocus">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cdbpassword" translate="country.field.cdbpassword" class="col-md-3">CDB password</label>
+              <div class="col-md-9">
+                <input type="text" name="cdbpassword" class="form-control" id="cdbpassword" ng-model="countryEditCtrl.country.cdbPassword" autofocus="autofocus">
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -85,7 +99,7 @@
                 </select>
               </div>
             </div>
-
+            <div ng-if="countryEditCtrl.country.searchType!=='CDB' && countryEditCtrl.country.active === true">
             <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
               <label for="active" translate="country.field.schedule" class="col-md-3">active</label>
               <div class="col-md-6">
@@ -98,12 +112,13 @@
                 <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false" ng-disabled="!countryEditCtrl.country.active"></div>
               </div>
             </div>
-            <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
-              <label for="active" translate="global.label.active" class="col-md-3">active</label>
-              <div class="col-md-9">
-                <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">
-              </div>
+          </div>
+          <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
+            <label for="active" translate="global.label.active" class="col-md-3">active</label>
+            <div class="col-md-9">
+              <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">
             </div>
+          </div>
 
             <div class="form-group" ng-repeat="bdu in countryEditCtrl.country.batchDataUpdates track by $index">
               <label for="bdu[$index]" class="col-md-3">{{bdu.field|translate}}</label>
