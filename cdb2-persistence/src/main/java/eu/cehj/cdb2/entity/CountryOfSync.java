@@ -66,6 +66,13 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     @Enumerated(EnumType.STRING)
     private SearchType searchType;
 
+    @Column(name="cdb2_user")
+    private String cdbUser;
+
+    @Column(name="cdb2_password")
+    private String cdbPassword;
+
+
     public String getName() {
         return this.name;
     }
@@ -148,6 +155,22 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
 
     public void setFetchUrl(final String fetchUrl) {
         this.fetchUrl = fetchUrl;
+    }
+
+    public String getCdbUser() {
+        return this.cdbUser;
+    }
+
+    public void setCdbUser(final String cdbUser) {
+        this.cdbUser = cdbUser;
+    }
+
+    public String getCdbPassword() {
+        return this.cdbPassword;
+    }
+
+    public void setCdbPassword(final String cdbPassword) {
+        this.cdbPassword = cdbPassword;
     }
 
 }
