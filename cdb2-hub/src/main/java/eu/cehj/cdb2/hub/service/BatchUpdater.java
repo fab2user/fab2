@@ -47,7 +47,9 @@ public class BatchUpdater {
             case "FAX":
                 detail.setFax(update.getValue());
                 break;
-
+            case "LANG":
+                detail.setLang(update.getValue());
+                break;
             default:
                 break;
         }

@@ -10,7 +10,11 @@
       SERVER.API + '/reference/:action',
       {},
       {
-        get: {}
+        get: {},
+        languages: {
+          url: SERVER.API + '/reference/languages',
+          isArray: true
+        }
       }
     );
   }

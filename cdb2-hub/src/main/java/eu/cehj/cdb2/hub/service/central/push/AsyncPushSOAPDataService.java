@@ -45,7 +45,7 @@ public class AsyncPushSOAPDataService extends AsyncPushDataService {
             for (final BailiffDTO dto : dtos) {
                 final Court court = factory.createCourt();
                 if(dto.getNationalId()!=null) {
-                	court.setId(StringUtils.defaultString(dto.getNationalIdPrefix()) + dto.getNationalId());
+                    court.setId(StringUtils.defaultString(dto.getNationalIdPrefix()) + dto.getNationalId());
                 } else if (dto.getId() != null) {
                     court.setId(StringUtils.defaultString(dto.getNationalIdPrefix()) + Long.toString(dto.getId()));
                 }else {
@@ -63,6 +63,12 @@ public class AsyncPushSOAPDataService extends AsyncPushDataService {
                 detail.setPostalCode(dto.getPostalCode());
                 detail.setMunicipality(dto.getCity());
                 details.getDetails().add(detail);
+
+                final List<Detail>dets = this.batchUpdater.updateDetail(cos);
+                for(final Detail det: dets) {
+                    competences.getCompetences().add(comp);
+                }
+
                 court.setDetails(details);
 
                 final Competences competences = factory.createBodyCompetences();

@@ -66,6 +66,13 @@
               return ReferenceAPIService.get({ action: 'competences' })
                 .$promise;
             }
+          ],
+          languages: [
+            'ReferenceAPIService',
+            function(ReferenceAPIService) {
+              return ReferenceAPIService.languages()
+                .$promise;
+            }
           ]
         }
       });

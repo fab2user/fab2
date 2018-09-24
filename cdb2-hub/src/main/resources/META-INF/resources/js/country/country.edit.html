@@ -122,9 +122,9 @@
 
             <div class="form-group" ng-repeat="bdu in countryEditCtrl.country.batchDataUpdates track by $index">
               <label for="bdu[$index]" class="col-md-3">{{bdu.field|translate}}</label>
-              <div class="col-md-8" ng-if="bdu.field !== 'COMPETENCE'">
-                <input type="text" name="bdu[$index]" class="form-control" id="bdu[$index]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].value"
-                  autofocus="autofocus">
+              <div class="col-md-8" ng-if="bdu.field === 'LANG'">
+                <select name="bdu[$index]" class="form-control" id="bdu[$index]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].value"
+                 ng-options="lang for lang in countryEditCtrl.languages" autofocus="autofocus"></select>
               </div>
               <div class="col-md-4" ng-if="bdu.field === 'COMPETENCE'">
                 <select name="bdu[bdu.id]" class="form-control" id="bdu[bdu.id]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].competence"
@@ -173,6 +173,17 @@
             <span class="glyphicon glyphicon-plus-sign"></span>
             <span translate="country.button.add.competence"></span>
           </button>
+
+          <div class="dropup pull-right">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Generic field
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li class="pointable"><a ng-click="countryEditCtrl.addBatchField('COMPETENCE')">Add competence</a></li>
+              <li class="pointable"><a ng-click="countryEditCtrl.addBatchField('LANG')">Add language</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
