@@ -1,5 +1,6 @@
 package eu.cehj.cdb2.hub.service.central.push;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +9,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import javax.xml.XMLConstants;
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.util.JAXBSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -17,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -27,6 +36,9 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.BailiffExportDTO;
@@ -72,6 +84,9 @@ public class AsyncPushDataService implements PushDataService {
 
     @Value("${cdb.update.url}")
     private String cdbUrl;
+
+    @Value("classpath:xml/court_database.xsd")
+    private Resource cdbSchema;
 
     @Override
     public void process(final CountryOfSync cos, final Synchronization sync)  {
@@ -129,7 +144,7 @@ public class AsyncPushDataService implements PushDataService {
         final ObjectFactory factory = new ObjectFactory();
         for (final BailiffExportDTO dto : dtos) {
             final Court court = new Court();
-            court.setId(dto.getNationalId());
+            court.setId(StringUtils.defaultIfBlank(dto.getNationalId(), dto.getId().toString()));
             court.setCountry(cos.getCountryCode());
             final Details details = new Details();
             Detail detail = new Detail();
@@ -194,6 +209,7 @@ public class AsyncPushDataService implements PushDataService {
 
     @Override
     public void sendToCDB(final Data data, final Synchronization sync) {
+        this.validateXMLProduced(data);
         // Always in error since we don't have any test server able to process the XML file for now
         try {
             sync.setStatus(SyncStatus.SENDING_TO_CDB);
@@ -201,7 +217,6 @@ public class AsyncPushDataService implements PushDataService {
             this.syncService.save(sync);
 
             final CountryOfSync cos = sync.getCountry();
-
 
             final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getCdbUser(), cos.getCdbPassword()).build();
 
@@ -250,4 +265,46 @@ public class AsyncPushDataService implements PushDataService {
 
         return geoArea;
     }
+
+    @Override
+    public void validateXMLProduced(final Data data){
+
+        try {
+            final JAXBContext context = JAXBContext.newInstance(Data.class);
+            final JAXBSource source = new JAXBSource(context, data);
+
+            final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            final Schema schema = schemaFactory.newSchema(this.cdbSchema.getFile());
+
+            final Validator validator = schema.newValidator();
+            validator.setErrorHandler(cdbErrorHandler);
+            validator.validate(source);
+        } catch ( JAXBException | SAXException e) {
+            LOGGER.error("Error during xml file validation.");
+            throw new CDBException(e.getMessage(), e);
+        } catch (final IOException e) {
+            LOGGER.error("Error during xml file validation. XSD schema \"{}\" may have not been found at the place expected.", this.cdbSchema.getFilename());
+            throw new CDBException(e.getMessage(), e);
+        }
+
+    }
+
+    public static final ErrorHandler cdbErrorHandler = new ErrorHandler() {
+        @Override
+        public void warning(final SAXParseException exception) throws SAXException {
+            LOGGER.warn("WARNING: {}", exception);
+        }
+
+        @Override
+        public void error(final SAXParseException exception) throws SAXException {
+            LOGGER.error("ERROR: {}", exception);
+            throw new CDBException(exception.getMessage(), exception);
+        }
+
+        @Override
+        public void fatalError(final SAXParseException exception) throws SAXException {
+            LOGGER.error("ERROR: {}", exception);
+            throw new CDBException(exception.getMessage(), exception);
+        }
+    };
 }
