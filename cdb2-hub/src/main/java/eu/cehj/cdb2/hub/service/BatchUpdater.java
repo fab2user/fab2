@@ -29,20 +29,20 @@ public class BatchUpdater {
 
     private static final String COMPETENCE = "COMPETENCE";
 
-    public List<Detail> updateDetail(final CountryOfSync cos) {
+    public Detail updateDetail(final CountryOfSync cos, Detail detail) {
         final List<BatchDataUpdate> updates = this.batchDataUpdateService.getByCountry(cos.getId());
-        return updates
-                .stream()
-                .filter(update -> !COMPETENCE.equals(update.getField()))
-                .map(this::createSOAPDetail)
-                .collect(Collectors.toList());
+        for(final BatchDataUpdate update: updates) {
+            if(!COMPETENCE.equals(update.getField())){
+                detail = this.createSOAPDetail(update, detail);
+            }
+        }
+        return detail;
     }
 
-    public Detail createSOAPDetail(final BatchDataUpdate update) {
+    public Detail createSOAPDetail(final BatchDataUpdate update, final Detail detail) {
         if (update.getField().equals(COMPETENCE)) {
             throw new CDBException("This update cant not be used for detail field");
         }
-        final Detail detail= this.objectFactory.createDetail();
         switch (update.getField()) {
             case "FAX":
                 detail.setFax(update.getValue());

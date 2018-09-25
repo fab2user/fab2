@@ -37,6 +37,7 @@ import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.entity.Synchronization;
 import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
+import eu.cehj.cdb2.hub.service.BatchUpdater;
 import eu.cehj.cdb2.hub.service.RequestResponseLoggingInterceptor;
 import eu.cehj.cdb2.hub.utils.GlobalCdbSyncResponse;
 import eu.cehj.cdb2.hub.utils.Settings;
@@ -66,13 +67,15 @@ public class AsyncPushDataService implements PushDataService {
     @Autowired
     private Settings settings;
 
+    @Autowired
+    private BatchUpdater batchUpdater;
+
     @Value("${cdb.update.url}")
     private String cdbUrl;
 
     @Override
     public void process(final CountryOfSync cos, final Synchronization sync)  {
         try {
-            //            final ExecutorService executor = Executors.newWorkStealingPool();
             final ExecutorService executor = Executors.newFixedThreadPool(15);
             final Callable<Data> taskBailiff = () ->  this.processBailiffs(cos);
             final Callable<Data> taskArea = () -> this.processAreas(cos);
@@ -129,7 +132,7 @@ public class AsyncPushDataService implements PushDataService {
             court.setId(dto.getNationalId());
             court.setCountry(cos.getCountryCode());
             final Details details = new Details();
-            final Detail detail = new Detail();
+            Detail detail = new Detail();
             detail.setName(dto.getName());
             detail.setLang(StringUtils.defaultIfBlank(dto.getLang(), "en"));
             detail.setAddress((dto.getAddress1() + " " + StringUtils.defaultString(dto.getAddress2(), "")).trim());
@@ -138,6 +141,7 @@ public class AsyncPushDataService implements PushDataService {
             detail.setTel(dto.getTel());
             detail.setPostalCode(dto.getPostalCode());
             detail.setMunicipality(dto.getMunicipality());
+            detail = this.batchUpdater.updateDetail(cos, detail);
             details.getDetails().add(detail);
 
             court.setDetails(details);
@@ -153,7 +157,14 @@ public class AsyncPushDataService implements PushDataService {
                 competence.getGeoAreaIds().add(areaId);
                 competences.getCompetences().add(competence);
             }
+
+            final List<Competence>comps = this.batchUpdater.updateCompetence(cos);
+            for(final Competence comp: comps) {
+                competences.getCompetences().add(comp);
+            }
+
             court.setCompetences(competences);
+
         }
         return data;
     }
