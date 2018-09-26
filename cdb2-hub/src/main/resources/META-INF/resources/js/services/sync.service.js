@@ -24,6 +24,7 @@
         $log.debug('data received from ' + country.name + ':', data);
       });
     };
+
     return SyncService;
   }
 

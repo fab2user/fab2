@@ -137,6 +137,12 @@
       vm.tableParams.filter({});
     };
 
+    vm.fixStatus = function(syncId){
+      StatusAPIService.fix({id:syncId}).$promise.then(function(successData){
+        fetchCountries();
+      });
+    };
+
     function fetchCountries() {
       CountryAPIService.getAll().$promise.then(function(success) {
         vm.tableParams = new NgTableParams(

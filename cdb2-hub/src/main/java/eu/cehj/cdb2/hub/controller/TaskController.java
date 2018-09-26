@@ -1,5 +1,10 @@
 package eu.cehj.cdb2.hub.controller;
 
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.querydsl.core.BooleanBuilder;
 
-import static org.springframework.http.HttpStatus.*;
-
-import static org.springframework.web.bind.annotation.RequestMethod.*;
-
 import eu.cehj.cdb2.business.service.db.SynchronizationService;
 import eu.cehj.cdb2.common.dto.SynchronizationDTO;
+import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.entity.QSynchronization;
+import eu.cehj.cdb2.entity.Synchronization;
 import eu.cehj.cdb2.entity.Synchronization.SyncStatus;
 import eu.cehj.cdb2.hub.utils.TaskSearch;
 
@@ -67,6 +70,19 @@ public class TaskController extends BaseController {
     @ResponseStatus(value = OK)
     public SyncStatus[] getAllStatus(){
         return SyncStatus.values();
+    }
+
+
+    @RequestMapping(method = PUT, value = "{syncId}")
+    @ResponseStatus(value = OK)
+    public void fixStatus(@PathVariable final Long syncId){
+        final SynchronizationDTO dto =  this.syncService.getDTO(syncId);
+        if(dto == null) {
+            throw new CDBException(String.format("Synchronization with ID \"%s\" not found.", syncId));
+        }
+        dto.setStatus(Synchronization.SyncStatus.ERROR.toString());
+        dto.setEndDate(new Date());
+        this.syncService.save(dto);
     }
 
 }

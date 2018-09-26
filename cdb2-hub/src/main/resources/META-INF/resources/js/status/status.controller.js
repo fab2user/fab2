@@ -111,5 +111,11 @@
       vm.tableParams.page(1);
       vm.search();
     };
+
+    vm.fixStatus = function(syncId){
+      StatusAPIService.fix({id:syncId}).$promise.then(function(sucessData){
+        vm.tableParams.reload();
+      });
+    };
   }
 })();

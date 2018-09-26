@@ -6,7 +6,7 @@
     StatusAPIService.$inject = ['$resource', 'SERVER'];
   
     function StatusAPIService($resource, SERVER) {
-      return $resource(SERVER.API + '/task/:id', {}, {
+      return $resource(SERVER.API + '/task/:id', {id: '@id'}, {
         getAll: {
           isArray: true
         },
@@ -15,6 +15,9 @@
         statuses: {
           url: SERVER.API + '/task/status',
           isArray: true
+        },
+        fix: {
+          method: 'PUT'
         }
       });
     }
