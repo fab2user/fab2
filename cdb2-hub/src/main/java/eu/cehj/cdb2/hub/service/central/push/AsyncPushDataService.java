@@ -121,7 +121,8 @@ public class AsyncPushDataService implements PushDataService {
 
     @Override
     public Data processBailiffs(final CountryOfSync cos) {
-
+        // TODO: For some reason this method uses BailiffExportDTO instead of standard BailiffDTO.
+        // See if it'd be possible to remove this one and always use BailiffDTO
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
         final String bailiffsUrl = cos.getUrl() + "/" + this.settings.getBailiffsUrl();
         final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(bailiffsUrl);

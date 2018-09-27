@@ -146,7 +146,10 @@ public class BailiffDTO extends BaseDTO{
     }
 
     public List<CompetenceDTO> getCompetences() {
-        return this.competences;
+        if(this.competences != null) {
+            return this.competences;
+        }
+        return new ArrayList<>();
     }
 
     public void setCompetences(final List<CompetenceDTO> competences) {
