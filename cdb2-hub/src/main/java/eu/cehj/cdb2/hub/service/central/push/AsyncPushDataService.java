@@ -31,6 +31,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.client.support.BasicAuthorizationInterceptor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
@@ -85,6 +87,12 @@ public class AsyncPushDataService implements PushDataService {
     @Value("${cdb.update.url}")
     private String cdbUrl;
 
+    @Value("${cdb.update.user}")
+    private String cdbUser;
+
+    @Value("${cdb.update.password}")
+    private String cdbPassword;
+
     @Value("classpath:xml/court_database.xsd")
     private Resource cdbSchema;
 
@@ -121,7 +129,8 @@ public class AsyncPushDataService implements PushDataService {
 
     @Override
     public Data processBailiffs(final CountryOfSync cos) {
-
+        // TODO: For some reason this method uses BailiffExportDTO instead of standard BailiffDTO.
+        // See if it'd be possible to remove this one and always use BailiffDTO
         final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
         final String bailiffsUrl = cos.getUrl() + "/" + this.settings.getBailiffsUrl();
         final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(bailiffsUrl);
@@ -210,22 +219,20 @@ public class AsyncPushDataService implements PushDataService {
     @Override
     public void sendToCDB(final Data data, final Synchronization sync) {
         this.validateXMLProduced(data);
-        // Always in error since we don't have any test server able to process the XML file for now
         try {
             sync.setStatus(SyncStatus.SENDING_TO_CDB);
             sync.setMessage("Processing...");
             this.syncService.save(sync);
 
             final CountryOfSync cos = sync.getCountry();
-
-            final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getCdbUser(), cos.getCdbPassword()).build();
-
-            // Requires to avoid error during authentication.
-            // It is important to set this value before setting any interceptor , because getRequestFactory will wrap it if anay interceptors is defined.
-            //            SimpleClientHttpRequestFactory httpRequestFactory = (SimpleClientHttpRequestFactory)restTemplate.getRequestFactory();
-            //            httpRequestFactory.setOutputStreaming(false);
+            final SimpleClientHttpRequestFactory httpFactory = new SimpleClientHttpRequestFactory();
+            httpFactory.setOutputStreaming(false);
+            final RestTemplate restTemplate = new RestTemplate();
+            restTemplate.setRequestFactory(httpFactory);
 
             restTemplate.getInterceptors().add(new RequestResponseLoggingInterceptor());
+            LOGGER.info("user/password used for cdb central: {}/{}", this.cdbUser, this.cdbPassword);
+            restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(this.cdbUser, this.cdbPassword));
 
 
             final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);

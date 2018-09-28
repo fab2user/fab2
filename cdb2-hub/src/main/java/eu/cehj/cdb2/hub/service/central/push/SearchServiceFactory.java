@@ -12,21 +12,21 @@ import eu.cehj.cdb2.hub.service.search.SearchService;
 public class SearchServiceFactory {
 
     @Autowired
-    @Qualifier("belgiumSearchService")
-    private SearchService belgiumSearchService;
+    @Qualifier("belgiumQueryService")
+    private SearchService belgiumQueryService;
 
     @Autowired
-    @Qualifier("franceSearchService")
-    private SearchService FranceSearchService;
+    @Qualifier("franceQueryService")
+    private SearchService franceQueryService;
 
     public SearchService getSearchService(final CountryOfSync cos) {
         SearchService searchService = null;
         switch (cos.getCountryCode()) {
             case "BE":
-                searchService = this.belgiumSearchService;
+                searchService = this.belgiumQueryService;
                 break;
             case "FR":
-                searchService = this.FranceSearchService;
+                searchService = this.franceQueryService;
                 break;
             default:
                 throw new CDBException(String.format("No search service associated with country code %s", cos.getCountryCode()));

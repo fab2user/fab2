@@ -1,6 +1,6 @@
 package eu.cehj.cdb2.hub.service.search;
 
-import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,9 +24,9 @@ import https.www_nkcn_cia.FCIAGetOffices;
 import https.www_nkcn_cia.FCIAGetOfficesResponse;
 import https.www_nkcn_cia.ObjectFactory;
 
-public class BelgiumSearchService extends WebServiceGatewaySupport implements LocalWSSearchService {
+public class BelgiumQueryService extends WebServiceGatewaySupport implements LocalWSQueryService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BelgiumSearchService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BelgiumQueryService.class);
 
     @Autowired
     private CountryOfSyncService cosService;
@@ -37,7 +37,7 @@ public class BelgiumSearchService extends WebServiceGatewaySupport implements Lo
         if (cos == null) {
             throw new CDBException(String.format("Unkown country code \"%s\"", countryCode));
         }
-        //FIXME: soapAction is not the URL of the service !!! => configure it in COS (preferable rename existing bailiffs_url)
+        //TODO: soapAction is not the URL of the service !!! => configure it in COS (preferable rename existing bailiffs_url)
         //        final String soapAction = cos.getUrl();
         final String soapAction = cos.getUrl();
         if (soapAction == null) {
@@ -89,12 +89,12 @@ public class BelgiumSearchService extends WebServiceGatewaySupport implements Lo
         dto.setName(office.getOfficeName());
         dto.setAddress1(String.format("%s %s", office.getAddressStreetNmbr(), office.getAddressStreet()));
         dto.setPostalCode(office.getAddressZipCd());
+        dto.setLangOfDetails(Long.valueOf(office.getLanguage()));
         dto.setCity(office.getAddressCity());
         dto.setEmail(office.getEMail());
         dto.setPhone(office.getTel());
         dto.setFax(office.getFax());
         dto.setWebSite(office.getWeb());
-        LOGGER.info(dto.toString());
         return dto;
     }
 

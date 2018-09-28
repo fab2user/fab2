@@ -35,7 +35,7 @@ public class CountryOfSync extends BaseAuditedEntity<String> {
     private String url;
 
     /**
-     * URLL used to fetch all bailiffs from web service. If null, url property is used.
+     * URL used to fetch all bailiffs from web service. If null, url property is used.
      */
     @Column(name = "fetch_url")
     private String fetchUrl;
