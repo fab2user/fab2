@@ -68,18 +68,12 @@ public class BelgiumDataMapper implements DataMapper {
         return data;
     }
 
-    private String getLangOFDetails(final Long langCode) {
-
-        if(langCode == null) {
-            return "en";
-        }
-        if(1 == langCode) {
-            return "NL";
-        }
-        if(2 == langCode) {
+    private String getLangOFDetails(final long langCode) {
+        if(langCode == 2) {
             return "FR";
         }
-        return "en";
+        return "NL";
     }
+
 
 }

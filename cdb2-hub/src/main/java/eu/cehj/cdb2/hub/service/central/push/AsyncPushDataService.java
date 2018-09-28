@@ -31,6 +31,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.client.support.BasicAuthorizationInterceptor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
@@ -84,6 +86,12 @@ public class AsyncPushDataService implements PushDataService {
 
     @Value("${cdb.update.url}")
     private String cdbUrl;
+
+    @Value("${cdb.update.user}")
+    private String cdbUser;
+
+    @Value("${cdb.update.password}")
+    private String cdbPassword;
 
     @Value("classpath:xml/court_database.xsd")
     private Resource cdbSchema;
@@ -218,15 +226,21 @@ public class AsyncPushDataService implements PushDataService {
             this.syncService.save(sync);
 
             final CountryOfSync cos = sync.getCountry();
-
-            final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getCdbUser(), cos.getCdbPassword()).build();
-
+            final SimpleClientHttpRequestFactory httpFactory = new SimpleClientHttpRequestFactory();
+            httpFactory.setOutputStreaming(false);
+            //            final SimpleClientHttpRequestFactory httpRequestFactory = (SimpleClientHttpRequestFactory)restTemplate.getRequestFactory();
+            //            this.builder.requestFactory(httpFactory);
+            // final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getCdbUser(), cos.getCdbPassword()).build();
+            final RestTemplate restTemplate = new RestTemplate();
+            restTemplate.setRequestFactory(httpFactory);
             // Requires to avoid error during authentication.
             // It is important to set this value before setting any interceptor , because getRequestFactory will wrap it if anay interceptors is defined.
             //            SimpleClientHttpRequestFactory httpRequestFactory = (SimpleClientHttpRequestFactory)restTemplate.getRequestFactory();
             //            httpRequestFactory.setOutputStreaming(false);
 
             restTemplate.getInterceptors().add(new RequestResponseLoggingInterceptor());
+            LOGGER.info("user/password used for cdb central: {}/{}", this.cdbUser, this.cdbPassword);
+            restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(this.cdbUser, this.cdbPassword));
 
 
             final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);

@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import eu.cehj.cdb2.hub.service.search.FranceSearchService;
+import eu.cehj.cdb2.hub.service.search.FranceQueryService;
 
 @Configuration
 public class FranceWSConfiguration {
@@ -19,8 +19,8 @@ public class FranceWSConfiguration {
     }
 
     @Bean
-    public FranceSearchService franceSearchService() {
-        final FranceSearchService service = new FranceSearchService();
+    public FranceQueryService franceQueryService() {
+        final FranceQueryService service = new FranceQueryService();
         service.setDefaultUri("http://euro.huissier-justice.fr/annuaire.asmx");
         service.setMarshaller(this.marshallerFrance());
         service.setUnmarshaller(this.marshallerFrance());

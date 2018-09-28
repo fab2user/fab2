@@ -1,6 +1,6 @@
 package eu.cehj.cdb2.hub.service.search;
 
-import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +18,7 @@ import eu.cehj.cdb2.hub.service.soap.france.Etude;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInsee;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInseeResponse;
 
-public class FranceSearchService extends WebServiceGatewaySupport implements LocalWSSearchService {
+public class FranceQueryService extends WebServiceGatewaySupport implements LocalWSQueryService {
 
     @Autowired
     CountryOfSyncService cosService;
