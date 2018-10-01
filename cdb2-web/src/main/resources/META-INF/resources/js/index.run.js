@@ -14,6 +14,7 @@
   function runBlock($log, $cacheFactory, $rootScope, $state, AuthService) {
     $cacheFactory('geoCache');
     $log.debug('geoCache created');
+    $rootScope.fabStatus = {};
     $rootScope.$on('$stateChangeStart', function(
       ev,
       to,

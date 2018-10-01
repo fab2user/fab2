@@ -10,6 +10,10 @@
       .state('root', {
         abstract: true,
         views: {
+          'menu@': {
+            templateUrl: '/js/root/menu.html',
+            controller: 'MenuController as menuCtrl'
+          },
           head: {
             templateUrl: '/js/root/head.html',
             controller: 'HeadController as headCtrl'

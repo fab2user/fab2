@@ -53,8 +53,11 @@
     STATUS
   ) {
     var vm = this;
+
     vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
     vm.selectedBailiff = {};
+
+    $rootScope.fabStatus['currentMenu'] = $translate.instant('bailiff.list.title');
 
     vm.fetchBailiffs = function () {
       BailiffAPIService.getAll({
