@@ -229,5 +229,11 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <addColumn tableName="bailiff">
             <column name="comments" type="varchar(1000)"></column>
         </addColumn>
-    </changeSet>    
+    </changeSet>
+    <changeSet id="cdb-20" author="Admin">
+        <comment>Correct the competence code CEO for EAPO </comment>
+        <sql>
+            UPDATE competence set code = 'CEO' where instrument = 2;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
