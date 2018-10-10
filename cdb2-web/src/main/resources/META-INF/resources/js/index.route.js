@@ -31,6 +31,10 @@
       .state('root.home', {
         url: '/',
         views: {
+            head: {
+                templateUrl: '/js/root/headhome.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/home/home.html',
             controller: 'HomeController',
@@ -81,6 +85,13 @@
       .state('root.login', {
         url: '/login',
         views: {
+          head: {
+                templateUrl: '/js/root/empty.html'
+              },
+              'navbar@': {
+                  templateUrl: '/js/root/navbarlogin.html',
+                  
+                },   
           'content@': {
             templateUrl: '/js/common/login.html',
             controller: 'LoginController',
