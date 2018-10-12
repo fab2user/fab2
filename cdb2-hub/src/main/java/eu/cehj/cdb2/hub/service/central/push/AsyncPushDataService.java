@@ -235,7 +235,7 @@ public class AsyncPushDataService implements PushDataService {
 			restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(this.cdbUser, this.cdbPassword));
 
 
-			final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl);
+			final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(this.cdbUrl + sync.getCountry().getCountryCode());
 			final HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_XML);
 			final HttpEntity<Data> entity = new HttpEntity<>(data, headers);
