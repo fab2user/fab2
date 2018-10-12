@@ -23,29 +23,29 @@ import eu.chj.cdb2.common.Data;
  */
 public class AsyncPushSOAPDataService extends AsyncPushDataService {
 
-    @Autowired
-    private BatchUpdater batchUpdater;
+	@Autowired
+	private BatchUpdater batchUpdater;
 
-    @Autowired
-    private SearchServiceFactory searchServiceFactory;
+	@Autowired
+	private SearchServiceFactory searchServiceFactory;
 
-    @Autowired
-    private DataMapperFactory dataMapperFactory;
+	@Autowired
+	private DataMapperFactory dataMapperFactory;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncPushSOAPDataService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AsyncPushSOAPDataService.class);
 
-    @Override
-    public Data processBailiffs(final CountryOfSync cos) {
-        final SearchService searchService = this.searchServiceFactory.getSearchService(cos);
-        final List<BailiffDTO> dtos = searchService.sendQuery(cos.getCountryCode(), new LinkedMultiValueMap<>());
+	@Override
+	public Data processBailiffs(final CountryOfSync cos) {
+		final SearchService searchService = this.searchServiceFactory.getSearchService(cos);
+		final List<BailiffDTO> dtos = searchService.sendQuery(cos.getCountryCode(), new LinkedMultiValueMap<>());
 
-        final DataMapper dataMapper = this.dataMapperFactory.getDataMapper(cos);
-        return dataMapper.map(cos, dtos);
-    }
+		final DataMapper dataMapper = this.dataMapperFactory.getDataMapper(cos);
+		return dataMapper.map(cos, dtos);
+	}
 
-    @Override
-    public Data processAreas(final CountryOfSync cos) {
-        return new Data();
-    }
+	@Override
+	public Data processAreas(final CountryOfSync cos) {
+		return new Data();
+	}
 
 }
