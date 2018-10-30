@@ -68,18 +68,12 @@
 
         <div class="body">
             <div class="top">
-                <!--  TODO find another way to include this pagination -->
-                <span>List of competent Bailiffs / Enforcement authorities</span> <span class="result">x results</span>
-
-                <ul>
-                    <li class="active">10</li>
-                    <li>25</li>
-                    <li>50</li>
-                    <li>100</li>
-                </ul>
+                <!--  TODO find a way to put the pagination -->
+                <span>List of competent Bailiffs / Enforcement authorities</span> <span class="result">{{bailiffCtrl.total}} results</span>
+                
             </div>
-
-            <table class="table" ng-table="bailiffCtrl.tableParams">
+            
+            <table class="table" ng-table="bailiffCtrl.tableParams"   template-pagination="js/table/pagination.html" >
                 <colgroup>
                     <col class="select">
                     <col>
@@ -92,12 +86,12 @@
 
                 <thead>
                     <tr>
-                        <!--  TODO Sort is not wotking -->
+                        <!--  TODO translation replace all the content of the TH element + Sort is not working -->
                         <th class="select"></th>
-                        <th data-title="'bailiff.list.id'|translate" sortable="'id'">_Id_<span class="sort"></span></th>
-                        <th data-title="'bailiff.list.name'|translate" sortable="'name'">_Name_<span class="sort"></span></th>
-                        <th data-title="'bailiff.list.address'|translate"  sortable="'address1'">_Address_<span class="sort"></span></th>
-                        <th data-title="'bailiff.list.zipcode'|translate" sortable="'postalCode'">_Zip code_<span class="sort"></span></th>
+                        <th translate="bailiff.list.id" sortable="'id'">_Id_<span class="sort"></span></th>
+                        <th translate="bailiff.list.name" sortable="'name'">_Name_<span class="sort"></span></th>
+                        <th translate="bailiff.list.address"  sortable="'address1'">_Address_<span class="sort"></span></th>
+                        <th translate="bailiff.list.zipcode" sortable="'postalCode'">_Zip code_<span class="sort"></span></th>
                         <th data-title="'bailiff.list.municipality'|translate" sortable="'city'">_Town_<span class="sort"></span></th>
                         <th data-title="'global.label.action'|translate">Action</th>
                     </tr>
@@ -119,7 +113,7 @@
             </table>
         </div>
 
-        <p translate="bailiff.list.table.notice">Please download ...</p>
+        <p translate="bailiff.list.table.notice">_Please download ...</p>
     </section>
             
 <!-- TODO find another way to handle this. this is a small feedback before the handling of the action.-->

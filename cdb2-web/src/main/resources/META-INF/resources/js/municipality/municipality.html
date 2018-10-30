@@ -54,18 +54,10 @@
 
     <div class="body">
         <div class="top">
-            <!--  TODO  -->
             <span>_List of ZIP code_</span> <span>_selected ZIP code_</span>
-
-            <ul>
-                <li class="active">10</li>
-                <li>25</li>
-                <li>50</li>
-                <li>100</li>
-            </ul>
         </div>
 
-        <table class="table" ng-table="municipalityCtrl.tableParams" show-filter="false">
+        <table class="table" ng-table="municipalityCtrl.tableParams" template-pagination="js/table/pagination.html" show-filter="false">
             <colgroup>
                 <col class="select">
                 <col>

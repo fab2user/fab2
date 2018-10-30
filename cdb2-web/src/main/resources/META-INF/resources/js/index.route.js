@@ -10,15 +10,11 @@
       .state('root', {
         abstract: true,
         views: {
-          'menu@': {
-            templateUrl: '/js/root/menu.html',
-            controller: 'MenuController as menuCtrl'
-          },
           head: {
             templateUrl: '/js/root/head.html',
             controller: 'HeadController as headCtrl'
           },
-          'navbar@': {
+          navbar: {
             templateUrl: '/js/root/navbar.html',
             controller: 'NavBarController as navCtrl'
           },
@@ -31,8 +27,8 @@
       .state('root.home', {
         url: '/',
         views: {
-            head: {
-                templateUrl: '/js/root/headhome.html',
+            'head@': {
+                templateUrl: '/js/root/head.html',
                 controller: 'HeadController as headCtrl'
               },
           'content@': {
@@ -85,13 +81,14 @@
       .state('root.login', {
         url: '/login',
         views: {
-          head: {
-                templateUrl: '/js/root/empty.html'
+          'head@': {
+                templateUrl: '/js/root/empty.html',
+                controller: 'HeadController as headCtrl'
               },
-              'navbar@': {
-                  templateUrl: '/js/root/navbarlogin.html',
-                  
-                },   
+          'navbar@': {
+              templateUrl: '/js/root/navbarlogin.html',
+              controller: 'NavBarController as navCtrl'
+          },   
           'content@': {
             templateUrl: '/js/common/login.html',
             controller: 'LoginController',

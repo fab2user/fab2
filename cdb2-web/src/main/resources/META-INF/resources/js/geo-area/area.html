@@ -43,17 +43,9 @@
     <div class="body">
         <div class="top">
             <span >_List of geograpical areas_</span>
-
-            <!--  TODO -->
-            <ul>
-                <li class="active">10</li>
-                <li>25</li>
-                <li>50</li>
-                <li>100</li>
-            </ul>
         </div>
 
-        <table class="table" ng-table="areaCtrl.tableParams"  show-filter="false">
+        <table class="table" ng-table="areaCtrl.tableParams"  template-pagination="js/table/pagination.html" show-filter="false">
             <colgroup>
                 <col>
                 <col>
