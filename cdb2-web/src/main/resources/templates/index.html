@@ -16,31 +16,22 @@
 <link th:href="@{/css/fonts.css}" rel="stylesheet" />
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
+    <div >
+
+        <div >
+            <div >
                 <div id="menu" ui-view="navbar"></div>
             </div>
-            <div class="col-md-10">
+            <div >
                   <section id="main">
                     <header id="header" ui-view="head"></header>
                     <toaster-container toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
                     <section id="content"  ui-view="content"></section>
-                    </section>
+                  </section>
             </div>
         </div>
-
-
-        <!--    <div id="head" ui-view="head"></div>
-        <div ui-view="navbar" data-ng-cloak=""></div>
-        <toaster-container toaster-options="{'time-out': 30000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
-        <div id="wrap">
-            <span us-spinner="" key="spin-1"></span>
+        <div ui-view="login">
         </div>
-
-        <div id="main" ui-view="content" class="main-content"></div>
-        <div class="footer" data-ng-cloak="" ui-view="footer"></div> -->
-
 
 
         <!-- IMPORTS -->

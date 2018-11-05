@@ -43,8 +43,13 @@
       );
     }
 
-    // vm.logout = function() {
-    //   AuthService.logout();
-    // };
+     function logout() {
+         $log.debug(
+                 "Current user '" +
+                 vm.currentUser +
+                 "' is going to be logged out! "
+               );
+         AuthService.logout();
+     };
   }
 })();

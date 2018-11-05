@@ -21,6 +21,12 @@
           footer: {
             templateUrl: '/js/root/footer.html',
             controller: 'FooterController as footerCtrl'
+          },
+          login: {
+              templateUrl: '/js/root/empty.html'
+          },
+          content: {
+              templateUrl: '/js/root/empty.html'
           }
         }
       })
@@ -82,17 +88,18 @@
         url: '/login',
         views: {
           'head@': {
-                templateUrl: '/js/root/empty.html',
-                controller: 'HeadController as headCtrl'
+                templateUrl: '/js/root/empty.html'
               },
           'navbar@': {
-              templateUrl: '/js/root/navbarlogin.html',
-              controller: 'NavBarController as navCtrl'
+              templateUrl: '/js/root/empty.html'
           },   
           'content@': {
-            templateUrl: '/js/common/login.html',
-            controller: 'LoginController',
-            controllerAs: 'loginCtrl'
+              templateUrl: '/js/root/empty.html'
+          },
+          'login@' : {
+              templateUrl: '/js/common/login.html',
+              controller: 'LoginController',
+              controllerAs: 'loginCtrl'
           }
         },
         resolve: {
@@ -110,6 +117,6 @@
         }
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
   }
 })();

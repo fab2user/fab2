@@ -98,6 +98,7 @@
       $http
         .post(SERVER.ROOT + '/logout', {})
         .success(function() {
+          $log.info('User ' + data.name + ' successfully logout !');
           $sessionStorage[STORE.AUTHENTICATED] = false;
           delete $sessionStorage[STORE.USER];
           $state.go(
@@ -109,6 +110,7 @@
           );
         })
         .error(function(data) {
+          $log.info('Error during logout !');
           $sessionStorage[STORE.AUTHENTICATED] = false;
           delete $sessionStorage[STORE.USER];
           $state.go(
