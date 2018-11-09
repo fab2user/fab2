@@ -75,7 +75,7 @@
             
             <table class="table" ng-table="bailiffCtrl.tableParams"   template-pagination="js/table/pagination.html" >
                 <colgroup>
-                    <col class="select">
+                  <!--   <col class="select"> -->
                     <col>
                     <col>
                     <col>
@@ -87,26 +87,26 @@
                 <thead>
                     <tr>
                         <!--  TODO translation replace all the content of the TH element + Sort is not working -->
-                        <th class="select"></th>
+                       <!--  <th class="select"></th> -->
                         <th translate="bailiff.list.id" sortable="'id'">_Id_<span class="sort"></span></th>
                         <th translate="bailiff.list.name" sortable="'name'">_Name_<span class="sort"></span></th>
                         <th translate="bailiff.list.address"  sortable="'address1'">_Address_<span class="sort"></span></th>
                         <th translate="bailiff.list.zipcode" sortable="'postalCode'">_Zip code_<span class="sort"></span></th>
-                        <th data-title="'bailiff.list.municipality'|translate" sortable="'city'">_Town_<span class="sort"></span></th>
-                        <th data-title="'global.label.action'|translate">Action</th>
+                        <th translate="bailiff.list.municipality" sortable="'city'">_Town_<span class="sort"></span></th>
+                        <th translate="global.label.action">Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'selected-info': bailiff.id === bailiffCtrl.selectedBailiff.id}">
-                        <td ><input type="checkbox" name=""></td>
+                       <!--  <td ><input type="checkbox" name=""></td> -->
                         <td data-title="'bailiff.list.name'|translate">{{bailiff.id}}</td>
                         <td>{{bailiff.name}}</td>
                         <td>{{bailiff.address1}}</td>
                         <td>{{bailiff.postalCode}}</td>
                         <td>{{bailiff.city}}</td>
-                        <td><a class="button-edit" ng-click="bailiffCtrl.edit(bailiff)" uib-tooltip="{{'global.button.delete'|translate}}"></a>
-                            <a class="button-delete" ng-click="bailiffCtrl.delete(bailiff)" confirm="{{'global.confirm.delete'|translate}}" uib-tooltip="{{'global.button.edit'|translate}}"></a>
+                        <td><a class="button-edit" ng-click="bailiffCtrl.edit(bailiff)" uib-tooltip="{{'global.button.edit'|translate}}"></a>
+                            <a class="button-delete" ng-click="bailiffCtrl.delete(bailiff)" confirm="{{'global.confirm.delete'|translate}}" uib-tooltip="{{'global.button.delete'|translate}}"></a>
                         </td>
                     </tr>
                 </tbody>

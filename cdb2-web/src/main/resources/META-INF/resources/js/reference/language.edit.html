@@ -38,23 +38,23 @@
         </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <div class="row">
-        <div class="col-md-12">
-          <a class="btn btn-danger pull-left action-button" ng-if="langEditCtrl.lang.id" ng-click="langEditCtrl.delete()">
-        <span class="glyphicon glyphicon-trash"></span>
-        <span translate="global.button.delete"></span>
-      </a>
+    <div  class="modal-footer">
+      <div  class="row">
+        <div id="modal-button-toolbar" class="col-md-12">
+            <div class="button-red icon-trash">
+                <a class="pull-left" ng-if="langEditCtrl.lang.id" ng-click="langEditCtrl.delete()"  translate="global.button.delete">
+                </a>
+            </div>
 
-          <a class="btn btn-primary pull-right action-button" ng-click="langEditCtrl.modalInstance.dismiss()">
-        <span class="glyphicon glyphicon-remove-sign"></span>
-        <span translate="global.button.cancel"></span>
-      </a>
+            <div class="button-blue icon-remove">
+              <a class="pull-right" ng-click="langEditCtrl.modalInstance.dismiss()"  translate="global.button.cancel">
+              </a>
+            </div>
 
-          <button class="btn btn-primary pull-right action-button" ng-click="langEditCtrl.save(langEditCtrl.langForm.$valid)" ng-disabled="langEditCtrl.submitted">
-        <span class="glyphicon glyphicon-floppy-disk"></span>
-        <span translate="global.button.save"></span>
-      </button>
+            <div class="button-yellow icon-floppy-disk">
+              <a class="pull-right" ng-click="langEditCtrl.save(langEditCtrl.langForm.$valid)" ng-disabled="langEditCtrl.submitted" translate="global.button.save">
+              </a>
+          </div>
         </div>
       </div>
     </div>

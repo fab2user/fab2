@@ -8,7 +8,8 @@
     '$translate',
     'AuthService',
     'PreviousState',
-    'toastr'
+    'toastr',
+    '$state'
   ];
 
   function LoginController(
@@ -16,7 +17,8 @@
     $translate,
     AuthService,
     PreviousState,
-    toastr
+    toastr,
+    $state
   ) {
     var vm = this;
     vm.credentials = {};

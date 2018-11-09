@@ -1301,3 +1301,58 @@ input[type='number']::-webkit-outer-spin-button {
       font-size: 12px;
       color: #78828a;
 }
+
+
+#modal-button-toolbar [class*="button"] {
+      padding: 7px 3px;
+}
+
+#modal-button-toolbar [class*="button"] a {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      font-size: 12px;
+      font-weight: 900;
+      border-radius: 3px;
+}
+
+#modal-button-toolbar  [class*="button"][class*="blue"] a {
+      color: #fff;
+      background: #2d4b7d;
+}
+
+#modal-button-toolbar  [class*="button"][class*="yellow"] a {
+      color: #fff;
+      background: #f0b503;
+}
+
+#modal-button-toolbar  [class*="button"][class*="red"] a {
+      color: #fff;
+      background: #ff0000;
+}
+
+#modal-button-toolbar  [class*="button"][class*="line"] a {
+      -webkit-box-shadow: 0 0 0 1px #2d4b7d inset;
+              box-shadow: 0 0 0 1px #2d4b7d inset;
+}
+
+.icon-up a::before {
+      top: -2px;
+      content: url('../images/icon_up.svg');
+}
+
+.icon-down a::before {
+      top: -1px;
+      content: url('../images/icon_down.svg');
+}
+
+.icon-remove a::before {
+      top: 1px;
+      content: url('../images/icon_delete.svg');
+}
+
+.icon-add a::before {
+      content: url('../images/icon_add.svg');
+}
+
+
