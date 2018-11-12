@@ -10,7 +10,6 @@ import org.datacontract.schemas._2004._07.lnxnkcngdwhdjconsult.Office;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
@@ -25,7 +24,7 @@ import https.www_nkcn_cia.FCIAGetOffices;
 import https.www_nkcn_cia.FCIAGetOfficesResponse;
 import https.www_nkcn_cia.ObjectFactory;
 
-@Service("belgiumSearchService")
+
 public class BelgiumQueryService extends WebServiceGatewaySupport implements LocalWSQueryService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BelgiumQueryService.class);
@@ -71,7 +70,7 @@ public class BelgiumQueryService extends WebServiceGatewaySupport implements Loc
 			req.setStrOfficeName(factory.createFCBBGetOfficesStrOfficeName(name));
 
 		}
-		final FCBBGetOfficesResponse resp = (FCBBGetOfficesResponse) this.getWebServiceTemplate().marshalSendAndReceive(req, new SoapActionCallback(soapAction));
+		final FCBBGetOfficesResponse resp = (FCBBGetOfficesResponse) this.getWebServiceTemplate().marshalSendAndReceive( req, new SoapActionCallback(soapAction));
 		final ArrayOfOffice bailiffsContainer = resp.getFCBBGetOfficesResult().getValue();
 		final List<Office> rawBailiffs = bailiffsContainer.getOffice();
 		return rawBailiffs.stream().map(this::convertOfficeToDTO).collect(Collectors.toList());

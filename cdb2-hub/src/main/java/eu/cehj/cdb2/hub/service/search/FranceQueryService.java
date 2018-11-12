@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
@@ -20,18 +18,18 @@ import eu.cehj.cdb2.hub.service.soap.france.Etude;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInsee;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInseeResponse;
 
-@Service("franceSearchService")
 public class FranceQueryService extends WebServiceGatewaySupport implements LocalWSQueryService {
 
 	@Autowired
 	CountryOfSyncService cosService;
 
 	@Override
-	public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params_){
+	public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params){
 		// TODO - change this until a full search is available - For test purpose
-		final MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-		params.set("name", "A");
+		//		final MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		//		params.set("name", "A");
 		//
+		// TODO make a switch , like in the Belgium implementation, to search either by the PostalCode or by the Name
 		final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
 		if(cos == null) {
 			throw new CDBException(String.format("Unkown country code \"%s\"", countryCode));

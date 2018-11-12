@@ -46,9 +46,9 @@ public class CommonSearchService implements SearchService, BeanFactoryAware {
 		}else {
 			switch (countryCode) {
 			case "FR":
-				return "franceSearchService";
+				return "franceQueryService";
 			case "BE":
-				return "belgiumSearchService";
+				return "belgiumQueryService";
 			case "IT":
 				return "cdbSearchService";  // they have used the same interface as the Italian
 			default:
