@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
@@ -19,6 +20,7 @@ import eu.cehj.cdb2.hub.service.soap.france.Etude;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInsee;
 import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInseeResponse;
 
+@Service("franceSearchService")
 public class FranceQueryService extends WebServiceGatewaySupport implements LocalWSQueryService {
 
 	@Autowired
