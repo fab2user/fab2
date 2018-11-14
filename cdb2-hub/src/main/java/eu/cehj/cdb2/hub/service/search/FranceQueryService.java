@@ -15,8 +15,8 @@ import eu.cehj.cdb2.common.dto.BailiffDTO;
 import eu.cehj.cdb2.common.exception.dto.CDBException;
 import eu.cehj.cdb2.entity.CountryOfSync;
 import eu.cehj.cdb2.hub.service.soap.france.Etude;
-import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInsee;
-import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByInseeResponse;
+import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByDept;
+import eu.cehj.cdb2.hub.service.soap.france.ListeEtudeByDeptResponse;
 
 public class FranceQueryService extends WebServiceGatewaySupport implements LocalWSQueryService {
 
@@ -38,18 +38,15 @@ public class FranceQueryService extends WebServiceGatewaySupport implements Loca
 		if(soapAction == null) {
 			throw new CDBException("Web Service request impossible without Web Service Action URL.");
 		}
-		final ListeEtudeByInsee req = new ListeEtudeByInsee();
+		final ListeEtudeByDept req = new ListeEtudeByDept();
 		final String postalCode = params.getFirst("postalCode");
 		if (isNotBlank(postalCode)) {
-			req.setInsee(postalCode);
+			req.setDep(postalCode);
 		}
-		final String name = params.getFirst("name");
-		if(isNotBlank(name)) {
-			req.setNom(name);
-		}
-		final ListeEtudeByInseeResponse resp = (ListeEtudeByInseeResponse) this.getWebServiceTemplate().marshalSendAndReceive(req,
+
+		final ListeEtudeByDeptResponse resp = (ListeEtudeByDeptResponse) this.getWebServiceTemplate().marshalSendAndReceive(req,
 				new SoapActionCallback(soapAction));
-		final List<Etude> rawBailiffs = resp.getListeEtudeByInseeResult().getEtude();
+		final List<Etude> rawBailiffs = resp.getListeEtudeByDeptResult().getEtude();
 		return rawBailiffs.stream().map(this::convertEtudeToDTO).collect(Collectors.toList());
 	}
 
