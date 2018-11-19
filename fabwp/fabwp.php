@@ -10,6 +10,13 @@ add_action('admin_menu', 'create_plugin_settings_page');
 add_action('admin_init', 'setup_sections');
 add_action('admin_init', 'setup_fields');
 add_action('wp_enqueue_scripts', 'fabwp_enqueue_scripts');
+/* 
+add_filter( 'json_serve_request', function( ) {
+
+header( "Access-Control-Allow-Origin: *" );
+
+});
+*/
 
 function create_plugin_settings_page()
 {
@@ -18,7 +25,7 @@ function create_plugin_settings_page()
     $menu_title = 'FABWP';
     $capability = 'manage_options';
     $slug = 'fabwp_fields';
-    $callback = array($this, 'plugin_settings_page_content');
+    $callback = 'plugin_settings_page_content';
     $icon = 'dashicons-admin-plugins';
     $position = 100;
     add_menu_page($page_title, $menu_title, $capability, $slug, 'plugin_settings_page_content', $icon, $position);
@@ -253,15 +260,24 @@ foreach ($countries_array as $key => $value) {
                 </div>
             </div>
             <div class="form-line right">
-                <button type="submit">Search !</button>
+                <button type="button" id="search-button">Search !</button>
             </div>
         </form>
     </div>
     <div id="fab-results">
     </div>
     <script>
-    jQuery("#fab-search-form").submit(function(event){
-        event.preventDefault();
+    jQuery("#search-button").click(function(event){
+        search(event);
+    });
+	
+	jQuery("#fab-search-form").submit(function(event){
+        search(event);
+    });
+	
+	
+	function search(event){
+		event.preventDefault();
         var serverUrl = jQuery("#server_url").val();
         var params = {country: jQuery("#fab-country").val(), postalCode: jQuery("#fab-zipcode").val()};
         var query = serverUrl + '?' + jQuery.param(params);
@@ -285,7 +301,8 @@ foreach ($countries_array as $key => $value) {
                 jQuery("#fab-results").append(jQuery('<h3>Error during server request: server may be offline...</h3>'));
             }
         });
-    });
+	}
+	
     function displayBailiff(bailiff, count){
         var div = jQuery('<div class="card">');
         var h = jQuery("<h4>" + bailiff.name + "</h4>");
@@ -297,7 +314,13 @@ foreach ($countries_array as $key => $value) {
         var zip = jQuery('<span class="zip">' + bailiff.postalCode + '</span>');
         var city = jQuery('<span>' + bailiff.city + '</span>');
         var req = {format: "json", q: bailiff.address1 + ', ' + bailiff.address2 + ', ' + bailiff.postalCode + ', ' + bailiff.city + ', ' + jQuery("#fab-country").val()};
-        jQuery.get(location.protocol + '//nominatim.openstreetmap.org/search?' + jQuery.param(req) , function(data){
+        jQuery.ajax(
+		{url: 'https://nominatim.openstreetmap.org/search?' + jQuery.param(req),
+		type:"GET",
+		/* crossDomain: true, 
+		headers: {'Access-Control-Allow-Origin': '*'},
+		*/
+                 success: function(data){
             if(data[0]){
                 var geoData = data[0];
                 var lat = geoData.lat;
@@ -305,13 +328,13 @@ foreach ($countries_array as $key => $value) {
                 var mapId = 'map_' + count;
                 div.append('<div class="map-container" id="' + mapId + '"></div>');
                 var map = L.map(mapId).setView([lat, lon], 14);
-                L.tileLayer('http://{s}.tile.cloudmade.com/e7b61e61295a44a5b319ca0bd3150890/997/256/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution">CARTO</a>',
                 maxZoom: 18
                 }).addTo(map);
                 var marker = L.marker([lat, lon]).addTo(map);
             }
-        });
+        }});
 
         div.append(h);
         div.append(adr1, adr2, zip,city);
