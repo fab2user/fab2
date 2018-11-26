@@ -1,0 +1,29 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Search Request",
+	"description": "JSON used to perform a search request",
+	"type": "object",
+	"properties": {
+		"instrument": {
+			"description": "The unique code of an instrument",
+			"type": "string"
+		},
+		"country": {
+			"description": "The unique code of a country",
+			"type": "string"
+		},
+		"competenceType": {
+			"description": "The unique code of a competence type",
+			"type": "string"
+		},
+		"lang": {
+			"type": "string",
+			"description": "The language code for the language in which the properties are asked for"
+		},
+		"postalCode": {
+			"description": "The postal code of a municipality",
+			"type": "string"
+		}
+	}
+}
+
