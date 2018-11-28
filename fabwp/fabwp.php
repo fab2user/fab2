@@ -1,15 +1,22 @@
 <?php
 /*
-Plugin Name: fabwp
-Description: Bailiff search plugin for FABII
-Version:     0.1
-Author:      CEHJ
+ Plugin Name: fabwp
+ Description: Bailiff search plugin for FABII
+ Version:     0.1
+ Author:      CEHJ
  */
 
 add_action('admin_menu', 'create_plugin_settings_page');
 add_action('admin_init', 'setup_sections');
 add_action('admin_init', 'setup_fields');
 add_action('wp_enqueue_scripts', 'fabwp_enqueue_scripts');
+/*
+ add_filter( 'json_serve_request', function( ) {
+ 
+ header( "Access-Control-Allow-Origin: *" );
+ 
+ });
+ */
 
 function create_plugin_settings_page()
 {
@@ -18,7 +25,7 @@ function create_plugin_settings_page()
     $menu_title = 'FABWP';
     $capability = 'manage_options';
     $slug = 'fabwp_fields';
-    $callback = array($this, 'plugin_settings_page_content');
+    $callback = 'plugin_settings_page_content';
     $icon = 'dashicons-admin-plugins';
     $position = 100;
     add_menu_page($page_title, $menu_title, $capability, $slug, 'plugin_settings_page_content', $icon, $position);
@@ -94,6 +101,15 @@ function setup_fields()
             'type' => 'textarea',
             'placeholder' => 'FR - France',
             'supplimental' => "Type one country per line.\nEvery line is in the format \"ISOcode - CountryName\".\nFor example for France it would be : FR - France",
+        ),
+        array(
+            'uid' => 'awp_search_page_url',
+            'label' => 'Search FAB2 page definitive URL',
+            'section' => 'our_first_section',
+            'type' => 'text',
+            'placeholder' => 'http://eubailiff.eu/eu-directory',
+            // 'helper' => 'Does this help?',
+            // 'supplimental' => 'I am underneath!',
         ),
         // array(
         //     'uid' => 'awp_select',
@@ -219,6 +235,8 @@ function fabwp_enqueue_scripts()
 }
 
 add_shortcode('cehj-fab-search', 'fab_search');
+// the fab_search_frontend component is a line search intened to be used in the home page.
+add_shortcode('cehj-fab-search-frontend', 'fab_search_frontend');
 
 function fab_search()
 {
@@ -232,49 +250,74 @@ function fab_search()
         $countries_array[$country_code] = $country_name;
     }
     ksort($countries_array);
+	
+	$countrySC=$_POST['paysSC'];
+    $cpSC=$_POST['cpSC'];
+	echo ' <label>' . $countrySC . ' - ' . $cpSC . '</label>'
     ?>
-    <h2>FAB SEARCH</h2>
-    <div id="fab-root">
-        <form id="fab-search-form">
-            <div>
-                <div class="form-line">
-                    <label for="country">Country</label>
-                    <select name="country" id="fab-country">
+
+    <div class="annuaire-form">
+        <form class="formAnnuaire formBailiff" action="http://eubailiff.eu/eu-directory/" method="post" id="formAnnuaire"
+                  name="annuaire">
+            <div class="formAnnuaire_chps">
+                    <label class="champAnnuaire pays">Country</label>
+                    <select name="country" id="fab-country" class="selectAnnuaire">
                     <?php
 foreach ($countries_array as $key => $value) {
         echo '<option value="' . $key . '">' . $value . '</option>';
     }
     ?>
                     </select>
-                </div>
-                <div class="form-line">
-                    <label for="zipcode">ZIP Code</label>
-                    <input type="text" name="zipcode" id="fab-zipcode">
-                </div>
             </div>
-            <div class="form-line right">
-                <button type="submit">Search !</button>
+            <div id="formAllCountriesFields" class="formToggle" style="display:inline;">
+                    <div class="formAnnuaire_chps" id="formAnnuaireCp">
+                        <label class="champAnnuaire cp">Postcode</label>
+                        <input type="text" class="inputAnnuaire" name="zipcode" id="fab-zipcode"
+						       placeholder="Postcode, for example : 1000">
+                    </div>
+					</div>
+            </div>
+             <div class="inputAnnuaireValiderContainer">
+			    <input type="submit" class="inputAnnuaireValider" name="valider" id="search-button" value="Submit"/>
             </div>
         </form>
     </div>
-    <div id="fab-results">
+    <div class="col-md-8 col-xs-12">
+        <div class="bailiff">
+                 <h2 class="ws-l">
+                    <div id="nbrResult"></div><br/><span>Find a bailiff in Europe</span>
+                </h2>
+                <div id="fab-results" class="entries">
+                </div>
+        </div>
     </div>
+	
     <script>
-    jQuery("#fab-search-form").submit(function(event){
-        event.preventDefault();
+    jQuery("#search-button").click(function(event){
+        search(event);
+    });
+	
+	jQuery("#fab-search-form").submit(function(event){
+        search(event);
+    });
+	
+	function search(event){
+		event.preventDefault();
         var serverUrl = jQuery("#server_url").val();
         var params = {country: jQuery("#fab-country").val(), postalCode: jQuery("#fab-zipcode").val()};
         var query = serverUrl + '?' + jQuery.param(params);
         jQuery.getJSON(query).done(function(data){
+			jQuery("#nbrResult").empty();
             jQuery("#fab-results").empty();
             if(data.length > 0){
+				jQuery("#nbrResult").append(data.length).append(' results');
                 var count = 1;
                 data.forEach(function(bailiff){
                     displayBailiff(bailiff, count);
                     count ++;
                 })
             }else{
-                jQuery("#fab-results").append(jQuery('<h3>No results found...</h3>'));
+				jQuery("#nbrResult").append(' 0 result');
             }
         })
         .fail(function(err){
@@ -285,19 +328,36 @@ foreach ($countries_array as $key => $value) {
                 jQuery("#fab-results").append(jQuery('<h3>Error during server request: server may be offline...</h3>'));
             }
         });
-    });
+	}
+	
+	
     function displayBailiff(bailiff, count){
-        var div = jQuery('<div class="card">');
-        var h = jQuery("<h4>" + bailiff.name + "</h4>");
+        
+		var mainDetail = jQuery('<div class="row">');
+		mainDetail.append('<div class="col-sm-8"><i class="fa fa-map-marker" aria-hidden="true"></i><div class="title-container">');
+        
+		 if(bailiff.address1 === null){
+            bailiff.address1 = '';
+        }
         if(bailiff.address2 === null){
             bailiff.address2 = '';
         }
-        var adr1 = jQuery('<div>' + bailiff.address1 + '</div>');
-        var adr2 = jQuery('<div>' + bailiff.address2 + '</div>');
-        var zip = jQuery('<span class="zip">' + bailiff.postalCode + '</span>');
-        var city = jQuery('<span>' + bailiff.city + '</span>');
+        var adress = jQuery('<p class="title"><strong>' + bailiff.address1 + ' ' + bailiff.address2 + '</strong>, ' + bailiff.postalCode + ' ' + bailiff.city + '</p>');
+		var name = jQuery('<p class="sub-title">Name : ' + bailiff.name + '</p>');
+		var spokenLanguages = jQuery('<p class="spoken-language">Spoken languages :</p>');
+		mainDetail.append(adress).append(name).append(spokenLanguages);
+		mainDetail.append('</div></div>');
+		mainDetail.append('<div class="col-sm-4"><a href="#" class="showDetail" rel="' + count + '">View details</a></div>');
+		mainDetail.append('</div>');
+		
         var req = {format: "json", q: bailiff.address1 + ', ' + bailiff.address2 + ', ' + bailiff.postalCode + ', ' + bailiff.city + ', ' + jQuery("#fab-country").val()};
-        jQuery.get(location.protocol + '//nominatim.openstreetmap.org/search?' + jQuery.param(req) , function(data){
+        jQuery.ajax(
+		{url: 'https://nominatim.openstreetmap.org/search?' + jQuery.param(req),
+		type:"GET",
+		/* crossDomain: true, 
+		headers: {'Access-Control-Allow-Origin': '*'},
+		*/
+                 success: function(data){
             if(data[0]){
                 var geoData = data[0];
                 var lat = geoData.lat;
@@ -305,34 +365,82 @@ foreach ($countries_array as $key => $value) {
                 var mapId = 'map_' + count;
                 div.append('<div class="map-container" id="' + mapId + '"></div>');
                 var map = L.map(mapId).setView([lat, lon], 14);
-                L.tileLayer('http://{s}.tile.cloudmade.com/e7b61e61295a44a5b319ca0bd3150890/997/256/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution">CARTO</a>',
                 maxZoom: 18
                 }).addTo(map);
                 var marker = L.marker([lat, lon]).addTo(map);
             }
-        });
+        }});
 
-        div.append(h);
-        div.append(adr1, adr2, zip,city);
+        var secondaryDetail =  jQuery('<div id="detail-' + count +'" style="display:none;" class="details">');
+		secondaryDetail.append('<div class="row">');
         if(bailiff.phone){
-            div.append(jQuery('<div>phone: ' + bailiff.phone + '</div>'));
+            secondaryDetail.append(jQuery('<div class="col-sm-6 col-xl-6 infos"><i class="fa fa-mobile" aria-hidden="true"></i><p><span>Phone</span>' + bailiff.phone + '</p></div>'));
         }
         if(bailiff.fax){
-            div.append(jQuery('<div>fax: ' + bailiff.fax + '</div>'));
+            secondaryDetail.append(jQuery('<div class="col-sm-6 col-xl-6 infos"><i class="fa fa-fax" aria-hidden="true"></i><p><span>Fax</span>' + bailiff.fax + '</p></div>'));
         }
         if(bailiff.email){
-            div.append(jQuery('<div>email: <a href="mailto:' + bailiff.email + '">' + bailiff.email + '</a></div>'));
+            secondaryDetail.append(jQuery('<div class="col-sm-6 col-xl-6 infos"><i class="fa fa-envelope" aria-hidden="true"></i><p><span>E-mail</span></p><ul><li><a href="mailto:' + bailiff.email + '" target="_blank">' + bailiff.email + '</a></li></ul></div>'));
         }
         if(bailiff.webSite){
-            div.append(jQuery('<div>web site: <a href="//' + bailiff.webSite + '">' + bailiff.webSite + '</a></div>'));
+            secondaryDetail.append(jQuery('<div class="col-sm-6 col-xl-6 infos"><i class="fa fa-globe" aria-hidden="true"></i><p><span>Website</span><a href="www.intermediance.be" target="_blank">' + bailiff.webSite + '" target="_blank">' + bailiff.webSite + '</a></p></div>'));
         }
         if(bailiff.openHours){
-            div.append(jQuery('<div>open hours: ' + bailiff.openHours + '</div>'));
+            secondaryDetail.append(jQuery('<div class="col-sm-6 col-xl-6 infos"><p><span>open hours</span>' + bailiff.openHours + '</p></div>'));
         }
+		secondaryDetail.append('</div></div>');
+		
+		var div = jQuery('<div class="entry">');
+		div.append(mainDetail);
+		div.append(secondaryDetail);
+		div.append('</div');
         jQuery("#fab-results").append(div);
     }
     </script>
 
+    <?php
+}
+
+function fab_search_frontend()
+{
+    $countries = explode("\n", get_option('awp_countries'));
+    $countries_array = array();
+    foreach ($countries as $country) {
+        $country_split = explode("-", $country);
+        $country_code = trim($country_split[0]);
+        $country_name = trim($country_split[1]);
+        $countries_array[$country_code] = $country_name;
+    }
+    ksort($countries_array);
+    ?>
+
+<div id="annuaire">
+<div class="container">
+<?php
+	echo '<form class="formAnnuaireSC formBailiff" action="' . get_option('awp_search_page_url') . '" method="post" id="formAnnuaireSC" name="annuaire">';
+?>
+        <h3>Find a bailiff</h3>
+        <div class="row">
+            <div class="formAnnuaireSC_chps col-sm-12 col-md-4">
+                <select id="paysSC" name="paysSC">
+<?php
+foreach ($countries_array as $key => $value) {
+        echo '<option value="' . $key . '">' . $value . '</option>';
+    }
+?>
+                </select>
+            </div>
+            <div class="formAnnuaireSC_chps col-sm-12 col-md-3">
+                 <input type="text" class="inputAnnuaire" id="cpSC" name="cpSC" value="" placeholder="Postcode or town">
+            </div>
+            <div class="formAnnuaireSC_chps col-sm-12 col-md-2">
+                <input type="submit" class="inputAnnuaireValider" name="valider" value="Submit" />
+            </div>
+        </div>
+    </form>
+</div>
+</div>
     <?php
 }
