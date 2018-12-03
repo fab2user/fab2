@@ -41,10 +41,6 @@
     </div>
 
     <div class="body">
-        <div class="top">
-            <span translate="area.list.title"  >_List of geograpical areas_</span>
-        </div>
-
         <table class="table" ng-table="areaCtrl.tableParams"  template-pagination="js/table/pagination.html" show-filter="false">
             <colgroup>
                 <col>
@@ -52,21 +48,12 @@
                 <col>
             </colgroup>
 
-            <thead >
-             <!--  TODO Sort is not working-->
-                <tr>
-                    <th translate="area.list.id" sortable="'id'">_Id_<span class="sort"></span></th>
-                    <th translate="area.list.name" sortable="'name'">_Name_<span class="sort"></span></th>
-                    <th translate="area.list.zipcodes" >_Postal codes_</th>
-                </tr>
-            </thead>
-
             <tbody >
                 <tr ng-repeat="area in $data track by area.id" ng-click="areaCtrl.selectArea(area)" ng-class="{'selected-info': area.id === areaCtrl.selectedArea.id}"
                 class="pointable">
-                    <td>{{area.id}}</td>
-                    <td>{{area.name}}</td>
-                    <td>{{area.zipCodes}}</td>
+                    <td data-title="'area.list.id'|translate" sortable="'id'">{{area.id}}</td>
+                    <td data-title="'area.list.name'|translate" sortable="'name'">{{area.name}}</td>
+                    <td data-title="'area.list.zipcodes'|translate">{{area.zipCodes}}</td>
                 </tr>
             </tbody>
         </table>

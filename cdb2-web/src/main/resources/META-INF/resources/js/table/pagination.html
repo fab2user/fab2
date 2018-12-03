@@ -1,9 +1,23 @@
 
 <div class="top">
+    <span>{{params.tableTitle}}</span> <span class="result">{{params.data.length}} Filtered / {{params.totalDataSet}} Total</span>
     <ul>
+         <li ng-repeat="page in pages"
+                ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                ng-show="page.type == 'prev'" >
+            <a  ng-click="params.page(page.number)" href="">&laquo; Previous</a>
+         </li>
+        
         <li class="active" ng-class="{'active':params.count() == 10}" ng-click="params.count(10)">10</li>
         <li ng-class="{'active':params.count() == 25}" ng-click="params.count(25)">25</li>
         <li ng-class="{'active':params.count() == 50}" ng-click="params.count(50)">50</li>
         <li ng-class="{'active':params.count() == 100}" ng-click="params.count(100)">100</li>
+        
+        <li ng-repeat="page in pages"
+                ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                ng-show="page.type == 'next'" >
+            <a  ng-click="params.page(page.number)" href="">Next &raquo;</a>
+         </li>
+        
     </ul>
 </div>

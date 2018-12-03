@@ -52,6 +52,8 @@
         vm.municipalities = success;
         vm.tableParams = new NgTableParams({}, { dataset: success });
         vm.total = success.length;
+       vm.tableParams.totalDataSet = success.length;   // Add the total resultset size to the table params.
+        vm.tableParams.tableTitle = 'List of ZIP code';
       });
     }
 

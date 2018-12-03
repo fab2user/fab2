@@ -69,6 +69,8 @@
         vm.tableParams = new NgTableParams({}, {
           dataset: data
         });
+        vm.tableParams.totalDataSet = data.length;   // Add the total resultset size to the table params.
+        vm.tableParams.tableTitle = 'List of competent Bailiffs / Enforcement authorities';
       });
     };
 

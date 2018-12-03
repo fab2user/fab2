@@ -75,8 +75,13 @@
     }
 
     function fetchGeoAreas() {
-      GeoAreaAPIService.getAll().$promise.then(function(success) {
-        vm.tableParams = new NgTableParams({}, { dataset: success });
+      GeoAreaAPIService.getAll().$promise.then(function(data) {
+          vm.total = data.length;
+          vm.tableParams = new NgTableParams({}, {
+            dataset: data
+          });
+        vm.tableParams.totalDataSet = data.length;   // Add the total resultset size to the table params.
+        vm.tableParams.tableTitle = 'LIST OF GEOGRAPHICAL AREAS';
       });
     }
   }

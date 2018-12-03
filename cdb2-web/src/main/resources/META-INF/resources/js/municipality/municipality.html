@@ -53,10 +53,6 @@
     </div>
 
     <div class="body">
-        <div class="top">
-            <span translate="municipality.list.title">_List of ZIP code_</span> <span>{{ municipalityCtrl.tableParams.total() }} {{ 'global.label.filtered'|translate }} / {{ municipalityCtrl.total }} {{ 'global.label.total'|translate}} </span>
-        </div>
-
         <table class="table" ng-table="municipalityCtrl.tableParams" template-pagination="js/table/pagination.html" show-filter="false">
             <colgroup>
                 <!-- <col class="select"> -->
@@ -68,27 +64,15 @@
                 <col>
             </colgroup>
 
-            <thead>
-                <tr>
-                    <!-- <th class="select"></th> -->
-                    <th translate="municipality.list.id" data-title="'municipality.list.id'|translate" sortable="'id'" class="fit-id">_Id_<span class="sort"></span></th>
-                    <th translate="municipality.list.municipality" data-title="'municipality.list.municipality'|translate" sortable="'name'">_Town_<span class="sort"></span></th>
-                    <th translate="municipality.list.postalcode" data-title="'municipality.list.postalcode'|translate" sortable="'postalCode'">_Postal code_<span class="sort"></span></th>
-                    <th translate="municipality.list.area1" data-title="'municipality.list.area1'|translate" sortable="'adminAreaSubdivisionMajor'">_Admin area subdivision 1_<span class="sort"></span></th>
-                    <th translate="municipality.list.area2" data-title="'municipality.list.area2'|translate" sortable="'adminAreaSubdivisionMiddle'">_Admin area subdivision 2_<span class="sort"></span></th>
-                    <th translate="municipality.list.area3" data-title="'municipality.list.area3'|translate" sortable="'adminAreaSubdivisionMinor'">_Admin area subdivision 3_<span class="sort"></span></th>
-                </tr>
-            </thead>
-
             <tbody>
                 <tr ng-repeat="city in $data track by city.id">
                    <!--  <td><input type="checkbox" name=""></td>  -->
-                    <td>{{city.id}}</td>
-                    <td>{{city.name}}</td>
-                    <td>{{city.postalCode}}</td>
-                    <td>{{city.adminAreaSubdivisionMajor}}</td>
-                    <td>{{city.adminAreaSubdivisionMiddle}}</td>
-                    <td>{{city.adminAreaSubdivisionMinor}}</td>
+                    <td data-title="'municipality.list.id'|translate" sortable="'id'">{{city.id}}</td>
+                    <td data-title="'municipality.list.municipality'|translate" sortable="'name'">{{city.name}}</td>
+                    <td data-title="'municipality.list.postalcode'|translate" sortable="'postalCode'">{{city.postalCode}}</td>
+                    <td data-title="'municipality.list.area1'|translate" sortable="'adminAreaSubdivisionMajor'">{{city.adminAreaSubdivisionMajor}}</td>
+                    <td data-title="'municipality.list.area2'|translate" sortable="'adminAreaSubdivisionMiddle'">{{city.adminAreaSubdivisionMiddle}}</td>
+                    <td data-title="'municipality.list.area3'|translate" sortable="'adminAreaSubdivisionMinor'">{{city.adminAreaSubdivisionMinor}}</td>
                 </tr>
             </tbody>
         </table>
