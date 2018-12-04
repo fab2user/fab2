@@ -81,7 +81,7 @@
                 <tbody>
                     <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'selected-info': bailiff.id === bailiffCtrl.selectedBailiff.id}" class="pointable">
                        <!--  <td ><input type="checkbox" name=""></td> -->
-                        <td data-title="'bailiff.list.id'|translate" sortable="'id'">{{bailiff.id}}</td>
+                        <td data-title="'bailiff.list.id'|translate" sortable="'id'" >{{bailiff.id}}</td>
                         <td data-title="'bailiff.list.name'|translate" sortable="'name'"  >{{bailiff.name}}</td>
                         <td data-title="'bailiff.list.address'|translate" sortable="'address'" >{{bailiff.address1}}</td>
                         <td data-title="'bailiff.list.zipcode'|translate" sortable="'postalCode'" >{{bailiff.postalCode}}</td>

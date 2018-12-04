@@ -47,6 +47,10 @@
       .state('root.area', {
         url: '/area',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/geo-area/area.html',
             controller: 'GeoAreaController',
@@ -57,6 +61,10 @@
       .state('root.municipality', {
         url: '/municipality',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/municipality/municipality.html',
             controller: 'MunicipalityController',
@@ -67,6 +75,10 @@
       .state('root.bailiff', {
         url: '/bailiff',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/bailiff/bailiff.html',
             controller: 'BailiffController',
@@ -77,6 +89,10 @@
       .state('root.reference', {
         url: '/reference',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/reference/reference.html',
             controller: 'ReferenceController',

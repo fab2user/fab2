@@ -6,6 +6,7 @@
   GeoAreaController.$inject = [
     '$uibModal',
     '$translate',
+    '$rootScope',
     'GeoAreaAPIService',
     'NgTableParams',
     'toastr'
@@ -14,6 +15,7 @@
   function GeoAreaController(
     $uibModal,
     $translate,
+    $rootScope,
     GeoAreaAPIService,
     NgTableParams,
     toastr
@@ -22,6 +24,8 @@
 
     fetchGeoAreas();
 
+    $rootScope.fabStatus['currentMenu'] = $translate.instant('area.list.title');
+    
     vm.areaDetailsTable = new NgTableParams(
       {},
       {
@@ -50,6 +54,8 @@
     vm.selectArea = function(area) {
       vm.selectedArea = area;
       vm.areaDetailsTable.settings({ dataset: area.municipalities });
+      vm.areaDetailsTable.totalDataSet = area.municipalities.length;
+      vm.areaDetailsTable.tableTitle = "DETAILS OF AREA : " + area.name;
       vm.total = area.municipalities.length;
     };
 

@@ -38,6 +38,10 @@
         <div class="button-blue icon-add">
             <a ng-click="areaCtrl.new()" translate="global.button.add">_Add_</a>
         </div>
+        
+       <div class="button-tab-yellow">
+            <a ng-click="areaCtrl.edit()" translate="global.button.edit">_Edit_</a>
+        </div>
     </div>
 
     <div class="body">
@@ -61,44 +65,19 @@
 </section>
 
 <section id="table" ng-show="areaCtrl.selectedArea">
-    <div class="head">
-        <div class="button-tab-yellow">
-            <a ng-click="areaCtrl.edit()" translate="global.button.edit">_Edit_</a>
-        </div>
-    </div>
-
     <div class="body">
-        <div class="top">
-            <span translate="area.list.detail.title" translate-values="{ areaName: areaCtrl.selectedArea.name }">_Details_</span> <span>{{ areaCtrl.areaDetailsTable.total() }} {{ 'global.label.filtered'|translate }} / {{ areaCtrl.total }} {{ 'global.label.total'|translate}}</span>
-            <!-- TODO -->
-            <ul>
-                <li class="active">10</li>
-                <li>25</li>
-                <li>50</li>
-                <li>100</li>
-            </ul>
-        </div>
-
-        <table class="table" ng-table="areaCtrl.areaDetailsTable" show-filter="true">
+        <table class="table" ng-table="areaCtrl.areaDetailsTable"  template-pagination="js/table/pagination.html" show-filter="true">
             <colgroup>
                 <col class="select">
                 <col>
                 <col>
             </colgroup>
 
-            <thead>
-                <tr>
-                    <th translate="area.list.id" data-title="'area.list.id'|translate" filter="{ id: 'number'}" sortable="'id'">_Id_<span class="sort"></span></th>
-                    <th translate="area.list.name" data-title="'area.list.name'|translate" filter="{ name: 'text'}" sortable="'name'">_Name_<span class="sort"></span></th>
-                    <th translate="municipality.list.postalcode" data-title="'municipality.list.postalcode'|translate" filter="{ postalCode: 'text'}">_Postal code_<span class="sort"></span></th>
-                </tr>
-            </thead>
-
             <tbody>
                 <tr ng-repeat="city in $data track by city.id">
-                    <td>{{city.id}}</td>
-                    <td>{{city.name}}</td>
-                    <td>{{city.postalCode}}</td>
+                    <td data-title="'area.list.id'|translate" sortable="'id'" filter="{ id: 'number'}">{{city.id}}</td>
+                    <td data-title="'area.list.name'|translate" sortable="'name'" filter="{ name: 'text'}">{{city.name}}</td>
+                    <td data-title="'municipality.list.postalcode'|translate" filter="{ postalCode: 'text'}">{{city.postalCode}}</td>
                 </tr>
             </tbody>
         </table>

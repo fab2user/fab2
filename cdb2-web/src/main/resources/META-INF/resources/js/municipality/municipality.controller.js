@@ -7,6 +7,7 @@
 
   MunicipalityController.$inject = [
     '$scope',
+    '$rootScope',
     '$log',
     '$http',
     '$translate',
@@ -20,6 +21,7 @@
 
   function MunicipalityController(
     $scope,
+    $rootScope,
     $log,
     $http,
     $translate,
@@ -34,6 +36,8 @@
     vm.searchParams = {};
     fetch();
 
+    $rootScope.fabStatus['currentMenu'] = $translate.instant('municipality.list.title');
+    
     vm.search = function() {
       $log.debug('search clicked :', vm.searchParams);
     };
