@@ -101,12 +101,18 @@
 
     </div>
 
-    <div class="modal-footer">
-      <div class="col-md-2 col-md-offset-10 light-pull-right">
-      <button class="btn btn-primary" ng-click="areaDetailCtrl.save(areaDetailCtrl.areaForm.$valid)"
-        ng-disabled="areaDetailCtrl.submitted"><span class="glyphicon glyphicon-floppy-disk"></span> <span translate="global.button.save"></span></button>
-      <button type="button" class="btn btn-danger" ng-click="areaDetailCtrl.cancel()"><span class="glyphicon glyphicon-remove-circle"></span> <span translate="global.button.cancel"></span></button>
-    </div>
-  </div>
-  </form>
+        <div class="modal-footer">
+            <div id="modal-button-toolbar" class="col-md-12">
+            <div class="col-md-10"></div>
+                <div class="button-yellow icon-floppy-disk col-md-1">
+                    <a class="pull-right" ng-click="areaDetailCtrl.save(areaDetailCtrl.areaForm.$valid)" ng-disabled="areaDetailCtrl.submitted" translate="global.button.save">
+                    </a>
+                </div>
+
+                <div class="button-blue icon-remove col-md-1">
+                    <a class="pull-right" ng-click="areaDetailCtrl.cancel()" translate="global.button.cancel"> </a>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

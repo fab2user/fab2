@@ -1,15 +1,19 @@
-                        <status-directive/>
-                        <h1>{{headCtrl.currentMenu}}</h1>
 
+<status-directive />
+<h1>{{headCtrl.currentMenu}}</h1>
 
-                  <div class="user">
+<div class="user">
 
-                        <div class="col">
-                              <div class="img" style="background-image: url('');"></div>
-                        </div>
+    <div class="col"  >
+        <div class="img" style="background-image: url('/images/help.png');" ng-click="headCtrl.showHelp()">
+        </div>
+    </div>
 
-                        <div class="col" ng-if="headCtrl.currentUser">
-                              <div class="name">{{ headCtrl.currentUser }}</div>
-                              <div class="logout"><a href="{{headCtrl.logout()}}">Logout</a></div>
-                        </div>
-                  </div>
+    <div class="col" ng-if="headCtrl.currentUser">
+        <div class="name">{{ headCtrl.currentUser }}</div>
+        <div class="logout">
+            <a href="{{headCtrl.logout()}}">Logout</a>
+        </div>
+    </div>
+</div>
+

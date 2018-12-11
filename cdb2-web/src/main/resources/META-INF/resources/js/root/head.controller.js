@@ -7,6 +7,7 @@
     '$rootScope',
     '$scope',
     '$log',
+    '$uibModal',
     'STORE',
     'EVENT',
     'AuthService'
@@ -16,6 +17,7 @@
     $rootScope,
     $scope,
     $log,
+    $uibModal,
     STORE,
     EVENT,
     AuthService
@@ -51,5 +53,16 @@
                );
          AuthService.logout();
      };
+     
+     vm.showHelp = function() {
+         var modalInstance = $uibModal.open({
+           templateUrl: '/js/help/help.html',
+           windowClass: 'modal-hg',
+           backdrop: 'static',
+           controller: 'HelpController as helpCtrl',
+         });
+         modalInstance.result.then(function () {
+         });
+       }
   }
 })();

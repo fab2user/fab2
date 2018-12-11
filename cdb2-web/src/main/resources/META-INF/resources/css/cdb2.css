@@ -754,9 +754,9 @@ input[type='number']::-webkit-outer-spin-button {
       line-height: normal;
 }
 
-#main #header .user::before {
-      content: url('../images/arrow_down.svg');
-}
+/* #main #header .user::before { */
+/*       content: url('../images/arrow_down.svg'); */
+/* } */
 
 #main #header .user .col {
       display: -webkit-box;
@@ -817,6 +817,18 @@ input[type='number']::-webkit-outer-spin-button {
       background: #f8f9fb;
 }
 
+#main #content .img {
+      width: 44px;
+      height: 44px;
+      background-color: #1c386a;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: cover;
+      border-radius: 50%;
+      cursor: pointer;
+}
+
+
 #main #content .col {
       -ms-flex-line-pack: center;
           align-content: center;
@@ -840,6 +852,7 @@ input[type='number']::-webkit-outer-spin-button {
       z-index: 1;
 }
 
+
 #main #content .col .img::before {
       content: '';
       position: absolute;
@@ -862,6 +875,9 @@ input[type='number']::-webkit-outer-spin-button {
       background-size: cover;
       z-index: 1;
 }
+
+
+
 
 #main #content h2 {
       position: relative;
@@ -901,6 +917,7 @@ input[type='number']::-webkit-outer-spin-button {
       margin: 70px 50px;
       margin-bottom: 0;
 }
+
 
 #main #content #search .head {
       display: -webkit-box;
@@ -1258,12 +1275,10 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #main #content #table .body .table thead tr th span {
-      display: inline-block;
       vertical-align: middle;
       margin-left: 10px;
       width: 10px;
       height: 10px;
-      background: url('../images/icon_up_down.svg') no-repeat 50%;
       cursor: pointer;
 }
 
@@ -1353,6 +1368,123 @@ input[type='number']::-webkit-outer-spin-button {
 
 .icon-add a::before {
       content: url('../images/icon_add.svg');
+}
+
+/**
+* Toaster hook.
+**/
+
+.toast-message {
+  color: #ffffff;
+}
+
+
+/**
+* Modal Helper
+**/
+
+#helpmodal .containerhelp {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      margin: 70px 50px;
+      padding: 100px 50px;
+      background: #f8f9fb;
+}
+
+#helpmodal .img {
+      width: 44px;
+      height: 44px;
+      background-color: #1c386a;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: cover;
+      border-radius: 50%;
+      cursor: pointer;
+}
+
+
+#helpmodal  .col {
+      -ms-flex-line-pack: center;
+          align-content: center;
+}
+
+#helpmodal  .col+.col {
+      -webkit-box-flex: 1;
+          -ms-flex: auto;
+              flex: auto;
+      padding: 0 50px;
+}
+
+#helpmodal  .col .img {
+      position: relative;
+      margin-left: 30px;
+      width: 240px;
+      height: 310px;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: cover;
+      z-index: 1;
+}
+
+
+#helpmodal .col .img::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 50px;
+      left: -30px;
+      -webkit-box-shadow: 0 0 0 1px #1c386a inset;
+              box-shadow: 0 0 0 1px #1c386a inset;
+      z-index: -1;
+}
+
+#helpmodal .col .img div {
+      position: relative;
+      width: 240px;
+      height: 310px;
+      background-color: #fff;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: cover;
+      z-index: 1;
+}
+
+
+
+
+#helpmodal  h2 {
+      position: relative;
+      margin-bottom: 40px;
+      font-size: 38px;
+      font-weight: 700;
+      color: #102250;
+      text-transform: uppercase;
+}
+
+#helpmodal h2::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 140px;
+      height: 4px;
+      background: #ecb304;
+}
+
+#helpmodal  h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #1c386a;
+      text-transform: uppercase;
+}
+
+#helpmodal  p {
+      margin-bottom: 30px;
+      font-size: 14px;
+      color: #8b9297;
+      line-height: 26px;
 }
 
 

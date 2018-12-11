@@ -4,7 +4,7 @@
     <ul>
         <li ng-repeat="page in pages"
                 ng-class="{'disabled': !page.active && !page.current, 'previous': page.type == 'prev', 'next': page.type == 'next', 'active': page.current}"
-                ng-show="page.type == 'prev' || page.type == 'next' || || page.type == 'page'" ng-switch="page.type" >
+                ng-switch="page.type" >
             <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo;</a>
             <a ng-switch-when="first" ng-click="params.page(page.number)" href=""><span ng-bind="page.number"></span></a>
             <a ng-switch-when="page" ng-click="params.page(page.number)" href=""><span ng-bind="page.number"></span></a> 

@@ -41,17 +41,18 @@
     <div  class="modal-footer">
       <div  class="row">
         <div id="modal-button-toolbar" class="col-md-12">
-            <div class="button-red icon-trash">
+            <div class="col-md-6"></div>
+            <div class="button-red icon-trash col-md-2">
                 <a class="pull-left" ng-if="langEditCtrl.lang.id" ng-click="langEditCtrl.delete()"  translate="global.button.delete">
                 </a>
             </div>
 
-            <div class="button-blue icon-remove">
+            <div class="button-blue icon-remove col-md-2">
               <a class="pull-right" ng-click="langEditCtrl.modalInstance.dismiss()"  translate="global.button.cancel">
               </a>
             </div>
 
-            <div class="button-yellow icon-floppy-disk">
+            <div class="button-yellow icon-floppy-disk col-md-2">
               <a class="pull-right" ng-click="langEditCtrl.save(langEditCtrl.langForm.$valid)" ng-disabled="langEditCtrl.submitted" translate="global.button.save">
               </a>
           </div>
