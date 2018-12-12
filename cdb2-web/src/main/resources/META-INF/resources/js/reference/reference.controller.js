@@ -30,6 +30,7 @@
     vm.selectedLang = null;
 
     $rootScope.fabStatus['currentMenu'] = $translate.instant('reference.title');
+    $rootScope.helpPage['currentPage'] = 'helpCompetence.html';
     fetchLangs();
 
     ReferenceAPIService.getAllInstrument().$promise.then(function(instruments) {

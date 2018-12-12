@@ -37,6 +37,7 @@
     fetch();
 
     $rootScope.fabStatus['currentMenu'] = $translate.instant('municipality.list.title');
+    $rootScope.helpPage['currentPage'] = 'helpZipCode.html';
     
     vm.search = function() {
       $log.debug('search clicked :', vm.searchParams);

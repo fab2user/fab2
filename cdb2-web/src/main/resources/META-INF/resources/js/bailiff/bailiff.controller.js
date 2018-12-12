@@ -58,6 +58,7 @@
     vm.selectedBailiff = {};
 
     $rootScope.fabStatus['currentMenu'] = $translate.instant('bailiff.list.title');
+    $rootScope.helpPage['currentPage'] = 'helpBailiff.html';
 
     vm.fetchBailiffs = function (pagesize, selectedpage) {
       BailiffAPIService.getAll({

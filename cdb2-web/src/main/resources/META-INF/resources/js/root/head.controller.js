@@ -27,6 +27,14 @@
     $rootScope.$watch('fabStatus', function(newVal, oldVal){
       vm.currentMenu = newVal.currentMenu;
     });
+    
+    vm.helpPage = $rootScope.helpPage['currentPage'];
+    $rootScope.$watch('helpPage', function(newVal, oldVal){
+        vm.helpPage = newVal.currentPage;
+        if (vm.helpPage) {
+            vm.existHelpPage = true;
+        }
+      });
 
     loadCurrentUser();
 
@@ -55,11 +63,12 @@
      };
      
      vm.showHelp = function() {
+         var helpPage = '/js/help/' + vm.helpPage;
          var modalInstance = $uibModal.open({
-           templateUrl: '/js/help/help.html',
            windowClass: 'modal-hg',
            backdrop: 'static',
            controller: 'HelpController as helpCtrl',
+           templateUrl: helpPage
          });
          modalInstance.result.then(function () {
          });

@@ -478,7 +478,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 #login .col.right form {
       width: 400px;
-      margin-top: 30px;
+      margin-top: 0px;
 }
 
 #login .col.right .field {
@@ -715,7 +715,7 @@ input[type='number']::-webkit-outer-spin-button {
           flex-wrap: wrap;
       -ms-flex-line-pack: center;
           align-content: center;
-      height: 100px;
+     
       line-height: 100px;
       padding: 0 50px;
       background: #fff;
@@ -726,6 +726,9 @@ input[type='number']::-webkit-outer-spin-button {
       z-index: 9;
 }
 
+#main #header #empty {
+     height: 0px;
+}
 #main #header h1 {
       position: relative;
       -webkit-box-flex: 1;
@@ -746,6 +749,7 @@ input[type='number']::-webkit-outer-spin-button {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
+      height: 100px;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
       -webkit-box-align: center;
@@ -1383,12 +1387,16 @@ input[type='number']::-webkit-outer-spin-button {
 * Modal Helper
 **/
 
+#helpmodal {
+    background: #f8f9fb;
+}
+
 #helpmodal .containerhelp {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      margin: 70px 50px;
-      padding: 100px 50px;
+      margin: 0px 0px;
+      padding: 20px 10px;
       background: #f8f9fb;
 }
 

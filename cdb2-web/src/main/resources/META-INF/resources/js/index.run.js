@@ -15,6 +15,7 @@
     $cacheFactory('geoCache');
     $log.debug('geoCache created');
     $rootScope.fabStatus = {};
+    $rootScope.helpPage = {};
     $rootScope.$on('$stateChangeStart', function(
       ev,
       to,

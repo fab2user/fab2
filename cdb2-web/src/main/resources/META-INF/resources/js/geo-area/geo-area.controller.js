@@ -25,6 +25,7 @@
     fetchGeoAreas();
 
     $rootScope.fabStatus['currentMenu'] = $translate.instant('area.list.title');
+    $rootScope.helpPage['currentPage'] = 'helpGeoArea.html';
     
     vm.areaDetailsTable = new NgTableParams(
       {},
