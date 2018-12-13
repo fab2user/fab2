@@ -7,9 +7,32 @@
         </div>
 
         <div class="col">
-            <h3>Purpose</h3>
-            <p>This page allows you to manage the municipalities and the GeoAreas.
-            <h3>How it works ?</h3>
+            <h2>Purpose</h2>
+            <p>This page allows you to manage the GeoAreas. A GeoArea is a list of ZIP codes that defines a geographical area.</p>
+            <h2>How it works ?</h2>
+            <p>Requirement: The application has to be configured with the list of your national ZIP codes, see the 'zip codes' page.</p>
+             <h3>Page structure</h3>
+            <p>The upper part of this page contains a set of criteria to filter out the list of GeoAreas and ease the research of a specific GeoArea. Simply enter a value in
+                the filter fields and the list is automatically updated with the GeoAreas that match this criteria.
+                </p>
+            <p>The lower part of the page contains the list of GeoAreas. The two arrows next the title at the top of the list are used to sort the list of bailiffs with this column values.
+               On top of the list, you can choose the size to display per page.
+               If the number of GeoAreas is greater to the page size, there is a pagination mechanism that appears on top of the list.
+               You can navigate through the pages by selecting a specific page or by using the arrows to go to the previous/next page.</p>
+            <p>When clicking a row in the list, you select a GeoArea and enable the 'Remove' and the 'Edit' buttons. The details of GeoArea is displayed under the list of GeoAreas.</p>    
+            <h3>Button 'Delete'</h3>
+            <p>This button remove a GeoArea. If the GeoArea is referenced by a bailiff, it is not possible to delete it. You have to select a row in the list to enable this button.</p>
+            <h3>Button 'Add'</h3>
+            <p>This button opens a window to enter a new GeoArea. 
+               For a new GeoArea, you have to enter a name to identify this GeoArea.
+               Then, the left part of the window contains the list of ZIP codes that is part of the GeoArea.
+               The right part of the window contains the list of available ZIP codes for you country.
+               You can add or remove ZIP codes from a GeoArea by moving them from the right/left list to the left/right list.
+            </p>
+            <h3>Button 'Edit'</h3>
+            <p>This button opens the same window as the button 'Add' and allows to edit an existing GeoArea.
+               You must first select a GeoArea by clicking on a row in the list of the GeoAreas.  
+            </p>
         </div>
     </div>
     <div class="modal-footer">
