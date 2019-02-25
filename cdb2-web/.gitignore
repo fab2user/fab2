@@ -26,3 +26,4 @@ nbdist/
 .nb-gradle/
 
 bailiffs.xlsx
+/test.json
