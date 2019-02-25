@@ -1365,8 +1365,9 @@ input[type='number']::-webkit-outer-spin-button {
       content: url('../images/icon_down.svg');
 }
 
-.icon-remove a::before {
+.icon-trash a::before {
       top: 1px;
+      right: 3px;
       content: url('../images/icon_delete.svg');
 }
 
@@ -1389,6 +1390,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 #helpmodal {
     background: #f8f9fb;
+    list-style: circle;
 }
 
 #helpmodal .containerhelp {
@@ -1495,4 +1497,13 @@ input[type='number']::-webkit-outer-spin-button {
       line-height: 26px;
 }
 
+#helpmodal li {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+}
 
+#helpmodal li::before {
+  content: url('../images/arrow_right.svg');
+  margin-right: 7px;
+}
