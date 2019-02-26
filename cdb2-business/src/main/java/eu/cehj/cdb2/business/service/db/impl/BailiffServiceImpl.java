@@ -49,25 +49,25 @@ import eu.cehj.cdb2.entity.QLanguage;
 public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Long, BailiffRepository> implements BailiffService {
 
 	@Autowired
-	AddressRepository addressRepository;
+	private AddressRepository addressRepository;
 
 	@Autowired
-	MunicipalityRepository municipalityRepository;
+	private MunicipalityRepository municipalityRepository;
 
 	@Autowired
-	LanguageRepository languageRepository;
+	private LanguageRepository languageRepository;
 
 	@Autowired
-	BailiffCompetenceAreaService bailiffCompetenceAreaService;
+	private BailiffCompetenceAreaService bailiffCompetenceAreaService;
 
 	@Autowired
-	CompetenceService competenceService;
+	private CompetenceService competenceService;
 
 	@Autowired
-	GeoAreaService geoAreaService;
+	private GeoAreaService geoAreaService;
 
 	@Value("${national.id.prefix}")
-	String nationalIdPrefix;
+	private String nationalIdPrefix;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BailiffServiceImpl.class);
 
@@ -87,16 +87,17 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 		this.bailiffCompetenceAreaService.delete(this.bailiffCompetenceAreaService.findAllForBailiffId(dto.getId()));
 
 		if(dto.getCompetences() != null) {
-			for(final CompetenceDTO competenceDTO: dto.getCompetences()) {
-				final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
-				final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
-				gas.setId(dto.getGeo().getId());
-				bca.setAreas(Arrays.asList(gas));
-				bca.setBailiff(dto);
-				final CompetenceDTO comp = new CompetenceDTO();
-				comp.setId(competenceDTO.getId());
-				bca.setCompetence(comp);
-				this.bailiffCompetenceAreaService.save(bca);
+			for(final Long instrumentId : dto.getInstrumentIds()) {
+				for (final CompetenceDTO competenceForInstrument : this.competenceService.getAllDTOForInstrument(instrumentId)) {
+					final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
+					final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
+					gas.setId(dto.getGeo().getId());
+					bca.setAreas(Arrays.asList(gas));
+					bca.setBailiff(dto);
+
+					bca.setCompetence(competenceForInstrument);
+					this.bailiffCompetenceAreaService.save(bca);
+				}
 			}
 		}
 	}
@@ -156,6 +157,15 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 			}
 			return null;
 		}).collect(Collectors.toList()));
+		dto.setInstrumentIds(entity.getBailiffCompetenceAreas().stream().map(bca -> {
+			try {
+				return bca.getCompetence().getInstrument().getId();
+			} catch (final Exception e) {
+				LOGGER.error(e.getMessage(), e);
+			}
+			return null;
+		}).collect(Collectors.toList()));
+
 		if(CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas()) && CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas().get(0).getAreas())){
 			final GeoArea area = entity.getBailiffCompetenceAreas().get(0).getAreas().get(0);
 			final GeoAreaSimpleDTO geoSimpleDTO = this.geoAreaService.getSimpleDTO(area.getId());
