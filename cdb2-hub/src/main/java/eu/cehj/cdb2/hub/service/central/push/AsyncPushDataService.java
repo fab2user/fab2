@@ -132,7 +132,11 @@ public class AsyncPushDataService implements PushDataService {
 		// TODO: For some reason this method uses BailiffExportDTO instead of standard BailiffDTO.
 		// See if it'd be possible to remove this one and always use BailiffDTO
 		final RestTemplate restTemplate = this.builder.basicAuthorization(cos.getUser(), cos.getPassword()).build();
-		final String bailiffsUrl = cos.getUrl() + "/" + this.settings.getBailiffsUrl();
+		String bailiffsUrl = cos.getUrl() + "/" + this.settings.getBailiffsUrl();
+		// PATCH for GR
+		if (cos.getCountryCode().equals("GR")) {
+			bailiffsUrl = cos.getFetchUrl();
+		}
 		final UriComponentsBuilder uriComponentsBuilderBailiff = UriComponentsBuilder.fromHttpUrl(bailiffsUrl);
 		LOGGER.info("Push Service - Sending request to {}", bailiffsUrl);
 		ResponseEntity<List<BailiffExportDTO>> entities = null;
@@ -143,6 +147,8 @@ public class AsyncPushDataService implements PushDataService {
 		} catch (final RestClientException e) {
 			if(e.getClass() == ResourceAccessException.class) {
 				throw new CDBException(String.format("Serveur %s can not be reached. Please try again later.", bailiffsUrl), e);
+			} else {
+				throw new CDBException("Unknown exception", e);
 			}
 		}
 		List<BailiffExportDTO> dtos = new ArrayList<>();
@@ -319,4 +325,6 @@ public class AsyncPushDataService implements PushDataService {
 			throw new CDBException(exception.getMessage(), exception);
 		}
 	};
+
+
 }
