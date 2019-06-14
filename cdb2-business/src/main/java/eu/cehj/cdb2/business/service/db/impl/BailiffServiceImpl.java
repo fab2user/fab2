@@ -344,4 +344,3 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 		return nationalId;
 	}
 }
-

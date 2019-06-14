@@ -1,24 +1,55 @@
-<div class="row top-5">
-	<div class="col-md-6 col-md-offset-3">
-		<form name="loginCtrl.loginForm" role="form" ng-submit="loginCtrl.login(loginCtrl.loginForm.$valid)" novalidate>
-			<div class="form-group">
-				<label for="username" translate="global.form.username">Username:</label>
+<div id="login">
+      <div class="col left">
+            <div class="logo"></div>
+            <h1>Welcome to Find a Bailiff Directory !</h1>
+
+            <p>The Find a Bailiff applet will enable you to create, in a few clicks, your National Directory of
+                  Bailiffs/Enforcement authorities to be connected to the European Find a Bailiff Directory.
+                  Thus,
+                  European citizens and companies will be able to identify, while browsing on Find a Bailiff
+                  Directory,
+                  the competent Bailiff/Enforcement authority to solve their case in your Member State.
+            </p>
+
+            <a href="#">Go to the Website</a>
+
+            <div class="eu">
+                  <img src="images/flag_eu.jpg">
+                  <p>Co-funded by the Jutice Programme of the European Union</p>
+            </div>
+      </div>
+      <div class="col right">
+            <h2>Connection</h2>
+            
+            <form  name="loginCtrl.loginForm" role="form" ng-submit="loginCtrl.login(loginCtrl.loginForm.$valid)" novalidate>
+                  <div class="field login">
+                        <label for="username" translate="global.form.username">Username:</label>
 				<input type="text" class="form-control" id="username" name="username" ng-model="loginCtrl.credentials.username" ng-change="loginCtrl.resetCredentialsError()"
 				    required/>
-			</div>
-			<div ng-if="loginCtrl.loginForm.$submitted" ng-messages="loginCtrl.loginForm.username.$error">
-				<div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
-			</div>
-			<div class="form-group">
-				<label for="password" translate="global.form.password">Password:</label>
+                  </div>
+
+            <div ng-if="loginCtrl.loginForm.$submitted" ng-messages="loginCtrl.loginForm.username.$error">
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+            </div>
+            
+                  <div class="field password">
+                       <label for="password" translate="global.form.password">Password:</label>
 				<input type="password" class="form-control" id="password" name="password" ng-model="loginCtrl.credentials.password" ng-change="loginCtrl.resetCredentialsError()"
 				    required/>
-			</div>
-			<div ng-if="loginCtrl.loginForm.$submitted" ng-messages="loginCtrl.loginForm.password.$error">
-				<div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
-				<div ng-message="badCredentials" class="text-danger">{{"global.form.badcredentials"|translate}}</div>
-			</div>
-			<button type="submit" class="btn btn-primary pull-right">Submit</button>
-		</form>
-	</div>
-</div>
+                  </div>
+
+            <div ng-if="loginCtrl.loginForm.$submitted" ng-messages="loginCtrl.loginForm.password.$error">
+                <div ng-message="required" class="text-danger">{{"global.form.required"|translate}}</div>
+                <div ng-message="badCredentials" class="text-danger">{{"global.form.badcredentials"|translate}}</div>
+            </div>
+            
+<!--                   <div class="footer"> -->
+<!--                         <input type="checkbox"> -->
+<!--                         <label>I have read and agree to the terms and conditions</label> -->
+<!--                         <a href="#">Lost password ?</a> -->
+<!--                   </div> -->
+
+                  <input type="submit" value="Enter" class="button">
+            </form>
+      </div>
+</div>     

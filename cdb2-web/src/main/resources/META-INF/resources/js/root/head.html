@@ -1,15 +1,19 @@
-<div id="page-header" class="row vertical-align">
-  <div class="col-md-1">
-    <img src="/images/fab2-logo.png" alt="fab2 logo" class="img-responsive">
-  </div>
-  <div class="col-md-8">
-    <h2>
-      <span translate="global.title.database"></span>
-    </h2>
-    <status-directive/>
-  </div>
-  <div class="col-md-3 user-id" ng-if="headCtrl.currentUser">
-    <span class="glyphicon glyphicon-user switch-control"></span>
-    <span> {{ headCtrl.currentUser }}</span>
-  </div>
+
+<status-directive />
+<h1>{{headCtrl.currentMenu}}</h1>
+
+<div class="user">
+
+    <div class="col"  >
+        <div class="img" style="background-image: url('/images/help.png');" ng-click="headCtrl.showHelp()" ng-if="headCtrl.existHelpPage">
+        </div>
+    </div>
+
+    <div class="col" ng-if="headCtrl.currentUser">
+        <div class="name">{{ headCtrl.currentUser }}</div>
+        <div class="logout">
+            <a href="{{headCtrl.logout()}}">Logout</a>
+        </div>
+    </div>
 </div>
+

@@ -567,11 +567,16 @@ function ngTableController($scope, NgTableParams, $timeout, $parse, $compile, $a
                 $element.prepend(headerTemplate);
             }
             var paginationTemplate = ng1.element('<div ng-table-pagination="params" template-url="templates.pagination"></div>', $document);
-            $element.after(paginationTemplate);
+            $element.before(paginationTemplate);
+            
             if (headerTemplate) {
                 $compile(headerTemplate)($scope);
             }
             $compile(paginationTemplate)($scope);
+            // To support pagination after the table.
+            // var paginationTemplate2 = ng1.element('<div ng-table-pagination="params" template-url="templates.pagination"></div>', $document);
+            // $element.after(paginationTemplate2);
+            // $compile(paginationTemplate2)($scope);
         }
     };
     this.loadFilterData = function ($columns) {

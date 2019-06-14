@@ -518,4 +518,3 @@ function display_bailiffs_response($bailiffsResponse)
 		// echo var_dump($bailiff);
     }
 }
-

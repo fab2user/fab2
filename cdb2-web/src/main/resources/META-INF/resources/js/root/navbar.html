@@ -1,8 +1,9 @@
-<nav class="navbar navbar-default" ng-if="navCtrl.authenticated">
+<nav id="sidebar" class="nav navbar navbar-default" ng-if="navCtrl.authenticated">
+  <div class="logo"></div>
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" uib-collapse="vm.isCollapsed" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav  nav-stacked">
         <li ui-sref-active="active">
           <a ui-sref="root.home" translate="navbar.link.home">Home</a>
         </li>
@@ -25,14 +26,23 @@
           <img src="/images/ajax-loader.gif" />
         </span>
       </p>
-      <ul class="nav navbar-nav navbar-right">
+      <!-- <ul class="nav navbar-nav navbar-right">
         <li ng-if="navCtrl.authenticated">
           <a>
             <span class="glyphicon glyphicon-off text-danger switch-control pointable" ng-click="navCtrl.logout()" />
           </a>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
+  <p>The Find a Bailiff applet will enable you to create, in a few clicks, your National Directory of
+    Bailiffs/Enforcement authorities to be connected to the European Find a Bailiff Directory.Thus,
+    European citizens and companies will be able to identify, while browsing on Find a Bailiff Directory,
+    the competent Bailiff/Enforcement authority to solve their case in your Member State.
+</p>
+  <div class="eu">
+    <img src="images/flag_eu.jpg">
+  </div>
+
 </nav>
 <notification-panel-directive />

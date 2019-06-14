@@ -7,6 +7,7 @@
 
   MunicipalityController.$inject = [
     '$scope',
+    '$rootScope',
     '$log',
     '$http',
     '$translate',
@@ -20,6 +21,7 @@
 
   function MunicipalityController(
     $scope,
+    $rootScope,
     $log,
     $http,
     $translate,
@@ -34,6 +36,9 @@
     vm.searchParams = {};
     fetch();
 
+    $rootScope.fabStatus['currentMenu'] = $translate.instant('municipality.list.title');
+    $rootScope.helpPage['currentPage'] = 'helpZipCode.html';
+    
     vm.search = function() {
       $log.debug('search clicked :', vm.searchParams);
     };
@@ -52,6 +57,8 @@
         vm.municipalities = success;
         vm.tableParams = new NgTableParams({}, { dataset: success });
         vm.total = success.length;
+       vm.tableParams.totalDataSet = success.length;   // Add the total resultset size to the table params.
+        vm.tableParams.tableTitle = 'List of ZIP code';
       });
     }
 

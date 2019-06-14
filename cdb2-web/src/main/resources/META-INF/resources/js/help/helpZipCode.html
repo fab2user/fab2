@@ -1,0 +1,33 @@
+<div id="helpmodal">
+    <div class="containerhelp" >
+        <div class="col">
+            <div class="img">
+                <div style="background-image: url('images/book.jpg');"></div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h2>Purpose</h2>
+            <p>This page allows you to manage the ZIP Code.
+            <h2>How it works ?</h2>
+            <p>This page allows you to manage the list of ZIP codes of your country.
+            There is no direct edition of a zip code but instead the list is updated by a file upload process. 
+            The button 'Choose a file' allows you to select a file that contains all the ZIP codes of your country.
+            Once the file is selected, you push the 'import data' button to start the upload process. This operation can take a while.</p>
+            <p>The format of the file is the one used by the <a target="#" href="https://www.geonames.org/" >GeoNames.org</a> site.
+            You can find a download page of existing ZIP code sets <a target="#" href="http://download.geonames.org/export/zip/">here</a>. As this site is a cooperative site, please check the accuracy of the data before importing it.</p>
+            <p>If you upload a ZIP code file while there is already existing zip codes in the application, the file is compared with the existing zip codes and only new values are uploaded.
+            If the file doesn't contain a ZIP code, this one is not removed from the list.</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div id="modal-button-toolbar" class="col-md-12">
+                <div class="col-md-11"></div>
+                <div class="button-blue icon-remove col-md-1">
+                    <a class="pull-right" ng-click="helpCtrl.modalInstance.close()" translate="global.button.cancel"> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
