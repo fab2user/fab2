@@ -234,10 +234,54 @@ function fabwp_enqueue_scripts()
     wp_enqueue_script('leaflet', plugin_dir_url(__FILE__) . 'js/leaflet/leaflet.js');
 }
 
-add_shortcode('cehj-fab-search', 'fab_search');
 // the fab_search_frontend component is a line search intened to be used in the home page.
 add_shortcode('cehj-fab-search-frontend', 'fab_search_frontend');
+// Register name so it can be used into another 
+add_shortcode('cehj-fab-search', 'fab_search');
 
+// This code is a simple view of the search screen to be put on the header of a page.
+function fab_search_frontend()
+{
+    $countries = explode("\n", get_option('awp_countries'));
+    $countries_array = array();
+    foreach ($countries as $country) {
+        $country_split = explode("-", $country);
+        $country_code = trim($country_split[0]);
+        $country_name = trim($country_split[1]);
+        $countries_array[$country_code] = $country_name;
+    }
+    ksort($countries_array);
+    ?>
+
+<div id="annuaire">
+<div class="container">
+<?php
+	echo '<form class="formAnnuaireSC formBailiff" action="' . get_option('awp_search_page_url') . '" method="post" id="formAnnuaireSC" name="annuaire">';
+?>
+        <h3>Find a bailiff</h3>
+        <div class="row">
+            <div class="formAnnuaireSC_chps col-sm-12 col-md-4">
+                <select id="paysSC" name="paysSC">
+<?php
+foreach ($countries_array as $key => $value) {
+        echo '<option value="' . $key . '">' . $value . '</option>';
+    }
+?>
+                </select>
+            </div>
+            <div class="formAnnuaireSC_chps col-sm-12 col-md-3">
+                 <input type="text" class="inputAnnuaire" id="cpSC" name="cpSC" value="" placeholder="Postcode or town">
+            </div>
+            <div class="formAnnuaireSC_chps col-sm-12 col-md-2">
+                <input type="submit" class="inputAnnuaireValider" name="valider" value="Submit" />
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+    <?php
+}
+// This FAB search has to be placed into the definitive page.
 function fab_search()
 {
     echo '<input id="server_url" type="hidden" value="' . get_option('awp_server_url') . '"/>';
@@ -250,30 +294,38 @@ function fab_search()
         $countries_array[$country_code] = $country_name;
     }
     ksort($countries_array);
-	
-	$countrySC=$_POST['paysSC'];
+
+    $countrySC=$_POST['paysSC'];
     $cpSC=$_POST['cpSC'];
-	echo ' <label>' . $countrySC . ' - ' . $cpSC . '</label>'
     ?>
 
     <div class="annuaire-form">
-        <form class="formAnnuaire formBailiff" action="http://eubailiff.eu/eu-directory/" method="post" id="formAnnuaire"
+        <form class="formAnnuaire formBailiff" action="/wordpress/fab2-search" method="post" id="formAnnuaire"
                   name="annuaire">
             <div class="formAnnuaire_chps">
                     <label class="champAnnuaire pays">Country</label>
-                    <select name="country" id="fab-country" class="selectAnnuaire">
-                    <?php
-foreach ($countries_array as $key => $value) {
-        echo '<option value="' . $key . '">' . $value . '</option>';
-    }
+                    <select name="paysSC" id="paysSC" class="selectAnnuaire">
+    <?php
+     foreach ($countries_array as $key => $value) {
+        if (isset($countrySC) && $countrySC === $key) {
+           echo '<option value="' . $key . '" selected="true">' . $value . '</option>';
+		} else {
+           echo '<option value="' . $key . '">' . $value . '</option>';
+		}
+     }
     ?>
                     </select>
             </div>
             <div id="formAllCountriesFields" class="formToggle" style="display:inline;">
                     <div class="formAnnuaire_chps" id="formAnnuaireCp">
                         <label class="champAnnuaire cp">Postcode</label>
-                        <input type="text" class="inputAnnuaire" name="zipcode" id="fab-zipcode"
-						       placeholder="Postcode, for example : 1000">
+						<?php
+						if (isset($cpSC)) {
+							echo '<input type="text" class="inputAnnuaire" name="cpSC" id="cpSC"  placeholder="Postcode, for example : 1000" value="'. $cpSC . '">';
+						} else {
+							echo '<input type="text" class="inputAnnuaire" name="cpSC" id="cpSC"  placeholder="Postcode, for example : 1000" >';
+						}
+						?>
                     </div>
 					</div>
             </div>
@@ -293,13 +345,13 @@ foreach ($countries_array as $key => $value) {
     </div>
 	
     <script>
-    jQuery("#search-button").click(function(event){
-        search(event);
-    });
-	
-	jQuery("#fab-search-form").submit(function(event){
-        search(event);
-    });
+//jQuery("#search-button").click(function(event){
+//        search(event);
+//    });
+
+//jQuery("#fab-search-form").submit(function(event){
+//        search(event);
+//    });
 	
 	function search(event){
 		event.preventDefault();
@@ -401,46 +453,69 @@ foreach ($countries_array as $key => $value) {
     </script>
 
     <?php
+	
+	$countrySC=$_POST['paysSC'];
+    $cpSC=$_POST['cpSC'];
+	echo ' <label>' . $countrySC . ' - ' . $cpSC . '</label>';
+	
+	if (isset($countrySC) && $countrySC != null && isset($cpSC) && $cpSC  != null) {
+        $urlHub = get_option('awp_server_url') . '?country=' . $countrySC . '&postalCode=' . $cpSC;
+
+        $response = wp_remote_get($urlHub);
+        //echo var_dump($response['body']);
+	    if (is_wp_error($response)) {
+		    echo '<h3>Error during server request: server may be offline...</h3>';
+	    } else {
+		   display_bailiffs_response(wp_remote_retrieve_body($response));
+	    }
+	}
+	
 }
 
-function fab_search_frontend()
+function display_bailiffs_response($bailiffsResponse)
 {
-    $countries = explode("\n", get_option('awp_countries'));
-    $countries_array = array();
-    foreach ($countries as $country) {
-        $country_split = explode("-", $country);
-        $country_code = trim($country_split[0]);
-        $country_name = trim($country_split[1]);
-        $countries_array[$country_code] = $country_name;
-    }
-    ksort($countries_array);
-    ?>
+//	echo var_dump($bailiffsResponse);
+	
+	$counter = 0;
+	$data = json_decode( $bailiffsResponse );
+	//echo var_dump($data);
+    foreach ($data as $bailiff) {
+		echo '<div class="entry">
+   <div class="row">
+    <div class="col-sm-8"><i class="fa fa-map-marker" aria-hidden="true"></i><div class="title-container">
+    <p class="title"><strong>' . $bailiff->address2 . '</strong>,'. $bailiff->postalCode .' ' . $bailiff->city .'</p>
+    <p class="sub-title">Name : ' . $bailiff->name . '</p>
+    <p class="spoken-language">Spoken languages : ' . $bailiff->spokenLanguage . '</p>
+    </div></div>
+	
+    <div class="col-sm-4"><a href="#" class="showDetail" rel="' . $counter . '">View details</a></div>
+  </div>
 
-<div id="annuaire">
-<div class="container">
-<?php
-	echo '<form class="formAnnuaireSC formBailiff" action="' . get_option('awp_search_page_url') . '" method="post" id="formAnnuaireSC" name="annuaire">';
-?>
-        <h3>Find a bailiff</h3>
-        <div class="row">
-            <div class="formAnnuaireSC_chps col-sm-12 col-md-4">
-                <select id="paysSC" name="paysSC">
-<?php
-foreach ($countries_array as $key => $value) {
-        echo '<option value="' . $key . '">' . $value . '</option>';
+  <div id="detail-' . $counter . '" style="display:none;" class="details">
+    <div class="row">
+    <div class="col-sm-6 col-xl-6 infos">
+    <i class="fa fa-mobile" aria-hidden="true"></i><p><span>Phone</span>' . $bailiff->phone . '</p></div>
+
+    <div class="col-sm-6 col-xl-6 infos">
+    <i class="fa fa-fax" aria-hidden="true"></i><p><span>Fax</span>' . $bailiff->fax . '</p></div>
+
+    <div class="col-sm-6 col-xl-6 infos">
+    <i class="fa fa-envelope" aria-hidden="true"></i><p><span>E-mail</span></p>
+    <ul><li><a href="mailto:' . $bailiff->email . '" target="_blank">' . $bailiff->email . '</a></li></ul></div>
+
+    <div class="col-sm-6 col-xl-6 infos">
+    <i class="fa fa-globe" aria-hidden="true"></i><p><span>Website</span>
+    <a href="' . $bailiff->webSite . '" target="_blank">' . $bailiff->webSite . '</a></p></div>
+
+    <div class="col-sm-6 col-xl-6"></div>
+    </div>
+
+    <div class="row"></div>
+    <div class="row"><div class="col-sm-12"></div></div>
+  </div>
+</div>';
+		$counter = $counter + 1;
+		// echo var_dump($bailiff);
     }
-?>
-                </select>
-            </div>
-            <div class="formAnnuaireSC_chps col-sm-12 col-md-3">
-                 <input type="text" class="inputAnnuaire" id="cpSC" name="cpSC" value="" placeholder="Postcode or town">
-            </div>
-            <div class="formAnnuaireSC_chps col-sm-12 col-md-2">
-                <input type="submit" class="inputAnnuaireValider" name="valider" value="Submit" />
-            </div>
-        </div>
-    </form>
-</div>
-</div>
-    <?php
 }
+

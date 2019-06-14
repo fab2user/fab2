@@ -14,6 +14,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.util.JAXBSource;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
@@ -171,6 +172,9 @@ public class AsyncPushDataService implements PushDataService {
 			detail.setTel(dto.getTel());
 			detail.setPostalCode(dto.getPostalCode());
 			detail.setMunicipality(dto.getMunicipality());
+			if (dto.getAcceptedLanguages() != null) {
+				detail.getAcceptedLanguages().addAll(dto.getAcceptedLanguages());
+			}
 			detail = this.batchUpdater.updateDetail(cos, detail);
 			details.getDetails().add(detail);
 
@@ -292,7 +296,7 @@ public class AsyncPushDataService implements PushDataService {
 			final JAXBSource source = new JAXBSource(context, data);
 
 			final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			final Schema schema = schemaFactory.newSchema(this.cdbSchema.getFile());
+			final Schema schema = schemaFactory.newSchema(new StreamSource(this.cdbSchema.getInputStream()));
 
 			final Validator validator = schema.newValidator();
 			validator.setErrorHandler(cdbErrorHandler);
