@@ -15,7 +15,8 @@
     'CountryAPIService',
     'country',
     'reference',
-    'competences'
+    'competences',
+    'languages'
   ];
 
   function CountryEditController(
@@ -28,7 +29,8 @@
     CountryAPIService,
     country,
     reference,
-    competences
+    competences,
+    languages
   ) {
     var vm = this;
 
@@ -70,6 +72,7 @@
     vm.searchTypes = reference.searchTypes;
     vm.competences = competences.competences;
     vm.instruments = competences.instruments;
+    vm.languages = languages;
 
     if (!vm.country.id) {
       //Set active to true by default
@@ -80,14 +83,22 @@
       vm.country.frequency = moment()
         .set('hour', 0)
         .set('minute', 0);
-    } else {
-      var hm = vm.country.frequency.split(':');
-      if (hm.length === 2) {
+    } else{
+      if(!vm.country.frequency){
         vm.country.frequency = moment()
-          .set('hour', hm[0])
-          .set('minute', hm[1]);
+        .set('hour', 0)
+        .set('minute', 0);
+      }
+      else {
+        var hm = vm.country.frequency.split(':');
+        if (hm.length === 2) {
+          vm.country.frequency = moment()
+            .set('hour', hm[0])
+            .set('minute', hm[1]);
+        }
       }
     }
+   
 
     vm.save = function(isValid) {
       vm.errorsFromServer = null;
@@ -125,15 +136,28 @@
       }
     };
 
-    vm.addCompetence = function() {
+    vm.addBatchField = function(type){
+      if(type === 'LANG' && batchDataUpdatesLangAlreadyPresent(vm.country.batchDataUpdates)){
+        return;
+      } 
       var batchDataUpdate = {
         id: null,
-        field: 'COMPETENCE',
+        field: type,
         value: '',
         countryOfSyncId: vm.country.id
       };
       vm.country.batchDataUpdates.push(batchDataUpdate);
-    };
+    }
+
+    // vm.addCompetence = function() {
+    //   var batchDataUpdate = {
+    //     id: null,
+    //     field: 'COMPETENCE',
+    //     value: '',
+    //     countryOfSyncId: vm.country.id
+    //   };
+    //   vm.country.batchDataUpdates.push(batchDataUpdate);
+    // };
 
     vm.removeBatchUpdate = function(index) {
       vm.country.batchDataUpdates.splice(index, 1);
@@ -155,6 +179,13 @@
         }
         return bdu;
       });
+    }
+
+    function batchDataUpdatesLangAlreadyPresent(batchDataUpdates){
+      var langs = lodash.filter(batchDataUpdates, function(bdu){
+        return bdu.field === 'LANG'
+      });
+      return langs.length > 0 ;
     }
   }
 })();

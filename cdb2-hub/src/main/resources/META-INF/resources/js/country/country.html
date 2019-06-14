@@ -64,6 +64,8 @@
                   </span>
                 </td>
                 <td data-title="'global.label.action'|translate" class="light-pull-right">
+                    <a href="" ng-if="(country.lastSynchronization) && (country.lastSynchronization.status === 'IN_PROGRESS' || !country.lastSynchronization.endDate)" class="glyphicon glyphicon-wrench text-danger light-pull-right" 
+                    uib-tooltip="{{'status.label.fix'|translate}}" ng-click="countryCtrl.fixStatus(country.lastSynchronization.id)"></a>
                   <a href="" class="glyphicon glyphicon-cloud-download text-success" ng-click="countryCtrl.sync(country)" uib-tooltip="{{'global.button.sync'|translate}}"
                     ng-hide="country.lastSynchronization.startDate && !country.lastSynchronization.endDate"></a>
                   <a href="" class="glyphicon glyphicon-trash text-danger" ng-click="countryCtrl.delete(country)" confirm="{{'global.confirm.delete'|translate}}"

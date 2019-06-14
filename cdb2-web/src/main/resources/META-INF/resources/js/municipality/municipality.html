@@ -1,97 +1,80 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <span translate="municipality.list.title">
-        </h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <fieldset>
-                  <legend translate="global.label.filters">Filters</legend>
-
-                  <div class="row">
-                    <div class="col-md-2">
-                      <label for="filter.id" translate="municipality.list.id">id</label>
-                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['id']" class="form-control" name="filter.id" autofocus="autofocus"
-                      />
-                    </div>
-                    <div class="col-md-5">
-                      <label for="filter.city" translate="municipality.list.municipality">city</label>
-                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['name']" class="form-control" name="filter.city" />
-                    </div>
-                    <div class="col-md-5">
-                      <label for="filter.zip" translate="municipality.list.postalcode">zip</label>
-                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['postalCode']" class="form-control" name="filter.zip"
-                      />
-                    </div>
-                  </div>
-                  <div class="row top-1">
-                    <div class="col-md-4">
-                      <label for="filter.area1" translate="municipality.list.area1">city</label>
-                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['adminAreaSubdivisionMajor']" class="form-control" name="filter.area1"
-                      />
-                    </div>
-                    <div class="col-md-4">
-                      <label for="filter.area2" translate="municipality.list.area2">city</label>
-                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['adminAreaSubdivisionMiddle']" class="form-control" name="filter.area2"
-                      />
-                    </div>
-                    <div class="col-md-4">
-                      <label for="filter.area3" translate="municipality.list.area3">city</label>
-                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['adminAreaSubdivisionMinor']" class="form-control" name="filter.area3"
-                      />
-                    </div>
-                  </div>
-                  <div class="row top-1">
-                    <div class="col-md-12 light-pull-right">
-                      <button class="btn btn-primary" ng-click="municipalityCtrl.resetSearch()">
-                        <span class="glyphicon glyphicon-refresh"></span>
-                        <span>{{ 'global.button.reset'|translate }}</span>
-                      </button>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <table ng-table="municipalityCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="false">
-              <tr ng-repeat="city in $data track by city.id">
-                <td data-title="'municipality.list.id'|translate" sortable="'id'" class="fit-id">
-                  {{city.id}}</td>
-                <td data-title="'municipality.list.municipality'|translate" sortable="'name'">
-                  {{city.name}}</td>
-                <td data-title="'municipality.list.postalcode'|translate" sortable="'postalCode'">
-                  {{city.postalCode}}</td>
-                <td data-title="'municipality.list.area1'|translate" sortable="'adminAreaSubdivisionMajor'">
-                  {{city.adminAreaSubdivisionMajor}}</td>
-                <td data-title="'municipality.list.area2'|translate" sortable="'adminAreaSubdivisionMiddle'">
-                  {{city.adminAreaSubdivisionMiddle}}</td>
-                <td data-title="'municipality.list.area3'|translate" sortable="'adminAreaSubdivisionMinor'">
-                  {{city.adminAreaSubdivisionMinor}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            {{ municipalityCtrl.tableParams.total() }} {{ 'global.label.filtered'|translate }} / {{ municipalityCtrl.total }} {{ 'global.label.total'|translate}}
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-4">
-            <zip-update/>
-          </div>
-        </div>
-      </div>
+<section id="search">
+    <div class="head">
+        <h2 translate="global.label.filters">_Filters_</h2>
     </div>
-  </div>
-</div>
+
+    <div class="body">
+        <form>
+            <div class="row">
+                <div class="field fixed">
+                      <label for="filter.id" translate="municipality.list.id">id</label>
+                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['id']" class="form-control" name="filter.id" autofocus="autofocus"/>
+                </div>
+
+                <div class="field fixed">
+                    <label for="filter.city" translate="municipality.list.municipality">city</label>
+                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['name']" class="form-control" name="filter.city" />
+                </div>
+
+                <div class="field">
+                      <label for="filter.zip" translate="municipality.list.postalcode">zip</label>
+                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['postalCode']" class="form-control" name="filter.zip"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field fixed">
+                      <label for="filter.area1" translate="municipality.list.area1">city</label>
+                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['adminAreaSubdivisionMajor']" class="form-control" name="filter.area1"/>
+                </div>
+
+                <div class="field fixed">
+                      <label for="filter.area2" translate="municipality.list.area2">city</label>
+                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['adminAreaSubdivisionMiddle']" class="form-control" name="filter.area2"/>
+                </div>
+
+                <div class="field">
+                      <label for="filter.area3" translate="municipality.list.area3">city</label>
+                      <input type="text" ng-model="municipalityCtrl.tableParams.filter()['adminAreaSubdivisionMinor']" class="form-control" name="filter.area3"/>
+                </div>
+
+                <input type="submit" value="{{ 'global.button.reset'|translate }}" class="button" ng-click="municipalityCtrl.resetSearch()">
+            </div>
+        </form>
+    </div>
+</section>
+
+<section id="table">
+    <div class="head">
+        <div class="button">
+            <!--  TODO  -->
+            <zip-update/>
+        </div>
+    </div>
+
+    <div class="body">
+        <table class="table" ng-table="municipalityCtrl.tableParams" template-pagination="js/table/pagination.html" show-filter="false">
+            <colgroup>
+                <!-- <col class="select"> -->
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+
+            <tbody>
+                <tr ng-repeat="city in $data track by city.id">
+                   <!--  <td><input type="checkbox" name=""></td>  -->
+                    <td data-title="'municipality.list.id'|translate" sortable="'id'">{{city.id}}</td>
+                    <td data-title="'municipality.list.municipality'|translate" sortable="'name'">{{city.name}}</td>
+                    <td data-title="'municipality.list.postalcode'|translate" sortable="'postalCode'">{{city.postalCode}}</td>
+                    <td data-title="'municipality.list.area1'|translate" sortable="'adminAreaSubdivisionMajor'">{{city.adminAreaSubdivisionMajor}}</td>
+                    <td data-title="'municipality.list.area2'|translate" sortable="'adminAreaSubdivisionMiddle'">{{city.adminAreaSubdivisionMiddle}}</td>
+                    <td data-title="'municipality.list.area3'|translate" sortable="'adminAreaSubdivisionMinor'">{{city.adminAreaSubdivisionMinor}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

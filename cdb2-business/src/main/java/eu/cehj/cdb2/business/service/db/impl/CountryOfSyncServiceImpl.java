@@ -45,6 +45,8 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         }
         entity.setFrequency(dto.getFrequency());
         entity.setSearchType(dto.getSearchType());
+        entity.setCdbUser(dto.getCdbUser());
+        entity.setCdbPassword(dto.getCdbPassword());
         return entity;
     }
 
@@ -68,6 +70,8 @@ public class CountryOfSyncServiceImpl extends BaseServiceImpl<CountryOfSync, Cou
         dto.setFrequency(entity.getFrequency());
         dto.setSearchType(entity.getSearchType());
         dto.setBatchDataUpdates(this.batchDataUpdateService.getDTOsByCountry(entity.getId()));
+        dto.setCdbUser(entity.getCdbUser());
+        dto.setCdbPassword(entity.getCdbPassword());
         return dto;
     }
 

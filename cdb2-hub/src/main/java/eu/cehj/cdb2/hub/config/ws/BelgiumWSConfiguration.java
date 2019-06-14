@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import eu.cehj.cdb2.hub.service.search.BelgiumSearchService;
+import eu.cehj.cdb2.hub.service.search.BelgiumQueryService;
 
 @Configuration
 public class BelgiumWSConfiguration {
@@ -21,8 +21,8 @@ public class BelgiumWSConfiguration {
     }
 
     @Bean
-    public BelgiumSearchService belgiumSearchService() {
-        final BelgiumSearchService service = new BelgiumSearchService();
+    public BelgiumQueryService belgiumQueryService() {
+        final BelgiumQueryService service = new BelgiumQueryService();
         // FIXME: Put into properties
         service.setDefaultUri("https://www.nkcn-cia.be/LnxNKCNGDWHDJConsult/GDWHDJConsult.svc");
         service.setMarshaller(this.marshaller());

@@ -10,18 +10,25 @@ import eu.cehj.cdb2.entity.CountryOfSync.SearchType;
 @Component
 public class PushDataServiceFactory {
 
-    @Autowired
-    @Qualifier("asyncPushDataService")
-    private PushDataService asyncPushDataService;
+	@Autowired
+	@Qualifier("asyncPushDataService")
+	private PushDataService asyncPushDataService;
 
-    @Autowired
-    @Qualifier("asyncPushSOAPDataService")
-    private PushDataService asyncPushSOAPDataService;
+	@Autowired
+	@Qualifier("asyncPushSOAPDataService")
+	private PushDataService asyncPushSOAPDataService;
 
-    public PushDataService getPushDataService(final CountryOfSync cos) {
-        if(SearchType.LOCAL_WS.equals(cos.getSearchType())) {
-            return this.asyncPushSOAPDataService;
-        }
-        return this.asyncPushDataService;
-    }
+	@Autowired
+	@Qualifier("asyncPushCdbLikeDataService")
+	private PushDataService asyncPushhCdbLikeDataService;
+
+	public PushDataService getPushDataService(final CountryOfSync cos) {
+		if(SearchType.LOCAL_WS.equals(cos.getSearchType())) {
+			return this.asyncPushSOAPDataService;
+		}
+		if(SearchType.CDB_LIKE.equals(cos.getSearchType())) {
+			return this.asyncPushhCdbLikeDataService;
+		}
+		return this.asyncPushDataService;
+	}
 }

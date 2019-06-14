@@ -72,6 +72,20 @@
                 <input type="text" name="password" class="form-control" id="password" ng-model="countryEditCtrl.country.password" autofocus="autofocus">
               </div>
             </div>
+
+            <div class="form-group">
+              <label for="cdbUser" translate="country.field.cdbuser" class="col-md-3">CDB user</label>
+              <div class="col-md-9">
+                <input type="text" name="cdbUser" class="form-control" id="cdbUser" ng-model="countryEditCtrl.country.cdbUser" autofocus="autofocus">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cdbpassword" translate="country.field.cdbpassword" class="col-md-3">CDB password</label>
+              <div class="col-md-9">
+                <input type="text" name="cdbpassword" class="form-control" id="cdbpassword" ng-model="countryEditCtrl.country.cdbPassword" autofocus="autofocus">
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -85,7 +99,7 @@
                 </select>
               </div>
             </div>
-
+            <div ng-if="countryEditCtrl.country.searchType!=='CDB' && countryEditCtrl.country.active === true">
             <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
               <label for="active" translate="country.field.schedule" class="col-md-3">active</label>
               <div class="col-md-6">
@@ -98,18 +112,19 @@
                 <div uib-timepicker ng-model="countryEditCtrl.country.frequency" hour-step="1" minute-step="30" show-meridian="false" ng-disabled="!countryEditCtrl.country.active"></div>
               </div>
             </div>
-            <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
-              <label for="active" translate="global.label.active" class="col-md-3">active</label>
-              <div class="col-md-9">
-                <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">
-              </div>
+          </div>
+          <div class="form-group" ng-hide="countryEditCtrl.country.searchType==='CDB'">
+            <label for="active" translate="global.label.active" class="col-md-3">active</label>
+            <div class="col-md-9">
+              <input type="checkbox" name="active" id="active" ng-model="countryEditCtrl.country.active" autofocus="autofocus">
             </div>
+          </div>
 
             <div class="form-group" ng-repeat="bdu in countryEditCtrl.country.batchDataUpdates track by $index">
               <label for="bdu[$index]" class="col-md-3">{{bdu.field|translate}}</label>
-              <div class="col-md-8" ng-if="bdu.field !== 'COMPETENCE'">
-                <input type="text" name="bdu[$index]" class="form-control" id="bdu[$index]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].value"
-                  autofocus="autofocus">
+              <div class="col-md-8" ng-if="bdu.field === 'LANG'">
+                <select name="bdu[$index]" class="form-control" id="bdu[$index]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].value"
+                 ng-options="lang for lang in countryEditCtrl.languages" autofocus="autofocus"></select>
               </div>
               <div class="col-md-4" ng-if="bdu.field === 'COMPETENCE'">
                 <select name="bdu[bdu.id]" class="form-control" id="bdu[bdu.id]" ng-model="countryEditCtrl.country.batchDataUpdates[$index].competence"
@@ -153,11 +168,16 @@
             <span class="glyphicon glyphicon-floppy-disk"></span>
             <span translate="global.button.save"></span>
           </button>
-
-          <button type="button" class="btn btn-success pull-right" ng-click="countryEditCtrl.addCompetence()">
-            <span class="glyphicon glyphicon-plus-sign"></span>
-            <span translate="country.button.add.competence"></span>
-          </button>
+          <div class="dropup pull-right">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Generic field
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li class="pointable"><a ng-click="countryEditCtrl.addBatchField('COMPETENCE')">Add competence</a></li>
+              <li class="pointable"><a ng-click="countryEditCtrl.addBatchField('LANG')">Add language</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

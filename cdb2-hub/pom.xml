@@ -3,7 +3,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.9</version>
     </parent>
 
     <properties>
@@ -18,17 +18,17 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <version>1.0.5</version>
+            <version>1.0.9</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.5</version>
+            <version>1.0.9</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-business</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.5</version>
+            <version>1.0.9</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-common</artifactId>
         </dependency>
@@ -260,10 +260,10 @@
                             <sourceRoot>${project.build.directory}/generated-sources/src/main/java</sourceRoot>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${project.basedir}/src/main/resources/wsdl/france/france.wsdl</wsdl>
+                                    <wsdl>${project.basedir}/src/main/resources/wsdl/france/annuaire-2.asmx.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://euro.huissier-justice.fr=eu.cehj.cdb2.hub.service.soap.france</extraarg>
+                                        <extraarg>http://ws.huissier-justice.fr/=eu.cehj.cdb2.hub.service.soap.france</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>

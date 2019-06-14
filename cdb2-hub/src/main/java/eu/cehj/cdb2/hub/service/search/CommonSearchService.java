@@ -19,41 +19,42 @@ import eu.cehj.cdb2.entity.CountryOfSync.SearchType;
 @Service
 public class CommonSearchService implements SearchService, BeanFactoryAware {
 
-    private BeanFactory beanFactory;
-    @Autowired
-    private CountryOfSyncService cosService;
+	private BeanFactory beanFactory;
+	@Autowired
+	private CountryOfSyncService cosService;
 
-    @Override
-    public void setBeanFactory(final BeanFactory beanFactory) {
-        this.beanFactory = beanFactory;
-    }
+	@Override
+	public void setBeanFactory(final BeanFactory beanFactory) {
+		this.beanFactory = beanFactory;
+	}
 
-    @Override
-    public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) {
-        final SearchService searchService = (SearchService)this.beanFactory.getBean(this.identifySearch(countryCode));
-        return searchService.sendQuery(countryCode, params);
-    }
+	@Override
+	public List<BailiffDTO> sendQuery(final String countryCode, final MultiValueMap<String, String> params) {
+		final SearchService searchService = (SearchService)this.beanFactory.getBean(this.identifySearch(countryCode));
+		return searchService.sendQuery(countryCode, params);
+	}
 
-    private String identifySearch(final String countryCode) {
+	private String identifySearch(final String countryCode) {
 
-        final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
-        if(cos == null) {
-            throw new CDBException(String.format("Unknown country code \"%s\".",countryCode ));
-        }
+		final CountryOfSync cos = this.cosService.getByCountryCode(countryCode);
+		if(cos == null) {
+			throw new CDBException(String.format("Unknown country code \"%s\".",countryCode ));
+		}
 
-        if(cos.getSearchType() == SearchType.CDB) {
-            return "cdbSearchService";
-        }else {
-            switch (countryCode) {
-                case "FR":
-                    return "franceSearchService";
-                case "BE":
-                    return "belgiumSearchService";
-
-                default:
-                    return "defaultManagedSearchService";
-            }
-        }
-    }
+		if(cos.getSearchType() == SearchType.CDB) {
+			return "cdbSearchService";
+		}else {
+			switch (countryCode) {
+			case "FR":
+				return "franceQueryService";
+			case "BE":
+				return "belgiumQueryService";
+			case "IT":
+				return "cdbSearchService";  // they have used the same interface as the Italian
+			default:
+				return "defaultManagedSearchService";
+			}
+		}
+	}
 
 }

@@ -80,13 +80,15 @@
                 <tr ng-repeat="row in $data track by row.id">
                   <td data-title="'global.label.id'|translate" class="col-md-3" sortable="'id'">{{row.id}}</td>
                   <td data-title="'global.label.country'|translate" class="col-md-2" sortable="'country'">{{row.countryName}}</td>
-                  <!-- <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|date:'yyyy-MM-dd HH:mm:ss'}}</td> -->
-                  <td data-title="'global.label.date'|translate" class="col-md-2" sortable="'date'">{{row.endDate|amUtc|amLocal|amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
-                  <td data-title="'status.label.status'|translate" class="col-md-2" sortable="'status'">{{row.status}}</td>
-                  <td class="icon-in-col">
+                  <td data-title="'global.label.date'|translate" class="col-md-3" sortable="'date'">{{row.endDate|amUtc|amLocal|amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
+                  <td data-title="'status.label.status'|translate" class="col-md-3" sortable="'status'">{{row.status}}</td>
+                  <td class="col-md-1" style="text-align: right; padding-right: 30px;">
+                      <a href="" ng-if="row.status === 'IN_PROGRESS' || !row.endDate" class="glyphicon glyphicon-wrench text-danger light-pull-right" 
+                        uib-tooltip="{{'status.label.fix'|translate}}" ng-click="statusCtrl.fixStatus(row.id)"></a>
                     <a href="" class="glyphicon glyphicon-eye-open text-primary light-pull-right" uib-popover-template="statusCtrl.statusDetails.templateUrl"
                       popover-title="{{statusCtrl.statusDetails.title}}" popover-trigger="'mouseenter'" popover-placement="left"
                       popover-animation="true" popover-class="details-popover"></a>
+       
                   </td>
                 </tr>
               </table>

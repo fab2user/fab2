@@ -19,135 +19,158 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Where(clause="deleted=0 or deleted is null")
 public class CountryOfSync extends BaseAuditedEntity<String> {
 
-    private static final long serialVersionUID = 929915752303090598L;
+	private static final long serialVersionUID = 929915752303090598L;
 
-    public enum SearchType{
-        MANAGED,LOCAL_WS,CDB
-    }
+	public enum SearchType{
+		MANAGED,LOCAL_WS,CDB, CDB_LIKE
+	}
 
-    @Column(name = "name", nullable=false)
-    private String name;
+	@Column(name = "name", nullable=false)
+	private String name;
 
-    /**
-     * URL used for search requests
-     */
-    @Column(name = "url")
-    private String url;
+	/**
+	 * URL used for search requests
+	 */
+	@Column(name = "url")
+	private String url;
 
-    /**
-     * URLL used to fetch all bailiffs from web service. If null, url property is used.
-     */
-    @Column(name = "fetch_url")
-    private String fetchUrl;
+	/**
+	 * URL used to fetch all bailiffs from web service. If null, url property is used.
+	 */
+	@Column(name = "fetch_url")
+	private String fetchUrl;
 
-    @Column(name = "active")
-    private boolean active = true;
+	@Column(name = "active")
+	private boolean active = true;
 
-    @OneToMany(mappedBy="country")
-    @JsonBackReference
-    private final List<Synchronization> synchronizations = new ArrayList<>();
+	@OneToMany(mappedBy="country")
+	@JsonBackReference
+	private final List<Synchronization> synchronizations = new ArrayList<>();
 
-    @Column(name = "user")
-    private String user;
+	@Column(name = "user")
+	private String user;
 
-    @Column(name = "password")
-    private String password;
+	@Column(name = "password")
+	private String password;
 
-    @Column(name = "country_code", nullable = false)
-    private String countryCode;
+	@Column(name = "country_code", nullable = false)
+	private String countryCode;
 
-    @Column(name = "frequency", nullable = false, length = 5)
-    private String frequency;
+	@Column(name = "frequency", nullable = false, length = 5)
+	private String frequency;
 
-    @Column(name="days_of_week")
-    private String daysOfWeek;
+	@Column(name="days_of_week")
+	private String daysOfWeek;
 
-    @Column(name="search_type")
-    @Enumerated(EnumType.STRING)
-    private SearchType searchType;
+	@Column(name="search_type")
+	@Enumerated(EnumType.STRING)
+	private SearchType searchType;
 
-    public String getName() {
-        return this.name;
-    }
+	@Column(name="cdb2_user")
+	private String cdbUser;
 
-    public void setName(final String name) {
-        this.name = name;
-    }
+	@Column(name="cdb2_password")
+	private String cdbPassword;
 
-    public String getUrl() {
-        return this.url;
-    }
 
-    public void setUrl(final String url) {
-        this.url = url;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public boolean isActive() {
-        return this.active;
-    }
+	public void setName(final String name) {
+		this.name = name;
+	}
 
-    public void setActive(final boolean active) {
-        this.active = active;
-    }
+	public String getUrl() {
+		return this.url;
+	}
 
-    public List<Synchronization> getSynchronizations() {
-        return this.synchronizations;
-    }
+	public void setUrl(final String url) {
+		this.url = url;
+	}
 
-    public String getUser() {
-        return this.user;
-    }
+	public boolean isActive() {
+		return this.active;
+	}
 
-    public void setUser(final String user) {
-        this.user = user;
-    }
+	public void setActive(final boolean active) {
+		this.active = active;
+	}
 
-    public String getPassword() {
-        return this.password;
-    }
+	public List<Synchronization> getSynchronizations() {
+		return this.synchronizations;
+	}
 
-    public void setPassword(final String password) {
-        this.password = password;
-    }
+	public String getUser() {
+		return this.user;
+	}
 
-    public String getCountryCode() {
-        return this.countryCode;
-    }
+	public void setUser(final String user) {
+		this.user = user;
+	}
 
-    public void setCountryCode(final String countryCode) {
-        this.countryCode = countryCode;
-    }
+	public String getPassword() {
+		return this.password;
+	}
 
-    public String getFrequency() {
-        return this.frequency;
-    }
+	public void setPassword(final String password) {
+		this.password = password;
+	}
 
-    public void setFrequency(final String frequency) {
-        this.frequency = frequency;
-    }
+	public String getCountryCode() {
+		return this.countryCode;
+	}
 
-    public String getDaysOfWeek() {
-        return this.daysOfWeek;
-    }
+	public void setCountryCode(final String countryCode) {
+		this.countryCode = countryCode;
+	}
 
-    public void setDaysOfWeek(final String daysOfWeek) {
-        this.daysOfWeek = daysOfWeek;
-    }
+	public String getFrequency() {
+		return this.frequency;
+	}
 
-    public SearchType getSearchType() {
-        return this.searchType;
-    }
+	public void setFrequency(final String frequency) {
+		this.frequency = frequency;
+	}
 
-    public void setSearchType(final SearchType searchType) {
-        this.searchType = searchType;
-    }
+	public String getDaysOfWeek() {
+		return this.daysOfWeek;
+	}
 
-    public String getFetchUrl() {
-        return this.fetchUrl;
-    }
+	public void setDaysOfWeek(final String daysOfWeek) {
+		this.daysOfWeek = daysOfWeek;
+	}
 
-    public void setFetchUrl(final String fetchUrl) {
-        this.fetchUrl = fetchUrl;
-    }
+	public SearchType getSearchType() {
+		return this.searchType;
+	}
+
+	public void setSearchType(final SearchType searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getFetchUrl() {
+		return this.fetchUrl;
+	}
+
+	public void setFetchUrl(final String fetchUrl) {
+		this.fetchUrl = fetchUrl;
+	}
+
+	public String getCdbUser() {
+		return this.cdbUser;
+	}
+
+	public void setCdbUser(final String cdbUser) {
+		this.cdbUser = cdbUser;
+	}
+
+	public String getCdbPassword() {
+		return this.cdbPassword;
+	}
+
+	public void setCdbPassword(final String cdbPassword) {
+		this.cdbPassword = cdbPassword;
+	}
 
 }

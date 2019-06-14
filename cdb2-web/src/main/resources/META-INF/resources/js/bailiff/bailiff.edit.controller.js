@@ -50,7 +50,7 @@
     vm.nationalIdPrefix = nationalIdPrefix;
 
     var snapshotCompare = bailiff.id ? {
-      competences: bailiff.competences.slice(0),
+        instrumentIds: bailiff.instrumentIds.slice(0),
       geo: Object.assign({}, bailiff.geo)
     } : {
       competences: {},
@@ -129,7 +129,7 @@
       }
       bailiff.municipality = vm.bailiff.municipality.originalObject.name;
       if (
-        lodash.isEqual(snapshotCompare.competences, bailiff.competences) &&
+        lodash.isEqual(snapshotCompare.instrumentIds, bailiff.instrumentIds) &&
         lodash.isEqual(snapshotCompare.geo, bailiff.geo)
       ) {
         bailiff.toBeUpdated = false;
@@ -138,9 +138,10 @@
       }
       $log.info(
         'comp eq: ',
-        lodash.isEqual(snapshotCompare.competences, bailiff.competences)
+        lodash.isEqual(snapshotCompare.instrumentIds, bailiff.instrumentIds)
       );
       $log.info('geo eq: ', lodash.isEqual(snapshotCompare.geo, bailiff.geo));
+      
       return bailiff;
     }
 

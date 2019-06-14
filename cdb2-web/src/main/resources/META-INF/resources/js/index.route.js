@@ -14,19 +14,29 @@
             templateUrl: '/js/root/head.html',
             controller: 'HeadController as headCtrl'
           },
-          'navbar@': {
+          navbar: {
             templateUrl: '/js/root/navbar.html',
             controller: 'NavBarController as navCtrl'
           },
           footer: {
             templateUrl: '/js/root/footer.html',
             controller: 'FooterController as footerCtrl'
+          },
+          login: {
+              templateUrl: '/js/root/empty.html'
+          },
+          content: {
+              templateUrl: '/js/root/empty.html'
           }
         }
       })
       .state('root.home', {
         url: '/',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/home/home.html',
             controller: 'HomeController',
@@ -37,6 +47,10 @@
       .state('root.area', {
         url: '/area',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/geo-area/area.html',
             controller: 'GeoAreaController',
@@ -47,6 +61,10 @@
       .state('root.municipality', {
         url: '/municipality',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/municipality/municipality.html',
             controller: 'MunicipalityController',
@@ -57,6 +75,10 @@
       .state('root.bailiff', {
         url: '/bailiff',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/bailiff/bailiff.html',
             controller: 'BailiffController',
@@ -67,6 +89,10 @@
       .state('root.reference', {
         url: '/reference',
         views: {
+            'head@': {
+                templateUrl: '/js/root/head.html',
+                controller: 'HeadController as headCtrl'
+              },
           'content@': {
             templateUrl: '/js/reference/reference.html',
             controller: 'ReferenceController',
@@ -77,10 +103,19 @@
       .state('root.login', {
         url: '/login',
         views: {
+          'head@': {
+                templateUrl: '/js/root/empty.html'
+              },
+          'navbar@': {
+              templateUrl: '/js/root/empty.html'
+          },   
           'content@': {
-            templateUrl: '/js/common/login.html',
-            controller: 'LoginController',
-            controllerAs: 'loginCtrl'
+              templateUrl: '/js/root/empty.html'
+          },
+          'login@' : {
+              templateUrl: '/js/common/login.html',
+              controller: 'LoginController',
+              controllerAs: 'loginCtrl'
           }
         },
         resolve: {
@@ -98,6 +133,6 @@
         }
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
   }
 })();

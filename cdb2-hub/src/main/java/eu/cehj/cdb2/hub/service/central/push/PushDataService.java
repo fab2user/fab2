@@ -14,4 +14,6 @@ public interface PushDataService {
 
     public void process(CountryOfSync cos, Synchronization sync);
 
+    public void validateXMLProduced(Data data);
+
 }

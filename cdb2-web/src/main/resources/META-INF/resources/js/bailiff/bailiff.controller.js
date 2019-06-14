@@ -53,10 +53,14 @@
     STATUS
   ) {
     var vm = this;
+
     vm.deleted = false; //Flag to indicate if we want to display also soft deleted records. Default is false.
     vm.selectedBailiff = {};
 
-    vm.fetchBailiffs = function () {
+    $rootScope.fabStatus['currentMenu'] = $translate.instant('bailiff.list.title');
+    $rootScope.helpPage['currentPage'] = 'helpBailiff.html';
+
+    vm.fetchBailiffs = function (pagesize, selectedpage) {
       BailiffAPIService.getAll({
         deleted: vm.deleted
       }).$promise.then(function (
@@ -66,6 +70,16 @@
         vm.tableParams = new NgTableParams({}, {
           dataset: data
         });
+        vm.tableParams.totalDataSet = data.length;   // Add the total resultset size to the table params.
+        vm.tableParams.tableTitle = 'List of competent Bailiffs / Enforcement authorities';
+        $log.info('pagesize for the table to fetch data', pagesize);
+        if (pagesize != null ) {
+            vm.tableParams.count(pagesize);    
+        }
+        $log.info('selectedpage for the table to fetch data', selectedpage);
+        if (selectedpage != null) {
+            vm.tableParams.page(selectedpage);    
+        }
       });
     };
 
@@ -78,7 +92,7 @@
 
     vm.edit = function (bailiff) {
       vm.selectedBailiff = bailiff;
-      loadModal(vm.selectedBailiff);
+      loadModal(vm.selectedBailiff, vm.tableParams.count(), vm.tableParams.page());
     };
 
     vm.delete = function (bailiff) {
@@ -92,7 +106,7 @@
       }).$promise.then(
         function () {
           toastr.success($translate.instant('global.toastr.delete.success'));
-          vm.fetchBailiffs();
+          vm.fetchBailiffs(vm.tableParams.count(), vm.tableParams.page());
         }
       );
     };
@@ -184,7 +198,7 @@
       vm.tableParams.filter({});
     };
 
-    function loadModal(bailiff) {
+    function loadModal(bailiff , pagesize, selectedpage) {
       var modalInstance = $uibModal.open({
         templateUrl: '/js/bailiff/bailiff.edit.html',
         controller: 'BailiffEditController as bailiffEditCtrl',
@@ -214,9 +228,10 @@
           }
         }
       });
-
+      modalInstance.pagesize = pagesize;
+      modalInstance.selectedpage = selectedpage;
       modalInstance.result.then(function () {
-        vm.fetchBailiffs();
+        vm.fetchBailiffs( modalInstance.pagesize, modalInstance.selectedpage);
       });
     }
   }

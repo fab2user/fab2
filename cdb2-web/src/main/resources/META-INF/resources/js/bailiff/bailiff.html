@@ -1,130 +1,123 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <span translate="bailiff.list.title">
-        </h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <fieldset>
-                  <legend translate="global.label.filters">Filters</legend>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label for="filter.id" translate="bailiff.list.id">id</label>
-                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['id']" class="form-control" name="filter.id" autofocus="autofocus"
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="filter.name" translate="bailiff.list.name">name</label>
-                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['name']" class="form-control" name="filter.name" />
-                    </div>
-                  </div>
-                  <div class="row top-1">
-                    <div class="col-md-5">
-                      <label for="filter.address" translate="bailiff.list.address">address</label>
-                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['address1']" class="form-control" name="filter.address" />
-                    </div>
-                    <div class="col-md-2">
-                      <label for="filter.zipcode" translate="bailiff.list.zipcode">zip</label>
-                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['postalCode']" class="form-control" name="filter.zipcode" />
-                    </div>
-                    <div class="col-md-5">
-                      <label for="filter.municipality" translate="bailiff.list.municipality">municipality</label>
-                      <input type="text" ng-model="bailiffCtrl.tableParams.filter()['city']" class="form-control" name="filter.municipality" />
-                    </div>
-                  </div>
-                  <div class="row top-1">
-                    <div class="col-md-2">
-                      <div>
-                        <label class="checkbox-inline">
-                          <input type="checkbox" name="deleted" ng-model="bailiffCtrl.deleted" ng-click="bailiffCtrl.fetchBailiffs()"> {{ 'global.label.show.deleted'|translate }}
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-md-10 light-pull-right">
-                      <button class="btn btn-primary" ng-click="bailiffCtrl.resetSearch()">
-                        <span class="glyphicon glyphicon-refresh"></span>
-                        <span>{{ 'global.button.reset'|translate }}</span>
-                      </button>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <table ng-table="bailiffCtrl.tableParams" class="table table-bordered table-striped table-condensed data-grid" show-filter="false">
-              <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff" ng-class="{'selected-info': bailiff.id === bailiffCtrl.selectedBailiff.id}"
-                class="pointable">
-                <td data-title="'bailiff.list.id'|translate" sortable="'id'" class="fit-id">
-                  {{bailiff.id}}</td>
-                <td data-title="'bailiff.list.name'|translate" sortable="'name'">
-                  {{bailiff.name}}</td>
-                <td data-title="'bailiff.list.address'|translate" sortable="'address'">
-                  {{bailiff.address1}}</td>
-                <td data-title="'bailiff.list.zipcode'|translate" sortable="'postalCode'">
-                  {{bailiff.postalCode}}</td>
-                <td data-title="'bailiff.list.municipality'|translate" sortable="'city'">
-                  {{bailiff.city}}</td>
-                <td data-title="'global.label.action'|translate">
-                  <a href="" class="glyphicon glyphicon-trash text-danger" ng-click="bailiffCtrl.delete(bailiff)" confirm="{{'global.confirm.delete'|translate}}"
-                    uib-tooltip="{{'global.button.delete'|translate}}"></a>
-                  <a href="" class="glyphicon glyphicon-pencil" ng-click="bailiffCtrl.edit(bailiff)" uib-tooltip="{{'global.button.edit'|translate}}"></a>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            {{ bailiffCtrl.tableParams.total() }} {{ 'global.label.filtered'|translate }} / {{ bailiffCtrl.total }} {{ 'global.label.total'|translate}}
-          </div>
-          <div class="col-md-6 light-pull-right">
-            <button type="button" class="btn btn-success" ng-click="bailiffCtrl.importTemplate()">
-              <span class=" glyphicon glyphicon-save-file "></span>
-              <span translate="bailiff.button.template ">template</span>
-            </button>
-            <button type="button " class="btn btn-primary " ngf-select ng-model="bailiffCtrl.importFile " name="importFile
-              " ngf-pattern=" '.xl*' " ngf-accept=" 'application/vnd.ms-excel' " ngf-min-size="100 ">
-              <span class="glyphicon glyphicon-arrow-down "></span>
-              <span translate="bailiff.button.import ">import</span>
-            </button>
-            <button type="button " class="btn btn-primary " ng-click="bailiffCtrl.export() ">
-              <span class="glyphicon glyphicon-arrow-up "></span>
-              <span translate="bailiff.button.export ">export</span>
-            </button>
-            <button class="btn btn-primary " ng-click="bailiffCtrl.new() ">
-              <span class="glyphicon glyphicon-plus-sign "></span>
-              <span translate="global.button.add ">Add</span>
-            </button>
-          </div>
-        </div>
-        <div class="row ">
-          <div class="col-md-6 col-md-offset-5 top-1 " ng-if="bailiffCtrl.importFile ">
-            <div class="row ">
-              <div class="col-md-8 ">
-                <strong translate="global.text.upload.file.selected "></strong>: {{ bailiffCtrl.importFile.name }}</div>
-              <div class="col-md-2 ">
-                <button class="btn btn-primary " ng-click="bailiffCtrl.sendImportFile() ">
-                  <span class="glyphicon glyphicon-send "></span> {{ 'global.button.send'|translate }}</button>
-              </div>
-              <div class="col-md-2 ">
-                <button class="btn btn-danger " ng-click="bailiffCtrl.cancelUpload() ">
-                  <span class="glyphicon glyphicon-remove-circle "></span>
-                  <span translate="global.button.cancel "></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<section id="search">
+
+
+    <div class="head">
+        <h2 translate="global.label.filters">_Search_</h2>
+
+        <span translate="bailiff.list.filter.help">_Please fill ..._</span>
     </div>
-  </div>
+
+    <div class="body">
+        <form>
+            <div class="row">
+                <div class="field">
+                    <label for="filter.name" translate="bailiff.list.name">name</label> <input type="text" ng-model="bailiffCtrl.tableParams.filter()['name']" class="form-control"
+                        name="filter.name" />
+                </div>
+
+                <div class="field">
+                    <label for="filter.address" translate="bailiff.list.address">address</label> <input type="text" ng-model="bailiffCtrl.tableParams.filter()['address1']"
+                        class="form-control" name="filter.address" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field fixed">
+                    <label for="filter.id" translate="bailiff.list.id">id</label> <input type="text" ng-model="bailiffCtrl.tableParams.filter()['id']" class="form-control"
+                        name="filter.id" autofocus="autofocus" />
+                </div>
+
+                <div class="field fixed">
+                    <label for="filter.zipcode" translate="bailiff.list.zipcode">zip</label> <input type="text" ng-model="bailiffCtrl.tableParams.filter()['postalCode']"
+                        class="form-control" name="filter.zipcode" />
+                </div>
+
+                <div class="field">
+                    <label for="filter.municipality" translate="bailiff.list.municipality">municipality</label> <input type="text"
+                        ng-model="bailiffCtrl.tableParams.filter()['city']" class="form-control" name="filter.municipality" />
+                </div>
+
+                <button class="button" ng-click="bailiffCtrl.resetSearch()">
+                    <span class="glyphicon glyphicon-refresh"></span> <span>{{ 'global.button.reset'|translate }}</span>
+                </button>
+            </div>
+
+            <span class="checkbox"> <input type="checkbox" name="deleted" ng-model="bailiffCtrl.deleted" ng-click="bailiffCtrl.fetchBailiffs()"><label>{{
+                    'global.label.show.deleted'|translate }}</label>
+            </span>
+        </form>
+    </div>
+</section>
+<section id="table">
+    <div class="head">
+        <div class="button-line">
+            <a ng-click="bailiffCtrl.importTemplate()" translate="bailiff.button.template ">Download template</a>
+        </div>
+
+        <div class="button-blue icon-up">
+            <a ngf-select ng-model="bailiffCtrl.importFile " name="importFile" ngf-pattern=" '.xl*' " ngf-accept=" 'application/vnd.ms-excel' " ngf-min-size="100 "
+                translate="bailiff.button.import ">Upload table</a>
+        </div>
+
+        <div class="button-blue icon-down">
+            <a ng-click="bailiffCtrl.export()" translate="bailiff.button.export">Download table</a>
+        </div>
+
+        <div class="button-tab-yellow">
+            <a ng-click="bailiffCtrl.new()" translate="bailiff.button.add.bailiff">ADD BAILIFF</a>
+        </div>
+    </div>
+
+    <div class="body">
+        <table class="table" ng-table="bailiffCtrl.tableParams" template-pagination="js/table/pagination.html">
+            <colgroup>
+                <!--                     <col class="select"> -->
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col class="action">
+            </colgroup>
+
+            <tbody>
+                <tr ng-repeat="bailiff in $data track by bailiff.id" ng-click="bailiffCtrl.selectedBailiff = bailiff"
+                    ng-class="{'selected-info': bailiff.id === bailiffCtrl.selectedBailiff.id}" class="pointable">
+                    <!--  <td ><input type="checkbox" name=""></td> -->
+                    <td data-title="'bailiff.list.id'|translate" sortable="'id'">{{bailiff.id}}</td>
+                    <td data-title="'bailiff.list.name'|translate" sortable="'name'">{{bailiff.name}}</td>
+                    <td data-title="'bailiff.list.address'|translate" sortable="'address'">{{bailiff.address1}}</td>
+                    <td data-title="'bailiff.list.zipcode'|translate" sortable="'postalCode'">{{bailiff.postalCode}}</td>
+                    <td data-title="'bailiff.list.municipality'|translate" sortable="'city'">{{bailiff.city}}</td>
+                    <td data-title="'global.label.action'|translate"><a class="button-edit" ng-click="bailiffCtrl.edit(bailiff)"
+                        uib-tooltip="{{'global.button.edit'|translate}}"></a> <a class="button-delete" ng-click="bailiffCtrl.delete(bailiff)"
+                        confirm="{{'global.confirm.delete'|translate}}" uib-tooltip="{{'global.button.delete'|translate}}"></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p translate="bailiff.list.table.notice">_Please download ...</p>
+</section>
+
+<!-- TODO find another way to handle this. this is a small feedback before the handling of the action.-->
+<div class="row ">
+    <div class="col-md-6 col-md-offset-5 top-1 " ng-if="bailiffCtrl.importFile ">
+        <div class="row ">
+            <div class="col-md-8 ">
+                <strong translate="global.text.upload.file.selected "></strong>: {{ bailiffCtrl.importFile.name }}
+            </div>
+            <div class="col-md-2 ">
+                <button class="btn btn-primary " ng-click="bailiffCtrl.sendImportFile() ">
+                    <span class="glyphicon glyphicon-send "></span> {{ 'global.button.send'|translate }}
+                </button>
+            </div>
+            <div class="col-md-2 ">
+                <button class="btn btn-danger " ng-click="bailiffCtrl.cancelUpload() ">
+                    <span class="glyphicon glyphicon-remove-circle "></span>
+                </button>
+                <span translate="global.button.cancel "></span>
+            </div>
+        </div>
+    </div>
 </div>

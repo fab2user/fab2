@@ -139,4 +139,10 @@
             <column name="modified_on" type="datetime"></column>
         </createTable>
     </changeSet>
+    <changeSet id="hub-21" author="landry">
+        <addColumn tableName="country_sync">
+            <column name="cdb2_user" type="varchar(50)"/>
+            <column name="cdb2_password" type="varchar(50)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

@@ -168,19 +168,23 @@
     </div>
     <div class="modal-footer">
       <div class="row">
-        <div class="col-md-12 light-pull-right">
-          <button class="btn btn-danger" type="button" ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()" confirm="{{ 'global.confirm.delete'|translate}}">
-            <span class="glyphicon glyphicon-trash"></span>
-            <span translate="global.button.delete"></span>
-          </button>
-          <button class="btn btn-success" ng-click="bailiffEditCtrl.save(bailiffEditCtrl.bailiffForm.$valid)">
-            <span class="glyphicon glyphicon-floppy-disk"></span>
-            <span translate="global.button.save"></span>
-          </button>
-          <a class="btn btn-primary action-button" ng-click="bailiffEditCtrl.modalInstance.close()">
-            <span class="glyphicon glyphicon-remove-sign"></span>
-            <span translate="global.button.cancel"></span>
-          </a>
+        <div id="modal-button-toolbar" class="col-md-12">
+         <div class="col-md-9"></div>
+          <div class="button-red icon-trash col-md-1">
+                <a class="pull-left"  ng-if="bailiffEditCtrl.bailiff.id" ng-click="bailiffEditCtrl.delete()" translate="global.button.delete" >
+                </a>
+          </div>
+
+          <div class="button-yellow icon-floppy-disk col-md-1">
+              <a class="pull-right" ng-click="bailiffEditCtrl.save(bailiffEditCtrl.bailiffForm.$valid)" translate="global.button.save">
+              </a>
+          </div>
+          
+          <div class="button-blue icon-remove col-md-1">
+              <a class="pull-right" ng-click="bailiffEditCtrl.modalInstance.close()"  translate="global.button.cancel">
+              </a>
+           </div>
+
         </div>
       </div>
     </div>

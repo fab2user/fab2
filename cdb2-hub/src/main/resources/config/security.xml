@@ -8,11 +8,7 @@
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="user" password="password" authorities="USER" />
-                <user name="user2" password="password2" authorities="USER" />
-                <user name="user3" password="password3" authorities="USER" />
-                <user name="superuser" password="password" authorities="SUPER_USER" />
-                <user name="admin" password="password" authorities="ADMIN" />
+                <user name="user123" password="password123" authorities="USER" />
             </user-service>
         </authentication-provider>
         <!-- Here we can add authentication providers. They'll be executed by order of declaration -->

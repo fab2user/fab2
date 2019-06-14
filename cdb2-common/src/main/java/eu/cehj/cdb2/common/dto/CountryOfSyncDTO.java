@@ -37,6 +37,10 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     private List<BatchDataUpdateDTO> batchDataUpdates = new ArrayList<>();
 
+    private String cdbUser;
+
+    private String cdbPassword;
+
     public String getName() {
         return this.name;
     }
@@ -131,6 +135,22 @@ public class CountryOfSyncDTO extends BaseDTO{
 
     public void setBatchDataUpdates(final List<BatchDataUpdateDTO> batchDataUpdates) {
         this.batchDataUpdates = batchDataUpdates;
+    }
+
+    public String getCdbUser() {
+        return this.cdbUser;
+    }
+
+    public void setCdbUser(final String cdbUser) {
+        this.cdbUser = cdbUser;
+    }
+
+    public String getCdbPassword() {
+        return this.cdbPassword;
+    }
+
+    public void setCdbPassword(final String cdbPassword) {
+        this.cdbPassword = cdbPassword;
     }
 
 }

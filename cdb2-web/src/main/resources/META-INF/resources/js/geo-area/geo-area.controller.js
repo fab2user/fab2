@@ -6,6 +6,7 @@
   GeoAreaController.$inject = [
     '$uibModal',
     '$translate',
+    '$rootScope',
     'GeoAreaAPIService',
     'NgTableParams',
     'toastr'
@@ -14,6 +15,7 @@
   function GeoAreaController(
     $uibModal,
     $translate,
+    $rootScope,
     GeoAreaAPIService,
     NgTableParams,
     toastr
@@ -22,6 +24,9 @@
 
     fetchGeoAreas();
 
+    $rootScope.fabStatus['currentMenu'] = $translate.instant('area.list.title');
+    $rootScope.helpPage['currentPage'] = 'helpGeoArea.html';
+    
     vm.areaDetailsTable = new NgTableParams(
       {},
       {
@@ -50,6 +55,8 @@
     vm.selectArea = function(area) {
       vm.selectedArea = area;
       vm.areaDetailsTable.settings({ dataset: area.municipalities });
+      vm.areaDetailsTable.totalDataSet = area.municipalities.length;
+      vm.areaDetailsTable.tableTitle = "DETAILS OF AREA : " + area.name;
       vm.total = area.municipalities.length;
     };
 
@@ -75,8 +82,13 @@
     }
 
     function fetchGeoAreas() {
-      GeoAreaAPIService.getAll().$promise.then(function(success) {
-        vm.tableParams = new NgTableParams({}, { dataset: success });
+      GeoAreaAPIService.getAll().$promise.then(function(data) {
+          vm.total = data.length;
+          vm.tableParams = new NgTableParams({}, {
+            dataset: data
+          });
+        vm.tableParams.totalDataSet = data.length;   // Add the total resultset size to the table params.
+        vm.tableParams.tableTitle = 'LIST OF GEOGRAPHICAL AREAS';
       });
     }
   }

@@ -66,6 +66,13 @@
               return ReferenceAPIService.get({ action: 'competences' })
                 .$promise;
             }
+          ],
+          languages: [
+            'ReferenceAPIService',
+            function(ReferenceAPIService) {
+              return ReferenceAPIService.languages()
+                .$promise;
+            }
           ]
         }
       });
@@ -128,6 +135,12 @@
 
     vm.resetSearch = function() {
       vm.tableParams.filter({});
+    };
+
+    vm.fixStatus = function(syncId){
+      StatusAPIService.fix({id:syncId}).$promise.then(function(successData){
+        fetchCountries();
+      });
     };
 
     function fetchCountries() {

@@ -1,0 +1,66 @@
+<div id="helpmodal">
+    <div class="containerhelp" >
+        <div class="col">
+            <div class="img">
+                <div style="background-image: url('images/book.jpg');"></div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h2>Purpose</h2>
+            <p>This page allows you to manage the bailiffs in your National Bailiff Directory.
+            <h2>How it works ?</h2>
+            <h3>Page structure</h3>
+            <p>The upper part of this page contains a set of criteria to filter out the list of bailiffs and ease the research of a specific bailiff. Simply enter a value in
+                the filter fields and the list is automatically updated with the bailiffs that match this criteria. The match is done on any part of the corresponding value of the
+                Bailiff.</p>
+            <p>The lower part of the page contains the list of bailiffs. The two arrows next each column title are used to sort the list of bailiffs with this column values.
+               On top of the list, you can choose the size to display per page.
+               If the number of bailiffs is greater to the page size, there is a pagination mechanism that appears on top of the list.
+               You can navigate through the pages by selecting a specific page or by using the arrows to go to the previous/next page.</p>
+            <h3>Button 'download template'</h3>
+            <p>This download an Excel template file. This template can be used to initialize the bailiff directory from an external existing list.
+            <h3>Button 'Import'</h3>
+            <p>This button accepts an Excel file with the same format as the template, to import bailiffs in a single operation. 
+               Only the fields available in the template are imported. The bailiff definition can be afterwards completed by editing them one by one.
+            </p>   
+            <h3>Button 'Export'</h3>
+            <p>This button exports the list of bailiffs in an Excel file. 
+               The format of this Excel file is the same as the template file.
+            </p>   
+            <h3>Button 'Add a bailiff'</h3>
+            <p>This button opens a window to enter a new bailiff. 
+               For a new bailiff, you can enter the following information :
+            </p>
+            <ul>
+               <li>National identifier : it is a national identifier assigned to a bailiff. There is no format validation.</li>
+               <li>Name : the name of the bailiff or the denominaton of the bailiff office. This is a mandatory field.</li>
+               <li>Address 1 : the street name and number. This is a mandatory field.</li>
+               <li>Address 2 : an optional line to enter the address.</li>
+               <li>City/Postal Code : the ZIP code and the city of the address. This is a mandatory field.</li>
+               <li>Phone : This is an optional field.</li>
+               <li>Mail : the mail adress of the bailiff. This is an optional field.</li>
+               <li>Website : The website of the bailiff. This is an optional field.</li>
+               <li>Accepted languages : The list of accepted languages by the bailiff.</li>
+               <li>Comments : a free text to annotate the bailiff. This is an optional field.</li>
+               <li>Instruments : the list of legal instruments for which this bailiff is competent. At least one instrument is required.</li>
+               <li>GeoAreas : the name of the GeoArea on which the bailiff is competent. The GeoArea is a list of ZIP codes that defines an geographical area. 
+               If this notion is not relevant for a country, a global GeoArea can be defined to cover the whole country.</li>
+            </ul>
+            <h3>Button 'Edit a bailiff'</h3>
+            <p>This button opens a window to edit the bailiff information. This is the same window as described in the 'add a bailiff' function.</p>
+            <h3>Button 'Delete a bailiff'</h3>
+            <p>This button marks a bailiff as deleted. The data are not lost but the bailiff is considered as no more active.</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div id="modal-button-toolbar" class="col-md-12">
+                <div class="col-md-11"></div>
+                <div class="button-blue icon-remove col-md-1">
+                    <a class="pull-right" ng-click="helpCtrl.modalInstance.close()" translate="global.button.cancel"> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

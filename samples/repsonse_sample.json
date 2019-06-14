@@ -1,0 +1,155 @@
+{
+  "state": "ANSWERED",
+  "competentBodies": [
+    {
+      "id": "1",
+      "country": "LU",
+      "details": [
+        {
+          "name": "BIEL Pierre",
+          "lang": "fr",
+          "address": "126, Val Sainte Croix",
+          "postalCode": "1370",
+          "municipality": "LUXEMBOURG",
+          "tel": "454030-1",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "country": "LU",
+      "details": [
+        {
+          "name": "CALVO Carlos",
+          "lang": "fr",
+          "address": "65, rue d'Eich",
+          "postalCode": "1461",
+          "municipality": "LUXEMBOURG",
+          "tel": "441333-1",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "country": "LU",
+      "details": [
+        {
+          "name": "ENGEL Guy",
+          "lang": "fr",
+          "address": "282, rue de Rollingergrund",
+          "postalCode": "2441",
+          "municipality": "LUXEMBOURG",
+          "tel": "449328",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "country": "LU",
+      "details": [
+        {
+          "name": "FUNK Roland",
+          "lang": "fr",
+          "address": "21, rue Astrid",
+          "postalCode": "1143",
+          "municipality": "LUXEMBOURG",
+          "tel": "246944",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "country": "LU",
+      "details": [
+        {
+          "name": "GALLE Geoffrey",
+          "lang": "fr",
+          "address": "126, Val Sainte Croix",
+          "postalCode": "1370",
+          "municipality": "LUXEMBOURG",
+          "tel": "454030-1",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "country": "LU",
+      "details": [
+        {
+          "name": "KURDYBAN Patrick",
+          "lang": "fr",
+          "address": "21, Rue des Genêts",
+          "postalCode": "1621",
+          "municipality": "LUXEMBOURG",
+          "tel": "+352 26350808",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "country": "LU",
+      "details": [
+        {
+          "name": "LISE Martine",
+          "lang": "fr",
+          "address": "21 Rue des Genêts",
+          "postalCode": "1621",
+          "municipality": "LUXEMBOURG",
+          "tel": "26483781",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "country": "LU",
+      "details": [
+        {
+          "name": "MEYER Alec",
+          "lang": "fr",
+          "address": "10, Avenue Guillaume",
+          "postalCode": "1650",
+          "municipality": "LUXEMBOURG",
+          "tel": "265378-1",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "country": "LU",
+      "details": [
+        {
+          "name": "MOES Lia",
+          "lang": "fr",
+          "address": "20, rue des Cerisiers",
+          "postalCode": "1322",
+          "municipality": "LUXEMBOURG",
+          "tel": "227290-1",
+          "videoConference": false
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "country": "LU",
+      "details": [
+        {
+          "name": "SCHAAL Frank",
+          "lang": "fr",
+          "address": "65, rue d'Eich",
+          "postalCode": "1461",
+          "municipality": "LUXEMBOURG",
+          "tel": "441333",
+          "videoConference": false
+        }
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.9</version>
     </parent>
 
     <properties>
@@ -23,17 +23,17 @@
 
     <dependencies>
         <dependency>
-            <version>1.0.5</version>
+            <version>1.0.9</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-business</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.5</version>
+            <version>1.0.9</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.5</version>
+            <version>1.0.9</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-common</artifactId>
         </dependency>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>angular-ui-router</artifactId>
-            <version>0.2.18</version>
+            <version>1.0.20</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>

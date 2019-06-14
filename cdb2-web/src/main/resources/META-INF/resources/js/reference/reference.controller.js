@@ -5,6 +5,7 @@
 
   ReferenceController.$inject = [
     '$log',
+    '$rootScope',
     '$http',
     '$uibModal',
     '$translate',
@@ -16,6 +17,7 @@
 
   function ReferenceController(
     $log,
+    $rootScope,
     $http,
     $uibModal,
     $translate,
@@ -27,6 +29,8 @@
     var vm = this;
     vm.selectedLang = null;
 
+    $rootScope.fabStatus['currentMenu'] = $translate.instant('reference.title');
+    $rootScope.helpPage['currentPage'] = 'helpCompetence.html';
     fetchLangs();
 
     ReferenceAPIService.getAllInstrument().$promise.then(function(instruments) {
