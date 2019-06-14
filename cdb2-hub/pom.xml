@@ -3,7 +3,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>1.0.10-SNAPSHOT</version>
+        <version>1.0.10</version>
     </parent>
 
     <properties>
@@ -18,17 +18,17 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <version>1.0.10-SNAPSHOT</version>
+            <version>1.0.10</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.10-SNAPSHOT</version>
+            <version>1.0.10</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-business</artifactId>
         </dependency>
         <dependency>
-            <version>1.0.10-SNAPSHOT</version>
+            <version>1.0.10</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-common</artifactId>
         </dependency>
