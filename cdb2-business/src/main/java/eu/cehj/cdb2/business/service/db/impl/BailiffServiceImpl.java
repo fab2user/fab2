@@ -156,6 +156,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 			}
 			return null;
 		}).collect(Collectors.toList()));
+		dto.setInstrumentIds(new ArrayList());
 		if(CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas())){
 			final GeoArea area = entity.getBailiffCompetenceAreas().get(0).getAreas().get(0);
 			final GeoAreaSimpleDTO geoSimpleDTO = this.geoAreaService.getSimpleDTO(area.getId());
