@@ -274,7 +274,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 		if (!entity.getLanguages().isEmpty()) {
 			dto.setAcceptedLanguages(new ArrayList<String>());
 			for (final Language acceptedLanguage: entity.getLanguages()) {
-				dto.getAcceptedLanguages().add(acceptedLanguage.getCode());
+				dto.getAcceptedLanguages().add(acceptedLanguage.getCode().toLowerCase());
 			}
 		}
 
