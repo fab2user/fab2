@@ -11,7 +11,7 @@
     <parent>
         <groupId>eu.cehj</groupId>
         <artifactId>cdb2-parent</artifactId>
-        <version>1.0.11-SNAPSHOT</version>
+        <version>1.0.11</version>
     </parent>
 
     <properties>
@@ -23,7 +23,7 @@
 
     <dependencies>
         <dependency>
-            <version>1.0.11-SNAPSHOT</version>
+            <version>1.0.11</version>
             <groupId>eu.cehj</groupId>
             <artifactId>cdb2-persistence</artifactId>
         </dependency>
