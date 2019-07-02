@@ -4,3 +4,4 @@
 *.versionsBackup
 uploads
 logs
+/fabwp.zip
