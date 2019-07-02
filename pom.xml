@@ -31,7 +31,6 @@
         <module>cdb2-common</module>
         <module>cdb2-persistence</module>
         <module>cdb2-business</module>
-        <module>cdb2-hub</module>
     </modules>
 
     <ciManagement>
