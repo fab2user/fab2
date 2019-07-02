@@ -300,8 +300,11 @@ function fab_search()
     ?>
 
     <div class="annuaire-form">
-        <form class="formAnnuaire formBailiff" action="/wordpress/fab2-search" method="post" id="formAnnuaire"
-                  name="annuaire">
+    <?php
+    
+    echo '<form class="formAnnuaire formBailiff" action="' . get_option('awp_search_page_url') . '" method="post" id="formAnnuaire" name="annuaire">';
+    ?>
+                  
             <div class="formAnnuaire_chps">
                     <label class="champAnnuaire pays">Country</label>
                     <select name="paysSC" id="paysSC" class="selectAnnuaire">
