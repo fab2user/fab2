@@ -153,13 +153,14 @@
           var fd = lodash.find(vm.competences, function (c) {
             return c.instrumentId === comp.competence.instrument.id;
           });
-          $log.info('Objet trouve: ', fd);
+          $log.info('Competenence found for bailiff: ',  vm.bailiff.id, ' ', fd);
           return fd;
         });
         // vm.instrumentsOpt = Object.assign({}, rs);
         //Build area names list, to be displayed in smart table
         var model = success;
         model = buildAreasList(model);
+        $log.info('Model created for Areas: ', model);
         vm.tableParams = new NgTableParams({}, {
           dataset: model
         });
