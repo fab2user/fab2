@@ -86,17 +86,18 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 		// First remove old data
 		this.bailiffCompetenceAreaService.delete(this.bailiffCompetenceAreaService.findAllForBailiffId(dto.getId()));
 
-		if(dto.getCompetences() != null) {
-			for(final CompetenceDTO competenceDTO: dto.getCompetences()) {
-				final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
-				final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
-				gas.setId(dto.getGeo().getId());
-				bca.setAreas(Arrays.asList(gas));
-				bca.setBailiff(dto);
-				final CompetenceDTO comp = new CompetenceDTO();
-				comp.setId(competenceDTO.getId());
-				bca.setCompetence(comp);
-				this.bailiffCompetenceAreaService.save(bca);
+		if( dto.getInstrumentIds() != null) {
+			for(final Long instrumentId : dto.getInstrumentIds()) {
+				for (final CompetenceDTO competenceForInstrument : this.competenceService.getAllDTOForInstrument(instrumentId)) {
+					final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
+					final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
+					gas.setId(dto.getGeo().getId());
+					bca.setAreas(Arrays.asList(gas));
+					bca.setBailiff(dto);
+
+					bca.setCompetence(competenceForInstrument);
+					this.bailiffCompetenceAreaService.save(bca);
+				}
 			}
 		}
 	}
@@ -156,8 +157,15 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 			}
 			return null;
 		}).collect(Collectors.toList()));
-		dto.setInstrumentIds(new ArrayList());
-		if(CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas())){
+		dto.setInstrumentIds(entity.getBailiffCompetenceAreas().stream().map(bca -> {
+			try {
+				return bca.getCompetence().getInstrument().getId();
+			} catch (final Exception e) {
+				LOGGER.error(e.getMessage(), e);
+			}
+			return null;
+		}).collect(Collectors.toList()));
+		if(CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas()) && CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas().get(0).getAreas())){
 			final GeoArea area = entity.getBailiffCompetenceAreas().get(0).getAreas().get(0);
 			final GeoAreaSimpleDTO geoSimpleDTO = this.geoAreaService.getSimpleDTO(area.getId());
 			dto.setGeo(geoSimpleDTO);

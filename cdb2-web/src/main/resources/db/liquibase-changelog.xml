@@ -4,7 +4,7 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
    http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet id="cdb-01" author="fabuser">
+    <changeSet id="cdb-01" author="landry">
         <sql>
 CREATE TABLE admin_area_subdivision_major (id BIGINT AUTO_INCREMENT NOT NULL, code VARCHAR(255) NOT NULL, created_by VARCHAR(255), created_on DATETIME, deleted TINYINT(1) default 0, modified_by VARCHAR(255), modified_on DATETIME, name VARCHAR(255) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE admin_area_subdivision_middle (id BIGINT AUTO_INCREMENT NOT NULL, code VARCHAR(255) NOT NULL, created_by VARCHAR(255), created_on DATETIME, deleted TINYINT(1) default 0, modified_by VARCHAR(255), modified_on DATETIME, name VARCHAR(255) NOT NULL, admin_area_subdivision_major BIGINT, PRIMARY KEY (id));
@@ -36,14 +36,14 @@ ALTER TABLE admin_area_subdivision_minor ADD INDEX `idx_code_minor` (`code` ASC)
 ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         </sql>
     </changeSet>
-<!--     <changeSet id="cdb-02" author="fabuser"> -->
+<!--     <changeSet id="cdb-02" author="landry"> -->
 <!--     <comment>Import area and municipality data</comment> -->
 <!--         <loadData tableName="admin_area_subdivision_major" file="db/data/area_major.csv"></loadData> -->
 <!--         <loadData tableName="admin_area_subdivision_middle" file="db/data/area_middle.csv"></loadData> -->
 <!--         <loadData tableName="admin_area_subdivision_minor" file="db/data/area_minor.csv"></loadData> -->
 <!--         <loadData tableName="municipality" file="db/data/municipality.csv"></loadData> -->
 <!--     </changeSet> -->
-    <changeSet id="cdb-03" author="fabuser">
+    <changeSet id="cdb-03" author="landry">
         <addColumn tableName="bailiff">
             <column name="email" type="varchar(100)" afterColumn="name"></column>
             <column name="phone" type="varchar(50)" afterColumn="email"></column>
@@ -51,7 +51,7 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <dropColumn tableName="address" columnName="email"/>
         <dropColumn tableName="address" columnName="phone"></dropColumn>
     </changeSet>
-    <changeSet id="cdb-04" author="fabuser">
+    <changeSet id="cdb-04" author="landry">
     <createTable tableName="rel_bailiff_competence_area">
         <column name="bailiff_id" type="bigint">
             <constraints nullable="false" foreignKeyName="FK_bca_bailiff" referencedTableName="bailiff" referencedColumnNames="id"/>
@@ -64,15 +64,15 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         </column>
     </createTable>
     </changeSet>
-    <changeSet id="cdb-05" author="fabuser">
+    <changeSet id="cdb-05" author="landry">
         <comment>Import competence and instrument data</comment>
         <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
         <loadData tableName="competence" file="db/data/competence.csv"></loadData>
     </changeSet>
-    <changeSet id="cbd-06" author="fabuser">
+    <changeSet id="cbd-06" author="landry">
         <renameTable newTableName="bailiff_competence_area" oldTableName="rel_bailiff_competence_area"/>
     </changeSet>
-    <changeSet id="cbd-07" author="fabuser">
+    <changeSet id="cbd-07" author="landry">
         <comment>Update bailiff/competence/area management</comment>
         <dropForeignKeyConstraint baseTableName="bailiff_competence_area" constraintName="FK_bca_area"/>
         <dropColumn tableName="bailiff_competence_area" columnName="area_id"/>
@@ -90,7 +90,7 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="cbd-08" author="fabuser">
+    <changeSet id="cbd-08" author="landry">
         <comment>Add audit columns to bailiff_competence_area table</comment>
         <addColumn tableName="bailiff_competence_area">
             <column name="deleted" type="bit" defaultValueBoolean="false"/>
@@ -100,14 +100,14 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             <column name="modified_on" type="datetime"></column>
         </addColumn>
     </changeSet>
-    <changeSet id="cdb-09" author="fabuser">
+    <changeSet id="cdb-09" author="landry">
         <comment>Add index on municipality/postalcode-name in order to optimize database creation/update from file, since multiple cities can share same postal code...</comment>
         <createIndex tableName="municipality" indexName="idx_municipality_postalcode_name">
             <column name="postal_code"/>
             <column name="name"/>
         </createIndex>
     </changeSet>
-    <changeSet id="cdb-10" author="fabuser">
+    <changeSet id="cdb-10" author="landry">
         <comment>Manage lang of details for bailiff</comment>
         <createTable tableName="rel_bailiff_lang_detail">
             <column name="bailiff_id" type="bigint">
@@ -118,14 +118,14 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="cdb-11" author="fabuser">
+    <changeSet id="cdb-11" author="landry">
         <comment>Add missing data to bailiff</comment>
         <addColumn tableName="bailiff">
             <column name="fax" type="varchar(30)"></column>
             <column name="web_site" type="varchar(30)"></column>
         </addColumn>
     </changeSet>
-    <changeSet id="cdb-12" author="fabuser">
+    <changeSet id="cdb-12" author="landry">
         <createTable tableName="country">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
@@ -143,24 +143,24 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="cdb-13" author="fabuser">
+    <changeSet id="cdb-13" author="landry">
         <addColumn tableName="address">
             <column name="country" type="bigint">
                 <constraints foreignKeyName="FK_ADDR_COUNTRY" referencedTableName="country" referencedColumnNames="id"/>
             </column>
         </addColumn>
     </changeSet>
-    <changeSet id="cdb-14" author="fabuser">
+    <changeSet id="cdb-14" author="landry">
         <addColumn tableName="bailiff">
             <column name="video_conference" type="boolean" defaultValueBoolean="false"></column>
         </addColumn>
     </changeSet>
-    <changeSet id="cdb-15" author="fabuser">
+    <changeSet id="cdb-15" author="landry">
         <createIndex tableName="municipality" indexName="IND_MUNICIPALITY_NAME">
             <column name="name"/>
         </createIndex>
     </changeSet>
-    <changeSet id="cdb-16" author="fabuser">
+    <changeSet id="cdb-16" author="landry">
         <createTable tableName="task">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
@@ -177,7 +177,7 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             <column name="type" type="varchar(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="cdb-17" author="fabuser">
+    <changeSet id="cdb-17" author="landry">
         <comment>We have to populate instrument/competence tables with correct data, hence revert what has been done by cdb-05</comment>
         <sql>
             SET FOREIGN_KEY_CHECKS=0;
@@ -188,7 +188,7 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
         <loadData tableName="competence" file="db/data/competence.csv"></loadData>
     </changeSet>
-    <changeSet id="cdb-18" author="fabuser">
+    <changeSet id="cdb-18" author="landry">
         <sql>
             SET FOREIGN_KEY_CHECKS=0;
             TRUNCATE TABLE `instrument`;
@@ -198,34 +198,34 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
         <loadData tableName="instrument" file="db/data/instrument.csv"></loadData>
         <loadData tableName="competence" file="db/data/competence.csv"></loadData>
     </changeSet>
-    <changeSet id="cdb-19" author="fabuser">
+    <changeSet id="cdb-19" author="landry">
         <comment>Create EN lang, since it has to be set as default for bailiffs' lang of detail</comment>
         <sql>
             INSERT INTO language (`code`, `language`, `created_by`, `created_on`) VALUES ('EN', 'English', 'System', NOW());
         </sql>
     </changeSet>
-    <changeSet id="cdb-20" author="fabuser">
+    <changeSet id="cdb-20" author="landry">
         <renameColumn tableName="address" oldColumnName="address" newColumnName="address_1" columnDataType="varchar(255)"></renameColumn>
     </changeSet>
-    <changeSet id="cdb-21" author="fabuser">
+    <changeSet id="cdb-21" author="landry">
         <addColumn tableName="address">
         <column name="address_2" type="varchar(255)" afterColumn="address_1"></column>
         </addColumn>
     </changeSet>
-    <changeSet id="cdb-22" author="fabuser">
+    <changeSet id="cdb-22" author="landry">
         <addNotNullConstraint columnDataType="varchar(255)" columnName="address_1" tableName="address" />
     </changeSet>
-    <changeSet id="cdb-23" author="fabuser">
+    <changeSet id="cdb-23" author="landry">
         <addColumn tableName="bailiff">
             <column name="open_hours" type="varchar(400)" afterColumn="web_site"></column>
         </addColumn>
     </changeSet>
-    <changeSet id="cdb-24" author="fabuser">
+    <changeSet id="cdb-24" author="landry">
         <addColumn tableName="bailiff">
             <column name="national_id" type="varchar(20)" afterColumn="id"></column>
         </addColumn>
     </changeSet>
-    <changeSet id="cdb-25" author="fabuser">
+    <changeSet id="cdb-25" author="landry">
         <addColumn tableName="bailiff">
             <column name="comments" type="varchar(1000)"></column>
         </addColumn>
