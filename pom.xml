@@ -4,7 +4,7 @@
 
     <groupId>eu.cehj</groupId>
     <artifactId>cdb2-parent</artifactId>
-    <version>1.0.15-SNAPSHOT</version>
+    <version>1.0.16-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>cdb2-parent</name>
