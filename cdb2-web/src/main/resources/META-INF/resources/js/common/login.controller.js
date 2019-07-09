@@ -9,7 +9,8 @@
     'AuthService',
     'PreviousState',
     'toastr',
-    '$state'
+    '$state',
+    'SettingsService'
   ];
 
   function LoginController(
@@ -18,7 +19,8 @@
     AuthService,
     PreviousState,
     toastr,
-    $state
+    $state,
+    SettingsService
   ) {
     var vm = this;
     vm.credentials = {};
@@ -48,5 +50,9 @@
     vm.logout = function() {
       AuthService.logout();
     };
+    
+    // Load and store application properties
+    SettingsService.loadSettings();
+
   }
 })();

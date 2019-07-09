@@ -5,9 +5,9 @@
     .module('cdb2')
     .factory('SettingsService', SettingsService);
 
-  SettingsService.$inject = ['$localForage', 'SettingsAPIService'];
+  SettingsService.$inject = ['$localForage', 'SettingsAPIService', "$translate"];
 
-  function SettingsService($localForage, SettingsAPIService) {
+  function SettingsService($localForage, SettingsAPIService, $translate) {
     var SettingsService = {};
 
     SettingsService.loadSettings = function () {
@@ -17,6 +17,8 @@
         if (data.nationalIdPrefix) {
           $localForage.setItem('nationalIdPrefix', data.nationalIdPrefix);
         }
+        $localForage.setItem('interfaceLanguage', data.i18nInterfaceLanguage);
+        $translate.use(data.i18nInterfaceLanguage);
       });
     };
 

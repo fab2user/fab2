@@ -13,7 +13,7 @@
 
   function NavBarController($scope, $translate, $log, AuthService, EVENT) {
     var vm = this;
-    vm.langKeys = ["en", "fr"];
+    vm.langKeys = ["en", "fr", "bg"];
     vm.isCollapsed = true;
 
     vm.authenticated = !!AuthService.currentUser();
