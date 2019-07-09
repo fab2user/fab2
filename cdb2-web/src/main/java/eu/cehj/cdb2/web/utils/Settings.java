@@ -11,38 +11,49 @@ import org.springframework.stereotype.Component;
 @Component
 public class Settings implements Serializable{
 
-    private static final long serialVersionUID = -712848177011940608L;
+	private static final long serialVersionUID = -712848177011940608L;
 
-    @Value("${country.name}")
-    private String country;
+	@Value("${country.name}")
+	private String country;
 
-    @Value("${country.code}")
-    private String countryCode;
+	@Value("${country.code}")
+	private String countryCode;
 
-    @Value("${national.id.prefix}")
-    private String nationalIdPrefix;
+	@Value("${national.id.prefix}")
+	private String nationalIdPrefix;
 
-    public String getCountry() {
-        return this.country;
-    }
+	@Value("${i18n.interface.language}")
+	private String i18nInterfaceLanguage;
 
-    public void setCountry(final String country) {
-        this.country = country;
-    }
+	public String getCountry() {
+		return this.country;
+	}
 
-    public String getCountryCode() {
-        return this.countryCode;
-    }
+	public void setCountry(final String country) {
+		this.country = country;
+	}
 
-    public void setCountryCode(final String countryCode) {
-        this.countryCode = countryCode;
-    }
+	public String getCountryCode() {
+		return this.countryCode;
+	}
 
-    public String getNationalIdPrefix() {
-        return this.nationalIdPrefix;
-    }
+	public void setCountryCode(final String countryCode) {
+		this.countryCode = countryCode;
+	}
 
-    public void setNationalIdPrefix(final String nationalIdPrefix) {
-        this.nationalIdPrefix = nationalIdPrefix;
-    }
+	public String getNationalIdPrefix() {
+		return this.nationalIdPrefix;
+	}
+
+	public void setNationalIdPrefix(final String nationalIdPrefix) {
+		this.nationalIdPrefix = nationalIdPrefix;
+	}
+
+	public String getI18nInterfaceLanguage() {
+		return this.i18nInterfaceLanguage;
+	}
+
+	public void setI18nInterfaceLanguage(final String i18nInterfaceLanguage) {
+		this.i18nInterfaceLanguage = i18nInterfaceLanguage;
+	}
 }

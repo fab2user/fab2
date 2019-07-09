@@ -19,6 +19,21 @@
         <li ui-sref-active="active">
           <a ui-sref="root.municipality" translate="navbar.link.municipality">Zip codes</a>
         </li>
+        <!-- 
+        <li class="dropdown" uib-dropdown>
+          <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span translate="global.switch.lang"></span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" uib-dropdown-menu>
+            <li ng-repeat="lang in navCtrl.langKeys">
+              <a ng-click="navCtrl.switchLang(lang)">
+                <img ng-src="/images/{{ lang }}.png">
+              </a>
+            </li>
+          </ul>
+        </li>
+        --> 
       </ul>
       <p class="navbar-text text-primary pointable" ng-if="navCtrl.statusMessage" ng-click="navCtrl.statusMessage = false">
         <span uib-popover="'pop'" popover-trigger="'mouseenter'" popover-placement="bottom">{{ navCtrl.statusMessage }}</span>

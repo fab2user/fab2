@@ -31,6 +31,8 @@ public class BailiffDTO extends BaseDTO{
 	private List<CompetenceDTO> competences;
 	private List<Long> instrumentIds;
 	private GeoAreaSimpleDTO geo;
+	private List<GeoAreaSimpleDTO> geoAreas  = new ArrayList<>();
+
 	private boolean toBeUpdated = false;
 
 	public BailiffDTO() {
@@ -226,6 +228,14 @@ public class BailiffDTO extends BaseDTO{
 
 	public void setInstrumentIds(final List<Long> instrumentIds) {
 		this.instrumentIds = instrumentIds;
+	}
+
+	public List<GeoAreaSimpleDTO> getGeoAreas() {
+		return this.geoAreas;
+	}
+
+	public void setGeoAreas(final List<GeoAreaSimpleDTO> geoAreas) {
+		this.geoAreas = geoAreas;
 	}
 
 	@Override
