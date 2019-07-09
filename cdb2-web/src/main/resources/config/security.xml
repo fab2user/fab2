@@ -19,6 +19,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
               authorities="SUPER_USER" />
                 <user name="admin" password="password"
               authorities="ADMIN" />
+                <user name="viewer" password="password"
+              authorities="VIEWER" />
         </user-service>
     </authentication-provider>
 <!--     Here we can add authentication providers. They'll be executed by order of declaration -->
