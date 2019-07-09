@@ -5,7 +5,6 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -90,12 +89,13 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 			for(final Long instrumentId : dto.getInstrumentIds()) {
 				for (final CompetenceDTO competenceForInstrument : this.competenceService.getAllDTOForInstrument(instrumentId)) {
 					final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
-					final GeoAreaSimpleDTO gas = new GeoAreaSimpleDTO();
-					gas.setId(dto.getGeo().getId());
-					bca.setAreas(Arrays.asList(gas));
 					bca.setBailiff(dto);
-
 					bca.setCompetence(competenceForInstrument);
+
+					bca.setAreas(new ArrayList());
+					for(final GeoAreaSimpleDTO gas : dto.getGeoAreas()) {
+						bca.getAreas().add(gas);
+					}
 					this.bailiffCompetenceAreaService.save(bca);
 				}
 			}
@@ -166,9 +166,13 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 			return null;
 		}).collect(Collectors.toList()));
 		if(CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas()) && CollectionUtils.isNotEmpty(entity.getBailiffCompetenceAreas().get(0).getAreas())){
-			final GeoArea area = entity.getBailiffCompetenceAreas().get(0).getAreas().get(0);
-			final GeoAreaSimpleDTO geoSimpleDTO = this.geoAreaService.getSimpleDTO(area.getId());
-			dto.setGeo(geoSimpleDTO);
+			// the get(0) means taht all Area has been assigned to a competence.
+			for ( final GeoArea area  :entity.getBailiffCompetenceAreas().get(0).getAreas()) {
+				final GeoAreaSimpleDTO geoSimpleDTO = this.geoAreaService.getSimpleDTO(area.getId());
+				// dto.setGeo(geoSimpleDTO);
+				dto.getGeoAreas().add(geoSimpleDTO);
+			}
+
 		}
 		return dto;
 	}
@@ -294,13 +298,14 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 		dto.setVideoConference(entity.isVideoConference());
 		final List<CompetenceExportDTO> competences = new ArrayList<>();
 		for (final BailiffCompetenceArea bca : entity.getBailiffCompetenceAreas()) {
+			final CompetenceExportDTO competence = new CompetenceExportDTO();
+			competence.setInstrument(bca.getCompetence().getInstrument().getCode());
+			competence.setType(bca.getCompetence().getCode());
+			competence.setGeoAreaIds(new ArrayList());
 			for (final GeoArea area : bca.getAreas()) {
-				final CompetenceExportDTO competence = new CompetenceExportDTO();
-				competence.setGeoAreaId(Long.toString(area.getId())); // TODO: Check if we need to use Area name instead (seems like according to example xml file)
-				competence.setInstrument(bca.getCompetence().getInstrument().getCode());
-				competence.setType(bca.getCompetence().getCode());
-				competences.add(competence);
+				competence.getGeoAreaIds().add(Long.toString(area.getId())); // TODO: Check if we need to use Area name instead (seems like according to example xml file)
 			}
+			competences.add(competence);
 		}
 		dto.setCompetences(competences);
 		return dto;
