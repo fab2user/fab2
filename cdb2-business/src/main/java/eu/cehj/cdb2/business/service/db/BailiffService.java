@@ -15,14 +15,16 @@ import eu.cehj.cdb2.entity.Bailiff;
 @Service
 public interface BailiffService extends BaseService<Bailiff, BailiffDTO, Long> {
 
-    public List<BailiffDTO> findAll(Predicate predicate, Pageable pageable);
+	// extra methods for this service
 
-    public List<BailiffDTO> getAllEvenDeletedDTO();
+	public List<BailiffDTO> findAll(Predicate predicate, Pageable pageable);
 
-    public List<BailiffExportDTO> getAllForExport();
+	public List<BailiffDTO> getAllEvenDeletedDTO();
 
-    public BailiffExportDTO populateExportDTOFromEntity(Bailiff entity);
+	public List<BailiffExportDTO> getAllForExport();
 
-    public List<BailiffDTO> populateDTOsFromCDB(final CDBResponse cdbResponse);
+	public BailiffExportDTO populateExportDTOFromEntity(Bailiff entity);
+
+	public List<BailiffDTO> populateDTOsFromCDB(final CDBResponse cdbResponse);
 
 }

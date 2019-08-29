@@ -21,6 +21,7 @@ public class BailiffDTO extends BaseDTO{
 	private Long addressId;
 	private Long municipalityId;
 	private List<Long> languages = new ArrayList<>();
+	private List<String> languagesCode = new ArrayList<>();
 	private Long langOfDetails;
 	private String webSite;
 	private String fax;
@@ -245,6 +246,14 @@ public class BailiffDTO extends BaseDTO{
 				+ ", languages=" + this.languages + ", langOfDetails=" + this.langOfDetails + ", webSite=" + this.webSite + ", fax=" + this.fax + ", openHours=" + this.openHours
 				+ ", videoConferenceAvailable=" + this.videoConferenceAvailable + ", comments=" + this.comments + ", langDisplay=" + this.langDisplay + ", competences=" + this.competences + ", geo="
 				+ this.geo + ", toBeUpdated=" + this.toBeUpdated + "]";
+	}
+
+	public List<String> getLanguagesCode() {
+		return this.languagesCode;
+	}
+
+	public void setLanguagesCode(final List<String> languagesCode) {
+		this.languagesCode = languagesCode;
 	}
 
 }
