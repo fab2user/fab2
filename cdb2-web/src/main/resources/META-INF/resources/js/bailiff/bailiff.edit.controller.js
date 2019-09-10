@@ -53,7 +53,7 @@
         instrumentIds: bailiff.instrumentIds.slice(0),
       geo: Object.assign({}, bailiff.geo)
     } : {
-      competences: {},
+        instrumentIds: {},
       geo: {}
     };
 

@@ -116,7 +116,8 @@ public class BailiffController extends BaseController {
 	@ResponseStatus(value = OK)
 	@Secured(value = {"ROLE_VIEWER", "ROLE_USER", "ROLE_SUPER_USER", "ROLE_ADMIN"})
 	public List<BailiffExportDTO> getAllForExport() {
-		return this.bailiffService.getAllForExport();
+		final List<BailiffExportDTO> bailiffsToExport = this.bailiffService.getAllForExport();
+		return bailiffsToExport;
 	}
 
 	// We may need this again in a near future : I keep it !
