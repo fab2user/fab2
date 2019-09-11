@@ -85,19 +85,19 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 		// First remove old data
 		this.bailiffCompetenceAreaService.delete(this.bailiffCompetenceAreaService.findAllForBailiffId(dto.getId()));
 
-		if( dto.getInstrumentIds() != null) {
-			for(final Long instrumentId : dto.getInstrumentIds()) {
-				for (final CompetenceDTO competenceForInstrument : this.competenceService.getAllDTOForInstrument(instrumentId)) {
-					final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
-					bca.setBailiff(dto);
-					bca.setCompetence(competenceForInstrument);
+		if( dto.getCompetenceIds() != null) {
+			for(final Long competenceId : dto.getCompetenceIds()) {
+				final CompetenceDTO competenceForInstrument = this.competenceService.getDTO(competenceId);
+				final BailiffCompetenceAreaDTO bca = new BailiffCompetenceAreaDTO();
+				bca.setBailiff(dto);
+				bca.setCompetence(competenceForInstrument);
 
-					bca.setAreas(new ArrayList());
-					for(final GeoAreaSimpleDTO gas : dto.getGeoAreas()) {
-						bca.getAreas().add(gas);
-					}
-					this.bailiffCompetenceAreaService.save(bca);
+				bca.setAreas(new ArrayList());
+				for(final GeoAreaSimpleDTO gas : dto.getGeoAreas()) {
+					bca.getAreas().add(gas);
 				}
+				this.bailiffCompetenceAreaService.save(bca);
+
 			}
 		}
 	}
@@ -154,6 +154,14 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 		dto.setCompetences(entity.getBailiffCompetenceAreas().stream().map(bca -> {
 			try {
 				return this.competenceService.getDTO(bca.getCompetence().getId());
+			} catch (final Exception e) {
+				LOGGER.error(e.getMessage(), e);
+			}
+			return null;
+		}).collect(Collectors.toList()));
+		dto.setCompetenceIds(entity.getBailiffCompetenceAreas().stream().map(bca -> {
+			try {
+				return bca.getCompetence().getId();
 			} catch (final Exception e) {
 				LOGGER.error(e.getMessage(), e);
 			}

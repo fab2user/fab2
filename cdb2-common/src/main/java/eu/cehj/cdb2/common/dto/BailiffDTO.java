@@ -31,6 +31,7 @@ public class BailiffDTO extends BaseDTO{
 	private String langDisplay; // used only for CDB for now but maybe relevant for other cases too
 	private List<CompetenceDTO> competences;
 	private List<Long> instrumentIds;
+	private List<Long> competenceIds;
 	private GeoAreaSimpleDTO geo;
 	private List<GeoAreaSimpleDTO> geoAreas  = new ArrayList<>();
 
@@ -231,12 +232,28 @@ public class BailiffDTO extends BaseDTO{
 		this.instrumentIds = instrumentIds;
 	}
 
+	public List<Long> getCompetenceIds() {
+		return this.competenceIds;
+	}
+
+	public void setCompetenceIds(final List<Long> competenceIds) {
+		this.competenceIds = competenceIds;
+	}
+
 	public List<GeoAreaSimpleDTO> getGeoAreas() {
 		return this.geoAreas;
 	}
 
 	public void setGeoAreas(final List<GeoAreaSimpleDTO> geoAreas) {
 		this.geoAreas = geoAreas;
+	}
+
+	public List<String> getLanguagesCode() {
+		return this.languagesCode;
+	}
+
+	public void setLanguagesCode(final List<String> languagesCode) {
+		this.languagesCode = languagesCode;
 	}
 
 	@Override
@@ -248,12 +265,6 @@ public class BailiffDTO extends BaseDTO{
 				+ this.geo + ", toBeUpdated=" + this.toBeUpdated + "]";
 	}
 
-	public List<String> getLanguagesCode() {
-		return this.languagesCode;
-	}
 
-	public void setLanguagesCode(final List<String> languagesCode) {
-		this.languagesCode = languagesCode;
-	}
 
 }

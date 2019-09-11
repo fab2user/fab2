@@ -150,8 +150,8 @@
                 ng-model="bailiffEditCtrl.bailiff.competences" multiple size="5" ng-required="bailiffEditCtrl.bailiff.geo">
               </select>
               -->
-              <div ng-repeat="instrument in bailiffEditCtrl.competences">
-                <input type="checkbox" checklist-model="bailiffEditCtrl.bailiff.instrumentIds" checklist-value="instrument.instrumentId"> {{ instrument.instrumentDescription }}
+              <div ng-repeat="competence in bailiffEditCtrl.competences">
+                <input type="checkbox" checklist-model="bailiffEditCtrl.bailiff.competenceIds" checklist-value="competence.id"> {{ competence.instrumentDescription }}
               </div>
               
               <div ng-if="bailiffEditCtrl.bailiffForm.$submitted" ng-messages="bailiffEditCtrl.bailiffForm.instrument.$error">
