@@ -68,6 +68,9 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 	@Value("${national.id.prefix}")
 	String nationalIdPrefix;
 
+	@Value("${default.language.for.description:en}")
+	String defaultLanguageForDescription;
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(BailiffServiceImpl.class);
 
 	@Override
@@ -202,6 +205,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 		entity.setNationalId(this.addPrefixIfNeeded(dto.getNationalId()));
 		entity.setName(dto.getName());
 		entity.setPhone(dto.getPhone());
+		entity.setFax(dto.getFax());
 		entity.setEmail(dto.getEmail());
 		entity.getLanguages().clear();
 		dto.getLanguages().forEach(lang -> {
@@ -302,9 +306,11 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 
 
 		dto.setName(entity.getName());
+		dto.setLang(this.defaultLanguageForDescription);
 
 		dto.setTel(entity.getPhone());
 		dto.setEmail(entity.getEmail());
+		dto.setWebsite(entity.getWebSite());
 		dto.setVideoConference(entity.isVideoConference());
 		final List<CompetenceExportDTO> competences = new ArrayList<>();
 		for (final BailiffCompetenceArea bca : entity.getBailiffCompetenceAreas()) {
@@ -336,6 +342,7 @@ public class BailiffServiceImpl extends BaseServiceImpl<Bailiff, BailiffDTO, Lon
 				dto.setCity(defaultString(detail.getMunicipality(),null));
 				dto.setPhone(defaultString(detail.getTel(),null));
 				dto.setFax(defaultString(detail.getFax(), null));
+				dto.setWebSite(defaultString(detail.getWebsite(), null));
 				dto.setLangDisplay(defaultString(detail.getLang(), null));
 				final Boolean videoConference = detail.getVideoConference();
 				if(videoConference != null) {

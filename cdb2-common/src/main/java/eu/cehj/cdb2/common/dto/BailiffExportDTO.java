@@ -15,6 +15,7 @@ public class BailiffExportDTO{
 	private String tel;
 	private String fax;
 	private String email;
+	private String website;
 	private boolean videoConference;
 	private List<CompetenceExportDTO> competences;
 	private List<String> acceptedLanguages;
@@ -98,9 +99,15 @@ public class BailiffExportDTO{
 		this.nationalId = nationalId;
 	}
 	public List<String> getAcceptedLanguages() {
-		return acceptedLanguages;
+		return this.acceptedLanguages;
 	}
-	public void setAcceptedLanguages(List<String> acceptedLanguages) {
+	public void setAcceptedLanguages(final List<String> acceptedLanguages) {
 		this.acceptedLanguages = acceptedLanguages;
+	}
+	public String getWebsite() {
+		return this.website;
+	}
+	public void setWebsite(final String website) {
+		this.website = website;
 	}
 }
