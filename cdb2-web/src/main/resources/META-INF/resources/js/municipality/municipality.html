@@ -46,10 +46,12 @@
 
 <section id="table">
     <div class="head">
-        <div class="button">
-            <!--  TODO  -->
-            <zip-update/>
-        </div>
+            <div class="button">
+                <zip-update/>
+            </div>
+            <div class="button">
+                <geoname-update/>
+            </div>
     </div>
 
     <div class="body">
@@ -73,6 +75,7 @@
                     <td data-title="'municipality.list.area1'|translate" sortable="'adminAreaSubdivisionMajor'">{{city.adminAreaSubdivisionMajor}}</td>
                     <td data-title="'municipality.list.area2'|translate" sortable="'adminAreaSubdivisionMiddle'">{{city.adminAreaSubdivisionMiddle}}</td>
                     <td data-title="'municipality.list.area3'|translate" sortable="'adminAreaSubdivisionMinor'">{{city.adminAreaSubdivisionMinor}}</td>
+                    <td data-title="'municipality.list.geoNameId'|translate" sortable="'geoNameId'">{{city.geoNameId}}</td>
                 </tr>
             </tbody>
         </table>

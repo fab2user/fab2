@@ -14,91 +14,92 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "task")
 public class CDBTask extends BaseAuditedEntity<String> {
 
-    private static final long serialVersionUID = 6342766955575124252L;
+	private static final long serialVersionUID = 6342766955575124252L;
 
-    public enum  Status{
-        OK,
-        STARTED,
-        ERROR,
-        PENDING,
-        IN_PROGRESS
-    }
+	public enum  Status{
+		OK,
+		STARTED,
+		ERROR,
+		PENDING,
+		IN_PROGRESS
+	}
 
-    public enum  Type{
-        GEONAME_IMPORT,
-        BAILIFF_IMPORT,
-        BAILIFF_EXPORT
-    }
+	public enum  Type{
+		GEONAME_IMPORT,
+		GEONAME_UPDATE_IMPORT,
+		BAILIFF_IMPORT,
+		BAILIFF_EXPORT
+	}
 
-    public CDBTask() {
-        super();
-        this.setStartDate(new Date());
-        this.setStatus(Status.STARTED);
-    }
+	public CDBTask() {
+		super();
+		this.setStartDate(new Date());
+		this.setStatus(Status.STARTED);
+	}
 
-    public CDBTask(final Type type) {
-        super();
-        this.type = type;
-        this.setStartDate(new Date());
-        this.setStatus(Status.STARTED);
-    }
+	public CDBTask(final Type type) {
+		super();
+		this.type = type;
+		this.setStartDate(new Date());
+		this.setStatus(Status.STARTED);
+	}
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "start_date")
-    private Date startDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "start_date")
+	private Date startDate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "end_date")
-    private Date endDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "end_date")
+	private Date endDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable=false)
-    private Status status;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status", nullable=false)
+	private Status status;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable=false)
-    private Type type;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "type", nullable=false)
+	private Type type;
 
-    @Column(name = "message")
-    private String message;
+	@Column(name = "message")
+	private String message;
 
-    public Date getStartDate() {
-        return this.startDate;
-    }
+	public Date getStartDate() {
+		return this.startDate;
+	}
 
-    public void setStartDate(final Date startDate) {
-        this.startDate = startDate;
-    }
+	public void setStartDate(final Date startDate) {
+		this.startDate = startDate;
+	}
 
-    public Date getEndDate() {
-        return this.endDate;
-    }
+	public Date getEndDate() {
+		return this.endDate;
+	}
 
-    public void setEndDate(final Date endDate) {
-        this.endDate = endDate;
-    }
+	public void setEndDate(final Date endDate) {
+		this.endDate = endDate;
+	}
 
-    public Status getStatus() {
-        return this.status;
-    }
+	public Status getStatus() {
+		return this.status;
+	}
 
-    public void setStatus(final Status status) {
-        this.status = status;
-    }
+	public void setStatus(final Status status) {
+		this.status = status;
+	}
 
-    public Type getType() {
-        return this.type;
-    }
+	public Type getType() {
+		return this.type;
+	}
 
-    public void setType(final Type type) {
-        this.type = type;
-    }
+	public void setType(final Type type) {
+		this.type = type;
+	}
 
-    public String getMessage() {
-        return this.message;
-    }
+	public String getMessage() {
+		return this.message;
+	}
 
-    public void setMessage(final String message) {
-        this.message = message;
-    }
+	public void setMessage(final String message) {
+		this.message = message;
+	}
 }

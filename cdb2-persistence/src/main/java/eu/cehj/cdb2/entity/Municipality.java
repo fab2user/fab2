@@ -13,103 +13,112 @@ import org.hibernate.annotations.Where;
 @Where(clause="deleted=0 or deleted is null")
 public class Municipality extends BaseAuditedEntity<String> {
 
-    private static final long serialVersionUID = -1302962165492457412L;
+	private static final long serialVersionUID = -1302962165492457412L;
 
-    @Column(name = "postal_code", nullable=false)
-    private String postalCode;
+	@Column(name = "postal_code", nullable=false)
+	private String postalCode;
 
-    @Column(name = "name", nullable=false)
-    private String name;
+	@Column(name = "name", nullable=false)
+	private String name;
 
-    @Column(name = "latitude")
-    private String latitude;
+	@Column(name = "latitude")
+	private String latitude;
 
-    @Column(name = "longitude")
-    private String longitude;
+	@Column(name = "longitude")
+	private String longitude;
 
-    @ManyToOne
-    @JoinColumn(name = "admin_area_subdivision_major")
-    private AdminAreaSubdivisionMajor adminAreaSubdivisionMajor;
+	@ManyToOne
+	@JoinColumn(name = "admin_area_subdivision_major")
+	private AdminAreaSubdivisionMajor adminAreaSubdivisionMajor;
 
-    @ManyToOne
-    @JoinColumn(name = "admin_area_subdivision_middle", referencedColumnName = "id")
-    private AdminAreaSubdivisionMiddle adminAreaSubdivisionMiddle;
+	@ManyToOne
+	@JoinColumn(name = "admin_area_subdivision_middle", referencedColumnName = "id")
+	private AdminAreaSubdivisionMiddle adminAreaSubdivisionMiddle;
 
-    @ManyToOne
-    @JoinColumn(name = "admin_area_subdivision_minor", referencedColumnName = "id")
-    private AdminAreaSubdivisionMinor adminAreaSubdivisionMinor;
+	@ManyToOne
+	@JoinColumn(name = "admin_area_subdivision_minor", referencedColumnName = "id")
+	private AdminAreaSubdivisionMinor adminAreaSubdivisionMinor;
 
-    @ManyToOne
-    @JoinColumn(name = "geo_area", referencedColumnName = "id")
-    private GeoArea geoArea;
+	@ManyToOne
+	@JoinColumn(name = "geo_area", referencedColumnName = "id")
+	private GeoArea geoArea;
 
-    public Municipality() {
-        super();
-    }
+	@Column(name = "geo_name_id")
+	private Long geoNameId;
 
-    public String getPostalCode() {
-        return this.postalCode;
-    }
+	public Municipality() {
+		super();
+	}
 
-    public void setPostalCode(final String postalCode) {
-        this.postalCode = postalCode;
-    }
+	public String getPostalCode() {
+		return this.postalCode;
+	}
 
-    public String getName() {
-        return this.name;
-    }
+	public void setPostalCode(final String postalCode) {
+		this.postalCode = postalCode;
+	}
 
-    public void setName(final String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public String getLatitude() {
-        return this.latitude;
-    }
+	public void setName(final String name) {
+		this.name = name;
+	}
 
-    public void setLatitude(final String latitude) {
-        this.latitude = latitude;
-    }
+	public String getLatitude() {
+		return this.latitude;
+	}
 
-    public String getLongitude() {
-        return this.longitude;
-    }
+	public void setLatitude(final String latitude) {
+		this.latitude = latitude;
+	}
 
-    public void setLongitude(final String longitude) {
-        this.longitude = longitude;
-    }
+	public String getLongitude() {
+		return this.longitude;
+	}
 
-    public AdminAreaSubdivisionMajor getAdminAreaSubdivisionMajor() {
-        return this.adminAreaSubdivisionMajor;
-    }
+	public void setLongitude(final String longitude) {
+		this.longitude = longitude;
+	}
 
-    public void setAdminAreaSubdivisionMajor(final AdminAreaSubdivisionMajor adminAreaSubdivisionMajor) {
-        this.adminAreaSubdivisionMajor = adminAreaSubdivisionMajor;
-    }
+	public AdminAreaSubdivisionMajor getAdminAreaSubdivisionMajor() {
+		return this.adminAreaSubdivisionMajor;
+	}
 
-    public AdminAreaSubdivisionMiddle getAdminAreaSubdivisionMiddle() {
-        return this.adminAreaSubdivisionMiddle;
-    }
+	public void setAdminAreaSubdivisionMajor(final AdminAreaSubdivisionMajor adminAreaSubdivisionMajor) {
+		this.adminAreaSubdivisionMajor = adminAreaSubdivisionMajor;
+	}
 
-    public void setAdminAreaSubdivisionMiddle(final AdminAreaSubdivisionMiddle adminAreaSubdivisionMiddle) {
-        this.adminAreaSubdivisionMiddle = adminAreaSubdivisionMiddle;
-    }
+	public AdminAreaSubdivisionMiddle getAdminAreaSubdivisionMiddle() {
+		return this.adminAreaSubdivisionMiddle;
+	}
 
-    public AdminAreaSubdivisionMinor getAdminAreaSubdivisionMinor() {
-        return this.adminAreaSubdivisionMinor;
-    }
+	public void setAdminAreaSubdivisionMiddle(final AdminAreaSubdivisionMiddle adminAreaSubdivisionMiddle) {
+		this.adminAreaSubdivisionMiddle = adminAreaSubdivisionMiddle;
+	}
 
-    public void setAdminAreaSubdivisionMinor(final AdminAreaSubdivisionMinor adminAreaSubdivisionMinor) {
-        this.adminAreaSubdivisionMinor = adminAreaSubdivisionMinor;
-    }
+	public AdminAreaSubdivisionMinor getAdminAreaSubdivisionMinor() {
+		return this.adminAreaSubdivisionMinor;
+	}
 
-    public GeoArea getGeoArea() {
-        return this.geoArea;
-    }
+	public void setAdminAreaSubdivisionMinor(final AdminAreaSubdivisionMinor adminAreaSubdivisionMinor) {
+		this.adminAreaSubdivisionMinor = adminAreaSubdivisionMinor;
+	}
 
-    public void setGeoArea(final GeoArea geoArea) {
-        this.geoArea = geoArea;
-    }
+	public GeoArea getGeoArea() {
+		return this.geoArea;
+	}
 
+	public void setGeoArea(final GeoArea geoArea) {
+		this.geoArea = geoArea;
+	}
 
+	public Long getGeoNameId() {
+		return this.geoNameId;
+	}
+
+	public void setGeoNameId(final Long geoNameId) {
+		this.geoNameId = geoNameId;
+	}
 }

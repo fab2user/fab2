@@ -9,8 +9,10 @@ import eu.cehj.cdb2.entity.CDBTask;
 @Service
 public interface DataImportService {
 
-    public void importData(String fileName, CDBTask task) throws IOException;
+	public void importData(String fileName, CDBTask task) throws IOException;
 
-    public void processError(CDBTask task, String errorMessage, Exception e);
+	public void updateGeoNameData(String fileName, CDBTask task) throws IOException;
+
+	public void processError(CDBTask task, String errorMessage, Exception e);
 
 }

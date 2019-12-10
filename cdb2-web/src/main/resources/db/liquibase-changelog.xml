@@ -236,4 +236,10 @@ ALTER TABLE municipality ADD INDEX `idx_code_municipality` (`postal_code` ASC);
             UPDATE competence set code = 'CEO' where instrument = 2;
         </sql>
     </changeSet>
+    <changeSet id="cdb-21" author="Admin" >
+        <comment>Add the GeoNameId to the list of municipalities</comment>
+        <addColumn tableName="municipality">
+            <column name="geo_name_id" type="bigint"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
