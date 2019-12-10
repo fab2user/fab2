@@ -113,6 +113,7 @@ public class MunicipalityServiceImpl extends BaseServiceImpl<Municipality, Munic
 		if (municipality.getAdminAreaSubdivisionMinor() != null) {
 			dto.setAdminAreaSubdivisionMinor(municipality.getAdminAreaSubdivisionMinor().getName());
 		}
+		dto.setGeoNameId(municipality.getGeoNameId());
 		return dto;
 	}
 
