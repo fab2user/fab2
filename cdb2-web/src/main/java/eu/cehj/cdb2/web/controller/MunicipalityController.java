@@ -95,4 +95,20 @@ public class MunicipalityController extends BaseController {
 		return this.taskService.getDTO(task.getId());
 	}
 
+	@RequestMapping(method = { POST }, value="updateGeoName")
+	@ResponseStatus(value = HttpStatus.OK)
+	@Secured(value = { "ROLE_USER", "ROLE_SUPER_USER", "ROLE_ADMIN"})
+	// TODO: Inform user when he wants to import non supported file format (currently system just silently refuses to process the file)
+	public CDBTaskDTO updateGeoName(@RequestParam("file") final MultipartFile file){
+		final CDBTask task = this.taskService.save(new CDBTask(CDBTask.Type.GEONAME_UPDATE_IMPORT));
+		try {
+			this.storageService.store(file);
+			this.importService.updateGeoNameData(file.getOriginalFilename(), task);
+		} catch (final Exception e) {
+			LOGGER.error(e.getMessage(),e);
+			this.importService.processError(task, String.format("Error occured while processing data: %s", e.getMessage()), e);
+		}
+		return this.taskService.getDTO(task.getId());
+	}
+
 }

@@ -7,6 +7,8 @@ public class CompetenceExportDTO {
 	private String instrument;
 	private String type;
 	private List<String> geoAreaIds;
+	private String geoAreaId; // backward compatibility
+
 
 	public String getInstrument() {
 		return this.instrument;
@@ -26,4 +28,11 @@ public class CompetenceExportDTO {
 	public void setGeoAreaIds(final List<String> geoAreaId) {
 		this.geoAreaIds = geoAreaId;
 	}
+	public String getGeoAreaId() {
+		return this.geoAreaId;
+	}
+	public void setGeoAreaId(final String geoAreaId) {
+		this.geoAreaId = geoAreaId;
+	}
+
 }

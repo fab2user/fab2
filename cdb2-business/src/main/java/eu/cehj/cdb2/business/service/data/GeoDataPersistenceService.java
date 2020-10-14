@@ -16,31 +16,32 @@ import eu.cehj.cdb2.business.service.db.MunicipalityService;
 @Service
 public class GeoDataPersistenceService implements DataPersistenceService {
 
-    @Autowired
-    MunicipalityService municipalityService;
+	@Autowired
+	MunicipalityService municipalityService;
 
-    @Autowired
-    AdminAreaSubdivisionMajorService adminAreaSubdivisionMajorService;
+	@Autowired
+	AdminAreaSubdivisionMajorService adminAreaSubdivisionMajorService;
 
-    @Autowired
-    AdminAreaSubdivisionMinorService adminAreaSubdivisionMinorService;
+	@Autowired
+	AdminAreaSubdivisionMinorService adminAreaSubdivisionMinorService;
 
-    @Autowired
-    AdminAreaSubdivisionMiddleService  adminAreaSubdivisionMiddleService;
+	@Autowired
+	AdminAreaSubdivisionMiddleService  adminAreaSubdivisionMiddleService;
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GeoDataPersistenceService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GeoDataPersistenceService.class);
 
-    @Override
-    @Transactional
-    public void persistData(final List<GeoDataStructure> dataStrucures) {
-        dataStrucures.stream().forEach(geoStructure -> {
-            final RecordBuilderHelper helper = new RecordBuilderHelper();
-            this.adminAreaSubdivisionMajorService.updateAreaFromStructure(geoStructure, helper);
-            this.adminAreaSubdivisionMiddleService.updateAreaFromStructure(geoStructure, helper);
-            this.adminAreaSubdivisionMinorService.updateAreaFromStructure(geoStructure, helper);
-            this.municipalityService.updateAreaFromStructure(geoStructure, helper);
-            LOGGER.debug("Area processed: " + geoStructure.toString());
-        });
-    }
+	@Override
+	@Transactional
+	public void persistData(final List<GeoDataStructure> dataStrucures) {
+
+		dataStrucures.stream().forEach(geoStructure -> {
+			final RecordBuilderHelper helper = new RecordBuilderHelper();
+			this.adminAreaSubdivisionMajorService.updateAreaFromStructure(geoStructure, helper);
+			this.adminAreaSubdivisionMiddleService.updateAreaFromStructure(geoStructure, helper);
+			this.adminAreaSubdivisionMinorService.updateAreaFromStructure(geoStructure, helper);
+			this.municipalityService.updateAreaFromStructure(geoStructure, helper);
+			LOGGER.debug("Area processed: " + geoStructure.toString());
+		});
+	}
 }

@@ -1,6 +1,6 @@
 package eu.cehj.cdb2.business.service.data;
 
-public class GeoDataStructure implements DataStructure {
+public class GeoDataUpdateStructure implements DataStructure {
 
 	private String countryCode;
 	private String zipCode;
@@ -13,9 +13,6 @@ public class GeoDataStructure implements DataStructure {
 	private String minorAreaCode;
 	private String xPos;
 	private String yPos;
-	private Long geoNameId;
-	private String geoNameFeatureClass;
-	private String geoNameFeatureCode;
 
 	public String getCountryCode() {
 		return this.countryCode;
@@ -82,25 +79,6 @@ public class GeoDataStructure implements DataStructure {
 	}
 	public void setyPos(final String yPos) {
 		this.yPos = yPos;
-	}
-
-	public Long getGeoNameId() {
-		return this.geoNameId;
-	}
-	public void setGeoNameId(final Long geoNameId) {
-		this.geoNameId = geoNameId;
-	}
-	public String getGeoNameFeatureClass() {
-		return this.geoNameFeatureClass;
-	}
-	public void setGeoNameFeatureClass(final String geoNameFeatureClass) {
-		this.geoNameFeatureClass = geoNameFeatureClass;
-	}
-	public String getGeoNameFeatureCode() {
-		return this.geoNameFeatureCode;
-	}
-	public void setGeoNameFeatureCode(final String geoNameFeatureCode) {
-		this.geoNameFeatureCode = geoNameFeatureCode;
 	}
 
 	@Override

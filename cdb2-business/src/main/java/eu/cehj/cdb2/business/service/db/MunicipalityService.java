@@ -6,17 +6,21 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
+import eu.cehj.cdb2.business.service.data.GeoDataStructure;
+import eu.cehj.cdb2.business.service.data.RecordBuilderHelper;
 import eu.cehj.cdb2.common.dto.MunicipalityDTO;
 import eu.cehj.cdb2.entity.Municipality;
 
 @Service
 public interface MunicipalityService extends BaseService<Municipality, MunicipalityDTO, Long>, BaseGeoService<Municipality>, AdminAreaSubdivisionService {
 
-    @Override
-    public MunicipalityDTO populateDTOFromEntity(Municipality municipality);
+	@Override
+	MunicipalityDTO populateDTOFromEntity(Municipality municipality);
 
-    public Page<MunicipalityDTO> findAll(Predicate predicate, Pageable pageable);
+	Page<MunicipalityDTO> findAll(Predicate predicate, Pageable pageable);
 
-    public Municipality getByPostalCodeAndName(String postalCode, String name);
+	Municipality getByPostalCodeAndName(String postalCode, String name);
+
+	long updateGeoNameIDFromStructure(GeoDataStructure geoStructure, RecordBuilderHelper helper);
 
 }
